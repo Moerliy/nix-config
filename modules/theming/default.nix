@@ -1,0 +1,3 @@
+[
+  ./starship/default.nix
+]

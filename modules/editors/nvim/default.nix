@@ -1,0 +1,66 @@
+{ pkgs, config, lib, vars, ... }:
+
+let
+  configFilesToLink = {
+    "nvim/init.lua" = ./config/init.lua;
+    "nvim/lua" = ./config/lua;
+    "nvim/secrets" = ./config/secrets;
+    "nvim/stylelua.toml" = ./config/stylua.toml;
+  };
+  # Function to help map attrs for symlinking home.file, xdg.configFile
+  # e.g. from { ".hgrc" = ./hgrc; } to { ".hgrc".source = ./hgrc; }
+  toSource = configDirName: dotfilesPath: { source = dotfilesPath; };
+in with lib;
+{
+  options.neovim = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+      description = mdDoc
+        ''
+        Enable neovim configuration.
+        '';
+    };
+  };
+
+  config = mkIf config.neovim.enable {
+    home-manager.users.${vars.user} = {
+      programs = {
+        neovim = {
+          enable = true;
+          viAlias = true;
+          vimAlias = true;
+          withNodeJs = true;
+          withPython3 = true;
+
+        };
+      };
+      # Symlink files under ~/.config, e.g. ~/.config/alacritty/alacritty.yml
+      xdg.configFile = pkgs.lib.attrsets.mapAttrs toSource configFilesToLink;
+      home.packages = with pkgs; [
+          git
+          lazygit
+          ripgrep
+          fd
+          fzf
+          clang
+
+          #rustup
+          cargo
+          rustc
+          # nix-shell -p pkg-config sqlite openssl libiconv
+          libiconv
+          pkg-config
+          sqlite
+          openssl
+
+          clang-tools
+          luajitPackages.luarocks
+          nil
+          nixd
+          go
+          gnupg
+        ];
+    };
+  };
+}

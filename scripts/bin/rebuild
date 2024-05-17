@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd "$HOME"/.setup/ || exit
+darwin-rebuild switch --flake .#macbook
