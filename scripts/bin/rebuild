@@ -6,11 +6,18 @@ hostnames=("macbook\ncustom")
 # select a hostname
 hostname=$(echo -e "${hostnames[@]}" | fzf --ansi --prompt="󱄅 Nix flake hostnames  " --height=~50 --layout=reverse --border --exit-0)
 
+# if custom is selected ask for the hostname
+if [ "$hostname" = "custom" ]; then
+	# user input
+	read -p "Enter custom hostname: " hostname
+fi
+
 config_files=$(find . -type f -name "$hostname.nix") # if no hostname is selected exit
 if [ -z "$config_files" ]; then
 	echo "No config files found for $hostname"
 	exit 1
 fi
+
 nvim "$config_files"
 alejandra . &>/dev/null # format all nix files
 git diff -U0
