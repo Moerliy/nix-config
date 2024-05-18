@@ -59,7 +59,7 @@ with lib; {
             fish_add_path --path "$HOME/go/bin"
             fish_add_path --path "$HOME/.ghcup/bin"
             fish_add_path --path "$HOME/.cargo/bin"
-            fish_add_path --path "$HOME/.setup/scripts/bin"
+            #fish_add_path --path "$HOME/.setup/scripts/bin"
 
             # Spaceship
             eval (starship init fish)

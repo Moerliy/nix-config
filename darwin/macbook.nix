@@ -15,6 +15,7 @@
 }: {
   imports =
     [
+      ../scripts/default.nix
     ]
     ++ (import ./modules)
     ++ (import ../modules);
@@ -29,6 +30,8 @@
     computerName = "MacBook";
     hostName = "MacBook";
   };
+
+  custom-scripts.enable = true;
 
   # desktop related
   skhd.enable = true; # Simple hotkey daemon
