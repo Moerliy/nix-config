@@ -37,7 +37,6 @@ with lib; {
           htop
           ripgrep
           tree
-          alejandra
         ];
         shellAliases = {
           ".." = "cd ..";
