@@ -8,7 +8,6 @@
 #           ├─ default.nix *
 #           └─ ...
 #
-
 [
   ./skhd.nix
   ./yabai.nix

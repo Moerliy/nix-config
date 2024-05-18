@@ -8,14 +8,16 @@
 #       └─ ./modules
 #           └─ default.nix
 #
-
-{ pkgs, vars, ... }:
-
 {
-  imports = [
-  ] ++ 
-  (import ./modules) ++
-  (import ../modules);
+  pkgs,
+  vars,
+  ...
+}: {
+  imports =
+    [
+    ]
+    ++ (import ./modules)
+    ++ (import ../modules);
 
   users.users.${vars.user} = {
     name = "${vars.user}";
@@ -55,7 +57,7 @@
       (nerdfonts.override {
         fonts = [
           "FiraCode"
-	        "JetBrainsMono"
+          "JetBrainsMono"
         ];
       })
     ];
@@ -101,7 +103,7 @@
   };
 
   environment = {
-    shells = with pkgs; [ fish ];
+    shells = with pkgs; [fish];
     variables = {
       EDITOR = "${vars.editor}";
       VISUAL = "${vars.editor}";

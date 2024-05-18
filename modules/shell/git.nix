@@ -1,18 +1,21 @@
 #
 #  Git
 #
-
-{ config, lib, vars, ... }:
-
-with lib;
 {
+  config,
+  lib,
+  vars,
+  ...
+}:
+with lib; {
   options.git = {
     enable = mkOption {
       type = types.bool;
       default = false;
-      description = mdDoc
+      description =
+        mdDoc
         ''
-        Enable the Git package.
+          Enable the Git package.
         '';
     };
   };

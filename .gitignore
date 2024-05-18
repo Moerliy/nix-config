@@ -6,4 +6,5 @@ result*
 
 .direnv
 .devenv
-flake.lock
+*.log
+# flake.lock

@@ -2,11 +2,14 @@
 #  Top toolbar
 #  Enable with "sketchybar.enable = true;"
 #
-
-{ config, lib, pkgs, vars, ... }:
-
-with lib;
 {
+  config,
+  lib,
+  pkgs,
+  vars,
+  ...
+}:
+with lib; {
   options.sketchybar = {
     enable = mkOption {
       type = types.bool;

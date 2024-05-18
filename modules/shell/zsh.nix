@@ -1,18 +1,22 @@
 #
 #  Shell
 #
-
-{ lib, config, pkgs, vars, ... }:
-
-with lib;
 {
+  lib,
+  config,
+  pkgs,
+  vars,
+  ...
+}:
+with lib; {
   options.zsh = {
     enable = mkOption {
       type = types.bool;
       default = false;
-      description = mdDoc
+      description =
+        mdDoc
         ''
-        Enable zsh shell.
+          Enable zsh shell.
         '';
     };
   };
@@ -31,7 +35,7 @@ with lib;
           history.size = 10000;
           oh-my-zsh = {
             enable = true;
-            plugins = [ "git" ];
+            plugins = ["git"];
             # custom = "$HOME/.config/zsh_nix/custom";
           };
           initExtra = ''

@@ -1,18 +1,23 @@
 #
 #  Terminal Emulator
 #
-
-{ lib, config, pkgs, vars, ... }:
-
-with lib;
 {
+  lib,
+  config,
+  pkgs,
+  pkgs-stable,
+  vars,
+  ...
+}:
+with lib; {
   options.kitty = {
     enable = mkOption {
       type = types.bool;
       default = false;
-      description = mdDoc
+      description =
+        mdDoc
         ''
-        Enable kitty terminal emulator.
+          Enable kitty terminal emulator.
         '';
     };
   };
@@ -49,10 +54,11 @@ with lib;
       ];
       programs = {
         kitty = {
+          package = pkgs-stable.kitty;
           enable = true;
-          theme ="Catppuccin-Mocha";
+          theme = "Catppuccin-Mocha";
           font = {
-            name =  "JetBrainsMono Nerd Font";
+            name = "JetBrainsMono Nerd Font";
             size = 13;
           };
           settings = {

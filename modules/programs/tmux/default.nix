@@ -1,21 +1,21 @@
 #
 #  Terminal multiplexer
 #
-
-{ pkgs, vars, ... }:
-
-let
+{
+  pkgs,
+  vars,
+  ...
+}: let
   configFilesToLink = {
     "tmux/config.yaml" = ./config/config.yaml;
-    "tmux/statusline.conf"= ./config/statusline.conf;
+    "tmux/statusline.conf" = ./config/statusline.conf;
     "tmux/tmux.conf" = ./config/tmux.conf;
     "tmux/utility.conf" = ./config/utility.conf;
   };
   # Function to help map attrs for symlinking home.file, xdg.configFile
   # e.g. from { ".hgrc" = ./hgrc; } to { ".hgrc".source = ./hgrc; }
-  toSource = configDirName: dotfilesPath: { source = dotfilesPath; };
-in
-{
+  toSource = configDirName: dotfilesPath: {source = dotfilesPath;};
+in {
   environment = {
     systemPackages = with pkgs; [
     ];

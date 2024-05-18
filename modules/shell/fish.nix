@@ -1,11 +1,14 @@
 #
 #  Shell
 #
-
-{ config, lib, pkgs, vars, ... }:
-
-with lib;
 {
+  config,
+  lib,
+  pkgs,
+  vars,
+  ...
+}:
+with lib; {
   imports = [
     ../theming/starship/default.nix
   ];
@@ -14,9 +17,10 @@ with lib;
     enable = mkOption {
       type = types.bool;
       default = false;
-      description = mdDoc
+      description =
+        mdDoc
         ''
-        Enable fish shell.
+          Enable fish shell.
         '';
     };
   };

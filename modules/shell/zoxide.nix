@@ -1,18 +1,21 @@
 #
 #  Better cd
 #
-
-{ config, lib, vars, ... }:
-
-with lib;
 {
+  config,
+  lib,
+  vars,
+  ...
+}:
+with lib; {
   options.zoxide = {
     enable = mkOption {
       type = types.bool;
       default = false;
-      description = mdDoc
+      description =
+        mdDoc
         ''
-        Enable zoxide, a faster way to navigate your filesystem.
+          Enable zoxide, a faster way to navigate your filesystem.
         '';
     };
   };
@@ -24,7 +27,7 @@ with lib;
           enable = true;
           enableZshIntegration = true;
           enableFishIntegration = true;
-          options = [ "--cmd cd" ];
+          options = ["--cmd cd"];
         };
       };
     };

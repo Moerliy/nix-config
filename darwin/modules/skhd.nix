@@ -2,11 +2,15 @@
 #  Hotkey Daemon
 #  Enable with "skhd.enable = true;"
 #
-
-{ config, lib, pkgs, vars, ... }:
-
-with lib;
 {
+  config,
+  lib,
+  pkgs,
+  pkgs-stable,
+  vars,
+  ...
+}:
+with lib; {
   options.skhd = {
     enable = mkOption {
       type = types.bool;
@@ -21,7 +25,7 @@ with lib;
     home-manager.users.${vars.user} = {
       home = {
         packages = with pkgs; [
-          kitty
+          pkgs-stable.kitty
           discord
         ];
       };
@@ -54,7 +58,7 @@ with lib;
 
           move < f ; focus
           focus < m ; move
-          
+
           # open
           open < t : /Users/${vars.user}/Applications/Home\ Manager\ Apps/Kitty.App/Contents/MacOS/kitty --single-instance -d ~
           open < d : open -na /Users/${vars.user}/Applications/Home\ Manager\ Apps/Discord.app

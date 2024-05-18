@@ -9,7 +9,6 @@
 #           ├─ default.nix *
 #           └─ ...
 #
-
 [
   ./kitty.nix
   ./tmux/default.nix

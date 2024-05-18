@@ -1,4 +1,13 @@
 #!/bin/bash
-
-cd "$HOME"/.setup/ || exit
-darwin-rebuild switch --flake .#macbook
+set -e
+pushd "$HOME"/.setup/ || exit
+nvim ./darwin/macbook.nix
+alejandra . &>/dev/null
+git diff -U0
+echo "Nix Rebuilding... 🚀"
+darwin-rebuild switch --flake .#macbook &>nix-switch.log || (cat nix-switch.log | grep --color error && false)
+CURRENT="current"
+# remove current out of string
+gen=$(darwin-rebuild --list-generations | grep current | sed 's/ (current)//g')
+git commit -am "$gen"
+popd

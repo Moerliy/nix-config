@@ -6,21 +6,29 @@
 #       ├─ default.nix *
 #       └─ <host>.nix
 #
-
-{ inputs, nixpkgs-unstable, darwin, home-manager-unstable, vars, ... }:
-
-let
+{
+  inputs,
+  nixpkgs,
+  nixpkgs-unstable,
+  darwin,
+  home-manager-unstable,
+  vars,
+  ...
+}: let
   system = "aarch64-darwin";
   pkgs = import nixpkgs-unstable {
     inherit system;
     config.allowUnfree = true;
   };
-in
-{
+  pkgs-stable = import nixpkgs {
+    inherit system;
+    config.allowUnfree = true;
+  };
+in {
   # MacBook M1
   macbook = darwin.lib.darwinSystem {
     inherit system;
-    specialArgs = { inherit inputs pkgs vars; };
+    specialArgs = {inherit inputs pkgs vars pkgs-stable;};
     modules = [
       ./macbook.nix
 
