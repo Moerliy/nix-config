@@ -1,13 +1,23 @@
 #!/bin/bash
 set -e
 pushd "$HOME"/.setup/ || exit
-nvim ./darwin/macbook.nix
-alejandra . &>/dev/null
+# all the hostnames that are in the nix flake
+hostnames=("macbook\ncustom")
+# select a hostname
+hostname=$(echo -e "${hostnames[@]}" | fzf --ansi --prompt="󱄅 Nix flake hostnames  " --height=~50 --layout=reverse --border --exit-0)
+
+config_files=$(find . -type f -name "$hostname.nix") # if no hostname is selected exit
+if [ -z "$config_files" ]; then
+	echo "No config files found for $hostname"
+	exit 1
+fi
+nvim "$config_files"
+alejandra . &>/dev/null # format all nix files
 git diff -U0
 echo "Nix Rebuilding... 🚀"
-darwin-rebuild switch --flake .#macbook &>nix-switch.log || (cat nix-switch.log | grep --color error && false)
-CURRENT="current"
+darwin-rebuild switch --flake .#"$hostname" &>nix-switch.log || (cat nix-switch.log | grep --color error && false)
+CURRENT=" (current)"
 # remove current out of string
-gen=$(darwin-rebuild --list-generations | grep current | sed 's/ (current)//g')
+gen=$(darwin-rebuild --list-generations | grep current | sed "s/$CURRENT//g")
 git commit -am "$gen"
 popd
