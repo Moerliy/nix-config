@@ -68,7 +68,7 @@ window=0
 tmux send-keys -t $session:$window "eval '$sshCommand'" C-m
 tmux send-keys -t $session:$window "axii w ac $axiiWorkspace; if [[ \`echo \$?\` != '0' ]];  then echo 'again'; axii w ac $axiiWorkspace; fi" C-m
 tmux send-keys -t $session:$window "armarx reset" C-m
-tmux send-keys -t $session:$window "armarx start scenario SkillProviderTest" C-m
+tmux send-keys -t $session:$window "armarx scenario start SkillProviderTest" C-m
 
 window=1
 tmux send-keys -t $session:$window "eval '$sshCommand'" C-m
