@@ -1,5 +1,6 @@
 #!/bin/bash
 
+axiiPossibleWorkspaces=("flux")
 axiiWorkspace="flux"
 
 # check for flags
@@ -12,7 +13,7 @@ while getopts "h""w" opt; do
 		exit 0
 		;;
 	w) # set workspace
-		axiiWorkspace=$OPTARG
+		axiiChooseWorkspace=true
 		;;
 	\?)
 		echo "Invalid option: -$OPTARG" >&2
@@ -31,6 +32,16 @@ sshCommand=$(hht -p)
 
 if [[ $sshCommand == "" ]]; then
 	echo "No ssh command found"
+	exit 1
+fi
+
+if [[ $axiiChooseWorkspace ]]; then
+	axiiPossibleWorkspaces=$(eval "$sshCommand 'bash -ci \"axii w list\" | grep \"-\" | cut -c 5- | cut -f1 -d\":\"'")
+	axiiWorkspace=$(echo -e "${axiiPossibleWorkspaces[@]}" | fzf --ansi --prompt=" workspaces  " --height=~50 --layout=reverse --border --exit-0)
+fi
+
+if [[ $axiiWorkspace == "" ]]; then
+	echo "No workspace selected"
 	exit 1
 fi
 
@@ -67,7 +78,7 @@ eval "$sshCommand 'unlink ~/axii_startup &>/dev/null'"
 
 window=0
 tmux send-keys -t $session:$window "eval '$sshCommand'" C-m
-tmux send-keys -t $session:$window "echo 'func(){ while [ -p ~/axii_startup ]; do sleep 1; done }; func' | bash && mkfifo ~/axii_startup && axii w act $axiiWorkspace --no-cd && unlink ~/axii_startup" C-m
+tmux send-keys -t $session:$window "echo 'func(){ while [ -p ~/axii_startup ]; do sleep 1; done }; func' | bash && mkfifo ~/axii_startup; axii w act $axiiWorkspace --no-cd; unlink ~/axii_startup" C-m
 tmux send-keys -t $session:$window "armarx reset" C-m
 tmux send-keys -t $session:$window "armarx scenario start SkillProviderTest" C-m
 
@@ -75,8 +86,8 @@ window=1
 tmux send-keys -t $session:$window "eval '$sshCommand'" C-m
 # wait a second for every axii workspace activation
 tmux send-keys -t $session:$window "sleep 0.3" C-m
-tmux send-keys -t $session:$window "echo 'func(){ while [ -p ~/axii_startup ]; do sleep 1; done }; func' | bash && mkfifo ~/axii_startup && axii w act $axiiWorkspace --no-cd && unlink ~/axii_startup" C-m
-tmux send-keys -t $session:$window "cd armarest" C-m
+tmux send-keys -t $session:$window "echo 'func(){ while [ -p ~/axii_startup ]; do sleep 1; done }; func' | bash && mkfifo ~/axii_startup; axii w act $axiiWorkspace --no-cd; unlink ~/axii_startup" C-m
+tmux send-keys -t $session:$window "cd \$armarx__core__armarest__PATH" C-m
 # tmux send-keys -t $session:$window "armarx run --no-auth"
 
 window=2
@@ -86,13 +97,13 @@ tmux send-keys -t $session:$window "npm run dev" C-m
 window=3
 tmux send-keys -t $session:$window "eval '$sshCommand'" C-m
 tmux send-keys -t $session:$window "sleep 0.6" C-m
-tmux send-keys -t $session:$window "echo 'func(){ while [ -p ~/axii_startup ]; do sleep 1; done }; func' | bash && mkfifo ~/axii_startup && axii w act $axiiWorkspace --no-cd && unlink ~/axii_startup" C-m
-tmux send-keys -t $session:$window "cd robotAPI" C-m
+tmux send-keys -t $session:$window "echo 'func(){ while [ -p ~/axii_startup ]; do sleep 1; done }; func' | bash && mkfifo ~/axii_startup; axii w act $axiiWorkspace --no-cd; unlink ~/axii_startup" C-m
+tmux send-keys -t $session:$window "cd \$armarx__RobotAPI__PATH" C-m
 
 window=4
 tmux send-keys -t $session:$window "eval '$sshCommand'" C-m
 tmux send-keys -t $session:$window "sleep 0.9" C-m
-tmux send-keys -t $session:$window "echo 'func(){ while [ -p ~/axii_startup ]; do sleep 1; done }; func' | bash && mkfifo ~/axii_startup && axii w act $axiiWorkspace --no-cd && unlink ~/axii_startup" C-m
+tmux send-keys -t $session:$window "echo 'func(){ while [ -p ~/axii_startup ]; do sleep 1; done }; func' | bash && mkfifo ~/axii_startup; axii w act $axiiWorkspace --no-cd; unlink ~/axii_startup" C-m
 tmux send-keys -t $session:$window "vim" C-m
 
 window=5
