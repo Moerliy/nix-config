@@ -66,7 +66,7 @@ sleep 0.5 >/dev/null
 
 window=0
 tmux send-keys -t $session:$window "eval '$sshCommand'" C-m
-tmux send-keys -t $session:$window "axii w ac $axiiWorkspace; if [[ \`echo \$?\` != '0' ]];  then echo 'again'; axii w ac $axiiWorkspace; fi" C-m
+tmux send-keys -t $session:$window "echo 'func(){ while [ -p ~/axii_startup ]; do sleep 1; done }; func' | bash && mkfifo ~/axii_startup && axii w act $axiiWorkspace --no-cd && unlink ~/axii_startup" C-m
 tmux send-keys -t $session:$window "armarx reset" C-m
 tmux send-keys -t $session:$window "armarx scenario start SkillProviderTest" C-m
 
