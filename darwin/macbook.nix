@@ -82,9 +82,20 @@
   system = {
     defaults = {
       NSGlobalDomain = {
+        AppleShowAllFiles = true;
+        AppleInterfaceStyle = "Dark";
+        AppleShowAllExtensions = true;
+        AppleShowScrollBars = "WhenScrolling";
+        AppleScrollerPagingBehavior = true;
+        "com.apple.trackpad.trackpadCornerClickBehavior" = 1;
+        AppleMeasurementUnits = "Centimeters";
+        AppleMetricUnits = 1;
+        AppleTemperatureUnit = "Celsius";
+        AppleICUForce24HourTime = true;
         KeyRepeat = 1;
         NSAutomaticCapitalizationEnabled = false;
-        NSAutomaticSpellingCorrectionEnabled = false;
+        NSAutomaticSpellingCorrectionEnabled = true;
+        NSScrollAnimationEnabled = true;
         _HIHideMenuBar = true;
       };
       dock = {
