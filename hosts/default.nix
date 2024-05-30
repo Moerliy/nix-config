@@ -34,7 +34,14 @@ in {
   # Asahi Apple Silicon
   asahi = lib.nixosSystem {
     inherit system;
-    specialArgs = {inherit inputs vars apple-silicon hyprland;};
+    specialArgs = {
+      inherit inputs vars apple-silicon hyprland;
+      host = {
+        hostName = "moritzgleissner";
+        # mainMonitor = "";
+        # secoundMonitor = "";
+      };
+    };
     modules = [
       ./asahi/asahi.nix
 
