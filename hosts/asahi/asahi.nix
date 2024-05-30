@@ -108,6 +108,7 @@
       input.kb_layout = "de";
       "$mod" = "SUPER";
       bind = ["$mod, return, exec, kitty"];
+      monitor = ["eDP-1, preferred, auto, auto"];
     };
   };
 
