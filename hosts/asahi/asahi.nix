@@ -90,8 +90,11 @@
     wget
     git
     curl
+    # nvim
     nodejs
     python3
+    cmake
+    gnumake
     gcc
   ];
 
