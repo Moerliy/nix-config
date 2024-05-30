@@ -1,6 +1,7 @@
 {
   config,
   apple-silicon,
+  hyprland,
   lib,
   pkgs,
   vars,
@@ -59,6 +60,11 @@
     '';
   };
 
+  programs.hyprland = {
+    enable = true;
+    package = hyprland.packages.${pkgs.system}.hyprland;
+  };
+
   environment = {
     shells = with pkgs; [bash];
     variables = {
@@ -106,10 +112,13 @@
   };
 
   # Enable the X11 windowing system.
-  # services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+  };
 
   # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
+  services.xserver.xkb.layout = "de";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
   # Enable CUPS to print documents.

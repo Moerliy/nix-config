@@ -13,6 +13,7 @@
   apple-silicon,
   home-manager,
   home-manager-unstable,
+  hyprland,
   vars,
   ...
 }: let
@@ -33,7 +34,7 @@ in {
   # Asahi Apple Silicon
   asahi = lib.nixosSystem {
     inherit system;
-    specialArgs = {inherit inputs vars apple-silicon;};
+    specialArgs = {inherit inputs vars apple-silicon hyprland;};
     modules = [
       ./asahi/asahi.nix
 
