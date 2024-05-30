@@ -58,6 +58,12 @@ in
           clang
           unzip
 
+          nodejs
+          python3
+          cmake
+          gnumake
+          #gcc
+
           #rustup
           cargo
           rustc
