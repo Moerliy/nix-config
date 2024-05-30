@@ -28,6 +28,8 @@ in
 
     config = mkIf config.custom-scripts.enable {
       home-manager.users.${vars.user} = {
+        programs.zsh.enable = true;
+        programs.bash.enable = true;
         home = {
           packages = with pkgs; [
             fzf
@@ -35,6 +37,7 @@ in
           ];
           # Symlink files under ~/.config, e.g. ~/.config/alacritty/alacritty.yml
           file = pkgs.lib.attrsets.mapAttrs toSource configFilesToLink;
+          sessionPath = ["$HOME/.local/bin"];
         };
       };
     };

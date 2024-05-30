@@ -33,6 +33,12 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    # Asahi Apple Silicon
+    apple-silicon = {
+      url = "github:tpwrules/nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # NUR Community Packages
     nur = {
       url = "github:nix-community/NUR";
@@ -84,6 +90,7 @@
     home-manager,
     home-manager-unstable,
     darwin,
+    apple-silicon,
     nur,
     nixgl,
     hyprland,
@@ -114,6 +121,13 @@
       import ./darwin {
         inherit (nixpkgs) lib;
         inherit inputs nixpkgs nixpkgs-unstable home-manager-unstable darwin vars;
+      }
+    );
+
+    nixosConfigurations = (
+      import ./hosts {
+        inherit (nixpkgs) lib;
+        inherit inputs nixpkgs nixpkgs-unstable home-manager home-manager-unstable apple-silicon vars;
       }
     );
 

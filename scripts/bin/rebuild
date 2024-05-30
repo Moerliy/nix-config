@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e
 pushd "$HOME"/.setup/ || exit
 # all the hostnames that are in the nix flake
-hostnames=("macbook\ncustom")
+hostnames=("macbook\nasahi\ncustom")
 # select a hostname
 hostname=$(echo -e "${hostnames[@]}" | fzf --ansi --prompt="󱄅 Nix flake hostnames  " --height=~50 --layout=reverse --border --exit-0)
 
@@ -22,9 +22,17 @@ nvim "$config_files"
 alejandra . &>/dev/null # format all nix files
 git diff -U0
 echo "Nix Rebuilding... 🚀"
-darwin-rebuild switch --flake .#"$hostname" &>nix-switch.log || (cat nix-switch.log | grep --color error && false)
+if [ "$hostname" = "macbook" ]; then
+	darwin-rebuild switch --flake .#"$hostname" &>nix-switch.log || (cat nix-switch.log | grep --color error && false)
+else 
+	sudo nixos-rebuild switch --impure --flake .#"$hostname" &>nix-switch.log || (cat nix-switch.log | grep --color error && false)
+fi
 CURRENT=" (current)"
 # remove current out of string
+if [ "$hostname" = "macbook" ]; then
 gen=$(darwin-rebuild --list-generations | grep current | sed "s/$CURRENT//g")
+else 
+gen=$(nixos-rebuild list-generations | grep current | sed "s/$CURRENT//g")
+fi
 git commit -am "$gen"
 popd
