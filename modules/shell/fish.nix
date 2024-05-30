@@ -27,7 +27,7 @@ with lib; {
 
   config = mkIf config.fish.enable {
     users.users.${vars.user} = {
-      shell = pkgs.fish;
+      #shell = pkgs.fish;
     };
     programs = {
       bash = {

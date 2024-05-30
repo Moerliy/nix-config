@@ -5,7 +5,6 @@
   lib,
   config,
   pkgs,
-  pkgs-stable,
   vars,
   ...
 }:
@@ -24,7 +23,7 @@ with lib; {
 
   config = mkIf config.kitty.enable {
     users.users.${vars.user} = {
-      shell = pkgs.fish;
+      #shell = pkgs.fish;
     };
     fonts = {
       fontDir.enable = true;
@@ -54,7 +53,6 @@ with lib; {
       ];
       programs = {
         kitty = {
-          package = pkgs-stable.kitty;
           enable = true;
           theme = "Catppuccin-Mocha";
           font = {
