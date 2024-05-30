@@ -91,6 +91,7 @@
     git
     curl
     nodejs
+    python3
   ];
 
   home-manager.users.${vars.user} = {
