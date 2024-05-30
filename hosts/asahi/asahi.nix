@@ -6,11 +6,13 @@
   vars,
   ...
 }: {
-  imports = [
-    ./hardware-configuration.nix
-    apple-silicon.nixosModules.apple-silicon-support
-    ../../scripts/default.nix
-  ];
+  imports =
+    [
+      ./hardware-configuration.nix
+      apple-silicon.nixosModules.apple-silicon-support
+      ../../scripts/default.nix
+    ]
+    ++ (import ../../modules);
 
   users.users.${vars.user} = {
     name = "${vars.user}";
@@ -67,6 +69,7 @@
   };
 
   custom-scripts.enable = true;
+  sane-defaults.enable = true;
 
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
