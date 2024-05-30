@@ -92,6 +92,7 @@
     curl
     nodejs
     python3
+    gcc
   ];
 
   home-manager.users.${vars.user} = {
