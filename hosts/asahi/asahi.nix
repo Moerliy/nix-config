@@ -107,7 +107,10 @@
     wayland.windowManager.hyprland.settings = {
       input.kb_layout = "de";
       "$mod" = "SUPER";
-      bind = ["$mod, return, exec, kitty"];
+      bind = [
+        "$mod, return, exec, kitty"
+        "$mod, b, exec, firefox"
+      ];
       monitor = ["eDP-1, preferred, auto, 1.6"];
     };
   };
