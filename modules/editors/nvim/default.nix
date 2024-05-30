@@ -41,9 +41,9 @@ in
         programs = {
           neovim = {
             enable = true;
+            withNodeJs = true;
             viAlias = true;
             vimAlias = true;
-            withNodeJs = true;
             withPython3 = true;
           };
         };
@@ -56,6 +56,7 @@ in
           fd
           fzf
           clang
+          unzip
 
           #rustup
           cargo

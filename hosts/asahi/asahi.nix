@@ -90,6 +90,7 @@
     wget
     git
     curl
+    nodejs
   ];
 
   home-manager.users.${vars.user} = {
@@ -101,6 +102,8 @@
     wayland.windowManager.hyprland.enable = true;
     wayland.windowManager.hyprland.settings = {
       input.kb_layout = "de";
+      "$mod" = "SUPER";
+      bind = ["$mod, return, exec, kitty"];
     };
   };
 
