@@ -210,7 +210,6 @@ with host; {
             gaps_out = 3;
             "col.active_border" = "0xffcba6f7"; # mauve
             "col.inactive_border" = "0xff6c7086";
-            # cursor_inactive_timeout = 5;
             resize_on_border = true;
             hover_icon_on_border = false;
             layout = "dwindle";
@@ -228,71 +227,72 @@ with host; {
             };
             drop_shadow = false;
           };
+          monitor =
+            [
+              ",preferred,auto,1,mirror,${toString mainMonitor}"
+            ]
+            ++ (
+              if hostName == "asahi"
+              then [
+                "${toString buildInMonitor},preferred,auto,1.6"
+                "${toString mainMonitor},preferred,auto,1,mirror,${toString buildInMonitor}"
+                "${toString secondMonitor},3840x2160@60.00,-3840x0,1"
+              ]
+              else if hostName == "nvidia"
+              then [
+                "${toString mainMonitor},2560x1440@143.86,0x0,1}"
+                "${toString secondMonitor},3840x2160@60.00,-3840x0,1"
+              ]
+              else [
+                "${toString mainMonitor},preferred,auto,1"
+              ]
+            );
+          workspace =
+            if hostName == "asahi"
+            then [
+              "1, monitor:${toString mainMonitor},default:true"
+              "2, monitor:${toString mainMonitor}"
+              "3, monitor:${toString mainMonitor}"
+              "4, monitor:${toString mainMonitor}"
+              "8, monitor:${toString secondMonitor}"
+            ]
+            else if hostName == "nvidia"
+            then [
+              "1, monitor:${toString mainMonitor},default:true"
+              "2, monitor:${toString mainMonitor}"
+              "3, monitor:${toString mainMonitor}"
+              "4, monitor:${toString mainMonitor}"
+              "8, monitor:${toString secondMonitor}"
+            ]
+            else [];
+          animations = {
+            enabled = false;
+            bezier = [
+              "overshot, 0.05, 0.9, 0.1, 1.05"
+              "smoothOut, 0.5, 0, 0.99, 0.99"
+              "smoothIn, 0.5, -0.5, 0.68, 1.5"
+              "rotate,0,0,1,1"
+            ];
+            animation = [
+              "windows, 1, 4, overshot, slide"
+              "windowsIn, 1, 2, smoothOut"
+              "windowsOut, 1, 0.5, smoothOut"
+              "windowsMove, 1, 3, smoothIn, slide"
+              "border, 1, 5, default"
+              "fade, 1, 4, smoothIn"
+              "fadeDim, 1, 4, smoothIn"
+              "workspaces, 1, 4, default"
+              "borderangle, 1, 20, rotate, loop"
+            ];
+          };
           input.kb_layout = "de";
           "$mod" = "SUPER";
           bind = [
             "$mod, return, exec, kitty"
             "$mod, b, exec, firefox"
           ];
-          monitor = ["eDP-1, preferred, auto, 1.6"];
         };
         # settings = {
-        #   monitor = [
-        #     ",preferred,auto,1,mirror,${toString mainMonitor}"
-        #   ] ++ (if hostName == "beelink" || hostName == "h310m" then [
-        #     "${toString mainMonitor},1920x1080@60,1920x0,1"
-        #     "${toString secondMonitor},1920x1080@60,0x0,1"
-        #   ] else if hostName == "work" then [
-        #     "${toString mainMonitor},1920x1080@60,0x0,1"
-        #     "${toString secondMonitor},1920x1200@60,1920x0,1"
-        #     "${toString thirdMonitor},1920x1200@60,3840x0,1"
-        #     "DP-6,1920x1200@60,1920x0,1"
-        #     "DP-7,1920x1200@60,3840x0,1"
-        #   ] else if hostName == "xps" then [
-        #     "${toString mainMonitor},3840x2400@60,0x0,2"
-        #     "${toString secondMonitor},1920x1080@60,1920x0,1"
-        #     "${toString thirdMonitor},1920x1080@60,3840x0,1"
-        #   ] else [
-        #     "${toString mainMonitor},1920x1080@60,0x0,1"
-        #   ]);
-        #   workspace =
-        #     if hostName == "beelink" || hostName == "h310m" then [
-        #       "1, monitor:${toString mainMonitor}"
-        #       "2, monitor:${toString mainMonitor}"
-        #       "3, monitor:${toString mainMonitor}"
-        #       "4, monitor:${toString mainMonitor}"
-        #       "5, monitor:${toString secondMonitor}"
-        #       "6, monitor:${toString secondMonitor}"
-        #       "7, monitor:${toString secondMonitor}"
-        #       "8, monitor:${toString secondMonitor}"
-        #     ] else if hostName == "xps" || hostName == "work" then [
-        #       "1, monitor:${toString mainMonitor}"
-        #       "2, monitor:${toString mainMonitor}"
-        #       "3, monitor:${toString mainMonitor}"
-        #       "4, monitor:${toString secondMonitor}"
-        #       "5, monitor:${toString secondMonitor}"
-        #       "6, monitor:${toString secondMonitor}"
-        #     ] else [ ];
-        #   animations = {
-        #     enabled = false;
-        #     bezier = [
-        #       "overshot, 0.05, 0.9, 0.1, 1.05"
-        #       "smoothOut, 0.5, 0, 0.99, 0.99"
-        #       "smoothIn, 0.5, -0.5, 0.68, 1.5"
-        #       "rotate,0,0,1,1"
-        #     ];
-        #     animation = [
-        #       "windows, 1, 4, overshot, slide"
-        #       "windowsIn, 1, 2, smoothOut"
-        #       "windowsOut, 1, 0.5, smoothOut"
-        #       "windowsMove, 1, 3, smoothIn, slide"
-        #       "border, 1, 5, default"
-        #       "fade, 1, 4, smoothIn"
-        #       "fadeDim, 1, 4, smoothIn"
-        #       "workspaces, 1, 4, default"
-        #       "borderangle, 1, 20, rotate, loop"
-        #     ];
-        #   };
         #   input = {
         #     kb_layout = "us";
         #     # kb_layout=us,us

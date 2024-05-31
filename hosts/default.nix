@@ -37,8 +37,9 @@ in {
       inherit inputs vars apple-silicon hyprland pkgs-stable;
       host = {
         hostName = "asahi";
-        # mainMonitor = "";
-        # secoundMonitor = "";
+        buildInMonitor = "eDP-1";
+        mainMonitor = "HDMI-A-1";
+        secondMonitor = "DP-2";
       };
     };
     modules = [
