@@ -307,36 +307,36 @@ with host; {
                 middle_button_emulation = true;
               }
               else {};
-            gestures =
-              if hostName == "asahi"
-              then {
-                workspace_swipe = true;
-                workspace_swipe_fingers = 3;
-                # workspace_swipe_invert = false;
-              }
-              else {};
-            dwindle = {
-              pseudotile = true;
-              force_split = 2;
-              preserve_split = true;
-              special_scale_factor = 0.8;
-            };
-            master = {
-              pseudotile = true;
-              preserve_split = true;
-              special_scale_factor = 0.8;
-            };
-            misc = {
-              disable_hyprland_logo = true;
-              disable_splash_rendering = true;
-              mouse_move_enables_dpms = true;
-              mouse_move_focuses_monitor = true;
-              no_direct_scanout = true;
-              focus_on_activation = true;
-              enable_swallow = true;
-              key_press_enables_dpms = true;
-              background_color = "0x111111";
-            };
+          };
+          gestures =
+            if hostName == "asahi"
+            then {
+              workspace_swipe = true;
+              workspace_swipe_fingers = 3;
+              # workspace_swipe_invert = false;
+            }
+            else {};
+          dwindle = {
+            pseudotile = true;
+            force_split = 2;
+            preserve_split = true;
+            special_scale_factor = 0.8;
+          };
+          master = {
+            pseudotile = true;
+            preserve_split = true;
+            special_scale_factor = 0.8;
+          };
+          misc = {
+            disable_hyprland_logo = true;
+            disable_splash_rendering = true;
+            mouse_move_enables_dpms = true;
+            mouse_move_focuses_monitor = true;
+            no_direct_scanout = true;
+            focus_on_activation = true;
+            enable_swallow = true;
+            key_press_enables_dpms = true;
+            background_color = "0x111111";
           };
           "$mod" = "SUPER";
           bind = [
