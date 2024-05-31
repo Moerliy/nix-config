@@ -27,23 +27,23 @@
     config.allowUnfree = true;
   };
   home-manager = home-manager-unstable;
-  home-manager-stable = home-manager;
+  # home-manager-stable = home-manager;
   lib = nixpkgs-unstable.lib;
-  #lib = nixpkgs.lib;
 in {
   # Asahi Apple Silicon
   asahi = lib.nixosSystem {
     inherit system;
     specialArgs = {
-      inherit inputs vars apple-silicon hyprland;
+      inherit inputs vars apple-silicon hyprland pkgs-stable;
       host = {
-        hostName = "moritzgleissner";
+        hostName = "asahi";
         # mainMonitor = "";
         # secoundMonitor = "";
       };
     };
     modules = [
       ./asahi/asahi.nix
+      ./configuration.nix
 
       home-manager.nixosModules.home-manager
       {
