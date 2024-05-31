@@ -322,6 +322,9 @@ with host; {
             preserve_split = true;
             special_scale_factor = 0.8;
           };
+          binds = {
+            workspace_back_and_forth = true;
+          };
           # master = {
           #   pseudotile = true;
           # preserve_split = true;
@@ -338,6 +341,11 @@ with host; {
             key_press_enables_dpms = true;
             background_color = "0x111111";
           };
+          debug = {
+            damage_tracking = 2;
+            # overlay = true;
+            # damage_blink = true;
+          };
           "$mod" = "SUPER";
           bind = [
             "$mod, return, exec, kitty"
@@ -346,9 +354,6 @@ with host; {
         };
         # settings = {
         #
-        #   debug = {
-        #     damage_tracking = 2;
-        #   };
         #   bindm = [
         #     "SUPER,mouse:272,movewindow"
         #     "SUPER,mouse:273,resizewindow"
