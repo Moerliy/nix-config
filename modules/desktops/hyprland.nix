@@ -288,7 +288,26 @@ with host; {
               "specialWorkspace, 1, 6, simple, slidevert"
             ];
           };
-          input.kb_layout = "de";
+          input = {
+            kb_layout = "de,us";
+            sensitivity = 0.25;
+            accel_profile = "flat";
+            follow_mouse = 1;
+            numlock_by_default = true;
+            repeat_delay = 250;
+            repeat_rate = 100;
+            touchpad =
+              if hostName == "asahi"
+              then {
+                scroll_factor = 0.2;
+                natural_scroll = false;
+                tap-to-click = true;
+                drag_lock = true;
+                disable_while_typing = true;
+                middle_button_emulation = true;
+              }
+              else {};
+          };
           "$mod" = "SUPER";
           bind = [
             "$mod, return, exec, kitty"
@@ -296,25 +315,6 @@ with host; {
           ];
         };
         # settings = {
-        #   input = {
-        #     kb_layout = "us";
-        #     # kb_layout=us,us
-        #     # kb_variant=,dvorak
-        #     # kb_options=caps:ctrl_modifier
-        #     kb_options = "caps:escape";
-        #     follow_mouse = 2;
-        #     repeat_delay = 250;
-        #     numlock_by_default = 1;
-        #     accel_profile = "flat";
-        #     sensitivity = 0.8;
-        #     touchpad =
-        #       if hostName == "work" || hostName == "xps" || hostName == "probook" then {
-        #         natural_scroll = true;
-        #         scroll_factor = 0.2;
-        #         middle_button_emulation = true;
-        #         tap-to-click = true;
-        #       } else { };
-        #   };
         #   gestures =
         #     if hostName == "work" || hostName == "xps" || hostName == "probook" then {
         #       workspace_swipe = true;
