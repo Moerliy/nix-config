@@ -277,7 +277,7 @@ with host; {
             ];
             animation = [
               "windows, 1, 5, overshot, popin"
-              "windowsIn, 1, 4, tehtarik, slide"
+              # "windowsIn, 1, 4, tehtarik, slide"
               "windowsOut, 1, 4, tehtarik, slide"
               # "windowsMove, 1, 3, smoothIn, slide"
               # "border, 1, 5, default"
