@@ -206,11 +206,11 @@ with host; {
         settings = {
           general = {
             border_size = 2;
-            gaps_in = 3;
+            gaps_in = 5;
             gaps_out = 3;
             "col.active_border" = "0xffcba6f7"; # mauve
             "col.inactive_border" = "0xff6c7086";
-            cursor_inactive_timeout = 5;
+            # cursor_inactive_timeout = 5;
             resize_on_border = true;
             hover_icon_on_border = false;
             layout = "dwindle";
