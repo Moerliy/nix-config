@@ -12,6 +12,28 @@
     ]
     ++ (import ../../modules);
 
+  # Login Manager
+  gdm.enable = true;
+
+  # Desktop
+  hyprland.enable = true;
+  wallpaper.enable = true;
+
+  # programs
+  kitty.enable = true; # Terminal emulator
+
+  # Shell related
+  sane-defaults.enable = true;
+  fish.enable = true;
+  starship.enable = true;
+  git.enable = true;
+  zoxide.enable = true;
+  zsh.enable = true;
+  custom-scripts.enable = true;
+
+  # Editors
+  neovim.enable = true;
+
   networking = {
     hostName = "MacBook";
   };
@@ -29,19 +51,12 @@
     '';
   };
 
-  gdm.enable = true;
-  hyprland.enable = true;
-
-  custom-scripts.enable = true;
-  sane-defaults.enable = true;
-  fish.enable = true;
-  kitty.enable = true;
-  starship.enable = true;
-  neovim.enable = true;
-
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  # Asahi settings
   hardware.asahi.useExperimentalGPUDriver = true;
   hardware.asahi.setupAsahiSound = true;
+
+  # Network settings
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

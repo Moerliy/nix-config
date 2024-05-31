@@ -23,7 +23,7 @@ with lib; {
 
   config = mkIf config.zsh.enable {
     users.users.${vars.user} = {
-      shell = pkgs.zsh;
+      #shell = pkgs.zsh;
     };
     home-manager.users.${vars.user} = {
       programs = {

@@ -67,7 +67,7 @@ with host; {
         grimblast # Screenshot
         hyprpaper # Wallpaper
         wl-clipboard # Clipboard
-        wlr-randr # Monitor Settings # TODO: needed?
+        #wlr-randr # Monitor Settings # TODO: needed?
         xwayland # X session
       ];
     };
@@ -78,7 +78,6 @@ with host; {
     };
 
     security.pam.services.hyprlock = {
-      # text = "auth include system-auth";
       text = "auth include login";
       # fprintAuth = if hostName == "asahi" then true else false; # fingerprint not working yet on asahi
       enableGnomeKeyring = true;
@@ -115,9 +114,9 @@ with host; {
       #   '';
       # in
       {
-        # imports = [
-        #   hyprland.homeManagerModules.default
-        # ];
+        imports = [
+          hyprland.homeManagerModules.default
+        ];
 
         # programs.hyprlock = {
         #   enable = true;
