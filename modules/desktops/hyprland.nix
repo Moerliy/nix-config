@@ -322,11 +322,11 @@ with host; {
             preserve_split = true;
             special_scale_factor = 0.8;
           };
-          master = {
-            pseudotile = true;
-            # preserve_split = true;
-            # special_scale_factor = 0.8;
-          };
+          # master = {
+          #   pseudotile = true;
+          # preserve_split = true;
+          # special_scale_factor = 0.8;
+          # };
           misc = {
             disable_hyprland_logo = true;
             disable_splash_rendering = true;
