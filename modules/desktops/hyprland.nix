@@ -312,7 +312,7 @@ with host; {
               then {
                 workspace_swipe = true;
                 workspace_swipe_fingers = 3;
-                workspace_swipe_invert = false;
+                # workspace_swipe_invert = false;
               }
               else {};
             dwindle = {
