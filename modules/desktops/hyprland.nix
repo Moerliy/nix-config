@@ -204,6 +204,30 @@ with host; {
         package = hyprland.packages.${pkgs.system}.hyprland;
         xwayland.enable = true;
         settings = {
+          general = {
+            border_size = 2;
+            gaps_in = 3;
+            gaps_out = 3;
+            "col.active_border" = "0xffcba6f7"; # mauve
+            "col.inactive_border" = "0xff6c7086";
+            cursor_inactive_timeout = 5;
+            resize_on_border = true;
+            hover_icon_on_border = false;
+            layout = "dwindle";
+          };
+          decoration = {
+            rounding = 5;
+            active_opacity = 1;
+            #inactive_opacity = 0.9;
+            fullscreen_opacity = 1;
+            blur = {
+              enabled = true;
+              size = 3;
+              passes = 3;
+              new_optimizations = true;
+            };
+            drop_shadow = false;
+          };
           input.kb_layout = "de";
           "$mod" = "SUPER";
           bind = [
@@ -213,23 +237,6 @@ with host; {
           monitor = ["eDP-1, preferred, auto, 1.6"];
         };
         # settings = {
-        #   general = {
-        #     border_size = 2;
-        #     gaps_in = 3;
-        #     gaps_out = 6;
-        #     "col.active_border" = "0x99${active}";
-        #     "col.inactive_border" = "0x66${inactive}";
-        #     resize_on_border = true;
-        #     hover_icon_on_border = false;
-        #     layout = "dwindle";
-        #   };
-        #   decoration = {
-        #     rounding = 6;
-        #     active_opacity = 1;
-        #     inactive_opacity = 1;
-        #     fullscreen_opacity = 1;
-        #     drop_shadow = false;
-        #   };
         #   monitor = [
         #     ",preferred,auto,1,mirror,${toString mainMonitor}"
         #   ] ++ (if hostName == "beelink" || hostName == "h310m" then [
