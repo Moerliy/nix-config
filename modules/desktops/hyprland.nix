@@ -266,7 +266,7 @@ with host; {
             ]
             else [];
           animations = {
-            enabled = false;
+            enabled = true;
             bezier = [
               "simple, 0.16, 1, 0.3, 1"
               "tehtarik, 0.68, -0.55, 0.265, 1.55"
