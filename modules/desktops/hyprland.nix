@@ -392,7 +392,7 @@ in
             bind = , F, submap, reset
             bind = , B, exec, [workspace 2] ${pkgs.firefox}/bin/firefox
             bind = , B, submap, reset
-            bind = , D, exec, ${pkgs.webcord-vencord}/bin/webcord-vencord
+            bind = , D, exec, ${pkgs.webcord-vencord}/bin/webcord
             bind = , D, submap, reset
             bind = , C, exec, ${pkgs.rofi}/bin/rofi -show drun
             bind = , C, submap, reset

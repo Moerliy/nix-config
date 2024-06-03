@@ -42,16 +42,14 @@ with lib; {
           package = pkgs.catppuccin-cursors.mochaDark;
         };
         font = {
-          name = "FiraCode Nerd Font Mono Medium";
+          name = "JetBrainsMono Nerd Font";
         };
       };
-      # home.pointerCursor = {
-      #   # x11.enable = true;
-      #   gtk.enable = true;
-      #   package = pkgs.catppuccin-cursors.mochaDark;
-      #   name = "Catppuccin-Mocha-Dark-Cursors";
-      #   # size = 48;
-      # };
+      home.pointerCursor = {
+        gtk.enable = true;
+        package = pkgs.catppuccin-cursors.mochaDark;
+        name = "Catppuccin-Mocha-Dark-Cursors";
+      };
     };
   };
 }
