@@ -71,6 +71,7 @@ in
           wl-clipboard # Clipboard
           #wlr-randr # Monitor Settings # TODO: needed?
           xwayland # X session
+          kitty
         ];
       };
 
@@ -350,8 +351,9 @@ in
             };
             "$mainMod" = "${toString mainMod}";
             bind = [
-              "$mainMod, return, exec, kitty"
-              "$mainMod, b, exec, firefox"
+              "$mainMod, return, exec, ${pkgs.${vars.terminal}}/bin/${vars.terminal}"
+              "$mainMod, B, exec, ${pkgs.firefox}/bin/firefox"
+              "$mainMod, Q, killactive"
             ];
             # bindl =
             #   if hostName == "asahi" then [
@@ -359,7 +361,6 @@ in
             #   ] else [ ];
           };
           extraConfig = ''
-
             bind = $mainMod, Space, submap, supmaper
             submap = supmaper
             bind = , escape, submap, reset
@@ -381,7 +382,7 @@ in
             bind = , escape, submap, reset
             bind = , Q, killactive
             bind = , Q, submap, reset
-            bind = , T, exec, $term
+            bind = , T, exec, ${pkgs.${vars.terminal}}/bin/${vars.terminal}
             bind = , T, submap, reset
             bind = , F, exec, $files
             bind = , F, submap, reset
@@ -391,7 +392,7 @@ in
             bind = , B, submap, reset
             bind = , D, exec, $discord
             bind = , D, submap, reset
-            bind = , C, exec, $scriptsDir/menu
+            bind = , C, exec, ${pkgs.rofi}/bin/rofi
             bind = , C, submap, reset
             bindr = SHIFT, C, exec, pkill bemenu || $scriptsDir/bemenu_input -l    # terminal command without terminal
             bindr = SHIFT, C, submap, reset
@@ -520,8 +521,6 @@ in
           '';
           # settings = {
           #   bind = [
-          #     "SUPER,Return,exec,${pkgs.${vars.terminal}}/bin/${vars.terminal}"
-          #     "SUPER,Q,killactive,"
           #     "SUPER,Escape,exit,"
           #     "SUPER,S,exec,${pkgs.systemd}/bin/systemctl suspend"
           #     "SUPER,L,exec,${pkgs.hyprlock}/bin/hyprlock"
