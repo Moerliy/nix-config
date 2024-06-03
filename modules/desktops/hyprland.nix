@@ -355,6 +355,9 @@ in
               "$mainMod, B, exec, ${pkgs.firefox}/bin/firefox"
               "$mainMod, Q, killactive"
             ];
+            windowrulev2 = [
+              "float, yad|nm-connection-editor|Rofi"
+            ];
             # bindl =
             #   if hostName == "asahi" then [
             #     ",switch:Lid Switch,exec,$HOME/.config/hypr/script/clamshell.sh" # clamshell not working
