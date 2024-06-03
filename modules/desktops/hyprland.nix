@@ -355,6 +355,7 @@ in
               "$mainMod, B, exec, ${pkgs.firefox}/bin/firefox"
               "$mainMod, Q, killactive"
               "$mainMod, C, exec, ${pkgs.rofi}/bin/rofi -show drun"
+
               "$mainMod, 1, workspace, 1"
               "$mainMod, 2, workspace, 2"
               "$mainMod, 3, workspace, 3"
@@ -378,19 +379,6 @@ in
               "$mainMod SHIFT, 0, movetoworkspace, 10"
               "$mainMod SHIFT, bracketleft, movetoworkspace, -1"
               "$mainMod SHIFT, bracketright, movetoworkspace, +1"
-
-              "$mainMod CTRL, 1, movetoworkspacesilent, 1"
-              "$mainMod CTRL, 2, movetoworkspacesilent, 2"
-              "$mainMod CTRL, 3, movetoworkspacesilent, 3"
-              "$mainMod CTRL, 4, movetoworkspacesilent, 4"
-              "$mainMod CTRL, 5, movetoworkspacesilent, 5"
-              "$mainMod CTRL, 6, movetoworkspacesilent, 6"
-              "$mainMod CTRL, 7, movetoworkspacesilent, 7"
-              "$mainMod CTRL, 8, movetoworkspacesilent, 8"
-              "$mainMod CTRL, 9, movetoworkspacesilent, 9"
-              "$mainMod CTRL, 0, movetoworkspacesilent, 10"
-              "$mainMod CTRL, bracketleft, movetoworkspacesilent, -1"
-              "$mainMod CTRL, bracketright, movetoworkspacesilent, +1"
             ];
             windowrule = [
               "float, Rofi"
@@ -432,18 +420,10 @@ in
             bind = , D, submap, reset
             bind = , C, exec, ${pkgs.rofi}/bin/rofi -show drun
             bind = , C, submap, reset
-            bindr = SHIFT, C, exec, pkill bemenu || $scriptsDir/bemenu_input -l    # terminal command without terminal
-            bindr = SHIFT, C, submap, reset
-            bind = , M, exec, $music $electron_flags
-            bind = , M, submap, reset
-            bind = , A, exec, anki
-            bind = , A, submap, reset
-            bind = , S, exec, emacsclient -e '(make-orgcapture-frame)'
-            bind = , S, submap, reset
-            bind = , P, exec, postman $electron_flags
-            bind = , P, submap, reset
-            bind = , U, exec, pomotroid --no-sandbox
-            bind = , U, submap, reset
+            # bind = , M, exec, $music $electron_flags
+            # bind = , M, submap, reset
+            # bind = , A, exec, anki
+            # bind = , A, submap, reset
             submap = reset
 
             submap = masterlayout

@@ -58,6 +58,24 @@
   hardware.asahi.useExperimentalGPUDriver = true;
   hardware.asahi.setupAsahiSound = true;
 
+  # backlight control
+  programs.light.enable = true;
+  services.actkbd = {
+    enable = true;
+    bindings = [
+      {
+        keys = [225];
+        events = ["key"];
+        command = "${pkgs.light}/bin/light -A 10";
+      }
+      {
+        keys = [224];
+        events = ["key"];
+        command = "${pkgs.light}/bin/light -U 10";
+      }
+    ];
+  };
+
   # Network settings
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
