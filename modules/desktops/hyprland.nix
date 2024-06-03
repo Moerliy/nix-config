@@ -448,12 +448,12 @@ in
             bind = , escape, submap, reset
             bind = , K, exec, ${customScripts}/brightness --inc
             bind = , J, exec, ${customScripts}/brightness --dec
-            bind = , H, exec, ${customScripts}/kbd_brightness --dec
-            bind = , L, exec, ${customScripts}/kbd_brightness --inc
+            bind = , H, exec, ${customScripts}/kbd-brightness --dec
+            bind = , L, exec, ${customScripts}/kbd-brightness --inc
             bind = , up, exec, ${customScripts}/brightness --inc
             bind = , down, exec, ${customScripts}/brightness --dec
-            bind = , left, exec, ${customScripts}/kbd_brightness --dec
-            bind = , right, exec, ${customScripts}/kbd_brightness --inc
+            bind = , left, exec, ${customScripts}/kbd-brightness --dec
+            bind = , right, exec, ${customScripts}/kbd-brightness --inc
             submap = reset
 
             submap = volume
