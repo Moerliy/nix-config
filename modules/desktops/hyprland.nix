@@ -57,6 +57,7 @@ in
             GDK_BACKEND = "wayland";
             WLR_NO_HARDWARE_CURSORS = "1";
             MOZ_ENABLE_WAYLAND = "1";
+            NIXOS_OZONE_WL = "1";
           }
           else {
             QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
@@ -64,6 +65,7 @@ in
             GDK_BACKEND = "wayland";
             WLR_NO_HARDWARE_CURSORS = "1";
             MOZ_ENABLE_WAYLAND = "1";
+            NIXOS_OZONE_WL = "1";
           };
         systemPackages = with pkgs; [
           grimblast # Screenshot

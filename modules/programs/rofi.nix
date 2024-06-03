@@ -23,11 +23,6 @@ with lib; {
 
   config = mkIf config.rofi.enable {
     home-manager.users.${vars.user} = {
-      # home = {
-      #   packages = with pkgs; [
-      #     catppuccin
-      #   ];
-      # };
       programs = {
         rofi = {
           enable = true;
@@ -35,7 +30,7 @@ with lib; {
           cycle = true;
           terminal = "\${pkgs.${vars.terminal}}/bin/${vars.terminal}";
           font = "JetBrainsMono Nerd Font";
-          theme = "${pkgs.catppuccin}/rofi/catppuccin-frappe.rasi";
+          theme = "${pkgs.catppuccin}/rofi/catppuccin-macchiato.rasi";
           extraConfig = {
             modi = "run,drun,window";
             icon-theme = "Oranchelo";
