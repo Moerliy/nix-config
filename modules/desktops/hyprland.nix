@@ -8,11 +8,15 @@
   pkgs,
   hyprland,
   hypridle,
+  hyprlock,
   vars,
   host,
   ...
 }: let
   mainMod = "SUPER";
+  hyprlandPkg = hyprland.packages.${pkgs.system}.hyprland;
+  hyprlockPkg = hyprlock.packages.${pkgs.system}.hyprlock;
+  hyprlidlePkg = hypridle.packages.${pkgs.system}.hypridle;
 in
   with lib;
   with host; {
@@ -79,7 +83,7 @@ in
 
       programs.hyprland = {
         enable = true;
-        package = hyprland.packages.${pkgs.system}.hyprland;
+        package = hyprlandPkg;
       };
 
       security.pam.services.hyprlock = {
@@ -124,6 +128,7 @@ in
 
         programs.hyprlock = {
           enable = true;
+          package = hyprlockPkg;
           settings = {
             general = {
               hide_cursor = true;
@@ -175,13 +180,13 @@ in
 
         services.hypridle = {
           enable = true;
-          package = hypridle.packages.${pkgs.system}.hypridle;
+          package = hyprlidlePkg;
           settings = {
             general = {
               before_sleep_cmd = "${pkgs.systemd}/bin/loginctl lock-session";
-              after_sleep_cmd = "${config.programs.hyprland.package}/bin/hyprctl dispatch dpms on";
+              after_sleep_cmd = "${hyprlandPkg}/bin/hyprctl dispatch dpms on";
               ignore_dbus_inhibit = true;
-              lock_cmd = "pidof ${pkgs.hyprlock}/bin/hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
+              lock_cmd = "pidof ${hyprlockPkg}/bin/hyprlock || ${hyprlockPkg}/bin/hyprlock";
             };
             listener = [
               {
@@ -208,7 +213,7 @@ in
 
         wayland.windowManager.hyprland = {
           enable = true;
-          package = hyprland.packages.${pkgs.system}.hyprland;
+          package = hyprlandPkg;
           xwayland.enable = true;
           settings = {
             general = {
@@ -610,12 +615,12 @@ in
               #!/bin/sh
 
               if grep open /proc/acpi/button/lid/${lid}/state; then
-                ${config.programs.hyprland.package}/bin/hyprctl keyword monitor "${toString mainMonitor}, 1920x1080, 0x0, 1"
+                ${hyprlandPkg}/bin/hyprctl keyword monitor "${toString mainMonitor}, 1920x1080, 0x0, 1"
               else
                 if [[ `hyprctl monitors | grep "Monitor" | wc -l` != 1 ]]; then
-                  ${config.programs.hyprland.package}/bin/hyprctl keyword monitor "${toString mainMonitor}, disable"
+                  ${hyprlandPkg}/bin/hyprctl keyword monitor "${toString mainMonitor}, disable"
                 else
-                  ${pkgs.hyprlock}/bin/hyprlock
+                  ${hyprlockPkg}/bin/hyprlock
                   ${pkgs.systemd}/bin/systemctl suspend
                 fi
               fi

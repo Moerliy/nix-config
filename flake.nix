@@ -120,7 +120,7 @@
     nixosConfigurations = (
       import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs hyprland hypridle nixpkgs-unstable home-manager home-manager-unstable apple-silicon vars;
+        inherit inputs nixpkgs hyprland hypridle hyprlock nixpkgs-unstable home-manager home-manager-unstable apple-silicon vars;
       }
     );
 
