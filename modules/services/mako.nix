@@ -25,6 +25,7 @@ with lib; {
       services = {
         mako = {
           enable = true;
+          anchor = "bottom-right";
           backgroundColor = "#1e1e2e";
           textColor = "#cdd6f4";
           borderColor = "#89b4fa";
