@@ -43,7 +43,7 @@ collectedData=""
 # prameter: $1 = pclist index, $2 = remote, $3 = timeout
 sshProcess() {
 	# bash magic happens here
-	tmp=$(ssh 2>/dev/null -J $proxy $2 -o PasswordAuthentication=no -o ConnectTimeout=$3 '{ ((who -q | grep "users" | cut -d"=" -f2; uptime -p; [ $(who -q | grep "users" | cut -d"=" -f2) -eq 0 ] && echo "no users" || who -q | sed -n 1p; lscpu | grep "Model name" | cut -c 13-; lsmem | grep "Total online" | cut -c 27- | awk -F. "{printf(\$1)"\"" / "\""}"; free -m | grep Mem | awk "{print (\$3/\$2)*100}" | cut -c -4 | awk "{print (\$1)"\"" %"\""}"; [ ! -z "$(nvidia-smi --query-gpu=gpu_name --format=csv,noheader)" || nvidia-smi | grep "Failed" ] && nvidia-smi --query-gpu=gpu_name --format=csv,noheader || lshw -C display 2>/dev/null | grep "product" | cut -d':' -f2; /bin/cat /etc/*-release | grep "PRETTY_NAME" | cut -c 14- | rev | cut -c 2- | rev) | xargs -L 1 echo -ne ";"| cut -c 2-)} ')
+	tmp=$(ssh 2>/dev/null -J $proxy $2 -o PasswordAuthentication=no StrictHostKeyChecking=no -o ConnectTimeout=$3 '{ ((who -q | grep "users" | cut -d"=" -f2; uptime -p; [ $(who -q | grep "users" | cut -d"=" -f2) -eq 0 ] && echo "no users" || who -q | sed -n 1p; lscpu | grep "Model name" | cut -c 13-; lsmem | grep "Total online" | cut -c 27- | awk -F. "{printf(\$1)"\"" / "\""}"; free -m | grep Mem | awk "{print (\$3/\$2)*100}" | cut -c -4 | awk "{print (\$1)"\"" %"\""}"; [ ! -z "$(nvidia-smi --query-gpu=gpu_name --format=csv,noheader)" || nvidia-smi | grep "Failed" ] && nvidia-smi --query-gpu=gpu_name --format=csv,noheader || lshw -C display 2>/dev/null | grep "product" | cut -d':' -f2; /bin/cat /etc/*-release | grep "PRETTY_NAME" | cut -c 14- | rev | cut -c 2- | rev) | xargs -L 1 echo -ne ";"| cut -c 2-)} ')
 	res="$1"
 	if [ -z "$tmp" ]; then
 		res+=": ${RED}not available${NC}"
@@ -122,7 +122,7 @@ if [ "$connection" == "custom number" ]; then
 		exit 0
 	fi
 	# if printOutput is set and true
-	command="ssh -X -L 3300:localhost:3300 -J $proxy $user@pc$selection.h2t.iar.kit.edu 2>/dev/null"
+	command="ssh -X -o StrictHostKeyChecking=no -L 3300:localhost:3300 -J $proxy $user@pc$selection.h2t.iar.kit.edu 2>/dev/null"
 	if [ "$printOutput" == "true" ]; then
 		echo "$command"
 	else
@@ -132,7 +132,7 @@ if [ "$connection" == "custom number" ]; then
 	exit 0
 else # if a pc number is selected
 	# if printOutput is set and true
-	command="ssh -X -L 3300:localhost:3300 -J $proxy $user@pc$connection.h2t.iar.kit.edu 2>/dev/null"
+	command="ssh -X -o StrictHostKeyChecking=no -L 3300:localhost:3300 -J $proxy $user@pc$connection.h2t.iar.kit.edu 2>/dev/null"
 	if [ "$printOutput" == "true" ]; then
 		echo "$command"
 	else
