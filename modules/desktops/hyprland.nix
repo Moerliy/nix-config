@@ -354,7 +354,7 @@ in
               "$mainMod, return, exec, ${pkgs.${vars.terminal}}/bin/${vars.terminal}"
               "$mainMod, B, exec, ${pkgs.firefox}/bin/firefox"
               "$mainMod, Q, killactive"
-              "$mainMod, C, exec, ${pkgs.rofi}/bin/rofi -show drun"
+              "$mainMod, C, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun"
 
               "$mainMod, 1, workspace, 1"
               "$mainMod, 2, workspace, 2"
@@ -418,7 +418,7 @@ in
             bind = , B, submap, reset
             bind = , D, exec, [workspace 8]${pkgs.webcord-vencord}/bin/webcord
             bind = , D, submap, reset
-            bind = , C, exec, ${pkgs.rofi}/bin/rofi -show drun
+            bind = , C, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun
             bind = , C, submap, reset
             # bind = , M, exec, $music $electron_flags
             # bind = , M, submap, reset

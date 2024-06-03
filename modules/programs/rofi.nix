@@ -23,11 +23,11 @@ with lib; {
 
   config = mkIf config.rofi.enable {
     home-manager.users.${vars.user} = {
-      home = {
-        packages = with pkgs; [
-          catppuccin
-        ];
-      };
+      # home = {
+      #   packages = with pkgs; [
+      #     catppuccin
+      #   ];
+      # };
       programs = {
         rofi = {
           enable = true;
@@ -44,10 +44,10 @@ with lib; {
             location = 0;
             disable-history = false;
             hide-scrollbar = true;
-            # display-drun = "   Apps ";
-            # display-run = "   Run ";
-            # display-window = " 﩯  Window";
-            # display-Network = " 󰤨  Network";
+            display-drun = "   Apps ";
+            display-run = "   Run ";
+            display-window = " 﩯  Window";
+            display-Network = " 󰤨  Network";
             sidebar-mode = true;
           };
         };
