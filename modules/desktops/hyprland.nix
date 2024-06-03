@@ -388,7 +388,7 @@ in
             bind = , Q, submap, reset
             bind = , T, exec, ${pkgs.${vars.terminal}}/bin/${vars.terminal}
             bind = , T, submap, reset
-            bind = , F, exec, ${pkgs.pcmanfm}/bin/pcmanfm}
+            bind = , F, exec, ${pkgs.pcmanfm}/bin/pcmanfm
             bind = , F, submap, reset
             bind = , B, exec, [workspace 2] ${pkgs.firefox}/bin/firefox
             bind = , B, submap, reset
