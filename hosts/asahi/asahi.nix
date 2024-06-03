@@ -18,6 +18,7 @@
   # Desktop
   hyprland.enable = true;
   wallpaper.enable = true;
+  rofi.enable = true;
 
   # programs
   kitty.enable = true; # Terminal emulator

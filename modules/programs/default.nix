@@ -12,4 +12,5 @@
 [
   ./kitty.nix
   ./tmux/default.nix
+  ./rofi.nix
 ]
