@@ -37,6 +37,10 @@ with lib; {
           name = "Papirus-Dark";
           package = pkgs.papirus-icon-theme;
         };
+        cursorTheme = {
+          name = "Breeze-Dark";
+          package = pkgs.breeze-hacked-cursor-theme;
+        };
         font = {
           name = "FiraCode Nerd Font Mono Medium";
         };
