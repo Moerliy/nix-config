@@ -1,4 +1,4 @@
 [
   ./gdm.nix
-  ./mako.nix
+  ./mako/default.nix
 ]

@@ -116,6 +116,7 @@ in
             fi
           fi
         '';
+        customScripts = "$HOME/.local/bin";
       in {
         imports = [
           hyprland.homeManagerModules.default
@@ -386,8 +387,8 @@ in
               ",XF86AudioRaiseVolume,exec,${pkgs.pamixer}/bin/pamixer -i 10"
               ",XF86AudioMute,exec,${pkgs.pamixer}/bin/pamixer -t"
               ",XF86AudioMicMute,exec,${pkgs.pamixer}/bin/pamixer --default-source -t"
-              ",XF86MonBrightnessDown,exec,${pkgs.light}/bin/light -U 10"
-              ",XF86MonBrightnessUP,exec,${pkgs.light}/bin/light -A 10"
+              ",XF86MonBrightnessDown,exec,${customScripts}/brightness --dec"
+              ",XF86MonBrightnessUP,exec,${customScripts}/brightness --inc"
             ];
             windowrule = [
               "float, Rofi"
@@ -599,8 +600,8 @@ in
           # };
         };
 
-        home.file = {
-          ".config/hypr/script/clamshell.sh" = {
+        xdg.configFile = {
+          "hypr/script/clamshell.sh" = {
             # wrong path
             text = ''
               #!/bin/sh
