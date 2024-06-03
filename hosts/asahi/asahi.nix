@@ -19,6 +19,7 @@
   hyprland.enable = true;
   wallpaper.enable = true;
   rofi.enable = true;
+  gtk-theme.enable = true;
 
   # programs
   kitty.enable = true; # Terminal emulator
