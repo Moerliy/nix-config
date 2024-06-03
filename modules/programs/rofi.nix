@@ -5,6 +5,7 @@
   config,
   lib,
   vars,
+  pkgs,
   ...
 }:
 with lib; {
@@ -25,9 +26,25 @@ with lib; {
       programs = {
         rofi = {
           enable = true;
+          package = pkgs.rofi-wayland;
           cycle = true;
           terminal = "\${pkgs.${vars.terminal}}/bin/${vars.terminal}";
           font = "JetBrainsMono Nerd Font";
+          theme = "${pkgs.catppuccin}/rofi/catppuccin-mocha.rasi";
+          extraConfig = {
+            modi = "run,drun,window";
+            icon-theme = "Oranchelo";
+            show-icons = true;
+            drun-display-format = "{icon} {name}";
+            location = 0;
+            disable-history = false;
+            hide-scrollbar = true;
+            # display-drun = "   Apps ";
+            # display-run = "   Run ";
+            # display-window = " 﩯  Window";
+            # display-Network = " 󰤨  Network";
+            sidebar-mode = true;
+          };
         };
       };
     };
