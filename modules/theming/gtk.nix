@@ -38,8 +38,8 @@ with lib; {
           package = pkgs.papirus-icon-theme;
         };
         cursorTheme = {
-          name = "Breeze-Dark";
-          package = pkgs.breeze-hacked-cursor-theme;
+          name = "mochaDark";
+          package = pkgs.catppuccin-cursors;
         };
         font = {
           name = "FiraCode Nerd Font Mono Medium";
