@@ -446,14 +446,14 @@ in
 
             submap = backlight
             bind = , escape, submap, reset
-            binde = , K, exec, ${customScripts}/brightness --inc
-            binde = , J, exec, ${customScripts}/brightness --dec
-            binde = , H, exec, ${customScripts}/kbd_backlight --dec
-            binde = , L, exec, ${customScripts}/kbd_backlight --inc
-            binde = , up, exec, ${customScripts}/backlight --inc
-            binde = , down, exec, ${customScripts}/backlight --dec
-            binde = , left, exec, ${customScripts}/kbd_backlight --dec
-            binde = , right, exec, ${customScripts}/kbd_backlight --inc
+            bind = , K, exec, ${customScripts}/brightness --inc
+            bind = , J, exec, ${customScripts}/brightness --dec
+            bind = , H, exec, ${customScripts}/kbd_backlight --dec
+            bind = , L, exec, ${customScripts}/kbd_backlight --inc
+            bind = , up, exec, ${customScripts}/backlight --inc
+            bind = , down, exec, ${customScripts}/backlight --dec
+            bind = , left, exec, ${customScripts}/kbd_backlight --dec
+            bind = , right, exec, ${customScripts}/kbd_backlight --inc
             submap = reset
 
             submap = volume
