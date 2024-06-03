@@ -381,6 +381,13 @@ in
               "$mainMod SHIFT, 0, movetoworkspace, 10"
               "$mainMod SHIFT, bracketleft, movetoworkspace, -1"
               "$mainMod SHIFT, bracketright, movetoworkspace, +1"
+
+              ",XF86AudioLowerVolume,exec,${pkgs.pamixer}/bin/pamixer -d 10"
+              ",XF86AudioRaiseVolume,exec,${pkgs.pamixer}/bin/pamixer -i 10"
+              ",XF86AudioMute,exec,${pkgs.pamixer}/bin/pamixer -t"
+              ",XF86AudioMicMute,exec,${pkgs.pamixer}/bin/pamixer --default-source -t"
+              ",XF86MonBrightnessDown,exec,${pkgs.light}/bin/light -U 10"
+              ",XF86MonBrightnessUP,exec,${pkgs.light}/bin/light -A 10"
             ];
             windowrule = [
               "float, Rofi"
@@ -589,14 +596,8 @@ in
           #
           #     "SUPER,Z,layoutmsg,togglesplit"
           #     ",print,exec,${pkgs.grimblast}/bin/grimblast --notify --freeze --wait 1 copysave area ~/Pictures/$(date +%Y-%m-%dT%H%M%S).png"
-          #     ",XF86AudioLowerVolume,exec,${pkgs.pamixer}/bin/pamixer -d 10"
-          #     ",XF86AudioRaiseVolume,exec,${pkgs.pamixer}/bin/pamixer -i 10"
-          #     ",XF86AudioMute,exec,${pkgs.pamixer}/bin/pamixer -t"
           #     "SUPER_L,c,exec,${pkgs.pamixer}/bin/pamixer --default-source -t"
           #     "CTRL,F10,exec,${pkgs.pamixer}/bin/pamixer -t"
-          #     ",XF86AudioMicMute,exec,${pkgs.pamixer}/bin/pamixer --default-source -t"
-          #     ",XF86MonBrightnessDown,exec,${pkgs.light}/bin/light -U 10"
-          #     ",XF86MonBrightnessUP,exec,${pkgs.light}/bin/light -A 10"
           #   ];
           #   windowrulev2 = [
           #     "float,title:^(Volume Control)$"
