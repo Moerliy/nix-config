@@ -35,6 +35,7 @@ in
             fzf
             alejandra
             libnotify
+            pamixer
           ];
           # Symlink files under ~/.config, e.g. ~/.config/alacritty/alacritty.yml
           file = pkgs.lib.attrsets.mapAttrs toSource configFilesToLink;
