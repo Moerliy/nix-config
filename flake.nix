@@ -68,12 +68,6 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    # Hyprspace
-    hyprspace = {
-      url = "github:KZDKM/Hyprspace";
-      inputs.hyprland.follows = "hyprland";
-    };
-
     # KDE Plasma User Settings Generator
     plasma-manager = {
       url = "github:pjones/plasma-manager";
@@ -96,7 +90,6 @@
     hyprland,
     hyprlock,
     hypridle,
-    hyprspace,
     plasma-manager,
     ...
   }:
@@ -127,7 +120,7 @@
     nixosConfigurations = (
       import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs hyprland nixpkgs-unstable home-manager home-manager-unstable apple-silicon vars;
+        inherit inputs nixpkgs hyprland hypridle nixpkgs-unstable home-manager home-manager-unstable apple-silicon vars;
       }
     );
 

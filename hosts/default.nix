@@ -14,6 +14,7 @@
   home-manager,
   home-manager-unstable,
   hyprland,
+  hypridle,
   vars,
   ...
 }: let
@@ -34,7 +35,7 @@ in {
   asahi = lib.nixosSystem {
     inherit system;
     specialArgs = {
-      inherit inputs vars apple-silicon hyprland pkgs-stable;
+      inherit inputs vars apple-silicon hyprland hypridle pkgs-stable;
       host = {
         hostName = "asahi";
         buildInMonitor = "eDP-1";

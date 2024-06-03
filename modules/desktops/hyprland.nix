@@ -7,7 +7,7 @@
   lib,
   pkgs,
   hyprland,
-  hyprspace,
+  hypridle,
   vars,
   host,
   ...
@@ -175,6 +175,7 @@ in
 
         services.hypridle = {
           enable = true;
+          package = hypridle.packages.${pkgs.system}.hypridle;
           settings = {
             general = {
               before_sleep_cmd = "${pkgs.systemd}/bin/loginctl lock-session";
@@ -383,10 +384,12 @@ in
               "$mainMod SHIFT, bracketleft, movetoworkspace, -1"
               "$mainMod SHIFT, bracketright, movetoworkspace, +1"
 
-              ",XF86AudioLowerVolume,exec,${customScripts}/volume --dec"
-              ",XF86AudioRaiseVolume,exec,${customScripts}/volume --inc"
               ",XF86AudioMute,exec,${customScripts}/volume --toggle"
               ",XF86AudioMicMute,exec,${customScripts}/volume --toggle-mic"
+            ];
+            binde = [
+              ",XF86AudioLowerVolume,exec,${customScripts}/volume --dec"
+              ",XF86AudioRaiseVolume,exec,${customScripts}/volume --inc"
               ",XF86MonBrightnessDown,exec,${customScripts}/brightness --dec"
               ",XF86MonBrightnessUP,exec,${customScripts}/brightness --inc"
             ];
