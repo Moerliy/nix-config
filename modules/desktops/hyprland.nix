@@ -392,7 +392,7 @@ in
             bind = , B, submap, reset
             bind = , D, exec, $discord
             bind = , D, submap, reset
-            bind = , C, exec, ${pkgs.rofi}/bin/rofi -show run
+            bind = , C, exec, ${pkgs.rofi}/bin/rofi -show drun
             bind = , C, submap, reset
             bindr = SHIFT, C, exec, pkill bemenu || $scriptsDir/bemenu_input -l    # terminal command without terminal
             bindr = SHIFT, C, submap, reset
