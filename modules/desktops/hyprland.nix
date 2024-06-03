@@ -450,8 +450,8 @@ in
             bind = , J, exec, ${customScripts}/brightness --dec
             bind = , H, exec, ${customScripts}/kbd_backlight --dec
             bind = , L, exec, ${customScripts}/kbd_backlight --inc
-            bind = , up, exec, ${customScripts}/backlight --inc
-            bind = , down, exec, ${customScripts}/backlight --dec
+            bind = , up, exec, ${customScripts}/brightness--inc
+            bind = , down, exec, ${customScripts}/brightness --dec
             bind = , left, exec, ${customScripts}/kbd_backlight --dec
             bind = , right, exec, ${customScripts}/kbd_backlight --inc
             submap = reset
