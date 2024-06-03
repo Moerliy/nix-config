@@ -23,6 +23,11 @@ with lib; {
 
   config = mkIf config.rofi.enable {
     home-manager.users.${vars.user} = {
+      home = {
+        packages = with pkgs; [
+          catppuccin
+        ];
+      };
       programs = {
         rofi = {
           enable = true;
