@@ -46,7 +46,7 @@ with lib; {
             hide-scrollbar = true;
             display-drun = "   Apps ";
             display-run = "   Run ";
-            display-window = " 﩯  Window";
+            display-window = "   Window";
             display-Network = " 󰤨  Network";
             sidebar-mode = true;
           };
