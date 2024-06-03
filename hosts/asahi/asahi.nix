@@ -21,6 +21,7 @@
   rofi.enable = true;
   gtk-theme.enable = true;
   qt-theme.enable = true;
+  mako.enable = true;
 
   # programs
   kitty.enable = true; # Terminal emulator

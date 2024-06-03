@@ -1,3 +1,4 @@
 [
   ./gdm.nix
+  ./mako.nix
 ]

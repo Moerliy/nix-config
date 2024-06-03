@@ -536,13 +536,13 @@ in
 
             submap = grimblast
             bind = , escape, submap, reset
-            bind = , O, exec, ${pkgs.grimblast}/bin/grimblast -n copy output
+            bind = , O, exec, ${pkgs.grimblast}/bin/grimblast --notify -n copy output
             bind = , O, submap, reset
-            bind = , S, exec, ${pkgs.grimblast}/bin/grimblast -n copy screen
+            bind = , S, exec, ${pkgs.grimblast}/bin/grimblast --notify -n copy screen
             bind = , S, submap, reset
-            bind = , W, exec, ${pkgs.grimblast}/bin/grimblast -n copy active
+            bind = , W, exec, ${pkgs.grimblast}/bin/grimblast --notify -n copy active
             bind = , W, submap, reset
-            bind = , A, exec, ${pkgs.grimblast}/bin/grimblast -n copy area
+            bind = , A, exec, ${pkgs.grimblast}/bin/grimblast --notify -n copy area
             bind = , A, submap, reset
             submap = reset
           '';
@@ -561,43 +561,8 @@ in
           #     "SUPERSHIFT,R,exec,${config.programs.hyprland.package}/bin/hyprctl reload"
           #     "SUPER,T,exec,${pkgs.${vars.terminal}}/bin/${vars.terminal} -e nvim"
           #     "SUPER,K,exec,${config.programs.hyprland.package}/bin/hyprctl switchxkblayout keychron-k8-keychron-k8 next"
-          #     "SUPER,left,movefocus,l"
-          #     "SUPER,right,movefocus,r"
-          #     "SUPER,up,movefocus,u"
-          #     "SUPER,down,movefocus,d"
-          #     "SUPERSHtIFT,left,movewindow,l"
-          #     "SUPERSHIFT,right,movewindow,r"
-          #     "SUPERSHIFT,up,movewindow,u"
-          #     "SUPERSHIFT,down,movewindow,d"
-          #     "ALT,1,workspace,1"
-          #     "ALT,2,workspace,2"
-          #     "ALT,3,workspace,3"
-          #     "ALT,4,workspace,4"
-          #     "ALT,5,workspace,5"
-          #     "ALT,6,workspace,6"
-          #     "ALT,7,workspace,7"
-          #     "ALT,8,workspace,8"
-          #     "ALT,9,workspace,9"
-          #     "ALT,0,workspace,10"
-          #     "ALT,right,workspace,+1"
-          #     "ALT,left,workspace,-1"
-          #     "ALTSHIFT,1,movetoworkspace,1"
-          #     "ALTSHIFT,2,movetoworkspace,2"
-          #     "ALTSHIFT,3,movetoworkspace,3"
-          #     "ALTSHIFT,4,movetoworkspace,4"
-          #     "ALTSHIFT,5,movetoworkspace,5"
-          #     "ALTSHIFT,6,movetoworkspace,6"
-          #     "ALTSHIFT,7,movetoworkspace,7"
-          #     "ALTSHIFT,8,movetoworkspace,8"
-          #     "ALTSHIFT,9,movetoworkspace,9"
-          #     "ALTSHIFT,0,movetoworkspace,10"
-          #     "ALTSHIFT,right,movetoworkspace,+1"
-          #     "ALTSHIFT,left,movetoworkspace,-1"
           #
           #     "SUPER,Z,layoutmsg,togglesplit"
-          #     ",print,exec,${pkgs.grimblast}/bin/grimblast --notify --freeze --wait 1 copysave area ~/Pictures/$(date +%Y-%m-%dT%H%M%S).png"
-          #     "SUPER_L,c,exec,${pkgs.pamixer}/bin/pamixer --default-source -t"
-          #     "CTRL,F10,exec,${pkgs.pamixer}/bin/pamixer -t"
           #   ];
           #   windowrulev2 = [
           #     "float,title:^(Volume Control)$"
