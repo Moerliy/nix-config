@@ -35,7 +35,7 @@ with lib; {
           cycle = true;
           terminal = "\${pkgs.${vars.terminal}}/bin/${vars.terminal}";
           font = "JetBrainsMono Nerd Font";
-          theme = "${pkgs.catppuccin}/rofi/catppuccin-macchiato.rasi";
+          theme = "${pkgs.catppuccin}/rofi/catppuccin-frappe.rasi";
           extraConfig = {
             modi = "run,drun,window";
             icon-theme = "Oranchelo";
