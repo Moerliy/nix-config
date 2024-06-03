@@ -136,6 +136,9 @@ in
           unzip # Zip Files
           zip # Zip
 
+          # Collaboration tools
+          webcord-vencord
+
           # Other Packages Found @
           # - ./<host>/default.nix
           # - ../modules

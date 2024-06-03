@@ -354,6 +354,7 @@ in
               "$mainMod, return, exec, ${pkgs.${vars.terminal}}/bin/${vars.terminal}"
               "$mainMod, B, exec, ${pkgs.firefox}/bin/firefox"
               "$mainMod, Q, killactive"
+              "$mainMid, C, ${pkgs.rofi}/bin/rofi -show drun"
             ];
             windowrule = [
               "float, Rofi"
@@ -387,13 +388,11 @@ in
             bind = , Q, submap, reset
             bind = , T, exec, ${pkgs.${vars.terminal}}/bin/${vars.terminal}
             bind = , T, submap, reset
-            bind = , F, exec, $files
+            bind = , F, exec, ${pkgs.pcmanfm}/bin/pcmanfm}
             bind = , F, submap, reset
-            bind = , E, exec, emacsclient -c -a emacs
-            bind = , E, submap, reset
-            bind = , B, exec, [workspace 2] MOZ_USE_XINPUT2=1 $browser
+            bind = , B, exec, [workspace 2] ${pkgs.firefox}/bin/firefox
             bind = , B, submap, reset
-            bind = , D, exec, $discord
+            bind = , D, exec, ${pkgs.webcord-vencord}/bin/webcord-vencord
             bind = , D, submap, reset
             bind = , C, exec, ${pkgs.rofi}/bin/rofi -show drun
             bind = , C, submap, reset
