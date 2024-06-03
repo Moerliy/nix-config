@@ -28,7 +28,7 @@ with lib; {
           anchor = "bottom-right";
           backgroundColor = "#1e1e2e";
           textColor = "#cdd6f4";
-          borderColor = "#89b4fa";
+          borderColor = "#8839ef";
           progressColor = "#313244";
           defaultTimeout = 3500;
         };
