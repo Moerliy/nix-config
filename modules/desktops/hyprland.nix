@@ -354,7 +354,7 @@ in
               "$mainMod, return, exec, ${pkgs.${vars.terminal}}/bin/${vars.terminal}"
               "$mainMod, B, exec, ${pkgs.firefox}/bin/firefox"
               "$mainMod, Q, killactive"
-              "$mainMid, C, exec, ${pkgs.rofi}/bin/rofi -show drun"
+              "$mainMod, C, exec, ${pkgs.rofi}/bin/rofi -show drun"
             ];
             windowrule = [
               "float, Rofi"
