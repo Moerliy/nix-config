@@ -383,10 +383,10 @@ in
               "$mainMod SHIFT, bracketleft, movetoworkspace, -1"
               "$mainMod SHIFT, bracketright, movetoworkspace, +1"
 
-              ",XF86AudioLowerVolume,exec,${pkgs.pamixer}/bin/pamixer -d 10"
-              ",XF86AudioRaiseVolume,exec,${pkgs.pamixer}/bin/pamixer -i 10"
-              ",XF86AudioMute,exec,${pkgs.pamixer}/bin/pamixer -t"
-              ",XF86AudioMicMute,exec,${pkgs.pamixer}/bin/pamixer --default-source -t"
+              ",XF86AudioLowerVolume,exec,${customScripts}/volume --dec"
+              ",XF86AudioRaiseVolume,exec,${customScripts}/volume --inc"
+              ",XF86AudioMute,exec,${customScripts}/volume --toggle"
+              ",XF86AudioMicMute,exec,${customScripts}/volume --toggle-mic"
               ",XF86MonBrightnessDown,exec,${customScripts}/brightness --dec"
               ",XF86MonBrightnessUP,exec,${customScripts}/brightness --inc"
             ];
@@ -458,13 +458,13 @@ in
 
             submap = volume
             bind = , escape, submap, reset
-            binde = , K, exec, $volume --inc
-            binde = , J, exec, $volume --dec
-            binde = , up, exec, $volume --inc
-            binde = , down, exec, $volume --dec
-            binde = , D, exec, $volume --toggle
+            binde = , K, exec, ${customScripts}/volume --inc
+            binde = , J, exec, ${customScripts}/volume --dec
+            binde = , up, exec, ${customScripts}/volume --inc
+            binde = , down, exec, ${customScripts}/volume --dec
+            binde = , D, exec, ${customScripts}/volume --toggle
             binde = , D, submap, reset
-            binde = , M, exec, $volume --toggle-mic
+            binde = , M, exec, ${customScripts}/volume --toggle-mic
             binde = , M, submap, reset
             submap = reset
 
