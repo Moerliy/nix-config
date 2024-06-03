@@ -34,6 +34,7 @@ in
           packages = with pkgs; [
             fzf
             alejandra
+            libnotify
           ];
           # Symlink files under ~/.config, e.g. ~/.config/alacritty/alacritty.yml
           file = pkgs.lib.attrsets.mapAttrs toSource configFilesToLink;
