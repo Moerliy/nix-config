@@ -20,6 +20,7 @@
   wallpaper.enable = true;
   rofi.enable = true;
   gtk-theme.enable = true;
+  qt-theme.enable = true;
 
   # programs
   kitty.enable = true; # Terminal emulator
