@@ -16,7 +16,7 @@
   mainMod = "SUPER";
   hyprlandPkg = hyprland.packages.${pkgs.system}.hyprland;
   hyprlockPkg = hyprlock.packages.${pkgs.system}.hyprlock;
-  hyprlidlePkg = hypridle.packages.${pkgs.system}.hypridle;
+  hypridlePkg = hypridle.packages.${pkgs.system}.hypridle;
 in
   with lib;
   with host; {
@@ -180,7 +180,7 @@ in
 
         services.hypridle = {
           enable = true;
-          package = hyprlidlePkg;
+          package = hypridlePkg;
           settings = {
             general = {
               before_sleep_cmd = "${pkgs.systemd}/bin/loginctl lock-session";
