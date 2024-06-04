@@ -47,9 +47,6 @@ with lib; {
         lf
       ];
       programs = {
-        bash = {
-          enable = true;
-        };
         fish = {
           enable = true;
           interactiveShellInit = ''

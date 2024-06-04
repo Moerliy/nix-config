@@ -37,15 +37,15 @@ with lib; {
     };
 
     programs = {
-      bash = {
-        interactiveShellInit = ''
-          if [[ $(${pkgs.procps}/bin/ps -p "$PPID" -o command | tail -n 1) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
-          then
-            shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
-            exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
-          fi
-        '';
-      };
+      # bash = {
+      #   interactiveShellInit = ''
+      #     if [[ $(${pkgs.procps}/bin/ps -p "$PPID" -o command | tail -n 1) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+      #     then
+      #       shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+      #       exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+      #     fi
+      #   '';
+      # };
     };
     home-manager.users.${vars.user} = {
       home.packages = with pkgs; [
