@@ -1,10 +1,12 @@
 return {
   {
     "williamboman/mason.nvim",
-    opts = function(_, opts)
+    config = {
       registries = {
         "github:mason-org/mason-registry",
-    },
+        "github:Moerliy/mason-registry",
+    },},
+    opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
         "stylua",
         "selene",
