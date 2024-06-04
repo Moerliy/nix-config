@@ -50,7 +50,7 @@ with lib; {
         bash = {
           enable = true;
           initExtra = ''
-            if [[ $(${pkgs.procps}/bin/ps -p "$PPID" -o command | tail -n 1) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+            if [[ $(${pkgs.procps}/bin/ps -p "$PPID" -o command | tail -n 1) != "fish" ]]
             then
               shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
               exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
