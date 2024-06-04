@@ -19,8 +19,8 @@ return {
         "nixpkgs-fmt",
       },
       registries = {
-        -- "github:mason-org/mason-registry",
-        "file:~/dev/mason-registry",
+        "github:mason-org/mason-registry",
+        -- "file:~/dev/mason-registry",
       },
     },
   },
