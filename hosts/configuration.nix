@@ -111,6 +111,7 @@ in
           cmake # cmake
           gnumake # gnu make
           gcc # gnu c compiler
+          meson
 
           # Video/Audio
           alsa-utils # Audio Control
