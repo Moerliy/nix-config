@@ -112,7 +112,7 @@ in
           gnumake # gnu make
           gcc # gnu c compiler
           meson
-          jq
+          # jq
           ninja
 
           # Video/Audio
