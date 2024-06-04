@@ -21,6 +21,7 @@ return {
         "ktlint",
         "nil",
         "nixpkgs-fmt",
-      })
+      },
+    },
   },
 }
