@@ -2,10 +2,6 @@ return {
   {
     "williamboman/mason.nvim",
     opts = {
-      registries = {
-        "github:mason-org/mason-registry",
-        -- "github:Moerliy/mason-registry",
-      },
       ensure_installed = {
         "stylua",
         "selene",
@@ -21,6 +17,10 @@ return {
         "ktlint",
         "nil",
         "nixpkgs-fmt",
+      },
+      registries = {
+        "github:mason-org/mason-registry",
+        -- "github:Moerliy/mason-registry",
       },
     },
   },
