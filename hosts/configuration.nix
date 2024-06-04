@@ -112,6 +112,8 @@ in
           gnumake # gnu make
           gcc # gnu c compiler
           meson
+          jq
+          ninja
 
           # Video/Audio
           alsa-utils # Audio Control
