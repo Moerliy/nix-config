@@ -63,8 +63,9 @@ in
           cmake
           gnumake
           #gcc
-          yq
-          jq
+          yq-go
+          # yq
+          # jq
 
           #rustup
           cargo
