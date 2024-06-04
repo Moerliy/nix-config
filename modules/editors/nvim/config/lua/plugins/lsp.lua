@@ -20,7 +20,7 @@ return {
       },
       registries = {
         "github:mason-org/mason-registry",
-        "github:moerliy/mason-registry",
+        "file:~/dev/mason-registry",
       },
     },
   },
