@@ -1,16 +1,12 @@
 return {
   {
     "williamboman/mason.nvim",
-    config = function()
-      require("mason").setup({
+    opts = {
         registries = {
           "github:mason-org/mason-registry",
           "github:Moerliy/mason-registry",
         },
-      })
-    end,
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
+      ensure_installed = {
         "stylua",
         "selene",
         "luacheck",
@@ -26,6 +22,5 @@ return {
         "nil",
         "nixpkgs-fmt",
       })
-    end,
   },
 }
