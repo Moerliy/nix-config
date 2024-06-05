@@ -62,7 +62,7 @@ with lib; {
             #fish_add_path --path "$HOME/.setup/scripts/bin"
 
             # Spaceship
-            function starship_transient_prompt_func
+            function starship_transient_rprompt_func
               set -l nix_shell_info (
                 if test -n "$IN_NIX_SHELL"
                   echo -n "<nix-shell> "
