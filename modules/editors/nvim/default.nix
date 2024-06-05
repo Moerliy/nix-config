@@ -51,7 +51,7 @@ in
         xdg.configFile = pkgs.lib.attrsets.mapAttrs toSource configFilesToLink;
         home.packages = with pkgs; [
           # lsp
-          lua51Packages.lua-lsp
+          lua-language-server
 
           git
           lazygit
