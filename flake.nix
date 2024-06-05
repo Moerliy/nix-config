@@ -11,7 +11,7 @@
   description = "Nix, NixOS and Nix Darwin System Flake Configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11"; # Nix Packages (Default)
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05"; # Nix Packages (Default)
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable Nix Packages
     nixos-hardware.url = "github:nixos/nixos-hardware/master"; # Hardware Specific Configurations
 
@@ -59,7 +59,17 @@
 
     # Official Hyprland Flake
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      # url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      type = "git";
+      url = "https://github.com/hyprwm/Hyprland";
+      submodules = true;
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprkey = {
+      url = "github:Moerliy/hypr-which-key";
+      # Hyprspace uses latest Hyprland. We declare this to keep them in sync.
+      inputs.hyprland.follows = "hyprland";
     };
 
     # Hyprlock
@@ -95,6 +105,7 @@
     nixgl,
     nixvim,
     hyprland,
+    hyprkey,
     hyprlock,
     hypridle,
     plasma-manager,
@@ -127,7 +138,7 @@
     nixosConfigurations = (
       import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs nixvim hyprland hypridle hyprlock nixpkgs-unstable home-manager home-manager-unstable apple-silicon vars;
+        inherit inputs nixpkgs nixvim hyprland hyprkey hypridle hyprlock nixpkgs-unstable home-manager home-manager-unstable apple-silicon vars;
       }
     );
 

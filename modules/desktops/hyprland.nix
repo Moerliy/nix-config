@@ -7,8 +7,10 @@
   lib,
   pkgs,
   hyprland,
+  hyprkey,
   hypridle,
   hyprlock,
+  system,
   vars,
   host,
   ...
@@ -17,6 +19,7 @@
   hyprlandPkg = hyprland.packages.${pkgs.system}.hyprland;
   hyprlockPkg = hyprlock.packages.${pkgs.system}.hyprlock;
   hypridlePkg = hypridle.packages.${pkgs.system}.hypridle;
+  hyprkeyPkg = hyprkey.packages.${pkgs.system}.hypr-which-key;
 in
   with lib;
   with host; {
@@ -215,6 +218,9 @@ in
           enable = true;
           package = hyprlandPkg;
           xwayland.enable = true;
+          plugins = [
+            # hyprkeyPkg
+          ];
           settings = {
             general = {
               border_size = 2;
