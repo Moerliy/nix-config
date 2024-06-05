@@ -74,6 +74,7 @@ in
           docker-compose-language-service
           vscode-langservers-extracted
           nodePackages.bash-language-server
+          neocmakelsp
 
           git
           lazygit

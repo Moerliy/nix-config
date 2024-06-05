@@ -31,6 +31,39 @@ return {
         lua_ls = {
           mason = false,
         },
+        bashls = {
+          mason = false,
+        },
+        docker_compose_language_service = {
+          mason = false,
+        },
+        dockerls = {
+          mason = false,
+        },
+        eslint = {
+          mason = false,
+        },
+        jsonls = {
+          mason = false,
+        },
+        marksman = {
+          mason = false,
+        },
+        neocmake = {
+          mason = false,
+        },
+        pyright = {
+          mason = false,
+        },
+        ruff = {
+          mason = false,
+        },
+        taplo = {
+          mason = false,
+        },
+        yamlls = {
+          mason = false,
+        },
       },
     },
   },
