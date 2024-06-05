@@ -149,6 +149,7 @@ in
         ++ (with pkgs-stable; [
           # Apps
           image-roll # Image Viewer
+          # steam-run-native
         ]);
     };
   }

@@ -51,6 +51,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Neovim
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Official Hyprland Flake
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
@@ -87,6 +93,7 @@
     apple-silicon,
     nur,
     nixgl,
+    nixvim,
     hyprland,
     hyprlock,
     hypridle,
@@ -120,7 +127,7 @@
     nixosConfigurations = (
       import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs hyprland hypridle hyprlock nixpkgs-unstable home-manager home-manager-unstable apple-silicon vars;
+        inherit inputs nixpkgs nixvim hyprland hypridle hyprlock nixpkgs-unstable home-manager home-manager-unstable apple-silicon vars;
       }
     );
 

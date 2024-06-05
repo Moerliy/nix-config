@@ -10,6 +10,7 @@
   inputs,
   nixpkgs,
   nixpkgs-unstable,
+  nixvim,
   apple-silicon,
   home-manager,
   home-manager-unstable,
