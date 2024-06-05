@@ -16,6 +16,16 @@ $time\
 [ ](fg:#1d2230)\
 \n$character"""
 
+right_format = """
+$nix_shell
+"""
+
+[nix_shell]
+style = "fg:#e3e5e5 bg:#769ff0"
+format = "[ $IN_NIX_SHELL ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
 [directory]
 style = "fg:#e3e5e5 bg:#769ff0"
 format = "[ $path ]($style)"
@@ -59,6 +69,6 @@ format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
 
 [time]
 disabled = false
-time_format = "%R" # Hour:Minute Format
+time_format = "%R"                                      # Hour:Minute Format
 style = "bg:#1d2230"
 format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
