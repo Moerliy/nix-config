@@ -63,6 +63,15 @@ in
           ktlint
           nil
           nixpkgs-fmt
+          ruff-lsp
+          pyright
+          taplo
+          dockerfile-language-server-nodejs
+          yaml-language-server
+          marksman
+          docker-compose-language-service
+          vscode-langservers-extracted
+          nodePackages.bash-language-server
 
           git
           lazygit
