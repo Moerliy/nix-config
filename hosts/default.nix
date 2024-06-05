@@ -37,7 +37,7 @@ in {
   asahi = lib.nixosSystem {
     inherit system;
     specialArgs = {
-      inherit inputs vars apple-silicon hyprland hypridle hyprlock pkgs-stable;
+      inherit inputs vars system nixvim apple-silicon hyprland hypridle hyprlock pkgs-stable;
       host = {
         hostName = "asahi";
         buildInMonitor = "eDP-1";

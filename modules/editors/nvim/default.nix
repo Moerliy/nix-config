@@ -9,15 +9,15 @@
   configFilesToLink =
     if lib.pathExists ./config/secrets
     then {
-      "nvim-old/init.lua" = ./config/init.lua;
-      "nvim-old/secrets" = ./config/secrets;
-      "nviml-old/lua" = ./config/lua;
-      "nvim-old/stylelua.toml" = ./config/stylua.toml;
+      "nvim/init.lua" = ./config/init.lua;
+      "nvim/secrets" = ./config/secrets;
+      "nviml/lua" = ./config/lua;
+      "nvim/stylelua.toml" = ./config/stylua.toml;
     }
     else {
-      "nvim-old/init.lua" = ./config/init.lua;
-      "nvim-old/lua" = ./config/lua;
-      "nvim-old/stylelua.toml" = ./config/stylua.toml;
+      "nvim/init.lua" = ./config/init.lua;
+      "nvim/lua" = ./config/lua;
+      "nvim/stylelua.toml" = ./config/stylua.toml;
     };
   # Function to help map attrs for symlinking home.file, xdg.configFile
   # e.g. from { ".hgrc" = ./hgrc; } to { ".hgrc".source = ./hgrc; }
@@ -50,6 +50,9 @@ in
         # Symlink files under ~/.config, e.g. ~/.config/alacritty/alacritty.yml
         xdg.configFile = pkgs.lib.attrsets.mapAttrs toSource configFilesToLink;
         home.packages = with pkgs; [
+          # lsp
+          lua51Packages.lua-lsp
+
           git
           lazygit
           ripgrep
