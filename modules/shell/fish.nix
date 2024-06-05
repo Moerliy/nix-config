@@ -61,16 +61,6 @@ with lib; {
             fish_add_path --path "$HOME/.cargo/bin"
             #fish_add_path --path "$HOME/.setup/scripts/bin"
 
-            function fish_prompt
-              set -l nix_shell_info (
-                if test -n "$IN_NIX_SHELL"
-                  echo -n "<nix-shell> "
-                end
-              )
-              echo -n -s "$nix_shell_info ~>"
-            end
-
-
             # Spaceship
             eval (starship init fish)
 
@@ -81,6 +71,30 @@ with lib; {
               cd "$(command lf -print-last-dir $argv)"
             end
           '';
+          functions = {
+            nix-shell = {
+              wraps = "nix-shell";
+              body = ''
+                for ARG in $argv
+                  if [ "$ARG" = --run ]
+                    command nix-shell $argv
+                    return $status
+                  end
+                end
+                command nix-shell $argv --run "exec fish"
+              '';
+            };
+            fish_promt = {
+              body = ''
+                set -l nix_shell_info (
+                  if test -n "$IN_NIX_SHELL"
+                    echo -n "<nix-shell> "
+                  end
+                )
+                echo -n -s "$nix_shell_info ~>"
+              '';
+            };
+          };
         };
       };
     };
