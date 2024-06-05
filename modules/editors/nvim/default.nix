@@ -52,6 +52,17 @@ in
         home.packages = with pkgs; [
           # lsp
           lua-language-server
+          selene
+          lua52Packages.luacheck
+          shellcheck
+          shfmt
+          nodePackages.typescript-language-server
+          nodePackages.vue-language-server
+          # nodePackages_latest.grammarly-languageserver
+          kotlin-language-server
+          ktlint
+          nil
+          nixpkgs-fmt
 
           git
           lazygit
