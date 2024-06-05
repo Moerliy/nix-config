@@ -29,7 +29,7 @@
   # Shell related
   sane-defaults.enable = true;
   fish.enable = true;
-  starship.enable = true;
+  # starship.enable = true;
   git.enable = true;
   zoxide.enable = true;
   zsh.enable = true;
