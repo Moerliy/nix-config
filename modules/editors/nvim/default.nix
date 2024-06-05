@@ -63,6 +63,8 @@ in
           ktlint
           nil
           nixpkgs-fmt
+
+          clang-tools
           ruff-lsp
           pyright
           taplo
