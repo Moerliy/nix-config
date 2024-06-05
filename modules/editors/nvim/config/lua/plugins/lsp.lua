@@ -64,6 +64,9 @@ return {
         yamlls = {
           mason = false,
         },
+        clangd = {
+          mason = false,
+        },
       },
     },
   },
