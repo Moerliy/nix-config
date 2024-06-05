@@ -52,6 +52,14 @@ with lib; {
           interactiveShellInit = ''
             set fish_greeting # Disable greeting
             neofetch
+            function fish_promt
+              set -l nix_shell_info (
+                if test -n "$IN_NIX_SHELL"
+                  echo -n "<nix-shell> "
+                end
+              )
+              echo -n -s "$nix_shell_info ~>"
+            end
           '';
           shellInit = ''
             # set PATH so it includes user's private ~/.local/bin if it exists
@@ -88,16 +96,6 @@ with lib; {
               wraps = "nix develop";
               body = ''
                 command nix develop $argv -c fish
-              '';
-            };
-            fish_promt = {
-              body = ''
-                set -l nix_shell_info (
-                  if test -n "$IN_NIX_SHELL"
-                    echo -n "<nix-shell> "
-                  end
-                )
-                echo -n -s "$nix_shell_info ~>"
               '';
             };
           };
