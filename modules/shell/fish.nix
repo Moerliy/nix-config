@@ -61,17 +61,7 @@ with lib; {
             fish_add_path --path "$HOME/.cargo/bin"
             #fish_add_path --path "$HOME/.setup/scripts/bin"
 
-            # Spaceship
-            # function starship_transient_rprompt_func
-            #   set -l nix_shell_info (
-            #     if test -n "$IN_NIX_SHELL"
-            #       echo -n "<nix-shell> "
-            #     end
-            #   )
-            #   echo -n -s "$nix_shell_info ~>"
-            # end
             eval (starship init fish)
-            # enable_transience
 
             # lf file manager
             function lfcd --wraps="lf" --description="lf - Terminal file manager (changing directory on exit)"
