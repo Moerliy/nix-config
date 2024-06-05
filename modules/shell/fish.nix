@@ -84,6 +84,12 @@ with lib; {
                 command nix-shell $argv --run "exec fish"
               '';
             };
+            "nixd" = {
+              wraps = "nix develop";
+              body = ''
+                command nix develop $argv -c fish
+              '';
+            };
             fish_promt = {
               body = ''
                 set -l nix_shell_info (
