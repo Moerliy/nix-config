@@ -9,15 +9,15 @@
   configFilesToLink =
     if lib.pathExists ./config/secrets
     then {
-      "nvim/init.lua" = ./config/init.lua;
-      "nvim/secrets" = ./config/secrets;
-      "nvim/lua" = ./config/lua;
-      "nvim/stylelua.toml" = ./config/stylua.toml;
+      "nvim-old/init.lua" = ./config/init.lua;
+      "nvim-old/secrets" = ./config/secrets;
+      "nviml-old/lua" = ./config/lua;
+      "nvim-old/stylelua.toml" = ./config/stylua.toml;
     }
     else {
-      "nvim/init.lua" = ./config/init.lua;
-      "nvim/lua" = ./config/lua;
-      "nvim/stylelua.toml" = ./config/stylua.toml;
+      "nvim-old/init.lua" = ./config/init.lua;
+      "nvim-old/lua" = ./config/lua;
+      "nvim-old/stylelua.toml" = ./config/stylua.toml;
     };
   # Function to help map attrs for symlinking home.file, xdg.configFile
   # e.g. from { ".hgrc" = ./hgrc; } to { ".hgrc".source = ./hgrc; }
