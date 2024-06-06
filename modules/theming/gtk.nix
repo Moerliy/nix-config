@@ -45,11 +45,11 @@ with lib; {
           name = "JetBrainsMono Nerd Font";
         };
       };
-      home.pointerCursor = {
-        gtk.enable = true;
-        package = pkgs.catppuccin-cursors.mochaDark;
-        name = "Catppuccin-Mocha-Dark-Cursors";
-      };
+      # home.pointerCursor = {
+      #   gtk.enable = true;
+      #   package = pkgs.catppuccin-cursors.mochaDark;
+      #   name = "Catppuccin-Mocha-Dark-Cursors";
+      # };
     };
   };
 }
