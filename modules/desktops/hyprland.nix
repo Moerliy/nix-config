@@ -86,7 +86,7 @@ in
 
       programs.hyprland = {
         enable = true;
-        package = hyprlandPkg;
+        package = hyprlandPkg.override {debug = true;};
       };
 
       security.pam.services.hyprlock = {
@@ -216,7 +216,7 @@ in
 
         wayland.windowManager.hyprland = {
           enable = true;
-          package = hyprlandPkg;
+          package = hyprlandPkg.override {debug = true;};
           xwayland.enable = true;
           plugins = [
             # hyprkeyPkg
