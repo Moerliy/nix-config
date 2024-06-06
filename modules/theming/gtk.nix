@@ -49,6 +49,7 @@ with lib; {
         gtk.enable = true;
         package = pkgs.catppuccin-cursors.mochaDark;
         name = "Catppuccin-Mocha-Dark-Cursors";
+        size = 64;
       };
     };
   };
