@@ -7,7 +7,7 @@
   lib,
   pkgs,
   hyprland,
-  hyprkey,
+  hyprhook,
   hypridle,
   hyprlock,
   system,
@@ -19,7 +19,7 @@
   hyprlandPkg = hyprland.packages.${pkgs.system}.hyprland;
   hyprlockPkg = hyprlock.packages.${pkgs.system}.hyprlock;
   hypridlePkg = hypridle.packages.${pkgs.system}.hypridle;
-  hyprkeyPkg = hyprkey.packages.${pkgs.system}.hypr-which-key;
+  hyprhookPkg = hyprhook.packages.${pkgs.system}.hyprhook;
 in
   with lib;
   with host; {
@@ -86,7 +86,7 @@ in
 
       programs.hyprland = {
         enable = true;
-        package = hyprlandPkg.override {debug = true;};
+        package = hyprlandPkg; #.override {debug = true;};
       };
 
       security.pam.services.hyprlock = {
@@ -102,10 +102,10 @@ in
         AllowHybridSleep=yes
       ''; # Clamshell Mode (closed laptop use)
 
-      nix.settings = {
-        substituters = ["https://hyprland.cachix.org"];
-        trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-      };
+      # nix.settings = {
+      #   substituters = ["https://hyprland.cachix.org"];
+      #   trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+      # };
 
       home-manager.users.${vars.user} = let
         lid =
@@ -216,10 +216,10 @@ in
 
         wayland.windowManager.hyprland = {
           enable = true;
-          package = hyprlandPkg.override {debug = true;};
+          package = hyprlandPkg; #.override {debug = true;};
           xwayland.enable = true;
           plugins = [
-            # hyprkeyPkg
+            # hyprhookPkg
           ];
           settings = {
             general = {

@@ -106,6 +106,7 @@ in
           smartmontools # Disk Health
           tldr # Helper
           usbutils # Manage USB
+          glxinfo
           wget # Retriever
           xdg-utils # Environment integration
           cmake # cmake

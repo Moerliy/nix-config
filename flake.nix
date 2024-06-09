@@ -61,13 +61,13 @@
     hyprland = {
       # url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
       type = "git";
-      url = "https://github.com/hyprwm/Hyprland";
+      url = "https://github.com/Moerliy/Hyprland";
       submodules = true;
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprkey = {
-      url = "github:Moerliy/hypr-which-key";
+    hyprhook = {
+      url = "github:Yusuf-Duran/Hyprhook";
       # Hyprspace uses latest Hyprland. We declare this to keep them in sync.
       inputs.hyprland.follows = "hyprland";
     };
@@ -105,7 +105,7 @@
     nixgl,
     nixvim,
     hyprland,
-    hyprkey,
+    hyprhook,
     hyprlock,
     hypridle,
     plasma-manager,
@@ -138,7 +138,7 @@
     nixosConfigurations = (
       import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs nixvim hyprland hyprkey hypridle hyprlock nixpkgs-unstable home-manager home-manager-unstable apple-silicon vars;
+        inherit inputs nixpkgs nixvim hyprland hyprhook hypridle hyprlock nixpkgs-unstable home-manager home-manager-unstable apple-silicon vars;
       }
     );
 

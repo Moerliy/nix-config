@@ -57,8 +57,16 @@
   };
 
   # Asahi settings
-  hardware.asahi.useExperimentalGPUDriver = true;
-  hardware.asahi.setupAsahiSound = true;
+  hardware = {
+    asahi = {
+      useExperimentalGPUDriver = true;
+      setupAsahiSound = true;
+    };
+    opengl = {
+      enable = true;
+      driSupport = true;
+    };
+  };
 
   # backlight control
   programs.light.enable = true;
