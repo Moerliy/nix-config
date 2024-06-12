@@ -81,6 +81,7 @@ in
           #wlr-randr # Monitor Settings # TODO: needed?
           xwayland # X session
           kitty
+          eww
         ];
       };
 
@@ -219,7 +220,7 @@ in
           package = hyprlandPkg; #.override {debug = true;};
           xwayland.enable = true;
           plugins = [
-            # hyprhookPkg
+            hyprhookPkg
           ];
           settings = {
             general = {
@@ -370,6 +371,7 @@ in
               "$mainMod, B, exec, ${pkgs.firefox}/bin/firefox"
               "$mainMod, Q, killactive"
               "$mainMod, C, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun"
+              "$mainMod, F, togglefloating"
 
               "$mainMod, 1, workspace, 1"
               "$mainMod, 2, workspace, 2"
@@ -413,36 +415,40 @@ in
             #   ] else [ ];
           };
           extraConfig = ''
-            bind = $mainMod, Space, submap, supmaper
+            # bindmd = $mainMod, mouse:272, test123, resizewindow
+            # bindm = $mainMod, mouse:273, resizewindow
+            # bindm = $mainMod, mouse:274, movewindow
+
+            bindd = $mainMod, Space, +submaps, submap, supmaper
             submap = supmaper
-            bind = , escape, submap, reset
-            bind = , O, submap, open
-            bind = , L, submap, masterlayout
-            bind = , B, submap, backlight
-            bind = , V, submap, volume
-            bind = , R, submap, resize
-            bind = , M, submap, move
-            bind = , F, submap, focus
-            bind = , G, submap, grimblast
-            bind = , S, togglespecialworkspace,
-            bind = , S, submap, reset
-            bind = SHIFT, S, movetoworkspace, special
-            bind = SHIFT, S, submap, reset
+            bindd = , escape, Reset submap, submap, reset
+            bindd = , O, +open, submap, open
+            bindd = , L, +layout, submap, masterlayout
+            bindd = , B, +backlight, submap, backlight
+            bindd = , V, +volume, submap, volume
+            bindd = , R, +resize, submap, resize
+            bindd = , M, +move, submap, move
+            bindd = , F, +focus, submap, focus
+            bindd = , G, +screenshot, submap, grimblast
+            bindd = , S, Special Workspace, togglespecialworkspace,
+            bindd = , S, Reset submap, submap, reset
+            bindd = SHIFT, S, Move To Special Workspace, movetoworkspace, special
+            bindd = SHIFT, S, Reset submap, submap, reset
             submap = reset
 
             submap = open
             bind = , escape, submap, reset
-            bind = , Q, killactive
+            bindd = , Q, Close Window, killactive
             bind = , Q, submap, reset
-            bind = , T, exec, ${pkgs.${vars.terminal}}/bin/${vars.terminal}
+            bindd = , T, Open Terminal, exec, ${pkgs.${vars.terminal}}/bin/${vars.terminal}
             bind = , T, submap, reset
-            bind = , F, exec, ${pkgs.pcmanfm}/bin/pcmanfm
+            bindd = , F, Open Files, exec, ${pkgs.pcmanfm}/bin/pcmanfm
             bind = , F, submap, reset
-            bind = , B, exec, [workspace 2] ${pkgs.firefox}/bin/firefox
+            bindd = , B, Open Browser, exec, [workspace 2] ${pkgs.firefox}/bin/firefox
             bind = , B, submap, reset
-            bind = , D, exec, [workspace 8]${pkgs.webcord-vencord}/bin/webcord
+            bindd = , D, Open Discord, exec, [workspace 8]${pkgs.webcord-vencord}/bin/webcord
             bind = , D, submap, reset
-            bind = , C, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun
+            bindd = , C, Open Controll Center, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun
             bind = , C, submap, reset
             # bind = , M, exec, $music $electron_flags
             # bind = , M, submap, reset
@@ -452,114 +458,118 @@ in
 
             submap = masterlayout
             bind = , escape, submap, reset
-            bind = , I, layoutmsg, addmaster
+            bindd = , I, Not Working, layoutmsg, addmaster
             bind = , I, submap, reset
-            bind = , D, layoutmsg, removemaster
+            bindd = , D, Not Working, layoutmsg, removemaster
             bind = , D, submap, reset
             submap = reset
 
             submap = backlight
             bind = , escape, submap, reset
-            bind = , K, exec, ${customScripts}/brightness --inc
-            bind = , J, exec, ${customScripts}/brightness --dec
-            bind = , H, exec, ${customScripts}/kbd-brightness --dec
-            bind = , L, exec, ${customScripts}/kbd-brightness --inc
-            bind = , up, exec, ${customScripts}/brightness --inc
-            bind = , down, exec, ${customScripts}/brightness --dec
-            bind = , left, exec, ${customScripts}/kbd-brightness --dec
-            bind = , right, exec, ${customScripts}/kbd-brightness --inc
+            bindd = , K, Increase Screen Brightness, exec, ${customScripts}/brightness --inc
+            bindd = , J, Decrease Screen Brightness, exec, ${customScripts}/brightness --dec
+            bindd = , H, Decrease Keyboard Brightness, exec, ${customScripts}/kbd-brightness --dec
+            bindd = , L, Increase Keyboard Brightness, exec, ${customScripts}/kbd-brightness --inc
+            bindd = , up, Increase Screen Brightness, exec, ${customScripts}/brightness --inc
+            bindd = , down, Decrease Screen Brightness, exec, ${customScripts}/brightness --dec
+            bindd = , left, Decrease Keyboard Brightness, exec, ${customScripts}/kbd-brightness --dec
+            bindd = , right, Increase Keyboard Brightness, exec, ${customScripts}/kbd-brightness --inc
             submap = reset
 
             submap = volume
             bind = , escape, submap, reset
-            binde = , K, exec, ${customScripts}/volume --inc
-            binde = , J, exec, ${customScripts}/volume --dec
-            binde = , up, exec, ${customScripts}/volume --inc
-            binde = , down, exec, ${customScripts}/volume --dec
-            binde = , D, exec, ${customScripts}/volume --toggle
+            binded = , K, Increase Volume, exec, ${customScripts}/volume --inc
+            binded = , J, Decrease Volume, exec, ${customScripts}/volume --dec
+            binded = , up, Increase Volume, exec, ${customScripts}/volume --inc
+            binded = , down, Decrease Volume, exec, ${customScripts}/volume --dec
+            binded = , D, Deff Speakers, exec, ${customScripts}/volume --toggle
             binde = , D, submap, reset
-            binde = , M, exec, ${customScripts}/volume --toggle-mic
+            binded = , M, Muste Mice, exec, ${customScripts}/volume --toggle-mic
             binde = , M, submap, reset
             submap = reset
 
             submap = resize
             bind = , escape, submap, reset
-            binde = , H, resizeactive,-50 0
-            binde = , L, resizeactive,50 0
-            binde = , K, resizeactive,0 -50
-            binde = , J, resizeactive,0 50
-            binde = , left, resizeactive,-50 0
-            binde = , right, resizeactive,50 0
-            binde = , up, resizeactive,0 -50
-            binde = , down, resizeactive,0 50
+            binded = , H, Resize Left, resizeactive,-50 0
+            binded = , L, Resize Right, resizeactive,50 0
+            binded = , K, Resize Up, resizeactive,0 -50
+            binded = , J, Resize Down, resizeactive,0 50
+            binded = , left, Resize Left, resizeactive,-50 0
+            binded = , right, Resize Right, resizeactive,50 0
+            binded = , up, Resize Up, resizeactive,0 -50
+            binded = , down, Resize Down, resizeactive,0 50
             submap = reset
 
             submap = move
             bind = , escape, submap, reset
-            bind = , F, submap, focus
-            bind = , H, movewindow, l
-            bind = , L, movewindow, r
-            bind = , K, movewindow, u
-            bind = , J, movewindow, d
-            bind = , left, movewindow, l
-            bind = , right, movewindow, r
-            bind = , up, movewindow, u
-            bind = , down, movewindow, d
-            bind = , 1, exec, hyprctl dispatch movetoworkspace 1
-            bind = , 2, exec, hyprctl dispatch movetoworkspace 2
-            bind = , 3, exec, hyprctl dispatch movetoworkspace 3
-            bind = , 4, exec, hyprctl dispatch movetoworkspace 4
-            bind = , 5, exec, hyprctl dispatch movetoworkspace 5
-            bind = , 6, exec, hyprctl dispatch movetoworkspace 6
-            bind = , 7, exec, hyprctl dispatch movetoworkspace 7
-            bind = , 8, exec, hyprctl dispatch movetoworkspace 8
-            bind = , 9, exec, hyprctl dispatch movetoworkspace 9
-            bind = , 0, exec, hyprctl dispatch movetoworkspace 10
-            bind = SHIFT, H, exec, hyprctl dispatch movetoworkspace e-1
-            bind = SHIFT, L, exec, hyprctl dispatch movetoworkspace e+1
-            bind = SHIFT, left, exec, hyprctl dispatch movetoworkspace e-1
-            bind = SHIFT, right, exec, hyprctl dispatch movetoworkspace e+1
+            bindd = , F, +focus, submap, focus
+            bindd = , H, Move Left, movewindow, l
+            bindd = , L, Move Right, movewindow, r
+            bindd = , K, Move Up, movewindow, u
+            bindd = , J, Move Down, movewindow, d
+            bindd = , left, Move Left, movewindow, l
+            bindd = , right, Move Right, movewindow, r
+            bindd = , up, Move Up, movewindow, u
+            bindd = , down, Move Down, movewindow, d
+            bindd = , 1, Move Workspace 1, exec, hyprctl dispatch movetoworkspace 1
+            bindd = , 2, Move Workspace 2, exec, hyprctl dispatch movetoworkspace 2
+            bindd = , 3, Move Workspace 3, exec, hyprctl dispatch movetoworkspace 3
+            bindd = , 4, Move Workspace 4, exec, hyprctl dispatch movetoworkspace 4
+            bindd = , 5, Move Workspace 5, exec, hyprctl dispatch movetoworkspace 5
+            bindd = , 6, Move Workspace 6, exec, hyprctl dispatch movetoworkspace 6
+            bindd = , 7, Move Workspace 7, exec, hyprctl dispatch movetoworkspace 7
+            bindd = , 8, Move Workspace 8, exec, hyprctl dispatch movetoworkspace 8
+            bindd = , 9, Move Workspace 9, exec, hyprctl dispatch movetoworkspace 9
+            bindd = , 0, Move Workspace 10, exec, hyprctl dispatch movetoworkspace 10
+            bindd = SHIFT, H, Move Workspace Left, exec, hyprctl dispatch movetoworkspace e-1
+            bindd = SHIFT, L, Move Workspace Right, exec, hyprctl dispatch movetoworkspace e+1
+            bindd = SHIFT, left, Move Workspace Left, exec, hyprctl dispatch movetoworkspace e-1
+            bindd = SHIFT, right, Move Workspace Right, exec, hyprctl dispatch movetoworkspace e+1
             submap = reset
 
             submap = focus
-            bind = , Q, killactive
+            bindd = , Q, Close Window, killactive
             bind = , escape, submap, reset
-            bind = , M, submap, move
-            bind = , left, movefocus, l
-            bind = , right, movefocus, r
-            bind = , up, movefocus, u
-            bind = , down, movefocus, d
-            bind = , H, movefocus, l
-            bind = , L, movefocus, r
-            bind = , K, movefocus, u
-            bind = , J, movefocus, d
-            bind = , 1, exec, hyprctl dispatch workspace 1
-            bind = , 2, exec, hyprctl dispatch workspace 2
-            bind = , 3, exec, hyprctl dispatch workspace 3
-            bind = , 4, exec, hyprctl dispatch workspace 4
-            bind = , 5, exec, hyprctl dispatch workspace 5
-            bind = , 6, exec, hyprctl dispatch workspace 6
-            bind = , 7, exec, hyprctl dispatch workspace 7
-            bind = , 8, exec, hyprctl dispatch workspace 8
-            bind = , 9, exec, hyprctl dispatch workspace 9
-            bind = , 0, exec, hyprctl dispatch workspace 10
-            bind = SHIFT, H, exec, hyprctl dispatch workspace e-1
-            bind = SHIFT, L, exec, hyprctl dispatch workspace e+1
-            bind = SHIFT, left, exec, hyprctl dispatch workspace e-1
-            bind = SHIFT, right, exec, hyprctl dispatch workspace e+1
+            bindd = , M, +move, submap, move
+            bindd = , left, Focus Left, movefocus, l
+            bindd = , right, Focus Right, movefocus, r
+            bindd = , up, Focus Up, movefocus, u
+            bindd = , down, Focus Down, movefocus, d
+            bindd = , H, Focus Left, movefocus, l
+            bindd = , L, Focus Right, movefocus, r
+            bindd = , K, Focus Up, movefocus, u
+            bindd = , J, Focus Down, movefocus, d
+            bindd = , 1, Focus Workspace 1, exec, hyprctl dispatch workspace 1
+            bindd = , 2, Focus Workspace 2, exec, hyprctl dispatch workspace 2
+            bindd = , 3, Focus Workspace 3, exec, hyprctl dispatch workspace 3
+            bindd = , 4, Focus Workspace 4, exec, hyprctl dispatch workspace 4
+            bindd = , 5, Focus Workspace 5, exec, hyprctl dispatch workspace 5
+            bindd = , 6, Focus Workspace 6, exec, hyprctl dispatch workspace 6
+            bindd = , 7, Focus Workspace 7, exec, hyprctl dispatch workspace 7
+            bindd = , 8, Focus Workspace 8, exec, hyprctl dispatch workspace 8
+            bindd = , 9, Focus Workspace 9, exec, hyprctl dispatch workspace 9
+            bindd = , 0, Focus Workspace 10, exec, hyprctl dispatch workspace 10
+            bindd = SHIFT, H, Focus Workspace Left, exec, hyprctl dispatch workspace e-1
+            bindd = SHIFT, L, Focus Workspace Right, exec, hyprctl dispatch workspace e+1
+            bindd = SHIFT, left, Focus Workspace Left, exec, hyprctl dispatch workspace e-1
+            bindd = SHIFT, right, Focus Workspace Right, exec, hyprctl dispatch workspace e+1
             submap = reset
 
             submap = grimblast
             bind = , escape, submap, reset
-            bind = , O, exec, ${pkgs.grimblast}/bin/grimblast --notify -n copy output
+            bindd = , O, Screenshot ?, exec, ${pkgs.grimblast}/bin/grimblast --notify -n copy output
             bind = , O, submap, reset
-            bind = , S, exec, ${pkgs.grimblast}/bin/grimblast --notify -n copy screen
+            bindd = , S, Screenshot Screen Clipboard, exec, ${pkgs.grimblast}/bin/grimblast --notify -n copy screen
             bind = , S, submap, reset
-            bind = , W, exec, ${pkgs.grimblast}/bin/grimblast --notify -n copy active
+            bindd = , W, Screenshot Window Clipboard, exec, ${pkgs.grimblast}/bin/grimblast --notify -n copy active
             bind = , W, submap, reset
-            bind = , A, exec, ${pkgs.grimblast}/bin/grimblast --notify -n copy area
+            bindd = , A, Screenshot Area Clipboard, exec, ${pkgs.grimblast}/bin/grimblast --notify -n copy area
             bind = , A, submap, reset
             submap = reset
+
+            plugin {
+              hyprhook:submap=$HOME/test.bash
+            }
           '';
           # settings = {
           #   bind = [

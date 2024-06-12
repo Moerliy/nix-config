@@ -54,6 +54,7 @@ in
           lua-language-server
           selene
           lua52Packages.luacheck
+          stylua
           shellcheck
           shfmt
           nodePackages.typescript-language-server
@@ -71,10 +72,16 @@ in
           dockerfile-language-server-nodejs
           yaml-language-server
           marksman
+          markdownlint-cli
           docker-compose-language-service
           vscode-langservers-extracted
           nodePackages.bash-language-server
+          nodePackages.prettier
           neocmakelsp
+          cmake-format
+          black
+          python312Packages.debugpy
+          hadolint
 
           git
           lazygit

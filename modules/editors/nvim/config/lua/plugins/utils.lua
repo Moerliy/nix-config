@@ -28,4 +28,5 @@ return {
       startVisible = false,
     },
   },
+  {"elkowar/yuck.vim"},
 }

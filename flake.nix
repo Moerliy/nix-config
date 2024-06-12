@@ -59,15 +59,15 @@
 
     # Official Hyprland Flake
     hyprland = {
-      # url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
       type = "git";
-      url = "https://github.com/Moerliy/Hyprland";
+      # url = "https://github.com/Moerliy/Hyprland";
+      url = "https://github.com/hyprwm/Hyprland";
       submodules = true;
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprhook = {
-      url = "github:Yusuf-Duran/Hyprhook";
+      url = "github:Hyprhook/Hyprhook";
       # Hyprspace uses latest Hyprland. We declare this to keep them in sync.
       inputs.hyprland.follows = "hyprland";
     };

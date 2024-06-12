@@ -115,6 +115,7 @@ in
           meson
           # jq
           ninja
+          jq
 
           # Video/Audio
           alsa-utils # Audio Control

@@ -1,8 +1,12 @@
 return {
   {
     "williamboman/mason.nvim",
+    opts_extend = {},
     opts = {
       ensure_installed = {
+        "debugpy",
+        "js-debug-adapter",
+        "vtsls",
         -- "stylua",
         -- "selene",
         -- "luacheck",
@@ -29,6 +33,9 @@ return {
     opts = {
       servers = {
         lua_ls = {
+          mason = false,
+        },
+        luau_lsp = {
           mason = false,
         },
         bashls = {
@@ -58,6 +65,9 @@ return {
         ruff = {
           mason = false,
         },
+        ruff_lsp = {
+          mason = false,
+        },
         taplo = {
           mason = false,
         },
@@ -66,6 +76,20 @@ return {
         },
         clangd = {
           mason = false,
+        },
+      },
+    },
+  },
+  {
+    "mfussenegger/nvim-lint",
+    optional = true,
+    opts = {
+      linters_by_ft = {
+        cmake = { "cmakelint" },
+      },
+      linters = {
+        cmakelint = {
+          cmd = is_windows and "cmake-lint.cmd" or "cmake-lint",
         },
       },
     },

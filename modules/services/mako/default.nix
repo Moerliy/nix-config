@@ -33,7 +33,7 @@ in
         services = {
           mako = {
             enable = true;
-            anchor = "bottom-right";
+            anchor = "top-right";
             backgroundColor = "#1e1e2e";
             textColor = "#cdd6f4";
             borderColor = "#8839ef";
