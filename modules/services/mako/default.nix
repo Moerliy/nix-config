@@ -36,7 +36,7 @@ in
             anchor = "top-right";
             backgroundColor = "#1e1e2e";
             textColor = "#cdd6f4";
-            borderColor = "#8839ef";
+            borderColor = "#cba6f7";
             progressColor = "#313244";
             defaultTimeout = 3500;
           };
