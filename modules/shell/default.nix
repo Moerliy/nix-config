@@ -15,4 +15,5 @@
   ./direnv.nix
   ./fish.nix
   ./zoxide.nix
+  ./lazygit/default.nix
 ]
