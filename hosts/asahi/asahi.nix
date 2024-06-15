@@ -67,6 +67,9 @@
       enable = true;
       driSupport = true;
     };
+    bluetooth = {
+      enable = true;
+    };
   };
 
   # backlight control

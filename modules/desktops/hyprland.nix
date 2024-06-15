@@ -335,6 +335,10 @@ in
                 workspace_swipe_invert = false;
               }
               else {};
+            device = {
+              name = "urchin-keyboard";
+              kb_layout = "us";
+            };
             dwindle = {
               pseudotile = true;
               force_split = 2;

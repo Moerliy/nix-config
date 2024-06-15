@@ -41,6 +41,7 @@ in
         xdg.configFile = pkgs.lib.attrsets.mapAttrs toSource configFilesToLink;
         home.packages = with pkgs; [
           commitizen
+          gptcommit
         ];
       };
     };
