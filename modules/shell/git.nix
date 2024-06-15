@@ -5,6 +5,7 @@
   config,
   lib,
   vars,
+  pkgs,
   ...
 }:
 with lib; {
@@ -27,6 +28,9 @@ with lib; {
           enable = true;
         };
       };
+      home.packages = with pkgs; [
+        lucky-commit
+      ];
     };
   };
 }
