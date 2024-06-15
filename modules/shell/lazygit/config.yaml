@@ -36,6 +36,11 @@ customCommands:
     context: "files"
     loadingText: "opening git mergetool"
     subprocess: true
+  - key: "G"
+    command: "git commit -a"
+    context: "files"
+    loadingText: "GPT commit"
+    subprocess: true
   - key: "<c-a>"
     description: "Search the whole history (From a ref and down) for an expression in a file"
     command: "git checkout {{index .PromptResponses 3}}"
