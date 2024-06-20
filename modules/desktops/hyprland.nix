@@ -413,6 +413,9 @@ in
             windowrule = [
               "float, Rofi"
             ];
+            exec-once = [
+              "$HOME/.config/hypr/script/sync-clipboard.sh &"
+            ];
             # bindl =
             #   if hostName == "asahi" then [
             #     ",switch:Lid Switch,exec,$HOME/.config/hypr/script/clamshell.sh" # clamshell not working
@@ -629,6 +632,35 @@ in
         };
 
         xdg.configFile = {
+          "hypr/script/sync-clipboard.sh" = {
+            # wrong path
+            text = ''
+              #!/usr/bin/env bash
+
+              killall wl-paste 2>/dev/null
+              wl-paste -w 'xclip' 2>/dev/null &
+
+              lastclip=""
+
+              while true; do
+                clip="$(xclip -o 2>/dev/null)"
+                if [[ "$clip" == "$lastclip" || "$clip" == "noText" ]]; then
+                  sleep 0.1
+                  continue
+                fi
+                if [[ $(wl-paste -l | grep -c "text") -eq 0 && "$clip" == "noText" ]]; then
+                    echo "noText" | xclip
+                    lastclip="$clip"
+                    sleep 0.1
+                    continue
+                fi
+                wl-copy "$clip"
+                lastclip="$clip"
+                sleep 0.1
+              done
+            '';
+            executable = true;
+          };
           "hypr/script/clamshell.sh" = {
             # wrong path
             text = ''

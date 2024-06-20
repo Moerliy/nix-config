@@ -82,6 +82,7 @@ in
           black
           python312Packages.debugpy
           hadolint
+          rust-analyzer
 
           git
           lazygit

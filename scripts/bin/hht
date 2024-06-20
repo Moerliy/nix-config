@@ -122,7 +122,7 @@ if [ "$connection" == "custom number" ]; then
 		exit 0
 	fi
 	# if printOutput is set and true
-	command="ssh -X -o StrictHostKeyChecking=no -L 3300:localhost:3300 -J $proxy $user@pc$selection.h2t.iar.kit.edu 2>/dev/null"
+	command="ssh -X -Y -o StrictHostKeyChecking=no -L 3300:localhost:3300 -J $proxy $user@pc$selection.h2t.iar.kit.edu 2>/dev/null"
 	if [ "$printOutput" == "true" ]; then
 		echo "$command"
 	else
@@ -132,7 +132,7 @@ if [ "$connection" == "custom number" ]; then
 	exit 0
 else # if a pc number is selected
 	# if printOutput is set and true
-	command="ssh -X -o StrictHostKeyChecking=no -L 3300:localhost:3300 -J $proxy $user@pc$connection.h2t.iar.kit.edu 2>/dev/null"
+	command="ssh -X -Y -o StrictHostKeyChecking=no -L 3300:localhost:3300 -J $proxy $user@pc$connection.h2t.iar.kit.edu 2>/dev/null"
 	if [ "$printOutput" == "true" ]; then
 		echo "$command"
 	else

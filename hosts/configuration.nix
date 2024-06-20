@@ -116,6 +116,9 @@ in
           ninja
           jq
           bluetuith # bluetooth
+          xclip # clipboard
+          xsel # clipboard
+          autocutsel # clipboard
 
           # Video/Audio
           alsa-utils # Audio Control

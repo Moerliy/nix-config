@@ -38,6 +38,9 @@ keymap.set("n", "<Leader>uN", "<cmd>Telescope notify<CR>", { desc = "Show all no
 -- Toggleterm
 keymap.set("n", "<Leader>T", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
 
+-- Copilot toggle
+keymap.set("n", "<Leader>tp", "<cmd>Copilot suggestion toggle_auto_trigger<CR>", { desc = "Toggle Copilot" })
+
 -- Dotfiles lazygit with toggleterm
 local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({ cmd = "lazygit --git-dir=$HOME/dotfiles --work-tree=$HOME", hidden = true })

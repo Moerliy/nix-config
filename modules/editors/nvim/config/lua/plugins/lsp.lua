@@ -7,6 +7,7 @@ return {
         "debugpy",
         "js-debug-adapter",
         "vtsls",
+        "codelldb",
         -- "stylua",
         -- "selene",
         -- "luacheck",
