@@ -11,6 +11,7 @@
     "tmux/statusline.conf" = ./config/statusline.conf;
     "tmux/tmux.conf" = ./config/tmux.conf;
     "tmux/utility.conf" = ./config/utility.conf;
+    "tmux/util" = ./config/util;
   };
   # Function to help map attrs for symlinking home.file, xdg.configFile
   # e.g. from { ".hgrc" = ./hgrc; } to { ".hgrc".source = ./hgrc; }

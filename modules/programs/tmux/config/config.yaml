@@ -53,7 +53,7 @@ items:
         command: choose-tree -Zw
       - name: Quick switch
         key: t
-        command: source-file ./util/qickWindowSwitch.tmux
+        command: run-shell $HOME/.config/tmux/util/paneSwitch.sh
       - name: Previous
         key: p
         command: previous-window

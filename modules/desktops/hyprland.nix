@@ -636,26 +636,33 @@ in
             # wrong path
             text = ''
               #!/usr/bin/env bash
-
+              # Kill any running instances of wl-paste
               killall wl-paste 2>/dev/null
+
+              # Start wl-paste in watch mode to monitor clipboard changes on wayland
               wl-paste -w 'xclip' 2>/dev/null &
 
               lastclip=""
 
               while true; do
+                # Get the current x clipboard
                 clip="$(xclip -o 2>/dev/null)"
-                if [[ "$clip" == "$lastclip" || "$clip" == "noText" ]]; then
-                  sleep 0.1
-                  continue
-                fi
-                if [[ $(wl-paste -l | grep -c "text") -eq 0 && "$clip" == "noText" ]]; then
+
+                # clipboard changed and not "noText"
+                if [[ "$clip" != "$lastclip" && "$clip" != "noText" ]]; then
+                  wlpaste="$(wl-paste)"
+                  # wl-paste contains other then text and clip content comes from wl-paste
+                  if [[ $(wl-paste -l | grep -c "text") -eq 0 && "$wlpaste" == "$clip" ]]; then
                     echo "noText" | xclip
-                    lastclip="$clip"
-                    sleep 0.1
-                    continue
+                  else
+                    wl-copy "$clip"
+                  fi
+
+                  # Update the last clipboard content
+                  lastclip="$clip"
                 fi
-                wl-copy "$clip"
-                lastclip="$clip"
+
+                # Sleep for a short interval before checking again
                 sleep 0.1
               done
             '';
