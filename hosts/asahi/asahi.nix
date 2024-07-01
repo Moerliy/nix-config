@@ -63,10 +63,6 @@
       useExperimentalGPUDriver = true;
       setupAsahiSound = true;
     };
-    opengl = {
-      enable = true;
-      driSupport = true;
-    };
     bluetooth = {
       enable = true;
     };

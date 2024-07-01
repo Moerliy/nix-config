@@ -19,6 +19,7 @@
   hypridle,
   hyprlock,
   vars,
+  minegrub,
   ...
 }: let
   system = "aarch64-linux";
@@ -49,6 +50,7 @@ in {
     modules = [
       ./asahi/asahi.nix
       ./configuration.nix
+      minegrub.nixosModules.default
 
       home-manager.nixosModules.home-manager
       {

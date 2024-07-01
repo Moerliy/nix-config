@@ -90,6 +90,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "nixpkgs";
     };
+
+    # GUB minecraft theme
+    minegrub = {
+      url = "github:Moerliy/minegrub-world-sel-theme";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -109,6 +115,7 @@
     hyprlock,
     hypridle,
     plasma-manager,
+    minegrub,
     ...
   }:
   # Function telling flake which inputs to use
@@ -138,7 +145,7 @@
     nixosConfigurations = (
       import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs nixvim hyprland hyprhook hypridle hyprlock nixpkgs-unstable home-manager home-manager-unstable apple-silicon vars;
+        inherit inputs nixpkgs nixvim hyprland hyprhook hypridle hyprlock nixpkgs-unstable home-manager home-manager-unstable apple-silicon vars minegrub;
       }
     );
 
