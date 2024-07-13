@@ -91,6 +91,8 @@ in
           fzf
           clang
           unzip
+          neo
+          pipes
 
           nodejs
           python3

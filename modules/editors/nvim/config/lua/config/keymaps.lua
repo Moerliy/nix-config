@@ -123,3 +123,18 @@ keymap.set(
 
 -- Telescope theme switcher
 keymap.set("n", "<leader>tc", ":Telescope themes<CR>", { noremap = true, silent = true, desc = "Theme Changer" })
+
+-- kulala
+keymap.set(
+  "n",
+  "<leader>chp",
+  ":lua require('kulala').jump_prev()<CR>",
+  { noremap = true, silent = true, desc = "Jump to previous" }
+)
+keymap.set(
+  "n",
+  "<leader>chn",
+  ":lua require('kulala').jump_next()<CR>",
+  { noremap = true, silent = true, desc = "Jump to next" }
+)
+keymap.set("n", "<leader>chh", ":lua require('kulala').run()<CR>", { noremap = true, silent = true, desc = "Run" })

@@ -6,6 +6,11 @@ local opt = vim.opt
 
 vim.api.nvim_command("set commentstring=//%s")
 vim.scriptencoding = "utf-8"
+vim.filetype.add({
+  extension = {
+    ["http"] = "http",
+  },
+})
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 

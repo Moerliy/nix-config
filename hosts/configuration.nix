@@ -136,6 +136,8 @@ in
           xsel # clipboard
           autocutsel # clipboard
 
+          python311Packages.numpy
+
           # Video/Audio
           alsa-utils # Audio Control
           feh # Image Viewer

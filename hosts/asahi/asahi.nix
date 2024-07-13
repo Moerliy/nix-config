@@ -22,6 +22,7 @@
   gtk-theme.enable = true;
   qt-theme.enable = true;
   mako.enable = true;
+  eww.enable = true;
 
   # programs
   kitty.enable = true; # Terminal emulator
@@ -61,6 +62,7 @@
   hardware = {
     asahi = {
       useExperimentalGPUDriver = true;
+      experimentalGPUInstallMode = "replace";
       setupAsahiSound = true;
     };
     bluetooth = {

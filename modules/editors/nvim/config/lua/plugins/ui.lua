@@ -136,19 +136,78 @@ return {
   },
   {
     "nvimdev/dashboard-nvim",
+    enabled = true,
     event = "VimEnter",
+    dependencies = { { "nvim-tree/nvim-web-devicons" } },
     opts = function(_, opts)
       local logo = [[
-███████╗███╗   ███╗ █████╗  ██████╗███████╗
-██╔════╝████╗ ████║██╔══██╗██╔════╝██╔════╝
-█████╗  ██╔████╔██║███████║██║     ███████╗
-██╔══╝  ██║╚██╔╝██║██╔══██║██║     ╚════██║
-███████╗██║ ╚═╝ ██║██║  ██║╚██████╗███████║
-╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝╚══════╝
-      ]]
+    ███████╗███╗   ███╗ █████╗  ██████╗███████╗
+    ██╔════╝████╗ ████║██╔══██╗██╔════╝██╔════╝
+    █████╗  ██╔████╔██║███████║██║     ███████╗
+    ██╔══╝  ██║╚██╔╝██║██╔══██║██║     ╚════██║
+    ███████╗██║ ╚═╝ ██║██║  ██║╚██████╗███████║
+    ╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝╚══════╝
+          ]]
 
       logo = string.rep("\n", 8) .. logo .. "\n\n"
       opts.config.header = vim.split(logo, "\n")
+    end,
+  },
+  {
+    "goolord/alpha-nvim",
+    -- "bezhermoso/alpha-nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    enabled = false,
+    opts = function()
+      local dashboard = require("alpha.themes.dashboard")
+
+      local ret = os.execute("command -v neo &>/dev/null")
+      local logo = [[
+    ███████╗███╗   ███╗ █████╗  ██████╗███████╗
+    ██╔════╝████╗ ████║██╔══██╗██╔════╝██╔════╝
+    █████╗  ██╔████╔██║███████║██║     ███████╗
+    ██╔══╝  ██║╚██╔╝██║██╔══██║██║     ╚════██║
+    ███████╗██║ ╚═╝ ██║██║  ██║╚██████╗███████║
+    ╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝╚══════╝
+  ]]
+
+      local term = {
+        type = "terminal",
+        command = "neo --fps=20 --speed=5 -D -m 'NEO VIM' -d 0.5 -l 1,1",
+        width = 36,
+        height = 10,
+        opts = {
+          position = "center",
+          redraw = false,
+          window_config = {},
+        },
+      }
+
+      dashboard.section.terminal = term
+      dashboard.section.header.val = vim.split(logo, "\n")
+      -- stylua: ignore
+      dashboard.section.buttons.val = {
+        dashboard.button("f", " " .. " Find file",       LazyVim.pick()),
+        dashboard.button("n", " " .. " New file",        [[<cmd> ene <BAR> startinsert <cr>]]),
+        dashboard.button("r", " " .. " Recent files",    LazyVim.pick("oldfiles")),
+        dashboard.button("g", " " .. " Find text",       LazyVim.pick("live_grep")),
+        dashboard.button("c", " " .. " Config",          LazyVim.pick.config_files()),
+        dashboard.button("s", " " .. " Restore Session", [[<cmd> lua require("persistence").load() <cr>]]),
+        dashboard.button("x", " " .. " Lazy Extras",     "<cmd> LazyExtras <cr>"),
+        dashboard.button("l", "󰒲 " .. " Lazy",            "<cmd> Lazy <cr>"),
+        dashboard.button("q", " " .. " Quit",            "<cmd> qa <cr>"),
+      }
+      for _, button in ipairs(dashboard.section.buttons.val) do
+        button.opts.hl = "AlphaButtons"
+        button.opts.hl_shortcut = "AlphaShortcut"
+      end
+      dashboard.section.header.opts.hl = "AlphaHeader"
+      dashboard.section.buttons.opts.hl = "AlphaButtons"
+      dashboard.section.footer.opts.hl = "AlphaFooter"
+      dashboard.opts.layout[1].val = 8
+      dashboard.opts.layout[2] = term
+      -- dashboard.opts.layout[3] = { type = "padding", val = 5 }
+      return dashboard
     end,
   },
 }
