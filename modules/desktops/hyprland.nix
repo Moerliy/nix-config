@@ -370,46 +370,46 @@ in
               # damage_blink = true;
             };
             "$mainMod" = "${toString mainMod}";
-            bind = [
-              "$mainMod, return, exec, ${pkgs.${vars.terminal}}/bin/${vars.terminal}"
-              "$mainMod, B, exec, ${pkgs.firefox}/bin/firefox"
-              "$mainMod, Q, killactive"
-              "$mainMod, C, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun"
-              "$mainMod, F, togglefloating"
-              "$mainMod, H, exec, $HOME/.local/bin/which-key -b"
+            bindd = [
+              "$mainMod, return, Open Terminal, exec, ${pkgs.${vars.terminal}}/bin/${vars.terminal}"
+              "$mainMod, B, Open Browser, exec, ${pkgs.firefox}/bin/firefox"
+              "$mainMod, Q, Close Window, killactive"
+              "$mainMod, C, Open Controll Center, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun"
+              "$mainMod, F, Toggle Floating, togglefloating"
+              "$mainMod, H, Toggle Binds Help, exec, $HOME/.local/bin/which-key -b"
 
-              "$mainMod, 1, workspace, 1"
-              "$mainMod, 2, workspace, 2"
-              "$mainMod, 3, workspace, 3"
-              "$mainMod, 4, workspace, 4"
-              "$mainMod, 5, workspace, 5"
-              "$mainMod, 6, workspace, 6"
-              "$mainMod, 7, workspace, 7"
-              "$mainMod, 8, workspace, 8"
-              "$mainMod, 9, workspace, 9"
-              "$mainMod, 0, workspace, 10"
+              "$mainMod, 1, Focus Workspace 1, workspace, 1"
+              "$mainMod, 2, Focus Workspace 2, workspace, 2"
+              "$mainMod, 3, Focus Workspace 3, workspace, 3"
+              "$mainMod, 4, Focus Workspace 4, workspace, 4"
+              "$mainMod, 5, Focus Workspace 5, workspace, 5"
+              "$mainMod, 6, Focus Workspace 6, workspace, 6"
+              "$mainMod, 7, Focus Workspace 7, workspace, 7"
+              "$mainMod, 8, Focus Workspace 8, workspace, 8"
+              "$mainMod, 9, Focus Workspace 9, workspace, 9"
+              "$mainMod, 0, Focus Workspace 10, workspace, 10"
 
-              "$mainMod SHIFT, 1, movetoworkspace, 1"
-              "$mainMod SHIFT, 2, movetoworkspace, 2"
-              "$mainMod SHIFT, 3, movetoworkspace, 3"
-              "$mainMod SHIFT, 4, movetoworkspace, 4"
-              "$mainMod SHIFT, 5, movetoworkspace, 5"
-              "$mainMod SHIFT, 6, movetoworkspace, 6"
-              "$mainMod SHIFT, 7, movetoworkspace, 7"
-              "$mainMod SHIFT, 8, movetoworkspace, 8"
-              "$mainMod SHIFT, 9, movetoworkspace, 9"
-              "$mainMod SHIFT, 0, movetoworkspace, 10"
-              "$mainMod SHIFT, bracketleft, movetoworkspace, -1"
-              "$mainMod SHIFT, bracketright, movetoworkspace, +1"
+              "$mainMod SHIFT, 1, Move Workspace 1, movetoworkspace, 1"
+              "$mainMod SHIFT, 2, Move Workspace 2, movetoworkspace, 2"
+              "$mainMod SHIFT, 3, Move Workspace 3, movetoworkspace, 3"
+              "$mainMod SHIFT, 4, Move Workspace 4, movetoworkspace, 4"
+              "$mainMod SHIFT, 5, Move Workspace 5, movetoworkspace, 5"
+              "$mainMod SHIFT, 6, Move Workspace 6, movetoworkspace, 6"
+              "$mainMod SHIFT, 7, Move Workspace 7, movetoworkspace, 7"
+              "$mainMod SHIFT, 8, Move Workspace 8, movetoworkspace, 8"
+              "$mainMod SHIFT, 9, Move Workspace 9, movetoworkspace, 9"
+              "$mainMod SHIFT, 0, Move Workspace 10, movetoworkspace, 10"
+              "$mainMod SHIFT, bracketleft, Move Workspace Left, movetoworkspace, -1"
+              "$mainMod SHIFT, bracketright, Move Workspace Right, movetoworkspace, +1"
 
-              ",XF86AudioMute,exec,${customScripts}/volume --toggle"
-              ",XF86AudioMicMute,exec,${customScripts}/volume --toggle-mic"
+              ", XF86AudioMute, Deff Speakers, exec, ${customScripts}/volume --toggle"
+              ", XF86AudioMicMute, Mute Mice, exec, ${customScripts}/volume --toggle-mic"
             ];
-            binde = [
-              ",XF86AudioLowerVolume,exec,${customScripts}/volume --dec"
-              ",XF86AudioRaiseVolume,exec,${customScripts}/volume --inc"
-              ",XF86MonBrightnessDown,exec,${customScripts}/brightness --dec"
-              ",XF86MonBrightnessUP,exec,${customScripts}/brightness --inc"
+            bindde = [
+              ", XF86AudioLowerVolume, Decrease Volume, exec, ${customScripts}/volume --dec"
+              ", XF86AudioRaiseVolume, Increase Volume, exec, ${customScripts}/volume --inc"
+              ", XF86MonBrightnessDown, Decrease Screen Brightness, exec, ${customScripts}/brightness --dec"
+              ", XF86MonBrightnessUP, Increase Screen Brightness, exec, ${customScripts}/brightness --inc"
             ];
             windowrule = [
               "float, Rofi"
@@ -499,7 +499,7 @@ in
             binded = , down, Decrease Volume, exec, ${customScripts}/volume --dec
             binded = , D, Deff Speakers, exec, ${customScripts}/volume --toggle
             binde = , D, submap, reset
-            binded = , M, Muste Mice, exec, ${customScripts}/volume --toggle-mic
+            binded = , M, Mute Mice, exec, ${customScripts}/volume --toggle-mic
             binde = , M, submap, reset
             submap = reset
 

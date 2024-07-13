@@ -15,7 +15,7 @@
       :space-evenly false
       (box)
       (box 
-        :spacing 60
+        :spacing 55
         :orientation "h"
         (for entrys in bindsJson
           (box

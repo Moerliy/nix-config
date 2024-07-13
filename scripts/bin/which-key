@@ -21,6 +21,9 @@ openWidget() {
   binds=$(hyprctl binds -j | jq -c '[ .[] | select(.submap | . == "'"$1"'") ]')
   deleted=$(echo "$binds" | jq -c '[ .[] | select(.arg | contains("reset") | not ) ]')
   columns=$(echo "$deleted" | jq 'length / 4' | jq -c 'round')
+  if [[ $2 != "" ]]; then
+    columns=$(echo "$deleted" | jq 'length / '"$2"'' | jq -c 'round')
+  fi
   if [[ columns -lt 4 ]]; then
     columns=4
   fi
@@ -37,7 +40,7 @@ openWidget() {
 if [[ $toggleBase == true ]]; then
   isActive=$(eww active-windows | grep "which-key")
   if [[ $isActive == "" ]]; then
-    openWidget ""
+    openWidget "" 3
   else
     eww close which-key
   fi
