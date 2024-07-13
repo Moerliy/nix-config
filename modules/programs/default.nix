@@ -13,4 +13,5 @@
   ./kitty.nix
   ./tmux/default.nix
   ./rofi.nix
+  ./wlogout/default.nix
 ]
