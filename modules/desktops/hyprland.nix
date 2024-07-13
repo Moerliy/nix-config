@@ -415,6 +415,7 @@ in
             ];
             exec-once = [
               "$HOME/.config/hypr/script/sync-clipboard.sh &"
+              "eww daemon"
             ];
             # bindl =
             #   if hostName == "asahi" then [
