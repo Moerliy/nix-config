@@ -582,7 +582,7 @@ in
             submap = reset
 
             plugin {
-              hyprhook:submap=$HOME/test.bash
+              hyprhook:submap=$HOME/.local/bin/which-key
             }
           '';
           # settings = {
