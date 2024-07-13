@@ -68,7 +68,7 @@
   )
 )
 
-(defwindow whick-key [bindsJson]
+(defwindow which-key [bindsJson]
   :monitor 0
   :geometry (geometry :x "0%"
                       :y "0%"
