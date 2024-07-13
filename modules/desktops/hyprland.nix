@@ -376,6 +376,7 @@ in
               "$mainMod, Q, killactive"
               "$mainMod, C, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun"
               "$mainMod, F, togglefloating"
+              "$mainMod, H, exec, $HOME/.local/bin/which-key -b"
 
               "$mainMod, 1, workspace, 1"
               "$mainMod, 2, workspace, 2"
