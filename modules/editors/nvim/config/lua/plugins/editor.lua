@@ -31,7 +31,7 @@ return {
     "folke/which-key.nvim",
     opts = {
       -- plugins = { spelling = true },
-      defaults = {
+      specs = {
         ["<leader>f"] = { name = "+file/find/focus" },
         ["<leader>m"] = { name = "+move" },
         ["<leader>r"] = { name = "+resice" },
