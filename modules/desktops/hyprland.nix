@@ -414,8 +414,14 @@ in
               "float, Rofi"
             ];
             exec-once = [
+              "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+              "ln -s $XDG_RUNTIME_DIR/hypr /tmp/hypr"
               "$HOME/.config/hypr/script/sync-clipboard.sh &"
-              "eww daemon"
+              "${pkgs.eww}/bin/eww daemon"
+              "[workspace special silent] ${pkgs.${vars.terminal}}/bin/${vars.terminal}"
+              "[workspace 1] ${pkgs.${vars.terminal}}/bin/${vars.terminal}"
+              "[workspace 2] ${pkgs.firefox}/bin/firefox"
+              "[workspace 8] ${pkgs.webcord-vencord}/bin/webcord"
             ];
             # bindl =
             #   if hostName == "asahi" then [
@@ -597,38 +603,9 @@ in
           #
           #     "SUPER,Z,layoutmsg,togglesplit"
           #   ];
-          #   windowrulev2 = [
-          #     "float,title:^(Volume Control)$"
-          #     "keepaspectratio,class:^(firefox)$,title:^(Picture-in-Picture)$"
-          #     "noborder,class:^(firefox)$,title:^(Picture-in-Picture)$"
-          #     "float, title:^(Picture-in-Picture)$"
-          #     "size 24% 24%, title:(Picture-in-Picture)"
-          #     "move 75% 75%, title:(Picture-in-Picture)"
-          #     "pin, title:^(Picture-in-Picture)$"
-          #     "float, title:^(Firefox)$"
-          #     "size 24% 24%, title:(Firefox)"
-          #     "move 74% 74%, title:(Firefox)"
-          #     "pin, title:^(Firefox)$"
-          #     "opacity 0.9, class:^(kitty)"
-          #     "tile,initialTitle:^WPS.*"
-          #   ];
           #   exec-once = [
-          #     "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-          #     "${pkgs.hyprlock}/bin/hyprlock"
-          #     "ln -s $XDG_RUNTIME_DIR/hypr /tmp/hypr"
           #     "${pkgs.waybar}/bin/waybar -c $HOME/.config/waybar/config"
-          #     "${pkgs.eww}/bin/eww daemon"
-          #     # "$HOME/.config/eww/scripts/eww" # When running eww as a bar
-          #     "${pkgs.blueman}/bin/blueman-applet"
-          #     "${pkgs.swaynotificationcenter}/bin/swaync"
-          #     # "${pkgs.hyprpaper}/bin/hyprpaper"
-          #   ] ++ (if hostName == "work" then [
-          #     "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
-          #     "${pkgs.rclone}/bin/rclone mount --daemon gdrive: /GDrive --vfs-cache-mode=writes"
-          #     # "${pkgs.google-drive-ocamlfuse}/bin/google-drive-ocamlfuse /GDrive"
-          #   ] else [ ]) ++ (if hostName == "xps" then [
-          #     "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
-          #   ] else [ ]);
+          #   ]
           # };
         };
 
