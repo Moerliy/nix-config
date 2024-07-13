@@ -420,8 +420,8 @@ in
               "${pkgs.eww}/bin/eww daemon"
               "[workspace special silent] ${pkgs.${vars.terminal}}/bin/${vars.terminal}"
               "[workspace 1] ${pkgs.${vars.terminal}}/bin/${vars.terminal}"
-              "[workspace 2] ${pkgs.firefox}/bin/firefox"
-              "[workspace 8] ${pkgs.webcord-vencord}/bin/webcord"
+              "[workspace 2 silent] ${pkgs.firefox}/bin/firefox"
+              "[workspace 8 silent] ${pkgs.webcord-vencord}/bin/webcord"
             ];
             # bindl =
             #   if hostName == "asahi" then [
