@@ -416,11 +416,16 @@ in
             windowrule = [
               "float, Rofi"
             ];
+            windowrulev2 = [
+              "float,title:nmtui-session"
+              "size 800 600,title:nmtui-session"
+            ];
             exec-once = [
               "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
               "ln -s $XDG_RUNTIME_DIR/hypr /tmp/hypr"
               "$HOME/.config/hypr/script/sync-clipboard.sh &"
               # "${pkgs.eww}/bin/eww daemon"
+              "${pkgs.waybar}/bin/waybar"
               "${pkgs.eww}/bin/eww --config $HOME/.config/eww-which-key daemon" # which-key seperated from default eww
               "[workspace special silent] ${pkgs.${vars.terminal}}/bin/${vars.terminal}"
               "[workspace 1] ${pkgs.${vars.terminal}}/bin/${vars.terminal}"

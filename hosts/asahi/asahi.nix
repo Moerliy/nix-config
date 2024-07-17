@@ -24,6 +24,7 @@
   mako.enable = true;
   eww.enable = true;
   wlogout.enable = true;
+  waybar.enable = true;
 
   # programs
   kitty.enable = true; # Terminal emulator
