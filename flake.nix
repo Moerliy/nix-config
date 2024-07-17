@@ -39,24 +39,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # NUR Community Packages
-    nur = {
-      url = "github:nix-community/NUR";
-      # Requires "nur.nixosModules.nur" to be added to the host modules
-    };
-
-    # Fixes OpenGL With Other Distros.
-    nixgl = {
-      url = "github:guibou/nixGL";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Neovim
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Official Hyprland Flake
     hyprland = {
       type = "git";
@@ -84,13 +66,6 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    # KDE Plasma User Settings Generator
-    plasma-manager = {
-      url = "github:pjones/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "nixpkgs";
-    };
-
     # GUB minecraft theme
     minegrub = {
       url = "github:Moerliy/minegrub-world-sel-theme";
@@ -107,14 +82,10 @@
     home-manager-unstable,
     darwin,
     apple-silicon,
-    nur,
-    nixgl,
-    nixvim,
     hyprland,
     hyprhook,
     hyprlock,
     hypridle,
-    plasma-manager,
     minegrub,
     ...
   }:
@@ -145,7 +116,7 @@
     nixosConfigurations = (
       import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs nixvim hyprland hyprhook hypridle hyprlock nixpkgs-unstable home-manager home-manager-unstable apple-silicon vars minegrub;
+        inherit inputs nixpkgs hyprland hyprhook hypridle hyprlock nixpkgs-unstable home-manager home-manager-unstable apple-silicon vars minegrub;
       }
     );
 

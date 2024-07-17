@@ -10,7 +10,6 @@
   inputs,
   nixpkgs,
   nixpkgs-unstable,
-  nixvim,
   apple-silicon,
   home-manager,
   home-manager-unstable,
@@ -39,7 +38,7 @@ in {
   asahi = lib.nixosSystem {
     inherit system;
     specialArgs = {
-      inherit inputs vars system nixvim apple-silicon hyprland hyprhook hypridle hyprlock pkgs-stable;
+      inherit inputs vars system apple-silicon hyprland hyprhook hypridle hyprlock pkgs-stable;
       host = {
         hostName = "asahi";
         buildInMonitor = "eDP-1";

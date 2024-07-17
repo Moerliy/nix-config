@@ -13,5 +13,4 @@
 #
 [
   ./nvim
-  ./nixvim
 ]

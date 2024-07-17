@@ -40,7 +40,6 @@
 
   # Editors
   neovim.enable = true;
-  # nixvim.enable = true;
 
   networking = {
     hostName = "MacBook";
