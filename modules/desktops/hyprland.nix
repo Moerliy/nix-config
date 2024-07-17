@@ -82,6 +82,7 @@ in
           xwayland # X session
           kitty
           eww
+          wlogout
         ];
       };
 
@@ -372,6 +373,7 @@ in
             "$mainMod" = "${toString mainMod}";
             bindd = [
               "$mainMod, return, Open Terminal, exec, ${pkgs.${vars.terminal}}/bin/${vars.terminal}"
+              "$mainMod, escape, Exit Manager, exec, ${pkgs.wlogout}/bin/wlogout"
               "$mainMod, B, Open Browser, exec, ${pkgs.firefox}/bin/firefox"
               "$mainMod, Q, Close Window, killactive"
               "$mainMod, C, Open Controll Center, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun"
@@ -418,7 +420,8 @@ in
               "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
               "ln -s $XDG_RUNTIME_DIR/hypr /tmp/hypr"
               "$HOME/.config/hypr/script/sync-clipboard.sh &"
-              "${pkgs.eww}/bin/eww daemon"
+              # "${pkgs.eww}/bin/eww daemon"
+              "${pkgs.eww}/bin/eww --config $HOME/.config/eww-which-key daemon" # which-key seperated from default eww
               "[workspace special silent] ${pkgs.${vars.terminal}}/bin/${vars.terminal}"
               "[workspace 1] ${pkgs.${vars.terminal}}/bin/${vars.terminal}"
               "[workspace 2 silent] ${pkgs.firefox}/bin/firefox"

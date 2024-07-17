@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+CONFIG_DIR="$HOME/.config/eww-which-key"
+
 togleBase=false
 
 while getopts 'bh:' OPTION; do
@@ -34,21 +36,21 @@ openWidget() {
   merged=$(echo "$commandGroupSorted$submapGroupSorted" | jq -s 'reduce .[] as $x ([]; . + $x)')
   grouped=$(echo "$merged" | jq -c '[ _nwise('$columns') ]')
   # echo "$grouped"
-  eww open which-key --arg bindsJson="$grouped"
+  eww --config "$CONFIG_DIR" open which-key --arg bindsJson="$grouped"
 }
 
 if [[ $toggleBase == true ]]; then
-  isActive=$(eww active-windows | grep "which-key")
+  isActive=$(eww --config "$CONFIG_DIR" active-windows | grep "which-key")
   if [[ $isActive == "" ]]; then
     openWidget "" 3
   else
-    eww close which-key
+    eww --config "$CONFIG_DIR" close which-key
   fi
   exit
 fi
 
 if [[ $1 == "" ]]; then
-  eww close which-key
+  eww --config "$CONFIG_DIR" close which-key
 else
   openWidget "$1"
 fi
