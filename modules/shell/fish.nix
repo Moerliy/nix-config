@@ -45,10 +45,33 @@ with lib; {
         neofetch
         starship
         lf
+        fzf
       ];
       programs = {
         fish = {
           enable = true;
+          plugins = [
+            {
+              name = "fzf-fish";
+              src = pkgs.fishPlugins.fzf-fish.src;
+            }
+            {
+              name = "done";
+              src = pkgs.fishPlugins.done.src;
+            }
+            {
+              name = "sponge";
+              src = pkgs.fishPlugins.sponge.src;
+            }
+            {
+              name = "autopair";
+              src = pkgs.fishPlugins.autopair.src;
+            }
+            {
+              name = "puffer";
+              src = pkgs.fishPlugins.puffer.src;
+            }
+          ];
           interactiveShellInit = ''
             set fish_greeting # Disable greeting
             neofetch
