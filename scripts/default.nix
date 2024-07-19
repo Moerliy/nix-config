@@ -37,6 +37,9 @@ in
             libnotify
             pamixer
             jq
+            slurp
+            wf-recorder
+            fuzzel
           ];
           # Symlink files under ~/.config, e.g. ~/.config/alacritty/alacritty.yml
           file = pkgs.lib.attrsets.mapAttrs toSource configFilesToLink;

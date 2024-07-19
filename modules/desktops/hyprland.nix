@@ -588,10 +588,14 @@ in
             bind = , W, submap, reset
             bindd = , A, Screenshot Area Clipboard, exec, ${pkgs.grimblast}/bin/grimblast --notify -n copy area
             bind = , A, submap, reset
+            bindd = , R, Scree Recorde, exec, $HOME/.local/bin/screenRecorder
+            bind = , R, submap, reset
             submap = reset
 
             plugin {
-              hyprhook:submap=$HOME/.local/bin/which-key
+              hyprhook {
+                onSubmap = $HOME/.local/bin/which-key
+              }
             }
           '';
           # settings = {

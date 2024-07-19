@@ -6,7 +6,6 @@ return {
       ensure_installed = {
         "debugpy",
         "js-debug-adapter",
-        "vtsls",
         "codelldb",
         -- "stylua",
         -- "selene",
@@ -28,6 +27,21 @@ return {
         -- "file:~/dev/mason-registry",
       },
     },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = function(_, opts)
+      table.insert(opts.servers.vtsls.filetypes, "vue")
+      LazyVim.extend(opts.servers.vtsls, "settings.vtsls.tsserver.globalPlugins", {
+        {
+          name = "@vue/typescript-plugin",
+          location = "/etc/profiles/per-user/moritzgleissner/lib/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin",
+          languages = { "vue" },
+          configNamespace = "typescript",
+          enableForWorkspaceTypeScriptVersions = true,
+        },
+      })
+    end,
   },
   {
     "neovim/nvim-lspconfig",
@@ -77,6 +91,37 @@ return {
         },
         clangd = {
           mason = false,
+        },
+        volar = {
+          mason = false,
+          init_options = {
+            vue = {
+              hybridMode = true,
+            },
+          },
+        },
+        vls = {
+          mason = false,
+        },
+        vtsls = {
+          mason = false,
+        },
+        tsserver = {
+          mason = false,
+          init_options = {
+            plugins = {
+              {
+                name = "@vue/typescript-plugin",
+                location = "/etc/profiles/per-user/moritzgleissner/lib/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin",
+                languages = { "vue" },
+                configNamespace = "typescript",
+                enableForWorkspaceTypeScriptVersions = true,
+              },
+            },
+          },
+          filetypes = {
+            "vue",
+          },
         },
       },
     },

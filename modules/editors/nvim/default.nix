@@ -22,6 +22,8 @@
   # Function to help map attrs for symlinking home.file, xdg.configFile
   # e.g. from { ".hgrc" = ./hgrc; } to { ".hgrc".source = ./hgrc; }
   toSource = configDirName: dotfilesPath: {source = dotfilesPath;};
+
+  customNodePkg = import ../../../node/default.nix {};
 in
   with lib; {
     options.neovim = {
@@ -58,7 +60,8 @@ in
           shellcheck
           shfmt
           nodePackages.typescript-language-server
-          nodePackages.vue-language-server
+          customNodePkg."@vue/language-server"
+          customNodePkg."@vtsls/language-server"
           # nodePackages_latest.grammarly-languageserver
           kotlin-language-server
           ktlint
