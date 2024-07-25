@@ -36,16 +36,15 @@
     # Asahi Apple Silicon
     apple-silicon = {
       url = "github:tpwrules/nixos-apple-silicon";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     # Official Hyprland Flake
     hyprland = {
       type = "git";
-      # url = "https://github.com/Moerliy/Hyprland";
       url = "https://github.com/hyprwm/Hyprland";
       submodules = true;
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     hyprhook = {
@@ -69,7 +68,7 @@
     # GUB minecraft theme
     minegrub = {
       url = "github:Moerliy/minegrub-world-sel-theme";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
 

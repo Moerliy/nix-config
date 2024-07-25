@@ -16,7 +16,10 @@
   ...
 }: let
   mainMod = "SUPER";
-  hyprlandPkg = hyprland.packages.${pkgs.system}.hyprland;
+  hyprlandPkg = hyprland.packages.${pkgs.system}.hyprland.override {
+    # legacyRenderer = true;
+    mesa = pkgs.mesa;
+  };
   hyprlockPkg = hyprlock.packages.${pkgs.system}.hyprlock;
   hypridlePkg = hypridle.packages.${pkgs.system}.hypridle;
   hyprhookPkg = hyprhook.packages.${pkgs.system}.hyprhook;
@@ -43,7 +46,7 @@ in
       environment = {
         variables = {
           # WLR_NO_HARDWARE_CURSORS="1"; # Needed for VM
-          # WLR_RENDERER_ALLOW_SOFTWARE="1";
+          WLR_RENDERER_ALLOW_SOFTWARE = "1";
           XDG_CURRENT_DESKTOP = "Hyprland";
           XDG_SESSION_TYPE = "wayland";
           XDG_SESSION_DESKTOP = "Hyprland";
@@ -69,6 +72,7 @@ in
           else {
             QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
 
+            WLR_DRM_DEVICES = "/dev/dri/card0";
             GDK_BACKEND = "wayland";
             WLR_NO_HARDWARE_CURSORS = "1";
             MOZ_ENABLE_WAYLAND = "1";
@@ -423,7 +427,7 @@ in
             exec-once = [
               "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
               "ln -s $XDG_RUNTIME_DIR/hypr /tmp/hypr"
-              "$HOME/.config/hypr/script/sync-clipboard.sh &"
+              # "$HOME/.config/hypr/script/sync-clipboard.sh &"
               # "${pkgs.eww}/bin/eww daemon"
               "${pkgs.waybar}/bin/waybar"
               "${pkgs.eww}/bin/eww --config $HOME/.config/eww-which-key daemon" # which-key seperated from default eww

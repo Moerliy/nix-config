@@ -62,6 +62,8 @@
   # Asahi settings
   hardware = {
     asahi = {
+      withRust = true;
+      # addEdgeKernelConfig = true;
       useExperimentalGPUDriver = true;
       experimentalGPUInstallMode = "replace";
       setupAsahiSound = true;

@@ -135,6 +135,7 @@ in
           xclip # clipboard
           xsel # clipboard
           autocutsel # clipboard
+          openvpn # vpn
 
           python311Packages.numpy
 
@@ -153,6 +154,8 @@ in
           appimage-run # Runs AppImages on NixOS
           firefox # Browser
           remmina # XRDP & VNC Client
+          anki # Flashcards
+          catppuccin-kvantum # Theme Manager
 
           # File Management
           gnome.file-roller # Archive Manager
