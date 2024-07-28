@@ -75,7 +75,7 @@ in
           dockerfile-language-server-nodejs
           yaml-language-server
           marksman
-          markdownlint-cli
+          markdownlint-cli2
           docker-compose-language-service
           vscode-langservers-extracted
           nodePackages.bash-language-server

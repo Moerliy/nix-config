@@ -600,7 +600,6 @@ in
             plugin {
               hyprhook {
                 onSubmap = $HOME/.local/bin/which-key
-                closeWindow = $HOME/test.bash
               }
             }
           '';
