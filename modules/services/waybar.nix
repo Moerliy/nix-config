@@ -55,8 +55,8 @@ in
                 position = "top";
 
                 modules-center = ["hyprland/workspaces"];
-                modules-left = ["custom/startmenu" "hyprland/window" "pulseaudio" "cpu" "memory" "power-profiles-daemon"];
-                modules-right = ["custom/hyprbindings" "custom/exit" "idle_inhibitor" "network" "battery" "clock" "tray"];
+                modules-left = ["custom/startmenu" "hyprland/window" "cpu" "memory" "disk" "power-profiles-daemon"];
+                modules-right = ["custom/hyprbindings" "custom/exit" "idle_inhibitor" "network" "pulseaudio" "battery" "clock" "tray"];
 
                 "hyprland/workspaces" = {
                   format =
@@ -397,7 +397,7 @@ in
                 }
                      }
                      #disk {
-                   	color: ${base03};
+                   	color: ${base0F};
                 ${
                   if simplebar == true
                   then ''
@@ -433,17 +433,17 @@ in
                 }
                      }
                      #battery.critical {
-                       color: ${base04};
+                       color: ${base01};
                 ${
                   if simplebar == true
                   then ''
-                    background: ${base08};
+                    background: ${base09};
                     margin: 6px 4px;
                     padding: 0px 10px;
                     border-radius: 15px;
                   ''
                   else ''
-                    background: ${base08};
+                    background: ${base09};
                     margin: 4px;
                     padding: 2px 10px;
                     border-radius: 10px;
@@ -451,17 +451,17 @@ in
                 }
                      }
                      #battery.warning {
-                       color: ${base07};
+                       color: ${base01};
                 ${
                   if simplebar == true
                   then ''
-                    background: ${base0F};
+                    background: ${base08};
                     margin: 6px 4px;
                     padding: 0px 10px;
                     border-radius: 15px;
                   ''
                   else ''
-                    background: ${base0F};
+                    background: ${base08};
                     margin: 4px;
                     padding: 2px 10px;
                     border-radius: 10px;

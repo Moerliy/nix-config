@@ -39,6 +39,8 @@ openWidget() {
   eww --config "$CONFIG_DIR" open which-key --arg bindsJson="$grouped"
 }
 
+submap=$(echo "$1" | jq -c '.submap' | sed 's/"//g')
+
 if [[ $toggleBase == true ]]; then
   isActive=$(eww --config "$CONFIG_DIR" active-windows | grep "which-key")
   if [[ $isActive == "" ]]; then
@@ -49,8 +51,8 @@ if [[ $toggleBase == true ]]; then
   exit
 fi
 
-if [[ $1 == "" ]]; then
+if [[ $submap == "" ]]; then
   eww --config "$CONFIG_DIR" close which-key
 else
-  openWidget "$1"
+  openWidget "$submap"
 fi

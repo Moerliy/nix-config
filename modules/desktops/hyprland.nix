@@ -418,11 +418,12 @@ in
               ", XF86MonBrightnessUP, Increase Screen Brightness, exec, ${customScripts}/brightness --inc"
             ];
             windowrule = [
-              "float, Rofi"
             ];
             windowrulev2 = [
+              "float, class:(Rofi),title:(Rofi)"
               "float,title:nmtui-session"
               "size 800 600,title:nmtui-session"
+              "workspace 1,title:nmtui-session"
             ];
             exec-once = [
               "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
@@ -599,6 +600,7 @@ in
             plugin {
               hyprhook {
                 onSubmap = $HOME/.local/bin/which-key
+                closeWindow = $HOME/test.bash
               }
             }
           '';
