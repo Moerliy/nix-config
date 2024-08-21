@@ -50,6 +50,7 @@ in
           XDG_CURRENT_DESKTOP = "Hyprland";
           XDG_SESSION_TYPE = "wayland";
           XDG_SESSION_DESKTOP = "Hyprland";
+          # HYPRCURSOR_THEME = "hyprcursor_Dracula";
         };
         sessionVariables =
           if hostName == "nvidia"
@@ -140,7 +141,7 @@ in
           package = hyprlockPkg;
           settings = {
             general = {
-              hide_cursor = true;
+              # hide_cursor = true;
               no_fade_in = false;
               disable_loading_bar = true;
               grace = 0;
@@ -363,11 +364,18 @@ in
               disable_splash_rendering = true;
               mouse_move_enables_dpms = true;
               mouse_move_focuses_monitor = true;
-              no_direct_scanout = true;
+              # no_direct_scanout = true;
               # focus_on_activation = true;
               enable_swallow = true;
               key_press_enables_dpms = true;
               background_color = "0x111111";
+            };
+            cursor = {
+              enable_hyprcursor = true;
+              sync_gsettings_theme = true;
+              no_hardware_cursors = true;
+              inactive_timeout = 3;
+              hide_on_key_press = true;
             };
             debug = {
               damage_tracking = 2;

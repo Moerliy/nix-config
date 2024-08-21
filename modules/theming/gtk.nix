@@ -26,19 +26,17 @@ with lib; {
       gtk = {
         enable = true;
         theme = {
-          name = "Catppuccin-Mocha-Compact-Mauve-Dark";
-          package = pkgs.catppuccin-gtk.override {
-            accents = ["mauve"];
-            size = "compact";
-            variant = "mocha";
-          };
+          name = "Kanagawa-B";
+          package =
+            pkgs.kanagawa-gtk-theme.override {
+            };
         };
         iconTheme = {
           name = "Papirus-Dark";
           package = pkgs.papirus-icon-theme;
         };
         cursorTheme = {
-          name = "Catppuccin-Mocha-Dark-Cursors";
+          name = "catppuccin-mocha-dark-cursors";
           package = pkgs.catppuccin-cursors.mochaDark;
         };
         font = {
@@ -48,7 +46,7 @@ with lib; {
       home.pointerCursor = {
         gtk.enable = true;
         package = pkgs.catppuccin-cursors.mochaDark;
-        name = "Catppuccin-Mocha-Dark-Cursors";
+        name = "catppuccin-mocha-dark-cursors";
         size = 64;
       };
     };

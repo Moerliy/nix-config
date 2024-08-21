@@ -8,14 +8,14 @@ hostname=$(echo -e "${hostnames[@]}" | fzf --ansi --prompt="󱄅 Nix flake hostn
 
 # if custom is selected ask for the hostname
 if [ "$hostname" = "custom" ]; then
-	# user input
-	read -p "Enter custom hostname: " hostname
+  # user input
+  read -p "Enter custom hostname: " hostname
 fi
 
 config_files=$(find . -type f -name "$hostname.nix") # if no hostname is selected exit
 if [ -z "$config_files" ]; then
-	echo "No config files found for $hostname"
-	exit 1
+  echo "No config files found for $hostname"
+  exit 1
 fi
 
 nvim "$config_files"
@@ -23,16 +23,16 @@ alejandra . &>/dev/null # format all nix files
 git diff -U0
 echo "Nix Rebuilding... 🚀"
 if [ "$hostname" = "macbook" ]; then
-	darwin-rebuild switch --flake .#"$hostname" &>nix-switch.log || (cat nix-switch.log | grep --color error && false)
-else 
-	sudo nixos-rebuild switch --impure --flake .#"$hostname" &>nix-switch.log || (cat nix-switch.log | grep --color error && false)
+  darwin-rebuild switch --flake .#"$hostname" &>nix-switch.log || (cat nix-switch.log | grep --color error && false)
+else
+  sudo nixos-rebuild switch --impure --flake .#"$hostname" &>nix-switch.log || (cat nix-switch.log | grep --color error && false)
 fi
 CURRENT=" (current)"
 # remove current out of string
 if [ "$hostname" = "macbook" ]; then
-gen=$(darwin-rebuild --list-generations | grep current | sed "s/$CURRENT//g")
-else 
-gen=$(nixos-rebuild list-generations | grep current | sed "s/$CURRENT//g")
+  gen=$(darwin-rebuild --list-generations | grep current | sed "s/$CURRENT//g")
+else
+  gen=$(nixos-rebuild list-generations | grep current | sed "s/$CURRENT//g")
 fi
 git commit -am "$gen"
 popd
