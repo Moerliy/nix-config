@@ -17,6 +17,8 @@
   # Function to help map attrs for symlinking home.file, xdg.configFile
   # e.g. from { ".hgrc" = ./hgrc; } to { ".hgrc".source = ./hgrc; }
   toSource = configDirName: dotfilesPath: {source = dotfilesPath;};
+  hvr = "4";
+  mgn = "10";
 in
   with lib; {
     options.wlogout = {
@@ -38,22 +40,16 @@ in
             enable = true;
             layout = [
               {
-                label = "shutdown";
-                action = "systemctl poweroff";
-                text = "Shutdown";
-                keybind = "s";
-              }
-              {
-                label = "reboot";
-                action = "systemctl reboot";
-                text = "Reboot";
-                keybind = "r";
+                label = "lock";
+                action = "hyprlock";
+                text = "Lock";
+                keybind = "l";
               }
               {
                 label = "logout";
                 action = "loginctl terminate-user $USER";
                 text = "Logout";
-                keybind = "l";
+                keybind = "e";
               }
               {
                 label = "suspend";
@@ -62,16 +58,22 @@ in
                 keybind = "u";
               }
               {
-                label = "lock";
-                action = "hyprlock";
-                text = "Lock";
-                keybind = "k";
+                label = "shutdown";
+                action = "systemctl poweroff";
+                text = "Shutdown";
+                keybind = "s";
               }
               {
                 label = "hibernate";
                 action = "systemctl hibernate";
                 text = "Hibernate";
                 keybind = "h";
+              }
+              {
+                label = "reboot";
+                action = "systemctl reboot";
+                text = "Reboot";
+                keybind = "r";
               }
             ];
             style = ''
@@ -107,53 +109,109 @@ in
               @define-color rosewater #f5e0dc;
 
               * {
-                font-size: 14px;
-                color: @text;
+                  background-image: none;
+                  font-size: 24px;
               }
 
               window {
-                background: @base;
+                  background-color: transparent;
               }
 
               button {
-                background-color: @surface0;
-                border-style: solid;
-                border-width: 2px;
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: 35%;
-                border-radius: 10px;
-                margin: 10px;
+                  color: @text;
+                  background-color: alpha(@surface0, 0.7);
+                  border-style: solid;
+                  border-width: 1px;
+                  background-repeat: no-repeat;
+                  background-position: center;
+                  background-size: 20%;
+                  border-radius: 0px;
+                  border-color: @overlay0;
+                  box-shadow: none;
+                  text-shadow: none;
+                  animation: gradient_f 20s ease-in infinite;
               }
 
-              button:focus, button:active, button:hover {
-                background-color: alpha(@surface2, 0.5);
-                border-width: 2px;
-                border-color: @teal;
+              button:focus {
+                  background-color: @surface2;
+                  background-size: 30%;
+                  border-color: @mauve;
+                  border-radius: 6px;
+              }
+
+              button:hover {
+                  background-color: @surface2;
+                  background-size: 40%;
+                  animation: gradient_f 20s ease-in infinite;
+                  transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
+                  border-color: @mauve;
+                  border-radius: 6px;
+              }
+
+              button:hover#lock {
+                  border-radius: 4px;
+                  margin : ${hvr}px 0px ${hvr}px ${mgn}px;
+              }
+
+              button:hover#logout {
+                  border-radius: 4px;
+                  margin : ${hvr}px 0px ${hvr}px ${mgn}px;
+              }
+
+              button:hover#suspend {
+                  border-radius: 4px;
+                  margin : ${hvr}px 0px ${hvr}px 0px;
+              }
+
+              button:hover#shutdown {
+                  border-radius: 4px;
+                  margin : ${hvr}px 0px ${hvr}px 0px;
+              }
+
+              button:hover#hibernate {
+                  border-radius: 4px;
+                  margin : ${hvr}px ${mgn}px ${hvr}px 0px;
+              }
+
+              button:hover#reboot {
+                  border-radius: 4px;
+                  margin : ${hvr}px ${mgn}px ${hvr}px 0px;
               }
 
               #lock {
-                background-image: url("icons/lock.png");
+                  background-image: image(url("icons/lock.png"));
+                  border-radius: 4px 0px 0px 4px;
+                  margin : ${mgn}px 0px ${mgn}px ${mgn}px;
               }
 
               #logout {
-                background-image: url("icons/logout.png");
+                  background-image: image(url("icons/logout.png"));
+                  border-radius: 0px 0px 0px 0px;
+                  margin : ${mgn}px 0px ${mgn}px ${mgn}px;
               }
 
               #suspend {
-                background-image: url("icons/suspend.png");
-              }
-
-              #hibernate {
-                background-image: url("icons/hibernate.png");
+                  background-image: image(url("icons/suspend.png"));
+                  border-radius: 0px 0px 0px 0px;
+                  margin : ${mgn}px 0px ${mgn}px 0px;
               }
 
               #shutdown {
-                background-image: url("icons/shutdown.png");
+                  background-image: image(url("icons/shutdown.png"));
+                  border-radius: 0px 0px 0px 0px;
+                  margin : ${mgn}px 0px ${mgn}px 0px;
+              }
+
+              #hibernate {
+                  background-image: image(url("icons/hibernate.png"));
+                  border-radius: 0px 0px 0px 0px;
+                  margin : ${mgn}px ${mgn}px ${mgn}px 0px;
               }
 
               #reboot {
-                background-image: url("icons/reboot.png");
+                  background-image: image(url("icons/reboot.png"));
+                  border-radius: 0px 4px 4px 0px;
+                  margin : ${mgn}px ${mgn}px ${mgn}px 0px;
               }
 
             '';
