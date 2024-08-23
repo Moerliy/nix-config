@@ -16,9 +16,13 @@
   imports =
     [
       ../scripts/default.nix
+      ../modules/sane-defaults.nix
     ]
     ++ (import ./modules)
-    ++ (import ../modules);
+    ++ (import ../modules/shell)
+    ++ (import ../modules/editors)
+    ++ (import ../modules/theming)
+    ++ (import ../modules/programs);
 
   users.users.${vars.user} = {
     name = "${vars.user}";
@@ -53,8 +57,7 @@
   neovim.enable = true;
 
   fonts = {
-    fontDir.enable = true;
-    fonts = with pkgs; [
+    packages = with pkgs; [
       source-code-pro
       font-awesome
       (nerdfonts.override {

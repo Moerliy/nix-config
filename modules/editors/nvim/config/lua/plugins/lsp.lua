@@ -123,6 +123,9 @@ return {
             "vue",
           },
         },
+        nil_ls = {
+          mason = false,
+        },
       },
     },
   },

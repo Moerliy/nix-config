@@ -25,7 +25,7 @@ with lib; {
     home-manager.users.${vars.user} = {
       home = {
         packages = with pkgs; [
-          pkgs-stable.kitty
+          kitty
           discord
         ];
       };

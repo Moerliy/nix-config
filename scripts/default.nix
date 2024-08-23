@@ -3,6 +3,7 @@
   lib,
   vars,
   pkgs,
+  host,
   ...
 }: let
   # if ./config/secrets exists, add it to the configFilesToLink
@@ -13,6 +14,7 @@
   # e.g. from { ".hgrc" = ./hgrc; } to { ".hgrc".source = ./hgrc; }
   toSource = configDirName: dotfilesPath: {source = dotfilesPath;};
 in
+  with host;
   with lib; {
     options.custom-scripts = {
       enable = mkOption {
@@ -31,16 +33,23 @@ in
         programs.zsh.enable = true;
         programs.bash.enable = true;
         home = {
-          packages = with pkgs; [
-            fzf
-            alejandra
-            libnotify
-            pamixer
-            jq
-            slurp
-            wf-recorder
-            fuzzel
-          ];
+          packages = with pkgs;
+            [
+              fzf
+              alejandra
+              libnotify
+              jq
+            ]
+            ++ (
+              if hostName != "macbook"
+              then [
+                pamixer
+                slurp
+                wf-recorder
+                fuzzel
+              ]
+              else []
+            );
           # Symlink files under ~/.config, e.g. ~/.config/alacritty/alacritty.yml
           file = pkgs.lib.attrsets.mapAttrs toSource configFilesToLink;
           sessionPath = ["$HOME/.local/bin"];

@@ -28,7 +28,15 @@ in {
   # MacBook M1
   macbook = darwin.lib.darwinSystem {
     inherit system;
-    specialArgs = {inherit inputs pkgs vars pkgs-stable;};
+    specialArgs = {
+      inherit inputs pkgs vars pkgs-stable;
+      host = {
+        hostName = "macbook";
+        buildInMonitor = "eDP-1";
+        mainMonitor = "HDMI-A-1";
+        secondMonitor = "DP-2";
+      };
+    };
     modules = [
       ./macbook.nix
 

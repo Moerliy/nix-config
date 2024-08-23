@@ -23,7 +23,7 @@ alejandra . &>/dev/null # format all nix files
 git diff -U0
 echo "Nix Rebuilding... 🚀"
 if [ "$hostname" = "macbook" ]; then
-  darwin-rebuild switch --flake .#"$hostname" &>nix-switch.log || (cat nix-switch.log | grep --color error && false)
+  darwin-rebuild switch --impure --flake .#"$hostname" &>nix-switch.log || (cat nix-switch.log | grep --color error && false)
 else
   sudo nixos-rebuild switch --impure --flake .#"$hostname" &>nix-switch.log || (cat nix-switch.log | grep --color error && false)
 fi
