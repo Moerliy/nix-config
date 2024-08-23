@@ -26,6 +26,8 @@ with lib; {
       programs = {
         git = {
           enable = true;
+          userName = "Moritz Gleissner";
+          userEmail = "moritz@gleissner.de";
         };
       };
       home.packages = with pkgs; [

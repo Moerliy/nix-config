@@ -2,7 +2,7 @@
 set -e
 pushd "$HOME"/.setup/ || exit
 # all the hostnames that are in the nix flake
-hostnames=("macbook\nasahi\ncustom")
+hostnames=("macbook\nasahi\nnvidia\ncustom")
 # select a hostname
 hostname=$(echo -e "${hostnames[@]}" | fzf --ansi --prompt="󱄅 Nix flake hostnames  " --height=~50 --layout=reverse --border --exit-0)
 

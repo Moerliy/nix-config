@@ -76,6 +76,10 @@
         url = "github:guibou/nixGL";
         inputs.nixpkgs.follows = "nixpkgs-unstable";
       };
+    minegrubx86 = {
+      url = "github:Lxtharia/minegrub-world-sel-theme";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs = inputs @ {
@@ -93,6 +97,7 @@
     hypridle,
     minegrub,
     nixgl,
+    minegrubx86,
     ...
   }:
   # Function telling flake which inputs to use
@@ -122,7 +127,7 @@
     nixosConfigurations = (
       import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs hyprland hyprhook hypridle hyprlock nixpkgs-unstable home-manager home-manager-unstable apple-silicon vars minegrub;
+        inherit inputs nixpkgs hyprland hyprhook hypridle hyprlock nixpkgs-unstable home-manager home-manager-unstable apple-silicon vars minegrub minegrubx86;
       }
     );
 

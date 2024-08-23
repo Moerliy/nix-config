@@ -19,6 +19,7 @@
   hyprlock,
   vars,
   minegrub,
+  minegrubx86,
   ...
 }: let
   system = "aarch64-linux";
@@ -50,6 +51,28 @@ in {
       ./asahi/asahi.nix
       ./configuration.nix
       minegrub.nixosModules.default
+
+      home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+      }
+    ];
+  };
+  nvidia = lib.nixosSystem {
+    inherit system;
+    specialArgs = {
+      inherit inputs vars system hyprland hyprhook hypridle hyprlock pkgs-stable;
+      host = {
+        hostName = "nvidia";
+        mainMonitor = "HDMI-A-1";
+        secondMonitor = "DP-2";
+      };
+    };
+    modules = [
+      ./nvidia/nvidia.nix
+      ./configuration.nix
+      minegrubx86.nixosModules.default
 
       home-manager.nixosModules.home-manager
       {

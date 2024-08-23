@@ -265,7 +265,7 @@ in
                 ]
                 else if hostName == "nvidia"
                 then [
-                  "${toString mainMonitor},2560x1440@143.86,0x0,1}"
+                  "${toString mainMonitor},2560x1440@143.86,0x0,1"
                   "${toString secondMonitor},3840x2160@60.00,-3840x0,1"
                 ]
                 else [
@@ -287,7 +287,7 @@ in
                 "2, monitor:${toString mainMonitor}"
                 "3, monitor:${toString mainMonitor}"
                 "4, monitor:${toString mainMonitor}"
-                "8, monitor:${toString secondMonitor}"
+                "8, monitor:${toString secondMonitor},default:true"
               ]
               else [];
             animations = {
@@ -341,10 +341,20 @@ in
                 workspace_swipe_invert = false;
               }
               else {};
-            device = {
-              name = "urchin-keyboard";
-              kb_layout = "us";
-            };
+            device = [
+              {
+                name = "urchin-keyboard";
+                kb_layout = "us";
+              }
+              {
+                name = "-------akko-2.4g-wireless-keyboard";
+                kb_layout = "us";
+              }
+              {
+                name = "royuan-akko-keyboard";
+                kb_layout = "us";
+              }
+            ];
             dwindle = {
               pseudotile = true;
               force_split = 2;
