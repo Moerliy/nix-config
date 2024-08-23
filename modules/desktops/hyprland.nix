@@ -436,7 +436,7 @@ in
             exec-once = [
               "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
               "ln -s $XDG_RUNTIME_DIR/hypr /tmp/hypr"
-              # "$HOME/.config/hypr/script/sync-clipboard.sh &"
+              "$HOME/.config/hypr/script/sync-clipboard.sh &"
               # "${pkgs.eww}/bin/eww daemon"
               "${pkgs.waybar}/bin/waybar"
               "${pkgs.eww}/bin/eww --config $HOME/.config/eww-which-key daemon" # which-key seperated from default eww
