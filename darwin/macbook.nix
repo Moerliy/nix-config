@@ -144,6 +144,7 @@
       "firefox"
       "jellyfin-media-player"
       "plex-media-player"
+      "anki"
     ];
   };
 
