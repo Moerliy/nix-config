@@ -23,9 +23,11 @@ with lib; {
     # Enable the X11 windowing system.
     services.xserver = {
       enable = true;
-      displayManager.gdm.enable = true;
+      displayManager.gdm = {
+        enable = true;
+        wayland = true;
+      };
+      xkb.layout = "de";
     };
-    # Configure keymap in X11
-    services.xserver.xkb.layout = "de";
   };
 }
