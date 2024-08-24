@@ -61,7 +61,7 @@ in
             __NV_PRIME_RENDER_OFFLOAD = "1";
             __NV_PRIME_RENDER_OFFLOAD_PROVIDER = "NVIDIA-G0";
             __VK_LAYER_NV_optimus = "NVIDIA_only";
-            GBM_BACKEND = "nvidia";
+            GBM_BACKEND = "nvidia-drm";
 
             QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
 
