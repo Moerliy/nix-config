@@ -28,6 +28,10 @@ with lib; {
           enable = true;
           userName = "Moritz Gleissner";
           userEmail = "moritz@gleissner.de";
+          extraConfig = ''
+            [pull]
+              rebase = true
+          '';
         };
       };
       home.packages = with pkgs; [
