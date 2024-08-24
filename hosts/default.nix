@@ -43,7 +43,7 @@ in {
       host = {
         hostName = "asahi";
         buildInMonitor = "eDP-1";
-        mainMonitor = "HDMI-A-2";
+        mainMonitor = "HDMI-A-1";
         secondMonitor = "DP-1";
       };
     };
@@ -65,7 +65,7 @@ in {
       inherit inputs vars system hyprland hyprhook hypridle hyprlock pkgs-stable;
       host = {
         hostName = "nvidia";
-        mainMonitor = "HDMI-A-2";
+        mainMonitor = "HDMI-A-1";
         secondMonitor = "DP-1";
       };
     };
