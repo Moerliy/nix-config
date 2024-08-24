@@ -44,7 +44,7 @@ in {
         hostName = "asahi";
         buildInMonitor = "eDP-1";
         mainMonitor = "HDMI-A-1";
-        secondMonitor = "DP-1";
+        secondMonitor = "DP-2";
       };
     };
     modules = [
@@ -66,7 +66,7 @@ in {
       host = {
         hostName = "nvidia";
         mainMonitor = "HDMI-A-1";
-        secondMonitor = "DP-1";
+        secondMonitor = "DP-2";
       };
     };
     modules = [

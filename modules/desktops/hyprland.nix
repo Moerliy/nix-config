@@ -265,7 +265,6 @@ in
                 else if hostName == "nvidia"
                 then [
                   "${toString mainMonitor},2560x1440@143.86,0x0,1"
-                  # "${toString secondMonitor},3840x2160@60.00,-3840x0,1"
                   "${toString secondMonitor},2560x1440@60.00,-2560x0,1"
                 ]
                 else [
