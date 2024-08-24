@@ -83,7 +83,7 @@ set-option -g history-limit 64096
 set -sg escape-time 10
 
 #### COLOUR
-set -g @catppuccin_flavour 'mocha' # or frappe, macchiato, latte
+set -g @catppuccin_flavor 'mocha' # or frappe, macchiato, latte
 
 set -g @catppuccin_window_left_separator ""
 set -g @catppuccin_window_right_separator " "
