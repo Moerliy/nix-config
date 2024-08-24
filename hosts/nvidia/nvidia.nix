@@ -42,6 +42,12 @@
   # Editors
   neovim.enable = true;
 
+  environment = {
+    systemPackages = with pkgs; [
+      nvidia-vaapi-driver
+    ];
+  };
+
   networking = {
     hostName = "Nvidia";
   };
