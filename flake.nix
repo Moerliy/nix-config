@@ -70,6 +70,12 @@
       url = "github:Moerliy/minegrub-world-sel-theme";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+      # Fixes OpenGL With Other Distros.
+      nixgl = {
+        url = "github:guibou/nixGL";
+        inputs.nixpkgs.follows = "nixpkgs-unstable";
+      };
   };
 
   outputs = inputs @ {
@@ -86,6 +92,7 @@
     hyprlock,
     hypridle,
     minegrub,
+    nixgl,
     ...
   }:
   # Function telling flake which inputs to use
@@ -119,11 +126,11 @@
       }
     );
 
-    # homeConfigurations = (
-    #   import ./nix {
-    #     inherit (nixpkgs) lib;
-    #     inherit inputs nixpkgs nixpkgs-unstable home-manager nixgl vars;
-    #   }
-    # );
+    homeConfigurations = (
+      import ./nix {
+        inherit (nixpkgs) lib;
+        inherit inputs nixpkgs nixpkgs-unstable home-manager home-manager-unstable nixgl vars;
+      }
+    );
   };
 }

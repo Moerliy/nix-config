@@ -152,6 +152,10 @@
   };
 
   home-manager.users.${vars.user} = {
+    [
+    ]
+    ++ (import ../modules/home-manager);
+    tmux.enable = true;
     home = {
       stateVersion = "22.05";
       packages = with pkgs; [

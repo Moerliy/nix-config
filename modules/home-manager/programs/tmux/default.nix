@@ -1,3 +1,48 @@
+#
+#  Terminal multiplexer
+#
+{
+  pkgs,
+  vars,
+  lib,
+  config,
+  host,
+  ...
+}: let
+  configFilesToLink = {
+    "tmux/config.yaml" = ./config/config.yaml;
+    "tmux/statusline.conf" = ./config/statusline.conf;
+    # "tmux/tmux.conf" = ./config/tmux.conf;
+    "tmux/utility.conf" = ./config/utility.conf;
+    "tmux/util" = ./config/util;
+  };
+  # Function to help map attrs for symlinking home.file, xdg.configFile
+  # e.g. from { ".hgrc" = ./hgrc; } to { ".hgrc".source = ./hgrc; }
+  toSource = configDirName: dotfilesPath: {source = dotfilesPath;};
+
+  defaultCommand = if host.hostName == "hht" then
+    "${pkgs.zsh}/bin/zsh"
+  else
+    "${pkgs.fish}/bin/fish";
+in
+with lib; {
+  options.tmux = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+      description =
+        mdDoc
+        ''
+          Enable the Git package.
+        '';
+    };
+  };
+
+  config = mkIf config.tmux.enable {
+    programs = {
+      tmux = {
+        enable = true;
+        extraConfig = ''
 # plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'catppuccin/tmux'
@@ -10,7 +55,7 @@ if-shell "! test -f ~/.config/tmux/plugins/tmux-which-key/config.yaml" "run-shel
 set -g default-terminal "tmux-256color"
 set -ga terminal-overrides ',*:Tc' # this is for 256 color
 set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q' # this is for the cursor shape
-set -g default-command /etc/profiles/per-user/moritzgleissner/bin/fish
+set -g default-command ${defaultCommand}
 set -g status-position top
 set-option -g repeat-time 0
 set-option -g focus-events on
@@ -85,3 +130,9 @@ source ~/.config/tmux/utility.conf
 if "test ! -d ~/.tmux/plugins/tpm" \
    "run 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins'"
 run '~/.tmux/plugins/tpm/tpm'
+        '';
+      };
+    };
+    xdg.configFile = pkgs.lib.attrsets.mapAttrs toSource configFilesToLink;
+  };
+}

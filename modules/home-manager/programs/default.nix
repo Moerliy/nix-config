@@ -10,7 +10,5 @@
 #           └─ ...
 #
 [
-  ./kitty.nix
-  ./rofi.nix
-  ./wlogout/default.nix
+  ./tmux/default.nix
 ]
