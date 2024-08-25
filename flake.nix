@@ -71,11 +71,11 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-      # Fixes OpenGL With Other Distros.
-      nixgl = {
-        url = "github:guibou/nixGL";
-        inputs.nixpkgs.follows = "nixpkgs-unstable";
-      };
+    # Fixes OpenGL With Other Distros.
+    nixgl = {
+      url = "github:guibou/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     minegrubx86 = {
       url = "github:Lxtharia/minegrub-world-sel-theme";
       inputs.nixpkgs.follows = "nixpkgs-unstable";

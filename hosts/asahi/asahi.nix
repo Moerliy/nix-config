@@ -2,6 +2,10 @@
   apple-silicon,
   pkgs,
   vars,
+  inputs,
+  system,
+  pkgs-stable,
+  host,
   ...
 }: {
   imports =
@@ -118,14 +122,17 @@
   #   enable = true;
   #   pulse.enable = true;
   # };
-
-  home-manager.users.${vars.user} = {
-    [
-    ]
-    ++ (import ../../modules/home-manager);
-    tmux.enable = true;
-    home = {
-      stateVersion = "23.11";
+  home-manager = {
+    extraSpecialArgs = {inherit inputs vars system pkgs-stable pkgs host;};
+    users.${vars.user} = {
+      imports =
+        [
+        ]
+        ++ (import ../../modules/home-manager);
+      tmux.enable = true;
+      home = {
+        stateVersion = "23.11";
+      };
     };
   };
   system.stateVersion = "23.11"; # Did you read the comment?

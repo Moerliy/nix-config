@@ -11,6 +11,10 @@
 {
   pkgs,
   vars,
+  host,
+  inputs,
+  system,
+  pkgs-stable,
   ...
 }: {
   imports =
@@ -150,18 +154,21 @@
       "anki"
     ];
   };
-
-  home-manager.users.${vars.user} = {
-    [
-    ]
-    ++ (import ../modules/home-manager);
-    tmux.enable = true;
-    home = {
-      stateVersion = "22.05";
-      packages = with pkgs; [
-        discord
-        nodejs
-      ];
+  home-manager = {
+    extraSpecialArgs = {inherit inputs vars system pkgs-stable pkgs host;};
+    users.${vars.user} = {
+      imports =
+        [
+        ]
+        ++ (import ../../modules/home-manager);
+      tmux.enable = true;
+      home = {
+        stateVersion = "22.05";
+        packages = with pkgs; [
+          discord
+          nodejs
+        ];
+      };
     };
   };
 }

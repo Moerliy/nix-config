@@ -7,19 +7,16 @@
 #       ├─ default.nix *
 #       └─ <host>.nix
 #
-
-{ 
-inputs, 
+{
+  inputs,
   nixpkgs,
   nixpkgs-unstable,
-home-manager, 
-home-manager-unstable,
-vars, 
+  home-manager,
+  home-manager-unstable,
+  vars,
   nixgl,
-... 
-}:
-
-let
+  ...
+}: let
   system = "x86_64-linux";
   pkgs = import nixpkgs-unstable {
     inherit system;
@@ -33,8 +30,7 @@ let
   # home-manager-stable = home-manager;
   lib = nixpkgs-unstable.lib;
   vars.user = "ughlu_gleissner";
-in
-{
+in {
   hht = home-manager.lib.homeManagerConfiguration {
     inherit pkgs;
     extraSpecialArgs = {
@@ -43,10 +39,10 @@ in
         hostName = "hht";
       };
     };
-      modules = [
-        ./hht.nix
-        {
-        }
-      ];
+    modules = [
+      ./hht.nix
+      {
+      }
+    ];
   };
 }

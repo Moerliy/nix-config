@@ -3,6 +3,10 @@
   vars,
   config,
   lib,
+  host,
+  inputs,
+  system,
+  pkgs-stable,
   ...
 }: {
   imports =
@@ -124,9 +128,17 @@
     pulse.enable = true;
   };
 
-  home-manager.users.${vars.user} = {
-    home = {
-      stateVersion = "24.05";
+  home-manager = {
+    extraSpecialArgs = {inherit inputs vars system pkgs-stable pkgs host;};
+    users.${vars.user} = {
+      imports =
+        [
+        ]
+        ++ (import ../../modules/home-manager);
+      tmux.enable = true;
+      home = {
+        stateVersion = "24.05";
+      };
     };
   };
   system.stateVersion = "24.05"; # Did you read the comment?

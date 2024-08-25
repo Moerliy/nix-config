@@ -6,14 +6,17 @@
 #       ├─ default.nix
 #       └─ pacman.nix *
 #
-
-{ inputs, pkgs, nixgl, vars, host, ... }:
-
 {
-  imports =
-    [
-      ../modules/home-manager/programs/tmux/default.nix
-    ];
+  inputs,
+  pkgs,
+  nixgl,
+  vars,
+  host,
+  ...
+}: {
+  imports = [
+    ../modules/home-manager/programs/tmux/default.nix
+  ];
 
   tmux.enable = true;
 
@@ -23,7 +26,7 @@
     stateVersion = "23.11";
 
     packages = with pkgs; [
-      (import nixgl { inherit pkgs; }).nixGLIntel # OpenGL for GUI apps
+      (import nixgl {inherit pkgs;}).nixGLIntel # OpenGL for GUI apps
       #.nixVulkanIntel
       home-manager
       neovim
@@ -34,12 +37,11 @@
     # file.".bash_aliases".text = ''
     #   alias alacritty="nixGLIntel ${pkgs.alacritty}/bin/alacritty"
     # ''; # Aliases for package using openGL (nixGL). home.shellAliases does not work
-
   };
 
   xdg = {
     enable = true;
-    systemDirs.data = [ "/common/homes/all/${vars.user}/.nix-profile/share" ];
+    systemDirs.data = ["/common/homes/all/${vars.user}/.nix-profile/share"];
   }; # Add Nix Packages to XDG_DATA_DIRS
 
   nix = {
