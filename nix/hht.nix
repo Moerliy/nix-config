@@ -18,6 +18,8 @@
     ../modules/home-manager/programs/tmux/default.nix
   ];
 
+  # editors
+  neovim.enable = true;
   tmux.enable = true;
 
   home = {

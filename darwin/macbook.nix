@@ -57,9 +57,6 @@
   zoxide.enable = true;
   zsh.enable = true;
 
-  # editors
-  neovim.enable = true;
-
   fonts = {
     packages = with pkgs; [
       source-code-pro
@@ -161,7 +158,11 @@
         [
         ]
         ++ (import ../../modules/home-manager);
+
+      # editors
+      neovim.enable = true;
       tmux.enable = true;
+
       home = {
         stateVersion = "22.05";
         packages = with pkgs; [

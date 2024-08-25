@@ -43,9 +43,6 @@
   zsh.enable = true;
   custom-scripts.enable = true;
 
-  # Editors
-  neovim.enable = true;
-
   environment = {
     systemPackages = with pkgs; [
       nvidia-vaapi-driver
@@ -135,7 +132,11 @@
         [
         ]
         ++ (import ../../modules/home-manager);
+
+      # Editors
+      neovim.enable = true;
       tmux.enable = true;
+
       home = {
         stateVersion = "24.05";
       };

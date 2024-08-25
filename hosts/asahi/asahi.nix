@@ -43,9 +43,6 @@
   zsh.enable = true;
   custom-scripts.enable = true;
 
-  # Editors
-  neovim.enable = true;
-
   networking = {
     hostName = "MacBook";
   };
@@ -129,7 +126,11 @@
         [
         ]
         ++ (import ../../modules/home-manager);
+
+      # Editors
+      neovim.enable = true;
       tmux.enable = true;
+
       home = {
         stateVersion = "23.11";
       };
