@@ -15,8 +15,8 @@
   ...
 }: {
   imports = [
-    ../modules/home-manager/programs/tmux/default.nix
-  ];
+  ]
+  ++ (import ../modules/home-manager);
 
   # editors
   neovim.enable = true;
@@ -31,7 +31,6 @@
       (import nixgl {inherit pkgs;}).nixGLIntel # OpenGL for GUI apps
       #.nixVulkanIntel
       home-manager
-      neovim
       tmux
       zsh
     ];
@@ -48,6 +47,7 @@
 
   nix = {
     settings = {
+      sandbox = false;
       auto-optimise-store = true;
     };
     package = pkgs.nixFlakes;

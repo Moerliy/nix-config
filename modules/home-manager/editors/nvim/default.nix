@@ -3,21 +3,24 @@
   config,
   lib,
   vars,
+host,
   ...
 }: let
-  # if ./config/secrets exists, add it to the configFilesToLink
   configFilesToLink =
-    if lib.pathExists ./config/secrets
-    then {
+    {
       "nvim/init.lua" = ./config/init.lua;
-      "nvim/secrets" = ./config/secrets;
-      "nviml/lua" = ./config/lua;
-      "nvim/stylelua.toml" = ./config/stylua.toml;
-    }
-    else {
-      "nvim/init.lua" = ./config/init.lua;
-      "nvim/lua" = ./config/lua;
-      "nvim/stylelua.toml" = ./config/stylua.toml;
+      "nvim/lua/plugins" = ./config/lua/plugins;
+      "nvim/lua/util" = ./config/lua/util;
+      "nvim/lua/config/autocmds.lua" = ./config/lua/config/autocmds.lua;
+      "nvim/lua/config/lazy.lua" = ./config/lua/config/lazy.lua;
+      "nvim/lua/config/keymaps.lua" = ./config/lua/config/keymaps.lua;
+      # "nvim/lua/config/options.lua" = ./config/lua/config/options.lua;
+#       "nvim/lua/config/options.lua" = {sourec = (builtins.readFile ./config/lua/config/options.lua) + 
+#       ''
+# opt.shell = "zsh"
+#       '';
+#       };
+      # "nvim/stylelua.toml" = ./config/stylua.toml;
     };
   # Function to help map attrs for symlinking home.file, xdg.configFile
   # e.g. from { ".hgrc" = ./hgrc; } to { ".hgrc".source = ./hgrc; }
@@ -25,7 +28,8 @@
 
   customNodePkg = import ../../../../node/default.nix {};
 in
-  with lib; {
+  with lib; 
+  with host; {
     options.neovim = {
       enable = mkOption {
         type = types.bool;
@@ -50,7 +54,15 @@ in
       };
       # Symlink files under ~/.config, e.g. ~/.config/alacritty/alacritty.yml
       xdg.configFile = pkgs.lib.attrsets.mapAttrs toSource configFilesToLink;
-      home.packages = with pkgs; [
+      home = {
+        file = {
+    ".config/nvim/lua/config/options.lua" = {
+      text = (builtins.readFile ./config/lua/config/options.lua) + ''
+opt.shell = ${if hostName == "hht" then "zsh" else "fish"}
+      '';
+    };
+  };
+      packages = with pkgs; [
         # lsp
         lua-language-server
         selene
@@ -121,5 +133,6 @@ in
         go
         gnupg
       ];
+    };
     };
   }

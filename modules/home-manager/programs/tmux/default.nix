@@ -59,7 +59,7 @@ in
             set -g status-position top
             set-option -g repeat-time 0
             set-option -g focus-events on
-            set-option -g set-clipboard on
+            # set-option -g set-clipboard on
             set-option -g mouse off
             set-option -g detach-on-destroy off
 
