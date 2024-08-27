@@ -49,7 +49,7 @@ in
             set -g @plugin 'alexwforsythe/tmux-which-key'
             set -g @plugin 'omerxx/tmux-sessionx'
             set -g @plugin 'sainnhe/tmux-fzf'
-            set -g @plugin 'niqodea/tmux-matryoshka'
+            set -g @plugin 'MunifTanjim/tmux-suspend'
             # copy config.yaml to ./plugins/tmux-which-key if it exists
             if-shell "! test -f ~/.config/tmux/plugins/tmux-which-key/config.yaml" "run-shell 'ln -s ~/.config/tmux/config.yaml ~/.config/tmux/plugins/tmux-which-key/config.yaml'" "run-shell 'rm ~/.config/tmux/plugins/tmux-which-key/config.yaml ; ln -s ~/.config/tmux/config.yaml ~/.config/tmux/plugins/tmux-which-key/config.yaml'"
 
@@ -66,9 +66,13 @@ in
 
             set-window-option -g mode-keys vi
 
-            set -g @matryoshka_down_keybind 'N'
-            set -g @matryoshka_up_keybind 'P'
-            # set -g @matryoshka_inactive_status_style 'fg=colour245,bg=colour238'
+            set -g @suspend_key 'c-s'
+
+            set -g @suspend_on_resume_command "tmux \
+              set-option -g status-bg '#1e1e2e'"
+
+            set -g @suspend_on_suspend_command "tmux \
+              set-option -g status-bg '#f38ba8'"
 
             #### basic settings
 
