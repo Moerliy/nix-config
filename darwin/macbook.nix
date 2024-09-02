@@ -24,7 +24,6 @@
     ]
     ++ (import ./modules)
     ++ (import ../modules/shell)
-    ++ (import ../modules/editors)
     ++ (import ../modules/theming)
     ++ (import ../modules/programs);
 
@@ -157,7 +156,7 @@
       imports =
         [
         ]
-        ++ (import ../../modules/home-manager);
+        ++ (import ../modules/home-manager);
 
       # editors
       neovim.enable = true;
