@@ -58,55 +58,24 @@ fi
 
 # init all windows
 window=0
-tmux rename-window -t $session:$window "run/armarx"
+tmux rename-window -t $session:$window "ssh"
 window=1
-tmux new-window -t $session:$window -n "run/rest"
-window=2
 tmux new-window -t $session:$window -n "run/fluxio"
-window=3
-tmux new-window -t $session:$window -n "comp/robotAPI"
-window=4
-tmux new-window -t $session:$window -n "dev/ssh"
-window=5
+window=2
 tmux new-window -t $session:$window -n "dev/fluxio"
 
 # fish start is slow, give it some time
 sleep 0.5 >/dev/null
 
-# axii uses a cache for the commands, so bombarding it with commands is not a good idea
-eval "$sshCommand 'unlink ~/axii_startup &>/dev/null'"
-
 window=0
 tmux send-keys -t $session:$window "eval '$sshCommand'" C-m
-tmux send-keys -t $session:$window "echo 'func(){ while [ -p ~/axii_startup ]; do sleep 1; done }; func' | bash && mkfifo ~/axii_startup; axii w act $axiiWorkspace --no-cd; unlink ~/axii_startup" C-m
-tmux send-keys -t $session:$window "armarx reset" C-m
-tmux send-keys -t $session:$window "armarx scenario start SkillProviderTest" C-m
+tmux send-keys -t $session:$window "~/start-dev -w $axiiWorkspace" C-m
 
 window=1
-tmux send-keys -t $session:$window "eval '$sshCommand'" C-m
-# wait a second for every axii workspace activation
-tmux send-keys -t $session:$window "sleep 0.3" C-m
-tmux send-keys -t $session:$window "echo 'func(){ while [ -p ~/axii_startup ]; do sleep 1; done }; func' | bash && mkfifo ~/axii_startup; axii w act $axiiWorkspace --no-cd; unlink ~/axii_startup" C-m
-tmux send-keys -t $session:$window "cd \$armarx__core__armarest__PATH" C-m
-# tmux send-keys -t $session:$window "armarx run --no-auth"
-
-window=2
 tmux send-keys -t $session:$window "cd fluxio" C-m
 tmux send-keys -t $session:$window "npm run dev" C-m
 
-window=3
-tmux send-keys -t $session:$window "eval '$sshCommand'" C-m
-tmux send-keys -t $session:$window "sleep 0.6" C-m
-tmux send-keys -t $session:$window "echo 'func(){ while [ -p ~/axii_startup ]; do sleep 1; done }; func' | bash && mkfifo ~/axii_startup; axii w act $axiiWorkspace --no-cd; unlink ~/axii_startup" C-m
-tmux send-keys -t $session:$window "cd \$armarx__RobotAPI__PATH" C-m
-
-window=4
-tmux send-keys -t $session:$window "eval '$sshCommand'" C-m
-tmux send-keys -t $session:$window "sleep 0.9" C-m
-tmux send-keys -t $session:$window "echo 'func(){ while [ -p ~/axii_startup ]; do sleep 1; done }; func' | bash && mkfifo ~/axii_startup; axii w act $axiiWorkspace --no-cd; unlink ~/axii_startup" C-m
-tmux send-keys -t $session:$window "vim" C-m
-
-window=5
+window=2
 tmux send-keys -t $session:$window "cd fluxio" C-m
 tmux send-keys -t $session:$window "vim" C-m
 
