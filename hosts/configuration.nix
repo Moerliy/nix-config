@@ -135,6 +135,8 @@ in
           xsel # clipboard
           autocutsel # clipboard
           openvpn # vpn
+          gmp # gnu multiple precision arithmetic library
+          ncurses # new curses
 
           python311Packages.numpy
 

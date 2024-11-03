@@ -35,6 +35,7 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.lang.vue" },
     { import = "lazyvim.plugins.extras.lang.yaml" },
     { import = "lazyvim.plugins.extras.lang.nix" },
+    { import = "lazyvim.plugins.extras.lang.haskell" },
 
     -- import/override with your plugins
     { import = "plugins" },

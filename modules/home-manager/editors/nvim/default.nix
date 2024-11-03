@@ -4,6 +4,7 @@
   lib,
   vars,
   host,
+  pkgs-stable,
   ...
 }: let
   configFilesToLink = {
@@ -60,77 +61,87 @@ in
               '';
           };
         };
-        packages = with pkgs; [
-          # lsp
-          lua-language-server
-          selene
-          lua52Packages.luacheck
-          stylua
-          shellcheck
-          shfmt
-          nodePackages.typescript-language-server
-          customNodePkg."@vue/language-server"
-          customNodePkg."@vtsls/language-server"
-          # nodePackages_latest.grammarly-languageserver
-          kotlin-language-server
-          ktlint
-          nil
-          nixpkgs-fmt
+        packages = with pkgs;
+          [
+            # lsp
+            lua-language-server
+            selene
+            lua52Packages.luacheck
+            stylua
+            shellcheck
+            shfmt
+            nodePackages.typescript-language-server
+            customNodePkg."@vue/language-server"
+            customNodePkg."@vtsls/language-server"
+            # nodePackages_latest.grammarly-languageserver
+            kotlin-language-server
+            ktlint
+            nil
+            nixpkgs-fmt
+            haskell-language-server
+            haskellPackages.haskell-debug-adapter
+            ghc
+            cabal-install
+            haskellPackages.stack
 
-          clang-tools
-          ruff-lsp
-          pyright
-          taplo
-          dockerfile-language-server-nodejs
-          yaml-language-server
-          marksman
-          markdownlint-cli2
-          docker-compose-language-service
-          vscode-langservers-extracted
-          nodePackages.bash-language-server
-          nodePackages.prettier
-          neocmakelsp
-          cmake-format
-          black
-          python312Packages.debugpy
-          hadolint
-          rust-analyzer
+            clang-tools
+            ruff-lsp
+            ruff
+            pyright
+            taplo
+            dockerfile-language-server-nodejs
+            yaml-language-server
+            marksman
+            markdownlint-cli2
+            docker-compose-language-service
+            vscode-langservers-extracted
+            nodePackages.bash-language-server
+            nodePackages.prettier
+            neocmakelsp
+            cmake-format
+            black
+            python312Packages.debugpy
+            hadolint
+            rust-analyzer
 
-          git
-          lazygit
-          ripgrep
-          fd
-          fzf
-          clang
-          unzip
-          neo
-          pipes
+            git
+            lazygit
+            ripgrep
+            fd
+            fzf
+            clang
+            unzip
+            neo
+            pipes
 
-          nodejs
-          python3
-          cmake
-          gnumake
-          #gcc
-          yq-go
-          # yq
-          # jq
+            nodejs
+            python3
+            cmake
+            gnumake
+            #gcc
+            yq-go
+            # yq
+            # jq
 
-          #rustup
-          cargo
-          rustc
-          # nix-shell -p pkg-config sqlite openssl libiconv
-          libiconv
-          pkg-config
-          sqlite
-          openssl
+            #rustup
+            cargo
+            rustc
+            # nix-shell -p pkg-config sqlite openssl libiconv
+            libiconv
+            pkg-config
+            sqlite
+            openssl
 
-          clang-tools
-          luajitPackages.luarocks
-          nil
-          nixd
-          go
-          gnupg
-        ];
+            clang-tools
+            luajitPackages.luarocks
+            nil
+            nixd
+            go
+            gnupg
+          ]
+          ++ (with pkgs-stable; [
+            # haskellPackages.ghcup
+          ]);
       };
     };
   }

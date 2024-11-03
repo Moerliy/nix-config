@@ -20,4 +20,12 @@ return {
       table.insert(opts.adapters, require("neotest-vitest"))
     end,
   },
+  {
+    "mrcjkb/neotest-haskell",
+    enabled = false,
+    -- no luarocks
+    opts = function(_, opts)
+      opts.rocks.enabled = false
+    end,
+  },
 }
