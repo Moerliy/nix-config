@@ -103,6 +103,8 @@ in
             python312Packages.debugpy
             hadolint
             rust-analyzer
+            texlab
+            texliveFull
 
             git
             lazygit
