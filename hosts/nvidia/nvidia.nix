@@ -38,6 +38,7 @@
   fish.enable = true;
   starship.enable = true;
   git.enable = true;
+  bat.enable = true;
   lazygit.enable = true;
   zoxide.enable = true;
   zsh.enable = true;

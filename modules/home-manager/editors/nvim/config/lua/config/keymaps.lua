@@ -33,7 +33,6 @@ keymap.set("n", "<Leader>r<down>", "<C-w>-")
 keymap.set("n", "gp", "<C-o>", { desc = "Return to last cursor position" })
 
 -- Notificon with snacks
--- keymap.set("n", "<Leader>uN", "<cmd>Telescope notify<CR>", { desc = "Show all notifications" })
 keymap.set("n", "<Leader>uN", function()
   Snacks.notifier.show_history()
 end, { desc = "Show all notifications" })

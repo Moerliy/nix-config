@@ -16,4 +16,5 @@
   ./fish.nix
   ./zoxide.nix
   ./lazygit/default.nix
+  ./bat.nix
 ]

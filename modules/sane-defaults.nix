@@ -29,7 +29,6 @@ with lib; {
         packages = with pkgs; [
           # Tools
           eza
-          bat
           bat-extras.batman
           fd
           fzf

@@ -1,4 +1,27 @@
 gui:
+  authorColors: {}
+  branchColors: {}
+  scrollHeight: 2
+  scrollPastBottom: true
+  mouseEvents: true
+  nerdFontsVersion: "3"
+  skipDiscardChangeWarning: false
+  skipStashWarning: false
+  sidePanelWidth: 0.3333
+  expandFocusedSidePanel: false
+  mainPanelSplitMode: flexible
+  language: auto
+  timeFormat: 02 Jan 06 15:04 MST
+  commitLength:
+    show: true
+  skipNoStagedFilesWarning: false
+  showListFooter: true
+  showFileTree: true
+  showRandomTip: true
+  showCommandLog: true
+  showBottomLine: true
+  commandLogSize: 8
+  splitDiff: auto
   theme:
     activeBorderColor:
       - "#cba6f7"
@@ -19,6 +42,41 @@ gui:
       - "#cdd6f4"
     searchingActiveBorderColor:
       - "#f9e2af"
+
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
+    useConfig: false
+  commit:
+    signOff: false
+  merging:
+    manualCommit: false
+    args: ""
+  skipHookPrefix: WIP
+  autoFetch: true
+  autoRefresh: true
+  branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --
+  allBranchesLogCmd: git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium
+  overrideGpg: false
+  disableForcePushing: false
+  commitPrefixes: {}
+  parseEmoji: false
+  log:
+    order: topo-order
+    showGraph: "always"
+    showWholeGraph: false
+
+update:
+  method: prompt
+  days: 14
+
+refresher:
+  refreshInterval: 10
+  fetchInterval: 60
+
+confirmOnQuit: false
+quitOnTopLevelReturn: false
 
 customCommands:
   - key: "F"
@@ -59,3 +117,11 @@ customCommands:
         filter: "(?P<commit_id>[0-9a-zA-Z]*) *(?P<commit_msg>.*)"
         valueFormat: "{{ .commit_id }}"
         labelFormat: "{{ .commit_id | green | bold }} - {{ .commit_msg | yellow }}"
+
+os:
+  editPreset: "nvim-remote"
+
+disableStartupPopups: false
+services: {}
+notARepository: skip
+promptToReturnFromSubprocess: true
