@@ -124,6 +124,7 @@ in
             yq-go
             # yq
             # jq
+            flutter
 
             #rustup
             cargo

@@ -129,6 +129,9 @@ return {
         texlab = {
           mason = false,
         },
+        dartls = {
+          mason = false,
+        },
       },
     },
   },

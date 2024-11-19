@@ -24,7 +24,8 @@ return {
         "nix",
         "markdown",
         "markdown_inline",
-        "yuck"
+        "yuck",
+        "dart",
       },
     },
   },
