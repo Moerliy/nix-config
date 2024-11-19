@@ -462,9 +462,9 @@ in
             #   ] else [ ];
           };
           extraConfig = ''
-            # bindmd = $mainMod, mouse:272, test123, resizewindow
-            # bindm = $mainMod, mouse:273, resizewindow
-            # bindm = $mainMod, mouse:274, movewindow
+            bindmd = $mainMod, mouse:273, Resize Window, resizewindow
+            # bindmd = $mainMod, mouse:274, Move Window, movewindow
+            bindmd = $mainMod, mouse:272, Move Window, movewindow
 
             bindd = $mainMod, Space, +submaps, submap, supmaper
             submap = supmaper
