@@ -6,6 +6,7 @@
   lib,
   vars,
   pkgs,
+  pkgs-stable,
   ...
 }:
 with lib; {
@@ -37,7 +38,7 @@ with lib; {
         };
         cursorTheme = {
           name = "catppuccin-mocha-dark-cursors";
-          package = pkgs.catppuccin-cursors.mochaDark;
+          package = pkgs-stable.catppuccin-cursors.mochaDark;
         };
         font = {
           name = "JetBrainsMono Nerd Font";
@@ -45,7 +46,7 @@ with lib; {
       };
       home.pointerCursor = {
         gtk.enable = true;
-        package = pkgs.catppuccin-cursors.mochaDark;
+        package = pkgs-stable.catppuccin-cursors.mochaDark;
         name = "catppuccin-mocha-dark-cursors";
         size = 64;
       };

@@ -81,7 +81,7 @@ in
         vegur # NixOS
         #corefonts # Microsoft
         noto-fonts
-        noto-fonts-cjk
+        noto-fonts-cjk-sans
         noto-fonts-emoji
         (nerdfonts.override {
           fonts = [
@@ -137,6 +137,7 @@ in
           openvpn # vpn
           gmp # gnu multiple precision arithmetic library
           ncurses # new curses
+          cloc # count lines of code
 
           python311Packages.numpy
 
@@ -168,6 +169,9 @@ in
 
           # Collaboration tools
           webcord-vencord
+
+          #llm
+          local-ai
 
           # Other Packages Found @
           # - ./<host>/default.nix

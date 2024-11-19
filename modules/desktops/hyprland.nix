@@ -249,7 +249,9 @@ in
                 passes = 3;
                 new_optimizations = true;
               };
-              drop_shadow = false;
+              shadow = {
+                enabled = false;
+              };
             };
             monitor =
               [
