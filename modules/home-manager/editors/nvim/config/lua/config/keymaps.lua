@@ -101,7 +101,7 @@ keymap.set("n", "<Leader>gb", "<cmd>GitBlameToggle<CR>", { desc = "Toggle git bl
 -- ChatGPT
 keymap.set({ "n", "v" }, "<Leader>ac", "<cmd>ChatGPT<CR>", { desc = "ChatGPT" })
 keymap.set({ "n", "v" }, "<Leader>ae", "<cmd>ChatGPTEditWithInstructions<CR>", { desc = "ChatGPT edit" })
-keymap.set({ "n", "v" }, "<Leader>aa", "<cmd>ChatGPTActAs<CR>", { desc = "ChatGPT act as" })
+-- keymap.set({ "n", "v" }, "<Leader>aa", "<cmd>ChatGPTActAs<CR>", { desc = "ChatGPT act as" })
 keymap.set(
   { "n", "v" },
   "<Leader>ag",
