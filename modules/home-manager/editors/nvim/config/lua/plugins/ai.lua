@@ -1,6 +1,7 @@
 return {
   {
-    "yetone/avante.nvim",
+    -- "yetone/avante.nvim",
+    "Moerliy/avante.nvim",
     -- enabled = false,
     event = "VeryLazy",
     lazy = false,
