@@ -31,6 +31,7 @@ return {
     "folke/which-key.nvim",
     opts = {
       -- plugins = { spelling = true },
+      preset = "classic",
       spec = {
         {
           mode = { "n", "v" },
