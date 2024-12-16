@@ -1,13 +1,53 @@
 return {
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   depends = {
+  --     "catppuccin/nvim",
+  --   },
+  --   config = {
+  --     window = {
+  --       completion = {
+  --         -- custom border
+  --         border = {
+  --           "󱐋",
+  --           "─",
+  --           "╮",
+  --           "│",
+  --           "╯",
+  --           "─",
+  --           "╰",
+  --           "│",
+  --         },
+  --         scrollbar = false,
+  --       },
+  --       documentation = {
+  --         border = {
+  --           "",
+  --           "─",
+  --           "╮",
+  --           "│",
+  --           "╯",
+  --           "─",
+  --           "╰",
+  --           "│",
+  --         },
+  --         scrollbar = false,
+  --       },
+  --     },
+  --   },
+  -- },
   {
-    "hrsh7th/nvim-cmp",
-    depends = {
-      "catppuccin/nvim",
-    },
-    config = {
-      window = {
-        completion = {
-          -- custom border
+    "saghen/blink.cmp",
+    optional = true,
+    dependencies = { "giuxtaposition/blink-cmp-copilot" },
+    opts = {
+      keymap = {
+        preset = "enter",
+        ["<C-y>"] = { "select_and_accept" },
+        ["<C-c>"] = { "show", "show_documentation", "hide_documentation" },
+      },
+      completion = {
+        menu = {
           border = {
             "󱐋",
             "─",
@@ -18,20 +58,40 @@ return {
             "╰",
             "│",
           },
-          scrollbar = false,
+          draw = {
+            treesitter = { "lsp" },
+          },
         },
         documentation = {
-          border = {
-            "",
-            "─",
-            "╮",
-            "│",
-            "╯",
-            "─",
-            "╰",
-            "│",
+          auto_show = true,
+          auto_show_delay_ms = 200,
+          window = {
+            border = {
+              "",
+              "─",
+              "╮",
+              "│",
+              "╯",
+              "─",
+              "╰",
+              "│",
+            },
           },
-          scrollbar = false,
+        },
+        ghost_text = {
+          enabled = vim.g.ai_cmp,
+        },
+      },
+      sources = {
+        default = { "copilot" },
+        providers = {
+          copilot = {
+            name = "copilot",
+            module = "blink-cmp-copilot",
+            kind = "Copilot",
+            score_offset = 300,
+            async = true,
+          },
         },
       },
     },

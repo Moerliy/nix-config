@@ -14,6 +14,8 @@ vim.filetype.add({
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 
+vim.g.lazyvim_picker = "fzf"
+
 opt.relativenumber = true
 opt.statuscolumn = "%s%#AbsoluteColumn#%l%1*│%{v:lnum<line('.')?'-':''}%r"
 opt.belloff = "all"
