@@ -83,12 +83,8 @@ in
         noto-fonts
         noto-fonts-cjk-sans
         noto-fonts-emoji
-        (nerdfonts.override {
-          fonts = [
-            "FiraCode"
-            "JetBrainsMono"
-          ];
-        })
+        nerd-fonts.fira-code
+        nerd-fonts.jetbrains-mono
       ];
     };
 
@@ -168,10 +164,10 @@ in
           zip # Zip
 
           # Collaboration tools
-          webcord-vencord
+          # webcord-vencord
 
           #llm
-          local-ai
+          # local-ai
 
           # Other Packages Found @
           # - ./<host>/default.nix
@@ -180,7 +176,9 @@ in
         ++ (with pkgs-stable; [
           # Apps
           image-roll # Image Viewer
-          # steam-run-native
+
+          # Collaboration tools
+          webcord-vencord
         ]);
     };
   }
