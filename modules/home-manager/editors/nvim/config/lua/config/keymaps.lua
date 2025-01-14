@@ -29,6 +29,11 @@ keymap.set("n", "<Leader>r<down>", "<C-w>-")
 -- -- Transparency
 -- keymap.set("n", "<Leader>tb", "<cmd>TransparentToggle<CR>", { desc = "Toggle background transparency" })
 
+-- mini-files
+keymap.set("n", "<Leader>ff", function()
+  require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+end, { desc = "Open mini-files" })
+
 -- better movement
 keymap.set("n", "gp", "<C-o>", { desc = "Return to last cursor position" })
 
@@ -97,31 +102,6 @@ keymap.set(
 
 -- Git blame
 keymap.set("n", "<Leader>gb", "<cmd>GitBlameToggle<CR>", { desc = "Toggle git blame" })
-
--- ChatGPT
-keymap.set({ "n", "v" }, "<Leader>ac", "<cmd>ChatGPT<CR>", { desc = "ChatGPT" })
-keymap.set({ "n", "v" }, "<Leader>ae", "<cmd>ChatGPTEditWithInstructions<CR>", { desc = "ChatGPT edit" })
--- keymap.set({ "n", "v" }, "<Leader>aa", "<cmd>ChatGPTActAs<CR>", { desc = "ChatGPT act as" })
-keymap.set(
-  { "n", "v" },
-  "<Leader>ag",
-  "<cmd>ChatGPTRun grammar_correction<CR>",
-  { desc = "ChatGPT grammar correction" }
-)
-keymap.set({ "n", "v" }, "<Leader>at", "<cmd>ChatGPTRun translate<CR>", { desc = "ChatGPT translation" })
-keymap.set({ "n", "v" }, "<Leader>ak", "<cmd>ChatGPTRun keywords<CR>", { desc = "ChatGPT keywords" })
-keymap.set({ "n", "v" }, "<Leader>ad", "<cmd>ChatGPTRun docstring<CR>", { desc = "ChatGPT docstring" })
-keymap.set({ "n", "v" }, "<Leader>am", "<cmd>ChatGPTRun add_tests<CR>", { desc = "ChatGPT generate tests" })
-keymap.set({ "n", "v" }, "<Leader>ao", "<cmd>ChatGPTRun optimize_code<CR>", { desc = "ChatGPT optimize code" })
-keymap.set({ "n", "v" }, "<Leader>as", "<cmd>ChatGPTRun summarize<CR>", { desc = "ChatGPT summarization" })
-keymap.set({ "n", "v" }, "<Leader>af", "<cmd>ChatGPTRun fix_bugs<CR>", { desc = "ChatGPT fix bugs" })
-keymap.set({ "n", "v" }, "<Leader>ax", "<cmd>ChatGPTRun explain_code<CR>", { desc = "ChatGPT explain code" })
-keymap.set(
-  { "n", "v" },
-  "<Leader>al",
-  "<cmd>ChatGPTRun code_readability_analysis<CR>",
-  { desc = "ChatGPT analyzing readability" }
-)
 
 -- Telescope theme switcher
 keymap.set("n", "<leader>tc", ":Telescope themes<CR>", { noremap = true, silent = true, desc = "Theme Changer" })

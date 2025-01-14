@@ -102,6 +102,47 @@ return {
     },
   },
   {
+    "echasnovski/mini.files",
+    opts = {
+      -- Module mappings created only inside explorer.
+      -- Use `''` (empty string) to not create one.
+      mappings = {
+        close = "q",
+        go_in = "<Right>",
+        go_in_plus = "<CR>",
+        go_out = "<Left>",
+        go_out_plus = "H",
+        mark_goto = "'",
+        mark_set = "m",
+        reset = "<BS>",
+        reveal_cwd = "@",
+        show_help = "?",
+        synchronize = "=",
+        trim_left = "<",
+        trim_right = ">",
+      },
+      windows = {
+        preview = true,
+        width_focus = 30,
+        width_preview = 30,
+      },
+      options = {
+        -- Whether to use for editing directories
+        -- Disabled by default in LazyVim because neo-tree is used for that
+        use_as_default_explorer = true,
+      },
+    },
+    keys = {
+      {
+        "<Leader>ff",
+        function()
+          require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+        end,
+        desc = "Open file browser",
+      },
+    },
+  },
+  {
     "ibhagwan/fzf-lua",
     keys = {
       { "<leader>.", LazyVim.pick("files", { root = false }), desc = "Find Files (cwd No Hidden)" },
@@ -110,6 +151,7 @@ return {
       { "<leader>fg", LazyVim.pick("live_grep", { root = false }), desc = "Grep files (cwd)" },
       { "<leader>bi", "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>", desc = "Lists open buffers" },
       { "<leader>hh", "<cmd>FzfLua help_tags<cr>", desc = "Find help tags" },
+      { "<leader>ff", false },
     },
   },
   {
@@ -119,57 +161,11 @@ return {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
       },
-      "nvim-telescope/telescope-file-browser.nvim",
       "andrew-george/telescope-themes",
-    },
-    keys = {
-      {
-        "<leader>ff",
-        function()
-          local telescope = require("telescope")
-
-          local function telescope_buffer_dir()
-            return vim.fn.expand("%:p:h")
-          end
-
-          telescope.extensions.file_browser.file_browser({
-            path = "%:p:h",
-            cwd = telescope_buffer_dir(),
-            respect_gitignore = false,
-            hidden = true,
-            grouped = true,
-            previewer = false,
-            initial_mode = "normal",
-            layout_config = { height = 40 },
-          })
-        end,
-        desc = "Open File Browser",
-      },
     },
     config = function(_, opts)
       local telescope = require("telescope")
-      local actions = require("telescope.actions")
-      local fb_actions = require("telescope").extensions.file_browser.actions
 
-      -- opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
-      --   wrap_results = true,
-      --   layout_strategy = "horizontal",
-      --   layout_config = { prompt_position = "top" },
-      --   sorting_strategy = "ascending",
-      --   winblend = 0,
-      --   mappings = {
-      --     n = {},
-      --   },
-      -- })
-      -- opts.pickers = {
-      --   diagnostics = {
-      --     theme = "ivy",
-      --     initial_mode = "normal",
-      --     layout_config = {
-      --       preview_cutoff = 9999,
-      --     },
-      --   },
-      -- }
       opts.extensions = {
         themes = {
           -- you can add regular telescope config
@@ -203,45 +199,9 @@ return {
           -- (table) -> provide table of theme names to ignore
           -- all builtin themes are ignored by default
         },
-        file_browser = {
-          theme = "dropdown",
-          -- disables netrw and use telescope-file-browser in its place
-          hijack_netrw = true,
-          mappings = {
-            -- your custom insert mode mappings
-            ["n"] = {
-              -- your custom normal mode mappings
-              ["n"] = fb_actions.create,
-              ["r"] = fb_actions.rename,
-              ["d"] = fb_actions.remove,
-              ["m"] = fb_actions.move,
-              ["H"] = fb_actions.goto_home_dir,
-              ["c"] = fb_actions.goto_cwd,
-              ["C"] = fb_actions.change_cwd,
-              ["h"] = fb_actions.goto_parent_dir,
-              ["<left>"] = fb_actions.goto_parent_dir,
-              ["/"] = function()
-                vim.cmd("startinsert")
-              end,
-              ["U"] = function(prompt_bufnr)
-                for i = 1, 10 do
-                  actions.move_selection_previous(prompt_bufnr)
-                end
-              end,
-              ["D"] = function(prompt_bufnr)
-                for i = 1, 10 do
-                  actions.move_selection_next(prompt_bufnr)
-                end
-              end,
-              ["<PageUp>"] = actions.preview_scrolling_up,
-              ["-<PageDown>"] = actions.preview_scrolling_down,
-            },
-          },
-        },
       }
       telescope.setup(opts)
       require("telescope").load_extension("fzf")
-      require("telescope").load_extension("file_browser")
     end,
   },
   {

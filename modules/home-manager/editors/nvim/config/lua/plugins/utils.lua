@@ -10,7 +10,7 @@ return {
     },
     keys = {
       { "<leader>fp", false },
-      { "<leader>pp", "<Cmd>Telescope projects<CR>", desc = "Open projects" },
+      { "<leader>pp", pick, desc = "Open projects" },
     },
   },
   {
@@ -28,5 +28,5 @@ return {
       startVisible = false,
     },
   },
-  {"elkowar/yuck.vim"},
+  { "elkowar/yuck.vim" },
 }
