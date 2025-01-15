@@ -164,7 +164,7 @@ in
           zip # Zip
 
           # Collaboration tools
-          # webcord-vencord
+          webcord-vencord
 
           #llm
           # local-ai
@@ -178,7 +178,7 @@ in
           image-roll # Image Viewer
 
           # Collaboration tools
-          webcord-vencord
+          # webcord-vencord
         ]);
     };
   }
