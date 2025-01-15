@@ -186,5 +186,8 @@ return {
         },
       },
     },
+    keys = {
+      { "<leader>.", false },
+    },
   },
 }
