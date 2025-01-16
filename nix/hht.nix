@@ -55,7 +55,7 @@
       sandbox = false;
       auto-optimise-store = true;
     };
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.stable;
     registry.nixpkgs.flake = inputs.nixpkgs;
     extraOptions = ''
       experimental-features = nix-command flakes
