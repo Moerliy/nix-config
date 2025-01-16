@@ -37,7 +37,6 @@
   sane-defaults.enable = true;
   fish.enable = true;
   starship.enable = true;
-  bat.enable = true;
   zoxide.enable = true;
   zsh.enable = true;
   custom-scripts.enable = true;
@@ -132,6 +131,8 @@
 
       git.enable = true;
       lazygit.enable = true;
+
+      bat.enable = true;
 
       home = {
         stateVersion = "23.11";

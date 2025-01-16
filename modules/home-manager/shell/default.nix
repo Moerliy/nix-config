@@ -11,5 +11,6 @@
 #
 [
   ./git.nix
+  ./bat.nix
   ./lazygit/default.nix
 ]

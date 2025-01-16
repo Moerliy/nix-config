@@ -14,5 +14,4 @@
   ./direnv.nix
   ./fish.nix
   ./zoxide.nix
-  ./bat.nix
 ]

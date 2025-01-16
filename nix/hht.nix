@@ -25,6 +25,7 @@
 
   git.enable = true;
   lazygit.enable = true;
+  bat.enable = true;
 
   home = {
     username = "${vars.user}";

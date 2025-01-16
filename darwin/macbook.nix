@@ -52,7 +52,6 @@
   sane-defaults.enable = true;
   fish.enable = true;
   starship.enable = true;
-  bat.enable = true;
   zoxide.enable = true;
   zsh.enable = true;
 
@@ -157,6 +156,7 @@
       # editors
       neovim.enable = true;
       tmux.enable = true;
+      bat.enable = true;
       git.enable = true;
 
       home = {
