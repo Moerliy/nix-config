@@ -1,18 +1,15 @@
 #
-#  Shell
+#  Apps
 #
 #  flake.nix
 #   ├─ ./hosts
 #   │   └─ configuration.nix
 #   └─ ./modules
-#       └─ ./shell
+#       └─ ./programs
 #           ├─ default.nix *
 #           └─ ...
 #
 [
-  ./zsh.nix
-  ./direnv.nix
-  ./fish.nix
-  ./zoxide.nix
-  ./bat.nix
+  ./git.nix
+  ./lazygit/default.nix
 ]

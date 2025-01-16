@@ -37,9 +37,7 @@
   sane-defaults.enable = true;
   fish.enable = true;
   starship.enable = true;
-  git.enable = true;
   bat.enable = true;
-  lazygit.enable = true;
   zoxide.enable = true;
   zsh.enable = true;
   custom-scripts.enable = true;
@@ -138,6 +136,9 @@
       # Editors
       neovim.enable = true;
       tmux.enable = true;
+
+      git.enable = true;
+      lazygit.enable = true;
 
       home = {
         stateVersion = "25.05";

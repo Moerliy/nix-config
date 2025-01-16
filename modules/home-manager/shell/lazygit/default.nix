@@ -31,18 +31,16 @@ in
     };
 
     config = mkIf config.lazygit.enable {
-      home-manager.users.${vars.user} = {
-        programs = {
-          lazygit = {
-            enable = true;
-          };
+      programs = {
+        lazygit = {
+          enable = true;
         };
-        # Symlink files under ~/.config, e.g. ~/.config/alacritty/alacritty.yml
-        xdg.configFile = pkgs.lib.attrsets.mapAttrs toSource configFilesToLink;
-        home.packages = with pkgs; [
-          commitizen
-          # gptcommit
-        ];
       };
+      # Symlink files under ~/.config, e.g. ~/.config/alacritty/alacritty.yml
+      xdg.configFile = pkgs.lib.attrsets.mapAttrs toSource configFilesToLink;
+      home.packages = with pkgs; [
+        commitizen
+        # gptcommit
+      ];
     };
   }

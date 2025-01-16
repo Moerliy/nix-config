@@ -23,6 +23,9 @@
   neovim.enable = true;
   tmux.enable = true;
 
+  git.enable = true;
+  lazygit.enable = true;
+
   home = {
     username = "${vars.user}";
     homeDirectory = "/common/homes/all/${vars.user}";
