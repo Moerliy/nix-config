@@ -6,6 +6,7 @@
   lib,
   vars,
   pkgs,
+  inputs,
   ...
 }:
 with lib; {
@@ -28,12 +29,7 @@ with lib; {
         package = pkgs.bat;
         themes = {
           catppuccin-mocha = {
-            src = pkgs.fetchFromGitHub {
-              owner = "catppuccin";
-              repo = "bat";
-              rev = "main";
-              sha256 = "sha256-x1yqPCWuoBSx/cI94eA+AWwhiSA42cLNUOFJl7qjhmw=";
-            };
+            src = inputs.bat-catppuccin;
             file = "/themes/Catppuccin Mocha.tmTheme";
           };
         };

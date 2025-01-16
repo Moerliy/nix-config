@@ -55,6 +55,22 @@
         "type": "github"
       }
     },
+    "bat-catppuccin": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1734996624,
+        "narHash": "sha256-6fWoCH90IGumAMc4buLRWL0N61op+AuMNN9CAR9/OdI=",
+        "owner": "catppuccin",
+        "repo": "bat",
+        "rev": "699f60fc8ec434574ca7451b444b880430319941",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "bat",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -73,6 +89,22 @@
         "owner": "lnl7",
         "ref": "master",
         "repo": "nix-darwin",
+        "type": "github"
+      }
+    },
+    "delta-catppuccin": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1735675170,
+        "narHash": "sha256-04po0A7bVMsmYdJcKL6oL39RlMLij1lRKvWl5AUXJ7Q=",
+        "owner": "catppuccin",
+        "repo": "delta",
+        "rev": "e9e21cffd98787f1b59e6f6e42db599f9b8ab399",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "delta",
         "type": "github"
       }
     },
@@ -784,7 +816,9 @@
     "root": {
       "inputs": {
         "apple-silicon": "apple-silicon",
+        "bat-catppuccin": "bat-catppuccin",
         "darwin": "darwin",
+        "delta-catppuccin": "delta-catppuccin",
         "home-manager": "home-manager",
         "home-manager-unstable": "home-manager-unstable",
         "hyprhook": "hyprhook",
@@ -796,7 +830,8 @@
         "nixgl": "nixgl",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "tokionight-nvim": "tokionight-nvim"
       }
     },
     "rust-overlay": {
@@ -857,6 +892,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "tokionight-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1736614650,
+        "narHash": "sha256-1F8qJItOYYCP4X/P54Z8By8f9/ppOYvAE6nISuDHhCs=",
+        "owner": "folke",
+        "repo": "tokyonight.nvim",
+        "rev": "775f82f08a3d1fb55a37fc6d3a4ab10cd7ed8a10",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "tokyonight.nvim",
         "type": "github"
       }
     },

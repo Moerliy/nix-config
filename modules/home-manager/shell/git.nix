@@ -6,6 +6,7 @@
   lib,
   vars,
   pkgs,
+  inputs,
   ...
 }:
 with lib; {
@@ -30,22 +31,12 @@ with lib; {
         includes = [
           {
             path =
-              pkgs.fetchFromGitHub {
-                owner = "catppuccin";
-                repo = "delta";
-                rev = "main";
-                sha256 = "sha256-JvkTvAe1YltgmYSHeewzwg6xU38oGOIYoehXdHwW1zI=";
-              }
+              inputs.delta-catppuccin
               + "/catppuccin.gitconfig";
           }
           {
             path =
-              pkgs.fetchFromGitHub {
-                owner = "folke";
-                repo = "tokyonight.nvim";
-                rev = "main";
-                sha256 = "sha256-vKXlFHzga9DihzDn+v+j3pMNDfvhYHcCT8GpPs0Uxgg=";
-              }
+              inputs.tokionight-nvim
               + "/extras/delta/tokyonight_night.gitconfig";
           }
         ];

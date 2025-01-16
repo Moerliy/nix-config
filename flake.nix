@@ -81,6 +81,18 @@
       url = "github:Lxtharia/minegrub-world-sel-theme";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    bat-catppuccin = {
+      url = "github:catppuccin/bat";
+      flake = false;
+    };
+    delta-catppuccin = {
+      url = "github:catppuccin/delta";
+      flake = false;
+    };
+    tokionight-nvim = {
+      url = "github:folke/tokyonight.nvim";
+      flake = false;
+    };
   };
 
   outputs = inputs @ {
@@ -99,6 +111,9 @@
     minegrub,
     nixgl,
     minegrubx86,
+    bat-catppuccin,
+    delta-catppuccin,
+    tokionight-nvim,
     ...
   }:
   # Function telling flake which inputs to use
