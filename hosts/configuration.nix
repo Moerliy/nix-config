@@ -154,6 +154,8 @@ in
           remmina # XRDP & VNC Client
           anki # Flashcards
           catppuccin-kvantum # Theme Manager
+          freecad-wayland # CAD
+          prusa-slicer # 3D Printer Slicer
 
           # File Management
           file-roller # Archive Manager

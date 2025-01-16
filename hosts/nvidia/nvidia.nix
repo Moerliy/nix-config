@@ -82,9 +82,10 @@
     };
     nvidia = {
       package = config.boot.kernelPackages.nvidiaPackages.stable;
-      open = true;
+      open = false;
       modesetting.enable = true;
-      powerManagement.enable = true;
+      powerManagement.enable = false;
+      nvidiaSettings = true;
     };
     bluetooth = {
       enable = true;
@@ -139,9 +140,9 @@
       tmux.enable = true;
 
       home = {
-        stateVersion = "24.05";
+        stateVersion = "25.05";
       };
     };
   };
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 }

@@ -11,7 +11,7 @@
   description = "Nix, NixOS and Nix Darwin System Flake Configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05"; # Nix Packages (Default)
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11"; # Nix Packages (Default)
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable Nix Packages
     nixos-hardware.url = "github:nixos/nixos-hardware/master"; # Hardware Specific Configurations
 
