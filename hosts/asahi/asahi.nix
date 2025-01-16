@@ -134,6 +134,10 @@
 
       home = {
         stateVersion = "23.11";
+        packages = with pkgs-stable; [
+          # Collaboration tools
+          webcord-vencord
+        ];
       };
     };
   };

@@ -165,9 +165,6 @@ in
           unzip # Zip Files
           zip # Zip
 
-          # Collaboration tools
-          webcord-vencord
-
           #llm
           # local-ai
 
@@ -178,9 +175,6 @@ in
         ++ (with pkgs-stable; [
           # Apps
           image-roll # Image Viewer
-
-          # Collaboration tools
-          # webcord-vencord
         ]);
     };
   }

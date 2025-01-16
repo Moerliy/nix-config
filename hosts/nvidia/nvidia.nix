@@ -141,6 +141,11 @@
 
       home = {
         stateVersion = "25.05";
+
+        packages = with pkgs; [
+          # Collaboration tools
+          webcord-vencord
+        ];
       };
     };
   };

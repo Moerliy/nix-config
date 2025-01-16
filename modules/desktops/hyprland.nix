@@ -24,6 +24,10 @@
   hyprlockPkg = hyprlock.packages.${pkgs.system}.hyprlock;
   hypridlePkg = hypridle.packages.${pkgs.system}.hypridle;
   hyprhookPkg = hyprhook.packages.${pkgs.system}.hyprhook;
+  webcordPkg =
+    if host.hostName == "asahi"
+    then pkgs-stable.webcord-vencord
+    else pkgs.webcord-vencord;
 in
   with lib;
   with host; {
@@ -455,7 +459,7 @@ in
               "[workspace special silent] ${pkgs.${vars.terminal}}/bin/${vars.terminal}"
               "[workspace 1] ${pkgs.${vars.terminal}}/bin/${vars.terminal}"
               "[workspace 2 silent] ${pkgs.firefox}/bin/firefox"
-              "[workspace 8 silent] ${pkgs.webcord-vencord}/bin/webcord"
+              "[workspace 8 silent] ${webcordPkg}/bin/webcord"
             ];
             # bindl =
             #   if hostName == "asahi" then [
@@ -494,7 +498,7 @@ in
             bind = , F, submap, reset
             bindd = , B, Open Browser, exec, [workspace 2] ${pkgs.firefox}/bin/firefox
             bind = , B, submap, reset
-            bindd = , D, Open Discord, exec, [workspace 8]${pkgs.webcord-vencord}/bin/webcord
+            bindd = , D, Open Discord, exec, [workspace 8]${webcordPkg}/bin/webcord
             bind = , D, submap, reset
             bindd = , C, Open Controll Center, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun
             bind = , C, submap, reset
