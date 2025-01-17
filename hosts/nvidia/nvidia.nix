@@ -126,12 +126,12 @@
           in {
             title = "Windows";
             efiDeviceHandle = boot-drive;
-            sortKey = "y_windows";
+            sortKey = "0_windows";
           };
         };
 
         edk2-uefi-shell.enable = true;
-        edk2-uefi-shell.sortKey = "z_edk2";
+        edk2-uefi-shell.sortKey = "1_edk2";
       };
     };
     lanzaboote = {

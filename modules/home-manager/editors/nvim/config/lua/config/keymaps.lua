@@ -100,9 +100,6 @@ keymap.set(
   { silent = true, noremap = true, desc = "Change package version" }
 )
 
--- Git blame
-keymap.set("n", "<Leader>gb", "<cmd>GitBlameToggle<CR>", { desc = "Toggle git blame" })
-
 -- Telescope theme switcher
 keymap.set("n", "<leader>tc", ":Telescope themes<CR>", { noremap = true, silent = true, desc = "Theme Changer" })
 
