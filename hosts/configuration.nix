@@ -8,39 +8,6 @@
   terminal = pkgs.${vars.terminal};
 in
   with host; {
-    boot = {
-      # Use the systemd-boot EFI boot loader.
-      loader = {
-        # systemd-boot.enable = true;
-        grub.minegrub-world-sel = {
-          enable = true;
-          customIcons = [
-            {
-              name = "nixos";
-              lineTop = "NixOS (23/11/2023, 23:03)";
-              lineBottom = "Survival Mode, No Cheats, Version: 23.11";
-              # Icon: you can use an icon from the remote repo, or load from a local file
-              imgName = "nixos";
-              # customImg = builtins.path {
-              #   path = ./nixos-logo.png;
-              #   name = "nixos-img";
-              # };
-            }
-          ];
-        };
-        efi = {
-          canTouchEfiVariables =
-            if hostName == "asahi"
-            then false
-            else true;
-        };
-      };
-      tmp = {
-        cleanOnBoot = true;
-        tmpfsSize = "5GB";
-      };
-    };
-
     users.users.${vars.user} = {
       name = "${vars.user}";
       home = "/home/${vars.user}";
@@ -134,6 +101,7 @@ in
           gmp # gnu multiple precision arithmetic library
           ncurses # new curses
           cloc # count lines of code
+          sbctl # Secure Boot Key Manager
 
           python311Packages.numpy
 

@@ -104,9 +104,50 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  boot.loader.grub.enable = true;
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.device = "nodev";
+  boot = {
+    loader = {
+      # grub = {
+      #   enable = true;
+      #   efiSupport = true;
+      #   device = "nodev";
+      #   useOSProber = true;
+      # };
+      efi = {
+        canTouchEfiVariables = true;
+      };
+      systemd-boot = {
+        enable = lib.mkForce false;
+        windows = {
+          "windows" = let
+            # To determine the name of the windows boot drive, boot into edk2 first, then run
+            # `map -c` to get drive aliases, and try out running `FS1:`, then `ls EFI` to check
+            # which alias corresponds to which EFI partition.
+            boot-drive = "HD1a65535a1";
+          in {
+            title = "Windows";
+            efiDeviceHandle = boot-drive;
+            sortKey = "y_windows";
+          };
+        };
+
+        edk2-uefi-shell.enable = true;
+        edk2-uefi-shell.sortKey = "z_edk2";
+      };
+    };
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+    };
+    tmp = {
+      cleanOnBoot = true;
+      tmpfsSize = "5GB";
+    };
+  };
+
+  # System clock might be incorrect after booting Windows and going back to the NixOS.
+  # It can be fixed by either setting RTC time standard to UTC on Windows, or setting it to localtime on NixOS.
+  # Setting RTC time standard to localtime, compatible with Windows in its default configuration:
+  time.hardwareClockInLocalTime = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

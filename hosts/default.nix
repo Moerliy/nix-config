@@ -20,6 +20,7 @@
   vars,
   minegrub,
   minegrubx86,
+  lanzaboote,
   ...
 }: let
   system = "aarch64-linux";
@@ -72,7 +73,8 @@ in {
     modules = [
       ./nvidia/nvidia.nix
       ./configuration.nix
-      minegrubx86.nixosModules.default
+      # minegrubx86.nixosModules.default
+      lanzaboote.nixosModules.lanzaboote
 
       home-manager.nixosModules.home-manager
       {

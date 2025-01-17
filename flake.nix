@@ -39,6 +39,11 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     # Official Hyprland Flake
     hyprland = {
       type = "git";
@@ -111,6 +116,7 @@
     minegrub,
     nixgl,
     minegrubx86,
+    lanzaboote,
     bat-catppuccin,
     delta-catppuccin,
     tokionight-nvim,
@@ -143,7 +149,7 @@
     nixosConfigurations = (
       import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs hyprland hyprhook hypridle hyprlock nixpkgs-unstable home-manager home-manager-unstable apple-silicon vars minegrub minegrubx86;
+        inherit inputs nixpkgs hyprland hyprhook hypridle hyprlock nixpkgs-unstable home-manager home-manager-unstable apple-silicon vars minegrub minegrubx86 lanzaboote;
       }
     );
 
