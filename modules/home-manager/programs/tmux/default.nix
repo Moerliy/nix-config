@@ -53,7 +53,7 @@ in
             # copy config.yaml to ./plugins/tmux-which-key if it exists
             if-shell "! test -f ~/.config/tmux/plugins/tmux-which-key/config.yaml" "run-shell 'ln -s ~/.config/tmux/config.yaml ~/.config/tmux/plugins/tmux-which-key/config.yaml'" "run-shell 'rm ~/.config/tmux/plugins/tmux-which-key/config.yaml ; ln -s ~/.config/tmux/config.yaml ~/.config/tmux/plugins/tmux-which-key/config.yaml'"
 
-            set -g default-terminal "tmux-256color"
+            set -g default-terminal "xterm-256color"
             set -ga terminal-overrides ',*:Tc' # this is for 256 color
             set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q' # this is for the cursor shape
             set -g default-command ${defaultCommand}
