@@ -46,7 +46,7 @@ end, { desc = "Show all notifications" })
 keymap.set("n", "<Leader>T", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
 
 -- Copilot toggle
-keymap.set("n", "<Leader>tp", "<cmd>Copilot suggestion toggle_auto_trigger<CR>", { desc = "Toggle Copilot" })
+keymap.set("n", "<Leader>tp", "<cmd>Copilot disable<CR>", { desc = "Toggle Copilot" })
 
 -- Dotfiles lazygit with toggleterm
 local Terminal = require("toggleterm.terminal").Terminal
