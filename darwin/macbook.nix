@@ -158,6 +158,7 @@
       tmux.enable = true;
       bat.enable = true;
       git.enable = true;
+      neofetch.enable = true;
 
       home = {
         stateVersion = "22.05";

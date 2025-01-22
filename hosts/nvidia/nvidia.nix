@@ -179,6 +179,7 @@
 
       git.enable = true;
       lazygit.enable = true;
+      neofetch.enable = true;
       bat.enable = true;
 
       home = {

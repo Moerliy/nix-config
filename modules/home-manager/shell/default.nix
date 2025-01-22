@@ -13,4 +13,5 @@
   ./git.nix
   ./bat.nix
   ./lazygit/default.nix
+  ./neofetch/default.nix
 ]
