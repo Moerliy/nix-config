@@ -87,7 +87,7 @@ customCommands:
     context: "files"
     command: git cz c
     description: "commit with commitizen"
-    loadiingText: "opening commitizen commit tool"
+    loadingText: "opening commitizen commit tool"
     subprocess: true
   - key: "M"
     command: "git mergetool {{ .SelectedFile.Name }}"
