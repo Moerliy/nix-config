@@ -53,8 +53,8 @@
     };
 
     hyprhook = {
-      # url = "github:Hyprhook/Hyprhook";
-      url = "github:Moerliy/Hyprhook";
+      url = "github:Hyprhook/Hyprhook";
+      # url = "github:Moerliy/Hyprhook";
       # Hyprspace uses latest Hyprland. We declare this to keep them in sync.
       inputs.hyprland.follows = "hyprland";
     };
