@@ -136,7 +136,7 @@ return {
         icons = {
           inlay = {
             loading = "⏳",
-            done = "✅ ",
+            done = "✅",
           },
           lualine = "🐼",
         },
