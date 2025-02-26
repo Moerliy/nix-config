@@ -187,7 +187,8 @@
 
         packages = with pkgs; [
           # Collaboration tools
-          webcord-vencord
+          # webcord-vencord
+          vesktop
         ];
       };
     };
