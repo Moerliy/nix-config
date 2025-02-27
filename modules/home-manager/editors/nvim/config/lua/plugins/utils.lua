@@ -8,10 +8,6 @@ return {
       show_hidden = true,
       silent_chdir = false,
     },
-    keys = {
-      { "<leader>fp", false },
-      { "<leader>pp", pick, desc = "Open projects" },
-    },
   },
   {
     "wintermute-cell/gitignore.nvim",
