@@ -449,6 +449,7 @@ in
               "float,title:nmtui-session"
               "size 800 600,title:nmtui-session"
               "workspace 1,title:nmtui-session"
+              "workspace 8,class:vesktop"
             ];
             exec-once = [
               "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
