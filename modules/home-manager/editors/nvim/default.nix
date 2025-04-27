@@ -85,7 +85,7 @@ in
             haskellPackages.stack
 
             clang-tools
-            ruff-lsp
+            # ruff-lsp
             ruff
             pyright
             taplo

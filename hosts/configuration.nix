@@ -40,6 +40,12 @@ in
       sudo.wheelNeedsPassword = false;
     };
 
+    systemd.services.nix-daemon.serviceConfig = {
+      CPUQuota = "75%";   # Limits nix-daemon to 50% of total CPU time
+      Nice = 19;          # Lowers priority (optional)
+      # IOSchedulingClass = "idle"; # Lowers disk priority (optional)
+    };
+
     fonts = {
       packages = with pkgs; [
         source-code-pro
@@ -76,6 +82,7 @@ in
           vim # Text Editor
           neovim # Text Editor
           nodejs # Javascript Runtime
+          deno # Javascript/Typescript Runtime
           nodePackages.pnpm # Package Manager
           python3 # python runtime
           nix-tree # Browse Nix Store

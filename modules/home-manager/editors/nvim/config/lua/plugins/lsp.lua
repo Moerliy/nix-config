@@ -106,6 +106,9 @@ return {
         vtsls = {
           mason = false,
         },
+        denols = {
+          mason = false,
+        },
         tsserver = {
           mason = false,
           init_options = {
