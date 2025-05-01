@@ -41,8 +41,8 @@ in
     };
 
     systemd.services.nix-daemon.serviceConfig = {
-      CPUQuota = "75%";   # Limits nix-daemon to 50% of total CPU time
-      Nice = 19;          # Lowers priority (optional)
+      CPUQuota = "75%"; # Limits nix-daemon to 50% of total CPU time
+      Nice = 19; # Lowers priority (optional)
       # IOSchedulingClass = "idle"; # Lowers disk priority (optional)
     };
 

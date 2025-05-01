@@ -66,7 +66,7 @@ in {
       inherit inputs vars system hyprland hyprhook hypridle hyprlock pkgs-stable;
       host = {
         hostName = "nvidia";
-        mainMonitor = "HDMI-A-1";
+        mainMonitor = "DP-3";
         secondMonitor = "DP-2";
       };
     };
