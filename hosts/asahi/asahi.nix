@@ -61,8 +61,6 @@
   # Asahi settings
   hardware = {
     asahi = {
-      withRust = true;
-      # addEdgeKernelConfig = true;
       useExperimentalGPUDriver = true;
       experimentalGPUInstallMode = "replace";
       setupAsahiSound = true;
@@ -164,7 +162,7 @@
       bat.enable = true;
 
       home = {
-        stateVersion = "23.11";
+        stateVersion = "25.05";
         packages = with pkgs-stable; [
           # Collaboration tools
           webcord-vencord
@@ -172,5 +170,5 @@
       };
     };
   };
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 }

@@ -71,6 +71,7 @@ in
       };
       systemPackages = with pkgs;
         [
+          vulkan-tools
           # Terminal
           terminal # Terminal Emulator
           btop # Resource Manager

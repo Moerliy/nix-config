@@ -19,7 +19,6 @@
   mainMod = "SUPER";
   hyprlandPkg = hyprland.packages.${pkgs.system}.hyprland.override {
     # legacyRenderer = true;
-    # mesa = pkgs.mesa;
   };
   hyprlockPkg = hyprlock.packages.${pkgs.system}.hyprlock;
   hypridlePkg = hypridle.packages.${pkgs.system}.hypridle;
