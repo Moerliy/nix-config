@@ -45,7 +45,7 @@ in
           extraConfig = ''
             # plugins
             set -g @plugin 'tmux-plugins/tpm'
-            set -g @plugin 'catppuccin/tmux#v2.1.3'
+            set -g @plugin 'catppuccin/tmux#v0.3.0'
             set -g @plugin 'alexwforsythe/tmux-which-key'
             set -g @plugin 'omerxx/tmux-sessionx'
             set -g @plugin 'sainnhe/tmux-fzf'

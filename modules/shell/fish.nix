@@ -85,6 +85,7 @@ with lib; {
             #fish_add_path --path "$HOME/.setup/scripts/bin"
 
             eval (starship init fish)
+            set -g fish_color_command "blue"
 
             # lf file manager
             function lfcd --wraps="lf" --description="lf - Terminal file manager (changing directory on exit)"

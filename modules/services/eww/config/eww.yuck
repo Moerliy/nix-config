@@ -69,7 +69,7 @@
 )
 
 (defwindow which-key [bindsJson]
-  :monitor 1
+  :monitor "@monitor@"
   :geometry (geometry :x "0%"
                       :y "0%"
                       :height "100px"

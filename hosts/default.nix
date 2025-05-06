@@ -46,6 +46,7 @@ in {
         buildInMonitor = "eDP-1";
         mainMonitor = "HDMI-A-1";
         secondMonitor = "DP-2";
+        mainMonitorNumber = "0";
       };
     };
     modules = [
@@ -68,6 +69,7 @@ in {
         hostName = "nvidia";
         mainMonitor = "DP-3";
         secondMonitor = "DP-2";
+        mainMonitorNumber = "1";
       };
     };
     modules = [

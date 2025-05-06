@@ -38,7 +38,7 @@ with lib; {
             plugins = ["git"];
             # custom = "$HOME/.config/zsh_nix/custom";
           };
-          initExtra = ''
+          initContent = ''
             source ${pkgs.spaceship-prompt}/share/zsh/site-functions/prompt_spaceship_setup
             autoload -U promptinit; promptinit
           '';

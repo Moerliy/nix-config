@@ -3,11 +3,17 @@
   config,
   lib,
   vars,
+  host,
   ...
 }: let
+  patchedYuck = pkgs.substituteAll {
+    src = ./config/eww.yuck;
+    monitor = host.mainMonitorNumber;
+  };
   # if ./config/secrets exists, add it to the configFilesToLink
   configFilesToLink = {
-    "eww-which-key" = ./config;
+    "eww-which-key/eww.scss" = ./config/eww.scss;
+    "eww-which-key/eww.yuck" = patchedYuck;
   };
   # Function to help map attrs for symlinking home.file, xdg.configFile
   # e.g. from { ".hgrc" = ./hgrc; } to { ".hgrc".source = ./hgrc; }
