@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+sessionBackend="backend"
+sessionFrontend="frontend"
+
+hasBackendSession=false
+hasFrontendSession=false
+
+if tmux has-session -t $sessionBackend 2>/dev/null; then
+  hasBackendSession=true
+fi
+
+if tmux has-session -t $sessionFrontend 2>/dev/null; then
+  hasFrontendSession=true
+fi
+
+if [[ $hasFrontendSession == false ]]; then
+  tmux new-session -d -s $sessionFrontend
+
+  window=0
+  tmux rename-window -t $sessionFrontend:$window "run"
+  window=1
+  tmux new-window -t $sessionFrontend:$window -n "dev"
+
+  window=0
+  tmux send-keys -t $sessionFrontend:$window "cd voice-actor-io" C-m
+  tmux send-keys -t $sessionFrontend:$window "pnpm run dev" C-m
+
+  window=1
+  tmux send-keys -t $sessionFrontend:$window "cd voice-actor-io" C-m
+  tmux send-keys -t $sessionFrontend:$window "vim" C-m
+fi
+
+if [[ $hasFrontendSession == false ]]; then
+  tmux new-session -d -s $sessionBackend
+
+  window=0
+  tmux rename-window -t $sessionBackend:$window "run"
+  window=1
+  tmux new-window -t $sessionBackend:$window -n "dev"
+
+  window=0
+  tmux send-keys -t $sessionBackend:$window "cd voice-actor-backend" C-m
+  tmux send-keys -t $sessionBackend:$window "deno task dev" C-m
+
+  window=1
+  tmux send-keys -t $sessionBackend:$window "cd voice-actor-backend" C-m
+  tmux send-keys -t $sessionBackend:$window "vim" C-m
+fi
+
+tmux attach -t $sessionBackend
