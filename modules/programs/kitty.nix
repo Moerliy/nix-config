@@ -65,6 +65,7 @@ with lib; {
             resize_debounce_time = "0";
             background_opacity = "0.9";
             cursor_shape = "block";
+            cursor_trail = 1;
           };
           shellIntegration = {
             enableFishIntegration = true;
