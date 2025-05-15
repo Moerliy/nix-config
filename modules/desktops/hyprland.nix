@@ -25,7 +25,8 @@
   hyprhookPkg = hyprhook.packages.${pkgs.system}.hyprhook;
   discordBin =
     if host.hostName == "asahi"
-    then "${pkgs-stable.webcord-vencord}/bin/webcord"
+    # then "${pkgs.webcord-vencord}/bin/webcord"
+    then "${pkgs.vesktop}/bin/vesktop"
     # else "${pkgs.webcord-vencord}/bin/webcord";
     else "${pkgs.vesktop}/bin/vesktop";
 in

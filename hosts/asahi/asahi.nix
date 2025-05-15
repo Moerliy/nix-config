@@ -163,9 +163,10 @@
 
       home = {
         stateVersion = "25.05";
-        packages = with pkgs-stable; [
+        packages = with pkgs; [
           # Collaboration tools
-          webcord-vencord
+          # webcord-vencord
+          vesktop
         ];
       };
     };
