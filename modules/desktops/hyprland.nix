@@ -486,6 +486,7 @@ in
             bindd = , G, +screenshot, submap, grimblast
             bindd = , S, Special Workspace, togglespecialworkspace,
             bindd = , S, Reset submap, submap, reset
+            bindd = , T, +toggle, submap, toggle
             bindd = SHIFT, S, Move To Special Workspace, movetoworkspace, special
             bindd = SHIFT, S, Reset submap, submap, reset
             submap = reset
@@ -621,6 +622,14 @@ in
             bind = , A, submap, reset
             bindd = , R, Scree Recorde, exec, $HOME/.local/bin/screenRecorder
             bind = , R, submap, reset
+            submap = reset
+
+            submap = toggle
+            bind = , escape, submap, reset
+            bindd = , F, Floating, togglefloating
+            bind = , F, submap, reset
+            bindd = , B, Fullscreen, fullscreen
+            bind = , B, submap, reset
             submap = reset
 
             plugin {
