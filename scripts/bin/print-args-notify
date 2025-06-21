@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# test notification
+
+notify-send "$1"

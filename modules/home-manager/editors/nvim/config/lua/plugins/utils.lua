@@ -53,6 +53,7 @@ return {
     config = function()
       local ft = require("Comment.ft")
       ft.set("kt", "// %s")
+      ft.haskell = "-- %s"
     end,
     opts = {},
   },

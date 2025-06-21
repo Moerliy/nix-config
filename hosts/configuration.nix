@@ -112,6 +112,7 @@ in
           sbctl # Secure Boot Key Manager
 
           python311Packages.numpy
+          prismlauncher
 
           # Video/Audio
           alsa-utils # Audio Control
