@@ -40,7 +40,17 @@ in {
   asahi = lib.nixosSystem {
     inherit system;
     specialArgs = {
-      inherit inputs vars system apple-silicon hyprland hyprhook hypridle hyprlock pkgs-stable;
+      inherit
+        inputs
+        vars
+        system
+        apple-silicon
+        hyprland
+        hyprhook
+        hypridle
+        hyprlock
+        pkgs-stable
+        ;
       host = {
         hostName = "asahi";
         buildInMonitor = "eDP-1";
@@ -64,11 +74,20 @@ in {
   nvidia = lib.nixosSystem {
     inherit system;
     specialArgs = {
-      inherit inputs vars system hyprland hyprhook hypridle hyprlock pkgs-stable;
+      inherit
+        inputs
+        vars
+        system
+        hyprland
+        hyprhook
+        hypridle
+        hyprlock
+        pkgs-stable
+        ;
       host = {
         hostName = "nvidia";
-        mainMonitor = "DP-3";
-        secondMonitor = "DP-2";
+        mainMonitor = "DP-2";
+        secondMonitor = "DP-1";
         mainMonitorNumber = "1";
       };
     };
