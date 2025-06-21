@@ -27,12 +27,11 @@ if [ "$hostname" = "macbook" ]; then
 else
   sudo nixos-rebuild switch --impure --flake .#"$hostname" &>nix-switch.log || (cat nix-switch.log | grep --color error && false)
 fi
-CURRENT=" (current)"
 # remove current out of string
 if [ "$hostname" = "macbook" ]; then
-  gen=$(darwin-rebuild --list-generations | grep current | sed "s/$CURRENT//g")
+  gen=$(darwin-rebuild --list-generations | grep True | sed "s/'True'//g" | sed -E 's/ +/ /g; s/ Unknown.*//')
 else
-  gen=$(nixos-rebuild list-generations | grep current | sed "s/$CURRENT//g")
+  gen=$(nixos-rebuild list-generations | grep True | sed "s/'True'//g" | sed -E 's/ +/ /g; s/ Unknown.*//')
 fi
 git commit -am "$gen"
 popd

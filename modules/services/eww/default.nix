@@ -6,10 +6,12 @@
   host,
   ...
 }: let
-  patchedYuck = pkgs.substituteAll {
-    src = ./config/eww.yuck;
-    monitor = host.mainMonitorNumber;
-  };
+  patchedYuck =
+    pkgs.replaceVars
+    ./config/eww.yuck
+    {
+      monitor = host.mainMonitorNumber;
+    };
   # if ./config/secrets exists, add it to the configFilesToLink
   configFilesToLink = {
     "eww-which-key/eww.scss" = ./config/eww.scss;

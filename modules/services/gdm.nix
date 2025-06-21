@@ -11,23 +11,23 @@ with lib; {
     enable = mkOption {
       type = types.bool;
       default = false;
-      description =
-        mdDoc
-        ''
-          Enable the grub display manager
-        '';
+      description = mdDoc ''
+        Enable the grub display manager
+      '';
     };
   };
 
   config = mkIf config.gdm.enable {
     # Enable the X11 windowing system.
-    services.xserver = {
-      enable = true;
+    services = {
+      xserver = {
+        enable = true;
+        xkb.layout = "de";
+      };
       displayManager.gdm = {
         enable = true;
         wayland = true;
       };
-      xkb.layout = "de";
     };
   };
 }

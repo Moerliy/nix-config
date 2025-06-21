@@ -20,11 +20,9 @@ in
       enable = mkOption {
         type = types.bool;
         default = false;
-        description =
-          mdDoc
-          ''
-            Enable mako the notification daemin.
-          '';
+        description = mdDoc ''
+          Enable mako the notification daemin.
+        '';
       };
     };
 
@@ -33,12 +31,14 @@ in
         services = {
           mako = {
             enable = true;
-            anchor = "top-right";
-            backgroundColor = "#1e1e2e";
-            textColor = "#cdd6f4";
-            borderColor = "#cba6f7";
-            progressColor = "#313244";
-            defaultTimeout = 3500;
+            settings = {
+              default-timeout = 3500;
+              progress-color = "#313244";
+              border-color = "#cba6f7";
+              text-color = "#cdd6f4";
+              background-color = "#1e1e2e";
+              anchor = "top-right";
+            };
           };
         };
         # Symlink files under ~/.config, e.g. ~/.config/alacritty/alacritty.yml
