@@ -42,19 +42,8 @@ keymap.set("n", "<Leader>uN", function()
   Snacks.notifier.show_history()
 end, { desc = "Show all notifications" })
 
--- Toggleterm
-keymap.set("n", "<Leader>T", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
-
 -- Copilot toggle
 keymap.set("n", "<Leader>tp", "<cmd>Copilot disable<CR>", { desc = "Toggle Copilot" })
-
--- Dotfiles lazygit with toggleterm
-local Terminal = require("toggleterm.terminal").Terminal
-local lazygit = Terminal:new({ cmd = "lazygit --git-dir=$HOME/dotfiles --work-tree=$HOME", hidden = true })
-function _lazygit_toggle()
-  lazygit:toggle()
-end
-keymap.set("n", "<leader>fC", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
 
 -- Package info
 keymap.set(
@@ -101,7 +90,7 @@ keymap.set(
 )
 
 -- Telescope theme switcher
-keymap.set("n", "<leader>tc", ":Telescope themes<CR>", { noremap = true, silent = true, desc = "Theme Changer" })
+keymap.set("n", "<leader>tc", ":Themery<CR>", { noremap = true, silent = true, desc = "Theme Changer" })
 
 -- kulala
 keymap.set(

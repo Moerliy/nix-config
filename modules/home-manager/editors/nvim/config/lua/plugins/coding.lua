@@ -97,11 +97,6 @@ return {
     },
   },
   {
-    "smjonas/inc-rename.nvim",
-    cmd = "IncRename",
-    config = true,
-  },
-  {
     "vuki656/package-info.nvim",
     depends = "MunifTanjim/nui.nvim",
     config = function()

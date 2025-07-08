@@ -155,84 +155,49 @@ return {
     },
   },
   {
-    "telescope.nvim",
-    dependencies = {
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-      },
-      "andrew-george/telescope-themes",
-    },
-    config = function(_, opts)
-      local telescope = require("telescope")
-
-      opts.extensions = {
+    "zaldih/themery.nvim",
+    lazy = false,
+    config = function()
+      require("themery").setup({
         themes = {
-          -- you can add regular telescope config
-          -- that you want to apply on this picker only
-          layout_config = {
-            horizontal = {
-              width = 0.8,
-              height = 0.7,
-            },
-          },
-          -- extension specific config
-          enable_previewer = true, -- (boolean) -> show/hide previewer window
-          enable_live_preview = true, -- (boolean) -> enable/disable live preview
-          ignore = {
-            "default",
-            "desert",
-            "elflord",
-            "blue",
-            "peachpuff",
-            "shine",
-            "darkblue",
-            "delek",
-            "catppuccin-latte",
-            "morning",
-            "zellner",
-            "tokyonight-day",
-            "kanagawa-lotus",
-            "onenord-light",
-            "solarized-osaka-day",
-          },
-          -- (table) -> provide table of theme names to ignore
-          -- all builtin themes are ignored by default
-        },
-      }
-      telescope.setup(opts)
-      require("telescope").load_extension("fzf")
+          "blue",
+          "catppuccin",
+          "catppuccin-frappe",
+          "catppuccin-macchiato",
+          "catppuccin-mocha",
+          "darkblue",
+          "default",
+          "desert",
+          "elflord",
+          "evening",
+          "gruvbox",
+          "habamax",
+          "industry",
+          "kanagawa",
+          "kanagawa-dragon",
+          "kanagawa-wave",
+          "koehler",
+          "lunaperche",
+          "murphy",
+          "nordic",
+          "onenord",
+          "oxocarbon",
+          "pablo",
+          "ron",
+          "slate",
+          "solarized-osaka",
+          "tokyonight",
+          "tokyonight-moon",
+          "tokyonight-night",
+          "tokyonight-storm",
+          "torte",
+          "unokai",
+          "wildcharm",
+        }, -- Your list of installed colorschemes.
+        livePreview = true, -- Apply theme while picking. Default to true.
+      })
     end,
   },
-  {
-    "stevearc/aerial.nvim",
-    event = "LazyFile",
-    opts = {
-      close_automatic_events = { "unfocus" },
-      manage_folds = true,
-      link_folds_to_tree = true,
-      link_tree_to_folds = true,
-    },
-  },
-  -- {
-  --   "ojroques/vim-oscyank",
-  --   config = function()
-  --     -- Should be accompanied by a setting clipboard in tmux.conf, also see
-  --     -- https://github.com/ojroques/vim-oscyank#the-plugin-does-not-work-with-tmux
-  --     vim.g.oscyank_term = "default"
-  --     vim.g.oscyank_max_length = 0 -- unlimited
-  --     -- Below autocmd is for copying to OSC52 for any yank operation,
-  --     -- see https://github.com/ojroques/vim-oscyank#copying-from-a-register
-  --     vim.api.nvim_create_autocmd("TextYankPost", {
-  --       pattern = "*",
-  --       callback = function()
-  --         if vim.v.event.operator == "y" and vim.v.event.regname == "" then
-  --           vim.cmd('OSCYankRegister "')
-  --         end
-  --       end,
-  --     })
-  --   end,
-  -- },
   {
     "HiPhish/rainbow-delimiters.nvim",
     lazy = false,

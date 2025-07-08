@@ -13,7 +13,17 @@ in
       home = "/home/${vars.user}";
       shell = pkgs.bash;
       isNormalUser = true;
-      extraGroups = ["wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" "optical" "storage"];
+      extraGroups = [
+        "wheel"
+        "video"
+        "audio"
+        "camera"
+        "networkmanager"
+        "lp"
+        "scanner"
+        "optical"
+        "storage"
+      ];
     };
 
     # Set your time zone.

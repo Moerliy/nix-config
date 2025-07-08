@@ -37,11 +37,9 @@ in
         enable = mkOption {
           type = types.bool;
           default = false;
-          description =
-            mdDoc
-            ''
-              Enable hyprland a WM
-            '';
+          description = mdDoc ''
+            Enable hyprland a WM
+          '';
         };
       };
     };
@@ -98,7 +96,7 @@ in
 
       programs.hyprland = {
         enable = true;
-        package = hyprlandPkg; #.override {debug = true;};
+        package = hyprlandPkg; # .override {debug = true;};
       };
 
       security.pam.services.hyprlock = {
@@ -228,7 +226,7 @@ in
 
         wayland.windowManager.hyprland = {
           enable = true;
-          package = hyprlandPkg; #.override {debug = true;};
+          package = hyprlandPkg; # .override {debug = true;};
           xwayland.enable = true;
           plugins = [
             hyprhookPkg
@@ -673,28 +671,14 @@ in
               # Start wl-paste in watch mode to monitor clipboard changes on wayland
               wl-paste -w 'xclip' 2>/dev/null &
 
-              lastclip=""
-
+              last=""
               while true; do
-                # Get the current x clipboard
-                clip="$(xclip -o 2>/dev/null)"
-
-                # clipboard changed and not "noText"
-                if [[ "$clip" != "$lastclip" && "$clip" != "noText" ]]; then
-                  wlpaste="$(wl-paste)"
-                  # wl-paste contains other then text and clip content comes from wl-paste
-                  if [[ $(wl-paste -l | grep -c "text") -eq 0 && "$wlpaste" == "$clip" ]]; then
-                    echo "noText" | xclip
-                  else
-                    wl-copy "$clip"
-                  fi
-
-                  # Update the last clipboard content
-                  lastclip="$clip"
+                current=$(xclip -o 2>/dev/null)
+                if [ "$current" != "$last" ]; then
+                  echo -n "$current" | wl-copy
+                  last="$current"
                 fi
-
-                # Sleep for a short interval before checking again
-                sleep 0.1
+                sleep 0.2
               done
             '';
             executable = true;

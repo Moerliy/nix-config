@@ -27,11 +27,9 @@ in
       enable = mkOption {
         type = types.bool;
         default = false;
-        description =
-          mdDoc
-          ''
-            Enable neovim configuration.
-          '';
+        description = mdDoc ''
+          Enable neovim configuration.
+        '';
       };
     };
 
@@ -100,6 +98,7 @@ in
             neocmakelsp
             cmake-format
             black
+            isort
             python312Packages.debugpy
             hadolint
             rust-analyzer
