@@ -20,7 +20,6 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.editor.inc-rename" },
     { import = "lazyvim.plugins.extras.editor.snacks_explorer" },
     { import = "lazyvim.plugins.extras.editor.snacks_picker" },
-    { import = "lazyvim.plugins.extras.ui.dashboard-nvim" },
     { import = "lazyvim.plugins.extras.ui.treesitter-context" },
     { import = "lazyvim.plugins.extras.util.project" },
     { import = "lazyvim.plugins.extras.formatting.black" },

@@ -126,27 +126,49 @@ return {
     keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
   },
   {
-    "nvimdev/dashboard-nvim",
-    enabled = true,
-    event = "VimEnter",
-    dependencies = { { "nvim-tree/nvim-web-devicons" } },
-    opts = function(_, opts)
-      local logo = [[
+    "folke/snacks.nvim",
+    ---@type snacks.Config
+    opts = {
+      dashboard = {
+        preset = {
+          header = [[
     ███████╗███╗   ███╗ █████╗  ██████╗███████╗
     ██╔════╝████╗ ████║██╔══██╗██╔════╝██╔════╝
     █████╗  ██╔████╔██║███████║██║     ███████╗
     ██╔══╝  ██║╚██╔╝██║██╔══██║██║     ╚════██║
     ███████╗██║ ╚═╝ ██║██║  ██║╚██████╗███████║
     ╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝╚══════╝
-          ]]
-
-      logo = string.rep("\n", 8) .. logo .. "\n\n"
-      opts.config.header = vim.split(logo, "\n")
-    end,
-  },
-  {
-    "folke/snacks.nvim",
-    opts = {
+              ]],
+        },
+        sections = {
+          { section = "header" },
+          -- {
+          --   pane = 2,
+          --   section = "terminal",
+          --   cmd = "chafa ~/.config/wallpaper.png --format symbols --symbols vhalf --size 60x17 --stretch; sleep .1",
+          --   height = 5,
+          --   padding = 1,
+          -- },
+          { section = "keys", gap = 1, padding = 1 },
+          { pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+          { pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+          {
+            pane = 2,
+            icon = " ",
+            title = "Git Status",
+            section = "terminal",
+            enabled = function()
+              return Snacks.git.get_root() ~= nil
+            end,
+            cmd = "git status --short --branch --renames",
+            height = 5,
+            padding = 1,
+            ttl = 5 * 60,
+            indent = 3,
+          },
+          { section = "startup" },
+        },
+      },
       lazygit = {
         -- automatically configure lazygit to use the current colorscheme
         -- and integrate edit with the current neovim instance
