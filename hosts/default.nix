@@ -86,8 +86,8 @@ in {
         ;
       host = {
         hostName = "nvidia";
-        mainMonitor = "DP-2";
-        secondMonitor = "DP-1";
+        mainMonitor = "DP-3";
+        secondMonitor = "DP-2";
         mainMonitorNumber = "1";
       };
     };
