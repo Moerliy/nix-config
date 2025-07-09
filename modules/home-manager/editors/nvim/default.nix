@@ -114,6 +114,7 @@ in
             unzip
             neo
             pipes
+            dwt1-shell-color-scripts # Shell Color Scripts
 
             nodejs
             python3
