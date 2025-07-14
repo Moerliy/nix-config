@@ -17,8 +17,7 @@
   vars,
   host,
   ...
-}:
-let
+}: let
   mainMod = "SUPER";
   hyprlandPkg = hyprland.packages.${pkgs.system}.hyprland.override {
     # legacyRenderer = true;
@@ -29,46 +28,45 @@ let
   hyprwinwrapPkg = hyprland-nativ-plugins.packages.${pkgs.system}.hyprwinwrap;
   animatedWallpaperPkg = animated-wallpaper.packages.${pkgs.system}.default;
   discordBin =
-    if
-      host.hostName == "asahi"
+    if host.hostName == "asahi"
     # then "${pkgs.webcord-vencord}/bin/webcord"
-    then
-      "${pkgs.vesktop}/bin/vesktop"
+    then "${pkgs.vesktop}/bin/vesktop"
     # else "${pkgs.webcord-vencord}/bin/webcord";
-    else
-      "${pkgs.vesktop}/bin/vesktop";
-  enableAnimatedWallpaper = if host.hostName == "asahi" then true else false;
+    else "${pkgs.vesktop}/bin/vesktop";
+  enableAnimatedWallpaper =
+    if host.hostName == "asahi"
+    then true
+    else false;
 in
-with lib;
-with host;
-{
-  options = {
-    hyprland = {
-      enable = mkOption {
-        type = types.bool;
-        default = false;
-        description = mdDoc ''
-          Enable hyprland a WM
-        '';
+  with lib;
+  with host; {
+    options = {
+      hyprland = {
+        enable = mkOption {
+          type = types.bool;
+          default = false;
+          description = mdDoc ''
+            Enable hyprland a WM
+          '';
+        };
       };
     };
-  };
 
-  config = mkIf (config.hyprland.enable) {
-    wlwm.enable = true; # mainly good to know
+    config = mkIf (config.hyprland.enable) {
+      wlwm.enable = true; # mainly good to know
 
-    environment = {
-      variables = {
-        # WLR_NO_HARDWARE_CURSORS="1"; # Needed for VM
-        WLR_RENDERER_ALLOW_SOFTWARE = "1";
-        XDG_CURRENT_DESKTOP = "Hyprland";
-        XDG_SESSION_TYPE = "wayland";
-        XDG_SESSION_DESKTOP = "Hyprland";
-        # HYPRCURSOR_THEME = "hyprcursor_Dracula";
-      };
-      sessionVariables =
-        if hostName == "nvidia" then
-          {
+      environment = {
+        variables = {
+          # WLR_NO_HARDWARE_CURSORS="1"; # Needed for VM
+          WLR_RENDERER_ALLOW_SOFTWARE = "1";
+          XDG_CURRENT_DESKTOP = "Hyprland";
+          XDG_SESSION_TYPE = "wayland";
+          XDG_SESSION_DESKTOP = "Hyprland";
+          # HYPRCURSOR_THEME = "hyprcursor_Dracula";
+        };
+        sessionVariables =
+          if hostName == "nvidia"
+          then {
             LIBVA_DRIVER_NAME = "nvidia";
             __GLX_VENDOR_LIBRARY_NAME = "nvidia";
             NVD_BACKEND = "direct";
@@ -84,8 +82,7 @@ with host;
             MOZ_ENABLE_WAYLAND = "1";
             NIXOS_OZONE_WL = "1";
           }
-        else
-          {
+          else {
             QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
 
             WLR_DRM_DEVICES = "/dev/dri/card0";
@@ -93,46 +90,48 @@ with host;
             MOZ_ENABLE_WAYLAND = "1";
             NIXOS_OZONE_WL = "1";
           };
-      systemPackages = with pkgs; [
-        grimblast # Screenshot
-        hyprpaper # Wallpaper
-        wl-clipboard # Clipboard
-        #wlr-randr # Monitor Settings # TODO: needed?
-        xwayland # X session
-        kitty
-        eww
-        wlogout
-        # godot-mono
-        # steam-run
-      ];
-    };
+        systemPackages = with pkgs; [
+          grimblast # Screenshot
+          hyprpaper # Wallpaper
+          wl-clipboard # Clipboard
+          #wlr-randr # Monitor Settings # TODO: needed?
+          xwayland # X session
+          kitty
+          eww
+          wlogout
+          # godot-mono
+          # steam-run
+        ];
+      };
 
-    programs.hyprland = {
-      enable = true;
-      package = hyprlandPkg; # .override {debug = true;};
-    };
+      programs.hyprland = {
+        enable = true;
+        package = hyprlandPkg; # .override {debug = true;};
+      };
 
-    security.pam.services.hyprlock = {
-      text = "auth include login";
-      # fprintAuth = if hostName == "asahi" then true else false; # fingerprint not working yet on asahi
-      enableGnomeKeyring = true;
-    };
+      security.pam.services.hyprlock = {
+        text = "auth include login";
+        # fprintAuth = if hostName == "asahi" then true else false; # fingerprint not working yet on asahi
+        enableGnomeKeyring = true;
+      };
 
-    systemd.sleep.extraConfig = ''
-      AllowSuspend=yes
-      AllowHibernation=no
-      AllowSuspendThenHibernate=no
-      AllowHybridSleep=yes
-    ''; # Clamshell Mode (closed laptop use)
+      systemd.sleep.extraConfig = ''
+        AllowSuspend=yes
+        AllowHibernation=no
+        AllowSuspendThenHibernate=no
+        AllowHybridSleep=yes
+      ''; # Clamshell Mode (closed laptop use)
 
-    # nix.settings = {
-    #   substituters = ["https://hyprland.cachix.org"];
-    #   trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-    # };
+      # nix.settings = {
+      #   substituters = ["https://hyprland.cachix.org"];
+      #   trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+      # };
 
-    home-manager.users.${vars.user} =
-      let
-        lid = if hostName == "xps" then "LID0" else "LID"; # TODO: needed?
+      home-manager.users.${vars.user} = let
+        lid =
+          if hostName == "xps"
+          then "LID0"
+          else "LID"; # TODO: needed?
         lockScript = pkgs.writeShellScript "lock-script" ''
           action=$1
           ${pkgs.pipewire}/bin/pw-cli i all | ${pkgs.ripgrep}/bin/rg running
@@ -145,8 +144,7 @@ with host;
           fi
         '';
         customScripts = "$HOME/.local/bin";
-      in
-      {
+      in {
         imports = [
           hyprland.homeManagerModules.default
         ];
@@ -237,7 +235,9 @@ with host;
                 "${toString secondMonitor},$HOME/.config/wallpaper.png"
               ]
               ++ (
-                if enableAnimatedWallpaper then [ "${toString mainMonitor},$HOME/.config/wallpaper.png" ] else [ ]
+                if enableAnimatedWallpaper
+                then ["${toString mainMonitor},$HOME/.config/wallpaper.png"]
+                else []
               );
           };
         };
@@ -246,9 +246,15 @@ with host;
           enable = true;
           package = hyprlandPkg; # .override {debug = true;};
           xwayland.enable = true;
-          plugins = [
-            hyprhookPkg
-          ] ++ (if enableAnimatedWallpaper then [ hyprwinwrapPkg ] else [ ]);
+          plugins =
+            [
+              hyprhookPkg
+            ]
+            ++ (
+              if enableAnimatedWallpaper
+              then [hyprwinwrapPkg]
+              else []
+            );
           settings = {
             general = {
               border_size = 2;
@@ -280,41 +286,39 @@ with host;
                 ",preferred,auto,1,mirror,${toString mainMonitor}"
               ]
               ++ (
-                if hostName == "asahi" then
-                  [
-                    "${toString buildInMonitor},preferred,auto,1.6"
-                    "${toString mainMonitor},preferred,auto,1,mirror,${toString buildInMonitor}"
-                    "${toString secondMonitor},3840x2160@60.00,-3840x0,1"
-                  ]
-                else if hostName == "nvidia" then
-                  [
-                    "${toString mainMonitor},2560x1440@164.80200,0x0,1"
-                    "${toString secondMonitor},2560x1440@60.00,-2560x0,1"
-                  ]
-                else
-                  [
-                    "${toString mainMonitor},preferred,auto,1"
-                  ]
+                if hostName == "asahi"
+                then [
+                  "${toString buildInMonitor},preferred,auto,1.6"
+                  "${toString mainMonitor},preferred,auto,1,mirror,${toString buildInMonitor}"
+                  "${toString secondMonitor},3840x2160@60.00,-3840x0,1"
+                ]
+                else if hostName == "nvidia"
+                then [
+                  "${toString mainMonitor},2560x1440@164.80200,0x0,1"
+                  "${toString secondMonitor},2560x1440@60.00,-2560x0,1"
+                ]
+                else [
+                  "${toString mainMonitor},preferred,auto,1"
+                ]
               );
             workspace =
-              if hostName == "asahi" then
-                [
-                  "1, monitor:${toString mainMonitor},default:true"
-                  "2, monitor:${toString mainMonitor}"
-                  "3, monitor:${toString mainMonitor}"
-                  "4, monitor:${toString mainMonitor}"
-                  "8, monitor:${toString secondMonitor}"
-                ]
-              else if hostName == "nvidia" then
-                [
-                  "1, monitor:${toString mainMonitor},default:true"
-                  "2, monitor:${toString mainMonitor}"
-                  "3, monitor:${toString mainMonitor}"
-                  "4, monitor:${toString mainMonitor}"
-                  "8, monitor:${toString secondMonitor},default:true"
-                ]
-              else
-                [ ];
+              if hostName == "asahi"
+              then [
+                "1, monitor:${toString mainMonitor},default:true"
+                "2, monitor:${toString mainMonitor}"
+                "3, monitor:${toString mainMonitor}"
+                "4, monitor:${toString mainMonitor}"
+                "8, monitor:${toString secondMonitor}"
+              ]
+              else if hostName == "nvidia"
+              then [
+                "1, monitor:${toString mainMonitor},default:true"
+                "2, monitor:${toString mainMonitor}"
+                "3, monitor:${toString mainMonitor}"
+                "4, monitor:${toString mainMonitor}"
+                "8, monitor:${toString secondMonitor},default:true"
+              ]
+              else [];
             animations = {
               enabled = true;
               bezier = [
@@ -347,27 +351,25 @@ with host;
               repeat_delay = 250;
               repeat_rate = 75;
               touchpad =
-                if hostName == "asahi" then
-                  {
-                    scroll_factor = 0.2;
-                    natural_scroll = false;
-                    tap-to-click = true;
-                    drag_lock = true;
-                    disable_while_typing = true;
-                    middle_button_emulation = true;
-                  }
-                else
-                  { };
+                if hostName == "asahi"
+                then {
+                  scroll_factor = 0.2;
+                  natural_scroll = false;
+                  tap-to-click = true;
+                  drag_lock = true;
+                  disable_while_typing = true;
+                  middle_button_emulation = true;
+                }
+                else {};
             };
             gestures =
-              if hostName == "asahi" then
-                {
-                  workspace_swipe = true;
-                  workspace_swipe_fingers = 3;
-                  workspace_swipe_invert = false;
-                }
-              else
-                { };
+              if hostName == "asahi"
+              then {
+                workspace_swipe = true;
+                workspace_swipe_fingers = 3;
+                workspace_swipe_invert = false;
+              }
+              else {};
             device = [
               {
                 name = "urchin-keyboard";
@@ -485,7 +487,9 @@ with host;
                 "[workspace 8 silent] ${discordBin}"
               ]
               ++ (
-                if enableAnimatedWallpaper then [ "${animatedWallpaperPkg}/bin/animated-wallpaper &" ] else [ ]
+                if enableAnimatedWallpaper
+                then ["${animatedWallpaperPkg}/bin/animated-wallpaper &"]
+                else []
               );
             # bindl =
             #   if hostName == "asahi" then [
@@ -732,5 +736,5 @@ with host;
           };
         };
       };
-  };
-}
+    };
+  }
