@@ -8,11 +8,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1752494551,
-        "narHash": "sha256-Myp7dX+EgVvMfjOhrnUrmhB4puSXUQtpudAXmSvYrIU=",
+        "lastModified": 1752498841,
+        "narHash": "sha256-i7Xt9d5d2n7ZEJKI+GNyQTKVXZvu/erx8PiHvZ+qkcI=",
         "owner": "Moerliy",
         "repo": "Godot-SuperWallpaper-Template",
-        "rev": "d6e9f28ca9cde136d0a55c770a26b94d28ffaada",
+        "rev": "546351e6c46e487d2c4c3450e62589fa3f8bcc8d",
         "type": "github"
       },
       "original": {
