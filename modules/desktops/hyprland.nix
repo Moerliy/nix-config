@@ -9,8 +9,10 @@
   pkgs-stable,
   hyprland,
   hyprhook,
+  hyprland-nativ-plugins,
   hypridle,
   hyprlock,
+  animated-wallpaper,
   system,
   vars,
   host,
@@ -23,6 +25,8 @@
   hyprlockPkg = hyprlock.packages.${pkgs.system}.hyprlock;
   hypridlePkg = hypridle.packages.${pkgs.system}.hypridle;
   hyprhookPkg = hyprhook.packages.${pkgs.system}.hyprhook;
+  hyprwinwrapPkg = hyprland-nativ-plugins.packages.${pkgs.system}.hyprwinwrap;
+  animatedWallpaperPkg = animated-wallpaper.packages.${pkgs.system}.default;
   discordBin =
     if host.hostName == "asahi"
     # then "${pkgs.webcord-vencord}/bin/webcord"
@@ -91,6 +95,8 @@ in
           kitty
           eww
           wlogout
+          # godot-mono
+          steam-run
         ];
       };
 
@@ -220,7 +226,7 @@ in
             ipc = true;
             splash = false;
             preload = "$HOME/.config/wallpaper.png";
-            wallpaper = ",$HOME/.config/wallpaper.png";
+            wallpaper = "${toString secondMonitor},$HOME/.config/wallpaper.png";
           };
         };
 
@@ -230,6 +236,7 @@ in
           xwayland.enable = true;
           plugins = [
             hyprhookPkg
+            hyprwinwrapPkg
           ];
           settings = {
             general = {
@@ -451,6 +458,7 @@ in
             ];
             exec-once = [
               "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+              "${pkgs.steam-run}/bin/steam-run ${animatedWallpaperPkg}/bin/animated-wallpaper &"
               "ln -s $XDG_RUNTIME_DIR/hypr /tmp/hypr"
               "$HOME/.config/hypr/script/sync-clipboard.sh &"
               # "${pkgs.eww}/bin/eww daemon"
@@ -633,6 +641,9 @@ in
             plugin {
               hyprhook {
                 onSubmap = $HOME/.local/bin/which-key
+              }
+              hyprwinwrap {
+                class = hyprland-super-wallpaper-template
               }
             }
           '';

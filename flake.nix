@@ -44,12 +44,22 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    animated-wallpaper = {
+      url = "github:Moerliy/Godot-SuperWallpaper-Template";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     # Official Hyprland Flake
     hyprland = {
       type = "git";
       url = "https://github.com/hyprwm/Hyprland";
       submodules = true;
       inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    hyprland-nativ-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
     };
 
     hyprhook = {
@@ -109,7 +119,9 @@
     home-manager-unstable,
     darwin,
     apple-silicon,
+    animated-wallpaper,
     hyprland,
+    hyprland-nativ-plugins,
     hyprhook,
     hyprlock,
     hypridle,
@@ -142,21 +154,53 @@
     darwinConfigurations = (
       import ./darwin {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs nixpkgs-unstable home-manager-unstable darwin vars;
+        inherit
+          inputs
+          nixpkgs
+          nixpkgs-unstable
+          home-manager-unstable
+          darwin
+          vars
+          ;
       }
     );
 
     nixosConfigurations = (
       import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs hyprland hyprhook hypridle hyprlock nixpkgs-unstable home-manager home-manager-unstable apple-silicon vars minegrub minegrubx86 lanzaboote;
+        inherit
+          inputs
+          nixpkgs
+          hyprland
+          hyprhook
+          hypridle
+          hyprland-nativ-plugins
+          hyprlock
+          nixpkgs-unstable
+          home-manager
+          home-manager-unstable
+          apple-silicon
+          vars
+          animated-wallpaper
+          minegrub
+          minegrubx86
+          lanzaboote
+          ;
       }
     );
 
     homeConfigurations = (
       import ./nix {
         inherit (nixpkgs) lib;
-        inherit inputs nixpkgs nixpkgs-unstable home-manager home-manager-unstable nixgl vars;
+        inherit
+          inputs
+          nixpkgs
+          nixpkgs-unstable
+          home-manager
+          home-manager-unstable
+          nixgl
+          vars
+          ;
       }
     );
   };

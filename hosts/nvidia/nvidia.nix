@@ -70,6 +70,8 @@
       "nvidia-x11"
       "nvidia-settings"
       "nvidia-persistenced"
+      "steam-run"
+      "steam-unwrapped"
     ];
   services.xserver.videoDrivers = ["nvidia"];
 
@@ -166,7 +168,16 @@
   };
 
   home-manager = {
-    extraSpecialArgs = {inherit inputs vars system pkgs-stable pkgs host;};
+    extraSpecialArgs = {
+      inherit
+        inputs
+        vars
+        system
+        pkgs-stable
+        pkgs
+        host
+        ;
+    };
     users.${vars.user} = {
       imports =
         [

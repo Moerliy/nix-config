@@ -14,9 +14,11 @@
   home-manager,
   home-manager-unstable,
   hyprland,
+  hyprland-nativ-plugins,
   hyprhook,
   hypridle,
   hyprlock,
+  animated-wallpaper,
   vars,
   minegrub,
   minegrubx86,
@@ -46,9 +48,11 @@ in {
         system
         apple-silicon
         hyprland
+        hyprland-nativ-plugins
         hyprhook
         hypridle
         hyprlock
+        animated-wallpaper
         pkgs-stable
         ;
       host = {
@@ -79,9 +83,11 @@ in {
         vars
         system
         hyprland
+        hyprland-nativ-plugins
         hyprhook
         hypridle
         hyprlock
+        animated-wallpaper
         pkgs-stable
         ;
       host = {
