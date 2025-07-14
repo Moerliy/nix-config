@@ -96,7 +96,7 @@ in
           eww
           wlogout
           # godot-mono
-          steam-run
+          # steam-run
         ];
       };
 
@@ -458,7 +458,7 @@ in
             ];
             exec-once = [
               "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-              "${pkgs.steam-run}/bin/steam-run ${animatedWallpaperPkg}/bin/animated-wallpaper &"
+              "${animatedWallpaperPkg}/bin/animated-wallpaper &"
               "ln -s $XDG_RUNTIME_DIR/hypr /tmp/hypr"
               "$HOME/.config/hypr/script/sync-clipboard.sh &"
               # "${pkgs.eww}/bin/eww daemon"

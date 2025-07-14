@@ -6,6 +6,7 @@
   system,
   pkgs-stable,
   host,
+  lib,
   ...
 }: {
   imports =
@@ -57,6 +58,12 @@
       experimental-features = nix-command flakes
     '';
   };
+
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "steam-run"
+      "steam-unwrapped"
+    ];
 
   # Asahi settings
   hardware = {
@@ -144,7 +151,16 @@
   #   pulse.enable = true;
   # };
   home-manager = {
-    extraSpecialArgs = {inherit inputs vars system pkgs-stable pkgs host;};
+    extraSpecialArgs = {
+      inherit
+        inputs
+        vars
+        system
+        pkgs-stable
+        pkgs
+        host
+        ;
+    };
     users.${vars.user} = {
       imports =
         [
