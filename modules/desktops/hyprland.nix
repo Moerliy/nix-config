@@ -37,7 +37,7 @@ let
     # else "${pkgs.webcord-vencord}/bin/webcord";
     else
       "${pkgs.vesktop}/bin/vesktop";
-  enableAnimatedWallpaper = if host.hostName == "asahi" then false else true;
+  enableAnimatedWallpaper = if host.hostName == "asahi" then true else false;
 in
 with lib;
 with host;
