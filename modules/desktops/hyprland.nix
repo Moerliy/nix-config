@@ -35,8 +35,8 @@
     else "${pkgs.vesktop}/bin/vesktop";
   enableAnimatedWallpaper =
     if host.hostName == "asahi"
-    then true
-    else false;
+    then false
+    else true;
 in
   with lib;
   with host; {
@@ -236,8 +236,8 @@ in
               ]
               ++ (
                 if enableAnimatedWallpaper
-                then ["${toString mainMonitor},$HOME/.config/wallpaper.png"]
-                else []
+                then []
+                else ["${toString mainMonitor},$HOME/.config/wallpaper.png"]
               );
           };
         };
