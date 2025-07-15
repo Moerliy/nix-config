@@ -32,11 +32,9 @@ in
       enable = mkOption {
         type = types.bool;
         default = false;
-        description =
-          mdDoc
-          ''
-            Enable waybar configuration.
-          '';
+        description = mdDoc ''
+          Enable waybar configuration.
+        '';
       };
     };
 
@@ -53,10 +51,27 @@ in
               {
                 layer = "top";
                 position = "top";
+                exclusive = true;
 
                 modules-center = ["hyprland/workspaces"];
-                modules-left = ["custom/startmenu" "hyprland/window" "cpu" "memory" "disk" "power-profiles-daemon"];
-                modules-right = ["custom/hyprbindings" "custom/exit" "idle_inhibitor" "network" "pulseaudio" "battery" "clock" "tray"];
+                modules-left = [
+                  "custom/startmenu"
+                  "hyprland/window"
+                  "cpu"
+                  "memory"
+                  "disk"
+                  "power-profiles-daemon"
+                ];
+                modules-right = [
+                  "custom/hyprbindings"
+                  "custom/exit"
+                  "idle_inhibitor"
+                  "network"
+                  "pulseaudio"
+                  "battery"
+                  "clock"
+                  "tray"
+                ];
 
                 "hyprland/workspaces" = {
                   format =
@@ -107,7 +122,13 @@ in
                   tooltip = true;
                 };
                 "network" = {
-                  format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+                  format-icons = [
+                    "󰤯"
+                    "󰤟"
+                    "󰤢"
+                    "󰤥"
+                    "󰤨"
+                  ];
                   format-ethernet = " {bandwidthDownOctets}";
                   format-wifi = "{icon} {signalStrength}%";
                   format-disconnected = "󰤮";
@@ -131,7 +152,11 @@ in
                     phone = "";
                     portable = "";
                     car = "";
-                    default = ["" "" ""];
+                    default = [
+                      ""
+                      ""
+                      ""
+                    ];
                   };
                   on-click = "sleep 0.1 && ${pkgs.pavucontrol}/bin/pavucontrol";
                 };
@@ -168,7 +193,18 @@ in
                   format = "{icon} {capacity}%";
                   format-charging = "󰂄 {capacity}%";
                   format-plugged = "󱘖 {capacity}%";
-                  format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+                  format-icons = [
+                    "󰁺"
+                    "󰁻"
+                    "󰁼"
+                    "󰁽"
+                    "󰁾"
+                    "󰁿"
+                    "󰂀"
+                    "󰂁"
+                    "󰂂"
+                    "󰁹"
+                  ];
                   on-click = "";
                   tooltip = true;
                 };

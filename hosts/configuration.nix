@@ -126,6 +126,7 @@ in
 
           # Video/Audio
           alsa-utils # Audio Control
+          ffmpeg # Video/Audio Encoder
           feh # Image Viewer
           linux-firmware # Proprietary Hardware Blob
           mpv # Media Player

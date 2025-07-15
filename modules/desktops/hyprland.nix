@@ -489,7 +489,7 @@ in
               ]
               ++ (
                 if enableAnimatedWallpaper
-                then ["${animatedWallpaperPkg}/bin/animated-wallpaper &"]
+                then ["${pkgs.steam-run}/bin/steam-run ${animatedWallpaperPkg}/bin/animated-wallpaper &"]
                 else []
               );
             # bindl =
