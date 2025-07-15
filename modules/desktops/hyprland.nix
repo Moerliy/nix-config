@@ -237,7 +237,10 @@ in
               ++ (
                 if enableAnimatedWallpaper
                 then []
-                else ["${toString mainMonitor},$HOME/.config/wallpaper.png"]
+                else [
+                  "${toString buildInMonitor},$HOME/.config/wallpaper.png"
+                  "${toString mainMonitor},$HOME/.config/wallpaper.png"
+                ]
               );
           };
         };
