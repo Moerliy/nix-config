@@ -472,6 +472,7 @@ in
               "size 800 600,title:nmtui-session"
               "workspace 1,title:nmtui-session"
               "workspace 8,class:vesktop"
+              "opacity 0.9, class:firefox"
             ];
             exec-once =
               [
