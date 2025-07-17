@@ -89,9 +89,6 @@ keymap.set(
   { silent = true, noremap = true, desc = "Change package version" }
 )
 
--- Telescope theme switcher
-keymap.set("n", "<leader>tc", ":Themery<CR>", { noremap = true, silent = true, desc = "Theme Changer" })
-
 -- kulala
 keymap.set(
   "n",

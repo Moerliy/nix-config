@@ -529,7 +529,7 @@ in
             bind = , Q, submap, reset
             bindd = , T, Open Terminal, exec, ${pkgs.${vars.terminal}}/bin/${vars.terminal}
             bind = , T, submap, reset
-            bindd = , F, Open Files, exec, ${pkgs.pcmanfm}/bin/pcmanfm
+            bindd = , F, Open Files, exec, ${pkgs-stable.pcmanfm}/bin/pcmanfm
             bind = , F, submap, reset
             bindd = , B, Open Browser, exec, [workspace 2] ${pkgs.firefox}/bin/firefox
             bind = , B, submap, reset

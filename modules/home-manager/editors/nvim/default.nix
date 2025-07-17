@@ -103,7 +103,6 @@ in
             hadolint
             rust-analyzer
             texlab
-            texliveFull
 
             git
             lazygit
@@ -144,6 +143,7 @@ in
           ]
           ++ (with pkgs-stable; [
             # haskellPackages.ghcup
+            texliveFull
           ]);
       };
     };

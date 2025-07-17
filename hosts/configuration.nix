@@ -147,7 +147,6 @@ in
 
           # File Management
           file-roller # Archive Manager
-          pcmanfm # File Browser
           p7zip # Zip Encryption
           rsync # Syncer - $ rsync -r dir1/ dir2/
           unzip # Zip Files
@@ -163,6 +162,7 @@ in
         ++ (with pkgs-stable; [
           # Apps
           image-roll # Image Viewer
+          pcmanfm # File Browser
         ]);
     };
   }
