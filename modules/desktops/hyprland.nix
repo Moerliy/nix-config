@@ -169,8 +169,8 @@ in
               # hide_cursor = true;
               screencopy_mode =
                 if enableAnimatedWallpaper
-                then 1
-                else 0; # 0 - gpu accelerated, 1 - cpu based (slow)
+                then 0
+                else 1; # 0 - gpu accelerated, 1 - cpu based (slow)
             };
             background =
               if enableAnimatedWallpaper
