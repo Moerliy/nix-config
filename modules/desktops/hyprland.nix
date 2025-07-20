@@ -167,6 +167,10 @@ in
           settings = {
             general = {
               # hide_cursor = true;
+              screencopy_mode =
+                if enableAnimatedWallpaper
+                then 1
+                else 0; # 0 - gpu accelerated, 1 - cpu based (slow)
             };
             background =
               if enableAnimatedWallpaper
@@ -174,7 +178,7 @@ in
                 {
                   monitor = "${toString secondMonitor}";
                   path = "$HOME/.config/wallpaper.png";
-                  color = "rgba(25, 20, 20, 0.5)";
+                  color = "rgba(25, 20, 20, 1.0)";
                   blur_passes = 1;
                   blur_size = 0;
                   brightness = 0.2;
@@ -184,7 +188,7 @@ in
                 {
                   monitor = "";
                   path = "$HOME/.config/wallpaper.png";
-                  color = "rgba(25, 20, 20, 0.5)";
+                  color = "rgba(25, 20, 20, 1.0)";
                   blur_passes = 1;
                   blur_size = 0;
                   brightness = 0.2;
