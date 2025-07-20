@@ -6,6 +6,7 @@ return {
         "cmake",
         "cpp",
         "css",
+        "c_sharp",
         "fish",
         "gitignore",
         "graphql",

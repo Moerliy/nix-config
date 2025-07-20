@@ -1,41 +1,4 @@
 return {
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   depends = {
-  --     "catppuccin/nvim",
-  --   },
-  --   config = {
-  --     window = {
-  --       completion = {
-  --         -- custom border
-  --         border = {
-  --           "󱐋",
-  --           "─",
-  --           "╮",
-  --           "│",
-  --           "╯",
-  --           "─",
-  --           "╰",
-  --           "│",
-  --         },
-  --         scrollbar = false,
-  --       },
-  --       documentation = {
-  --         border = {
-  --           "",
-  --           "─",
-  --           "╮",
-  --           "│",
-  --           "╯",
-  --           "─",
-  --           "╰",
-  --           "│",
-  --         },
-  --         scrollbar = false,
-  --       },
-  --     },
-  --   },
-  -- },
   {
     "saghen/blink.cmp",
     optional = true,

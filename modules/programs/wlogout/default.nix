@@ -3,6 +3,8 @@
   config,
   lib,
   vars,
+  host,
+  animated-wallpaper,
   ...
 }: let
   # if ./config/secrets exists, add it to the configFilesToLink
@@ -19,17 +21,20 @@
   toSource = configDirName: dotfilesPath: {source = dotfilesPath;};
   hvr = "4";
   mgn = "10";
+  animatedWallpaperPkg = animated-wallpaper.packages.${pkgs.system}.default;
+  enableAnimatedWallpaper =
+    if host.hostName == "asahi"
+    then false
+    else true;
 in
   with lib; {
     options.wlogout = {
       enable = mkOption {
         type = types.bool;
         default = false;
-        description =
-          mdDoc
-          ''
-            Enable wlogout configuration.
-          '';
+        description = mdDoc ''
+          Enable wlogout configuration.
+        '';
       };
     };
 
@@ -41,7 +46,10 @@ in
             layout = [
               {
                 label = "lock";
-                action = "hyprlock";
+                action =
+                  if enableAnimatedWallpaper
+                  then "${animatedWallpaperPkg}/bin/hyprlock"
+                  else "hyprlock";
                 text = "Lock";
                 keybind = "l";
               }

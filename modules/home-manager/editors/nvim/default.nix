@@ -59,92 +59,112 @@ in
               '';
           };
         };
-        packages = with pkgs;
-          [
-            # lsp
-            lua-language-server
-            selene
-            lua52Packages.luacheck
-            stylua
-            shellcheck
-            shfmt
-            nodePackages.typescript-language-server
-            customNodePkg."@vue/language-server"
-            customNodePkg."@vtsls/language-server"
-            # nodePackages_latest.grammarly-languageserver
-            kotlin-language-server
-            ktlint
-            nil
-            nixpkgs-fmt
-            haskell-language-server
-            haskellPackages.haskell-debug-adapter
-            ghc
-            cabal-install
-            haskellPackages.stack
+        packages = let
+          omnisharp-wrapper = pkgs.stdenv.mkDerivation {
+            pname = "omnisharp-wrapper";
+            version = "1.0";
 
-            clang-tools
-            # ruff-lsp
-            ruff
-            pyright
-            taplo
-            dockerfile-language-server-nodejs
-            yaml-language-server
-            marksman
-            markdownlint-cli2
-            docker-compose-language-service
-            vscode-langservers-extracted
-            nodePackages.bash-language-server
-            nodePackages.prettier
-            neocmakelsp
-            cmake-format
-            black
-            isort
-            python312Packages.debugpy
-            hadolint
-            rust-analyzer
-            texlab
+            src = pkgs.emptyDirectory;
 
-            git
-            lazygit
-            ripgrep
-            fd
-            fzf
-            clang
-            unzip
-            neo
-            pipes
-            dwt1-shell-color-scripts # Shell Color Scripts
+            dontUnpack = true;
 
-            nodejs
-            python3
-            cmake
-            gnumake
-            #gcc
-            yq-go
-            # yq
-            # jq
-            # flutter
+            installPhase = ''
+              mkdir -p $out/bin
+              ln -s ${pkgs.omnisharp-roslyn}/bin/OmniSharp $out/bin/omnisharp
+            '';
+          };
+        in
+          with pkgs;
+            [
+              # lsp
+              lua-language-server
+              selene
+              lua52Packages.luacheck
+              stylua
+              shellcheck
+              shfmt
+              nodePackages.typescript-language-server
+              customNodePkg."@vue/language-server"
+              customNodePkg."@vtsls/language-server"
+              # nodePackages_latest.grammarly-languageserver
+              kotlin-language-server
+              ktlint
+              nil
+              nixpkgs-fmt
+              haskell-language-server
+              haskellPackages.haskell-debug-adapter
+              ghc
+              cabal-install
+              haskellPackages.stack
+              csharpier
+              omnisharp-wrapper
+              # omnisharp-roslyn
 
-            #rustup
-            cargo
-            rustc
-            # nix-shell -p pkg-config sqlite openssl libiconv
-            libiconv
-            pkg-config
-            sqlite
-            openssl
+              clang-tools
+              # ruff-lsp
+              ruff
+              pyright
+              taplo
+              dockerfile-language-server-nodejs
+              yaml-language-server
+              marksman
+              markdownlint-cli2
+              docker-compose-language-service
+              vscode-langservers-extracted
+              nodePackages.bash-language-server
+              nodePackages.prettier
+              neocmakelsp
+              cmake-format
+              black
+              isort
+              python312Packages.debugpy
+              hadolint
+              rust-analyzer
+              texlab
+              dotnet-sdk
+              netcoredbg
 
-            clang-tools
-            luajitPackages.luarocks
-            nil
-            nixd
-            go
-            gnupg
-          ]
-          ++ (with pkgs-stable; [
-            # haskellPackages.ghcup
-            texliveFull
-          ]);
+              git
+              lazygit
+              ripgrep
+              fd
+              fzf
+              clang
+              unzip
+              neo
+              pipes
+              dwt1-shell-color-scripts # Shell Color Scripts
+
+              nodejs
+              python3
+              cmake
+              gnumake
+              #gcc
+              yq-go
+              # yq
+              # jq
+              # flutter
+
+              #rustup
+              cargo
+              rustc
+              # nix-shell -p pkg-config sqlite openssl libiconv
+              libiconv
+              pkg-config
+              sqlite
+              openssl
+
+              clang-tools
+              luajitPackages.luarocks
+              nil
+              nixd
+              go
+              gnupg
+            ]
+            ++ (with pkgs-stable; [
+              # haskellPackages.ghcup
+              texliveFull
+            ]);
       };
     };
   }

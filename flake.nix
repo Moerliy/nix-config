@@ -44,11 +44,6 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    animated-wallpaper = {
-      url = "github:Moerliy/Godot-SuperWallpaper-Template";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
     # Official Hyprland Flake
     hyprland = {
       type = "git";
@@ -79,6 +74,12 @@
     hypridle = {
       url = "github:hyprwm/hypridle";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    animated-wallpaper = {
+      url = "github:Moerliy/Godot-SuperWallpaper-Template";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.hyprlock.follows = "hyprlock";
     };
 
     # GUB minecraft theme

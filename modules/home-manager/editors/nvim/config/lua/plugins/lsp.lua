@@ -94,6 +94,21 @@ return {
         clangd = {
           mason = false,
         },
+        omnisharp = {
+          mason = false,
+          cmd = {
+            "omnisharp",
+            "-z",
+            "--hostPID",
+            tostring(vim.fn.getpid()),
+            "DotNet:enablePackageRestore=false",
+            "--encoding",
+            "utf-8",
+            "--languageserver",
+            "FormattingOptions:EnableEditorConfigSupport=true",
+            "Sdk:IncludePrereleases=true",
+          },
+        },
         volar = {
           mason = false,
           init_options = {

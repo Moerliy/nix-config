@@ -27,6 +27,7 @@
   hyprhookPkg = hyprhook.packages.${pkgs.system}.hyprhook;
   hyprwinwrapPkg = hyprland-nativ-plugins.packages.${pkgs.system}.hyprwinwrap;
   animatedWallpaperPkg = animated-wallpaper.packages.${pkgs.system}.default;
+  hyprlockWrapped = animated-wallpaper.packages.${pkgs.system}.hyprlockWrapper;
   discordBin =
     if host.hostName == "asahi"
     # then "${pkgs.webcord-vencord}/bin/webcord"
@@ -37,6 +38,10 @@
     if host.hostName == "asahi"
     then false
     else true;
+  hyprlockBin =
+    if enableAnimatedWallpaper
+    then "${animatedWallpaperPkg}/bin/hyprlock"
+    else "${hyprlockPkg}/bin/hyprlock";
 in
   with lib;
   with host; {
@@ -90,18 +95,25 @@ in
             MOZ_ENABLE_WAYLAND = "1";
             NIXOS_OZONE_WL = "1";
           };
-        systemPackages = with pkgs; [
-          grimblast # Screenshot
-          hyprpaper # Wallpaper
-          wl-clipboard # Clipboard
-          #wlr-randr # Monitor Settings # TODO: needed?
-          xwayland # X session
-          kitty
-          eww
-          wlogout
-          # godot-mono
-          # steam-run
-        ];
+        systemPackages = with pkgs;
+          [
+            grimblast # Screenshot
+            hyprpaper # Wallpaper
+            wl-clipboard # Clipboard
+            xwayland # X session
+            kitty
+            eww
+            wlogout
+          ]
+          ++ (
+            if enableAnimatedWallpaper
+            then [
+              steam-run
+              hyprlockWrapped
+              animatedWallpaperPkg
+            ]
+            else []
+          );
       };
 
       programs.hyprland = {
@@ -122,10 +134,10 @@ in
         AllowHybridSleep=yes
       ''; # Clamshell Mode (closed laptop use)
 
-      # nix.settings = {
-      #   substituters = ["https://hyprland.cachix.org"];
-      #   trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-      # };
+      nix.settings = {
+        substituters = ["https://hyprland.cachix.org"];
+        trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+      };
 
       home-manager.users.${vars.user} = let
         lid =
@@ -135,13 +147,13 @@ in
         lockScript = pkgs.writeShellScript "lock-script" ''
           action=$1
           ${pkgs.pipewire}/bin/pw-cli i all | ${pkgs.ripgrep}/bin/rg running
-          if [ $? == 1 ]; then
+          # if [ $? == 1 ]; then
             if [ "$action" == "lock" ]; then
-              ${pkgs.hyprlock}/bin/hyprlock
+              ${hyprlockBin}
             elif [ "$action" == "suspend" ]; then
               ${pkgs.systemd}/bin/systemctl suspend
             fi
-          fi
+          # fi
         '';
         customScripts = "$HOME/.local/bin";
       in {
@@ -155,20 +167,29 @@ in
           settings = {
             general = {
               # hide_cursor = true;
-              no_fade_in = false;
-              disable_loading_bar = true;
-              grace = 0;
             };
-            background = [
-              {
-                monitor = "";
-                path = "$HOME/.config/wallpaper.png";
-                color = "rgba(25, 20, 20, 1.0)";
-                blur_passes = 1;
-                blur_size = 0;
-                brightness = 0.2;
-              }
-            ];
+            background =
+              if enableAnimatedWallpaper
+              then [
+                {
+                  monitor = "${toString secondMonitor}";
+                  path = "$HOME/.config/wallpaper.png";
+                  color = "rgba(25, 20, 20, 0.5)";
+                  blur_passes = 1;
+                  blur_size = 0;
+                  brightness = 0.2;
+                }
+              ]
+              else [
+                {
+                  monitor = "";
+                  path = "$HOME/.config/wallpaper.png";
+                  color = "rgba(25, 20, 20, 0.5)";
+                  blur_passes = 1;
+                  blur_size = 0;
+                  brightness = 0.2;
+                }
+              ];
             input-field = [
               {
                 monitor = "";
@@ -209,7 +230,7 @@ in
               before_sleep_cmd = "${pkgs.systemd}/bin/loginctl lock-session";
               after_sleep_cmd = "${hyprlandPkg}/bin/hyprctl dispatch dpms on";
               ignore_dbus_inhibit = true;
-              lock_cmd = "pidof ${hyprlockPkg}/bin/hyprlock || ${hyprlockPkg}/bin/hyprlock";
+              lock_cmd = "pidof ${hyprlockPkg}/bin/hyprlock || ${hyprlockBin}";
             };
             listener = [
               {
@@ -312,6 +333,8 @@ in
                 "3, monitor:${toString mainMonitor}"
                 "4, monitor:${toString mainMonitor}"
                 "8, monitor:${toString secondMonitor}"
+                # "special:hyprlock, f[0]"
+                # "special:special, f[-1]"
               ]
               else if hostName == "nvidia"
               then [
@@ -320,6 +343,8 @@ in
                 "3, monitor:${toString mainMonitor}"
                 "4, monitor:${toString mainMonitor}"
                 "8, monitor:${toString secondMonitor},default:true"
+                # "special:hyprlock, f[0]"
+                # "special:special, f[-1]"
               ]
               else [];
             animations = {
@@ -331,6 +356,7 @@ in
                 "smoothOut, 0.36, 0, 0.66, -0.56"
                 "smoothIn, 0.25, 1, 0.5, 1"
                 "rotate,0,0,1,1"
+                "fade, 0.25, 0.1, 0.25, 0.9"
               ];
               animation = [
                 "windows, 1, 5, overshot, popin"
@@ -342,7 +368,7 @@ in
                 # "fadeDim, 1, 4, smoothIn"
                 "workspaces, 1, 6, simple, slide"
                 # "borderangle, 1, 20, rotate, loop"
-                "specialWorkspace, 1, 6, simple, slidevert"
+                "specialWorkspace, 1, 6, fade, fade"
               ];
             };
             input = {
@@ -475,7 +501,7 @@ in
               "size 800 600,title:nmtui-session"
               "workspace 1,title:nmtui-session"
               "workspace 8,class:vesktop"
-              "opacity 0.9, class:firefox"
+              # "opacity 0.9, class:firefox"
             ];
             exec-once =
               [
@@ -516,7 +542,7 @@ in
             bindd = , M, +move, submap, move
             bindd = , F, +focus, submap, focus
             bindd = , G, +screenshot, submap, grimblast
-            bindd = , S, Special Workspace, togglespecialworkspace,
+            bindd = , S, Special Workspace, togglespecialworkspace, special
             bindd = , S, Reset submap, submap, reset
             bindd = , T, +toggle, submap, toggle
             bindd = SHIFT, S, Move To Special Workspace, movetoworkspace, special
@@ -731,7 +757,7 @@ in
                 if [[ `hyprctl monitors | grep "Monitor" | wc -l` != 1 ]]; then
                   ${hyprlandPkg}/bin/hyprctl keyword monitor "${toString mainMonitor}, disable"
                 else
-                  ${hyprlockPkg}/bin/hyprlock
+                  ${hyprlockBin}
                   ${pkgs.systemd}/bin/systemctl suspend
                 fi
               fi
