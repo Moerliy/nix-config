@@ -24,7 +24,8 @@
   minegrubx86,
   lanzaboote,
   ...
-}: let
+}:
+let
   system = "aarch64-linux";
   pkgs = import nixpkgs-unstable {
     inherit system;
@@ -37,7 +38,8 @@
   home-manager = home-manager-unstable;
   # home-manager-stable = home-manager;
   lib = nixpkgs-unstable.lib;
-in {
+in
+{
   # Asahi Apple Silicon
   asahi = lib.nixosSystem {
     inherit system;
@@ -86,6 +88,7 @@ in {
         hyprland-nativ-plugins
         hyprhook
         hypridle
+        home-manager
         hyprlock
         animated-wallpaper
         pkgs-stable

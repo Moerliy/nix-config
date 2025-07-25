@@ -6,18 +6,18 @@
   config,
   pkgs,
   vars,
+  home-manager,
   ...
 }:
-with lib; {
+with lib;
+{
   options.zsh = {
     enable = mkOption {
       type = types.bool;
       default = false;
-      description =
-        mdDoc
-        ''
-          Enable zsh shell.
-        '';
+      description = mdDoc ''
+        Enable zsh shell.
+      '';
     };
   };
 
@@ -26,6 +26,12 @@ with lib; {
       #shell = pkgs.zsh;
     };
     home-manager.users.${vars.user} = {
+      home.packages = with pkgs; [
+        neofetch
+        starship
+        lf
+        fzf
+      ];
       programs = {
         zsh = {
           enable = true;
@@ -33,14 +39,27 @@ with lib; {
           syntaxHighlighting.enable = true;
           enableCompletion = true;
           history.size = 10000;
-          oh-my-zsh = {
-            enable = true;
-            plugins = ["git"];
-            # custom = "$HOME/.config/zsh_nix/custom";
-          };
           initContent = ''
-            source ${pkgs.spaceship-prompt}/share/zsh/site-functions/prompt_spaceship_setup
+            STARSHIP_CONFIG=~/.config/starship-zsh.toml
+            eval "$(${pkgs.starship}/bin/starship init zsh)"
             autoload -U promptinit; promptinit
+
+            # use ubuntu tmux
+            alias tmux="/usr/bin/tmux"
+
+            function enix() {
+              export PATH="/etc/profiles/per-user/$USER/bin:$PATH"
+            }
+
+            function dnix() {
+              export PATH="$(echo $PATH | tr ':' '\n' | grep -v '/etc/profiles/per-user' | paste -sd: -)"
+            }
+
+            # Install Axii.
+            if [ -f "$HOME/dev/axii/scripts/install_axii.sh" ]; then
+                source "$HOME/dev/axii/scripts/install_axii.sh"
+            fi
+            eval "$(register-python-argcomplete armarx)"
           '';
         };
       };

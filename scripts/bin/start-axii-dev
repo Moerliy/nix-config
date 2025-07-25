@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+axiiWorkspace="flux"
+attachSession=false
+
+while getopts "w:a" opt; do
+  case $opt in
+  w)
+    axiiWorkspace=$OPTARG
+    ;;
+  a)
+    attachSession=true
+    ;;
+  \?)
+    echo "Invalid option: -$OPTARG" >&2
+    ;;
+  esac
+done
+
+session="armarx"
+
+# if session exists, attach to it else create it
+if tmux has-session -t $session 2>/dev/null; then
+  echo "Session $session already exists. Attaching to it."
+  tmux attach -t $session
+  exit 0
+else
+  tmux new-session -d -s $session "distrobox enter hht"
+fi
+
+# init all windows
+window=0
+# tmux new-window -t $session:$window -n "run/armarx" $HOME/nix-free-env
+tmux rename-window -t $session:$window "run/armarx"
+window=1
+tmux new-window -t $session:$window -n "run/rest" "distrobox enter hht"
+window=2
+tmux new-window -t $session:$window -n "comp/robotAPI" "distrobox enter hht"
+window=3
+tmux new-window -t $session:$window -n "dev/ssh" "distrobox enter hht"
+
+# fish start is slow, give it some time
+# sleep 0.5 >/dev/null
+
+# axii uses a cache for the commands, so bombarding it with commands is not a good idea
+eval "unlink ~/axii_startup &>/dev/null"
+
+window=0
+tmux send-keys -t $session:$window "echo 'func(){ while [ -p ~/axii_startup ]; do sleep 1; done }; func' | bash && mkfifo ~/axii_startup; axii w act $axiiWorkspace --no-cd; unlink ~/axii_startup" C-m
+tmux send-keys -t $session:$window "armarx reset" C-m
+tmux send-keys -t $session:$window "armarx scenario start SkillProviderTest" C-m
+
+window=1
+# wait a second for every axii workspace activation
+tmux send-keys -t $session:$window "dnix" C-m
+tmux send-keys -t $session:$window "sleep 0.3" C-m
+tmux send-keys -t $session:$window "echo 'func(){ while [ -p ~/axii_startup ]; do sleep 1; done }; func' | bash && mkfifo ~/axii_startup; axii w act $axiiWorkspace --no-cd; unlink ~/axii_startup" C-m
+tmux send-keys -t $session:$window "cd \$armarx__core__armarest__PATH" C-m
+# tmux send-keys -t $session:$window "armarx run --no-auth"
+
+window=2
+tmux send-keys -t $session:$window "dnix" C-m
+tmux send-keys -t $session:$window "sleep 0.6" C-m
+tmux send-keys -t $session:$window "echo 'func(){ while [ -p ~/axii_startup ]; do sleep 1; done }; func' | bash && mkfifo ~/axii_startup; axii w act $axiiWorkspace --no-cd; unlink ~/axii_startup" C-m
+tmux send-keys -t $session:$window "cd \$armarx__RobotAPI__PATH" C-m
+
+window=3
+tmux send-keys -t $session:$window "sleep 0.9" C-m
+tmux send-keys -t $session:$window "echo 'func(){ while [ -p ~/axii_startup ]; do sleep 1; done }; func' | bash && mkfifo ~/axii_startup; axii w act $axiiWorkspace --no-cd; unlink ~/axii_startup" C-m
+tmux send-keys -t $session:$window "vim" C-m
+
+if [ "$attachSession" = true ]; then
+  tmux attach -t $session
+fi

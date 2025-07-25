@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+axiiPossibleWorkspaces=("flux")
+axiiWorkspace="flux"
+
+# check for flags
+while getopts "h""w" opt; do
+  case $opt in
+  h)
+    echo "Usage: hhtf"
+    echo "Starts a tmux session with a ssh connection to a remote machine."
+    echo "This script is intended to be used with hht."
+    exit 0
+    ;;
+  w) # set workspace
+    axiiChooseWorkspace=true
+    ;;
+  \?)
+    echo "Invalid option: -$OPTARG" >&2
+    exit 1
+    ;;
+  esac
+done
+
+if [[ $axiiChooseWorkspace ]]; then
+  axiiPossibleWorkspaces=$(distrobox enter hht -- zsh -ci "axii w list" | grep "-" | cut -c 5- | cut -f1 -d":")
+  axiiWorkspace=$(echo -e "${axiiPossibleWorkspaces[@]}" | fzf --ansi --prompt=" workspaces  " --height=~50 --layout=reverse --border --exit-0)
+fi
+
+if [[ $axiiWorkspace == "" ]]; then
+  echo "No workspace selected"
+  exit 1
+fi
+
+session="fluxio"
+
+# if session exists, attach to it else create it
+if tmux has-session -t $session 2>/dev/null; then
+  echo "Session $session already exists. Attaching to it."
+  tmux attach -t $session
+  exit 0
+else
+  tmux new-session -d -s $session
+fi
+
+start-axii-dev -w $axiiWorkspace
+
+# init all windows
+window=0
+tmux rename-window -t $session:$window "run/fluxio"
+window=1
+tmux new-window -t $session:$window -n "dev/fluxio"
+
+# fish start is slow, give it some time
+sleep 0.5 >/dev/null
+
+window=0
+tmux send-keys -t $session:$window "cd fluxio" C-m
+tmux send-keys -t $session:$window "npm run dev" C-m
+
+window=1
+tmux send-keys -t $session:$window "cd fluxio" C-m
+tmux send-keys -t $session:$window "vim" C-m
+
+tmux attach -t $session

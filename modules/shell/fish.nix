@@ -8,7 +8,8 @@
   vars,
   ...
 }:
-with lib; {
+with lib;
+{
   imports = [
     ../theming/starship/default.nix
   ];
@@ -17,11 +18,9 @@ with lib; {
     enable = mkOption {
       type = types.bool;
       default = false;
-      description =
-        mdDoc
-        ''
-          Enable fish shell.
-        '';
+      description = mdDoc ''
+        Enable fish shell.
+      '';
     };
   };
 
@@ -84,7 +83,7 @@ with lib; {
             fish_add_path --path "$HOME/.cargo/bin"
             #fish_add_path --path "$HOME/.setup/scripts/bin"
 
-            eval (starship init fish)
+            starship init fish | source
             set -g fish_color_command "blue"
 
             # lf file manager
