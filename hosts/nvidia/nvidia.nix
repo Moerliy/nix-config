@@ -49,7 +49,8 @@
 
   networking = {
     hostName = "Nvidia";
-    wakeOnLan.enable = true;
+    # wake on lan for lan-connectoin
+    interfaces.eno1.wakeOnLan.enable = true;
   };
 
   nix = {
