@@ -8,8 +8,7 @@
   vars,
   ...
 }:
-with lib;
-{
+with lib; {
   imports = [
     ../theming/starship/default.nix
   ];

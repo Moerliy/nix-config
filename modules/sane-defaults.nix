@@ -10,8 +10,7 @@
   pkgs,
   ...
 }:
-with lib;
-{
+with lib; {
   options.sane-defaults = {
     enable = mkOption {
       type = types.bool;

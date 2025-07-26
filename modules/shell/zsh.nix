@@ -9,8 +9,7 @@
   home-manager,
   ...
 }:
-with lib;
-{
+with lib; {
   options.zsh = {
     enable = mkOption {
       type = types.bool;
