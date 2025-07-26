@@ -2,6 +2,7 @@
 
 remoteIPv4="192.168.179.23"
 remoteIPv6="60:CF:84:BE:BC:36"
+remoteName="G-Outpost"
 homeLapUser="moritzgleissner"
 
 # check for flags
@@ -144,21 +145,30 @@ elif [ "$connection" == "home lap" ]; then
   if [ "$printOutput" == "true" ]; then
     echo "$command"
   else
-    # check if ipv6 is not available available then use "systemctl stop wg-quick-GOutpost.service" to use vpn
-    if ! ping -c 1 -W 1 $remoteIPv6 >/dev/null 2>&1; then
-      systemctl start wg-quick-GOutpost.service 2>/dev/null
-      if [ $? -ne 0 ]; then
-        echo "Failed to start wg-quick-GOutpost.service"
-        exit 1
+    if ! ping -c 1 -W 1 $remoteIPv4 >/dev/null 2>&1; then
+      if [[ $(nmcli -t -f NAME,DEVICE connection show --active | awk -F: '{print $1}' | head -n1) != "$remoteName" ]]; then
+        systemctl start wg-quick-GOutpost.service 2>/dev/null
+        if [[ $? -ne 0 ]]; then
+          echo "Failed to start wg-quick-GOutpost.service"
+          exit 1
+        fi
+        sleep 0.2
       fi
+
       # try to connect if not use wake up over lan
-      if ! ping -c 1 -W 1 $remoteIPv6 >/dev/null 2>&1; then
+      if ! ping -c 1 -W 1 $remoteIPv4 >/dev/null 2>&1; then
         # wake up over lan
         wakeonlan $remoteIPv6 >/dev/null 2>&1
         # check with loop on show loading wheel
-        while ! ping -c 1 -W 1 $remoteIPv6 >/dev/null 2>&1; do
-          sleep 1
+        spin='-\|/'
+        i=0
+        while ! ping -c 1 -W 1 $remoteIPv4 >/dev/null 2>&1; do
+          i=$(((i + 1) % 4))
+          printf "\rWaiting to wake up... ${spin:$i:1}"
+          sleep 0.1
         done
+        # clear last line
+        printf "\r\033[K"
       fi
     fi
 

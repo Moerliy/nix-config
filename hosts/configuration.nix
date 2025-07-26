@@ -156,6 +156,7 @@ in
           cloc # count lines of code
           sbctl # Secure Boot Key Manager
           wireguard-tools # Wireguard VPN
+          wakeonlan
 
           python311Packages.numpy
           prismlauncher
