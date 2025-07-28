@@ -2,6 +2,9 @@
 
 axiiPossibleWorkspaces=("flux")
 axiiWorkspace="flux"
+remoteIPv4="192.168.179.23"
+remoteIPv6="60:CF:84:BE:BC:36"
+remoteName="G-Outpost"
 
 # check for flags
 while getopts "h""w" opt; do
@@ -35,13 +38,42 @@ if [[ $sshCommand == "" ]]; then
   exit 1
 fi
 
-if [[ $axiiChooseWorkspace ]]; then
+if [[ $sshCommand == *"home"* ]]; then
   # if sshCommand with prefix home, cut it out
-  if [[ $sshCommand == *"home"* ]]; then
-    sshCommand=$(echo "$sshCommand" | sed 's/home//')
+  sshCommand=$(echo "$sshCommand" | sed 's/home//')
+  if ! ping -c 1 -W 1 $remoteIPv4 >/dev/null 2>&1; then
+    if [[ $(nmcli -t -f NAME,DEVICE connection show --active | awk -F: '{print $1}' | head -n1) != "$remoteName" ]]; then
+      systemctl start wg-quick-GOutpost.service 2>/dev/null
+      if [[ $? -ne 0 ]]; then
+        echo "Failed to start wg-quick-GOutpost.service"
+        exit 1
+      fi
+      sleep 0.2
+    fi
+
+    # try to connect if not use wake up over lan
+    if ! ping -c 1 -W 1 $remoteIPv4 >/dev/null 2>&1; then
+      # wake up over lan
+      wakeonlan $remoteIPv6 >/dev/null 2>&1
+      # check with loop on show loading wheel
+      spin='-\|/'
+      i=0
+      while ! ping -c 1 -W 1 $remoteIPv4 >/dev/null 2>&1; do
+        i=$(((i + 1) % 4))
+        printf "\rWaiting to wake up... ${spin:$i:1}"
+        sleep 0.1
+      done
+      # clear last line
+      printf "\r\033[K"
+    fi
+  fi
+  if [[ $axiiChooseWorkspace ]]; then
+    # if sshCommand with prefix home, cut it out
     axiiPossibleWorkspaces=$(eval "$sshCommand 'distrobox enter hht -- zsh -ci \"axii w list\" | grep \"-\" | cut -c 5- | cut -f1 -d\":\"'")
     axiiWorkspace=$(echo -e "${axiiPossibleWorkspaces[@]}" | fzf --ansi --prompt=" workspaces  " --height=~50 --layout=reverse --border --exit-0)
-  else
+  fi
+else
+  if [[ $axiiChooseWorkspace ]]; then
     axiiPossibleWorkspaces=$(eval "$sshCommand 'bash -ci \"axii w list\" | grep \"-\" | cut -c 5- | cut -f1 -d\":\"'")
     axiiWorkspace=$(echo -e "${axiiPossibleWorkspaces[@]}" | fzf --ansi --prompt=" workspaces  " --height=~50 --layout=reverse --border --exit-0)
   fi
@@ -76,7 +108,7 @@ sleep 0.5 >/dev/null
 
 window=0
 tmux send-keys -t $session:$window "eval '$sshCommand'" C-m
-tmux send-keys -t $session:$window "~/start-dev -w $axiiWorkspace" C-m
+tmux send-keys -t $session:$window "start-axii-dev -w $axiiWorkspace -a" C-m
 
 window=1
 tmux send-keys -t $session:$window "cd fluxio" C-m
