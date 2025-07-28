@@ -36,8 +36,15 @@ if [[ $sshCommand == "" ]]; then
 fi
 
 if [[ $axiiChooseWorkspace ]]; then
-  axiiPossibleWorkspaces=$(eval "$sshCommand 'bash -ci \"axii w list\" | grep \"-\" | cut -c 5- | cut -f1 -d\":\"'")
-  axiiWorkspace=$(echo -e "${axiiPossibleWorkspaces[@]}" | fzf --ansi --prompt=" workspaces  " --height=~50 --layout=reverse --border --exit-0)
+  # if sshCommand with prefix home, cut it out
+  if [[ $sshCommand == *"home"* ]]; then
+    sshCommand=$(echo "$sshCommand" | sed 's/home//')
+    axiiPossibleWorkspaces=$(eval "$sshCommand 'distrobox enter hht -- zsh -ci \"axii w list\" | grep \"-\" | cut -c 5- | cut -f1 -d\":\"'")
+    axiiWorkspace=$(echo -e "${axiiPossibleWorkspaces[@]}" | fzf --ansi --prompt=" workspaces  " --height=~50 --layout=reverse --border --exit-0)
+  else
+    axiiPossibleWorkspaces=$(eval "$sshCommand 'bash -ci \"axii w list\" | grep \"-\" | cut -c 5- | cut -f1 -d\":\"'")
+    axiiWorkspace=$(echo -e "${axiiPossibleWorkspaces[@]}" | fzf --ansi --prompt=" workspaces  " --height=~50 --layout=reverse --border --exit-0)
+  fi
 fi
 
 if [[ $axiiWorkspace == "" ]]; then

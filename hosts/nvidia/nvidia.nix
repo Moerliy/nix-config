@@ -8,13 +8,13 @@
   system,
   pkgs-stable,
   ...
-}: {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ../../scripts/default.nix
-    ]
-    ++ (import ../../modules);
+}:
+{
+  imports = [
+    ./hardware-configuration.nix
+    ../../scripts/default.nix
+  ]
+  ++ (import ../../modules);
 
   # Login Manager
   gdm.enable = true;
@@ -67,7 +67,8 @@
   };
 
   nixpkgs.config.nvidia.acceptLicense = true;
-  nixpkgs.config.allowUnfreePredicate = pkg:
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
     builtins.elem (lib.getName pkg) [
       "nvidia-x11"
       "nvidia-settings"
@@ -75,7 +76,7 @@
       "steam-run"
       "steam-unwrapped"
     ];
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware = {
     graphics = {
@@ -122,16 +123,18 @@
       systemd-boot = {
         enable = lib.mkForce false;
         windows = {
-          "windows" = let
-            # To determine the name of the windows boot drive, boot into edk2 first, then run
-            # `map -c` to get drive aliases, and try out running `FS1:`, then `ls EFI` to check
-            # which alias corresponds to which EFI partition.
-            boot-drive = "HD1a65535a1";
-          in {
-            title = "Windows";
-            efiDeviceHandle = boot-drive;
-            sortKey = "0_windows";
-          };
+          "windows" =
+            let
+              # To determine the name of the windows boot drive, boot into edk2 first, then run
+              # `map -c` to get drive aliases, and try out running `FS1:`, then `ls EFI` to check
+              # which alias corresponds to which EFI partition.
+              boot-drive = "HD1a65535a1";
+            in
+            {
+              title = "Windows";
+              efiDeviceHandle = boot-drive;
+              sortKey = "0_windows";
+            };
         };
 
         edk2-uefi-shell.enable = true;
@@ -169,12 +172,14 @@
     };
   };
 
-  # Enable sound.
-  # hardware.pulseaudio.enable = true;
-  # OR
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
+  services = {
+    pulseaudio.enable = false;
+    pipewire = {
+      enable = true;
+      audio.enable = true;
+      alsa.enable = true;
+      pulse.enable = true;
+    };
   };
 
   home-manager = {
@@ -189,10 +194,9 @@
         ;
     };
     users.${vars.user} = {
-      imports =
-        [
-        ]
-        ++ (import ../../modules/home-manager);
+      imports = [
+      ]
+      ++ (import ../../modules/home-manager);
 
       # Editors
       neovim.enable = true;
