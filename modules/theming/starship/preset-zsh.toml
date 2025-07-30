@@ -28,7 +28,19 @@ $cmd_duration\
 $line_break\
 $character"""
 
+right_format = """
+[](red)\
+$hostname\
+[](red)
+"""
+
 palette = 'catppuccin_mocha'
+
+[hostname]
+style = "bg:red fg:crust"
+format = "[$ssh_symbol$hostname]($style)"
+ssh_only = false
+ssh_symbol = "󰖟 "
 
 [os]
 disabled = false
@@ -146,7 +158,7 @@ style = "bg:lavender"
 format = '[[  $time ](fg:crust bg:lavender)]($style)'
 
 [line_break]
-disabled = true
+disabled = false
 
 [character]
 disabled = false
