@@ -29,7 +29,9 @@ $line_break\
 $character"""
 
 right_format = """
-[](red)\
+[](peach)\
+$container\
+[ ](fg:red bg:peach)\
 $hostname\
 [](red)
 """
@@ -38,9 +40,14 @@ palette = 'catppuccin_mocha'
 
 [hostname]
 style = "bg:red fg:crust"
-format = "[$ssh_symbol$hostname]($style)"
+format = "[$ssh_symbol $hostname]($style)"
 ssh_only = false
-ssh_symbol = "󰖟 "
+ssh_symbol = "󰖟"
+
+[container]
+style = "bg:peach fg:crust"
+format = '[$symbol $name]($style)'
+symbol = "󰆦"
 
 [os]
 disabled = false
