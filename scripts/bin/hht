@@ -33,9 +33,9 @@ done
 
 # config
 export user=ughlu_gleissner
-export proxy=%r@jump.h2t.iar.kit.edu
+export proxy=ughlu_gleissner@jump.h2t.iar.kit.edu
 ssh_timeout=2 # seconds to wait for ssh connection (including handshake)
-export pcNumbers=(100 101 102 103 104 105 106 108 031 032 081 082 083 086 087 088 044 047 048)
+export pcNumbers=(100 101 102 103 104 105 106 108 031 032 081 082 083 086 087 088 044 047 048 "sfb-op")
 
 # for colored output
 RED='\033[0;31m'
@@ -72,8 +72,14 @@ threadedSsh() {
   # Enable Job Control
   set -m
   for i in ${!pcNumbers[@]}; do
+    # if pc number is "sfb-op"
     pcNumber=${pcNumbers[$i]}
-    remote=${user}@pc${pcNumber}.h2t.iar.kit.edu
+    if [[ ${pcNumber} == "sfb-op" ]]; then
+      user="gleissner"
+      remote=${user}@${pcNumber}.h2t.iar.kit.edu
+    else
+      remote=${user}@pc${pcNumber}.h2t.iar.kit.edu
+    fi
     sshProcess $pcNumber $remote $ssh_timeout &
   done
   # wait for all processes to finish
@@ -175,6 +181,15 @@ elif [ "$connection" == "home lap" ]; then
     eval "$command"
   fi
   exit 0
+elif [[ "$connection" == "sfb-op" ]]; then
+  user="gleissner"
+  command="ssh -X -Y -o StrictHostKeyChecking=no -L 3300:localhost:3300 -J $proxy $user@$connection.h2t.iar.kit.edu 2>/dev/null"
+  if [ "$printOutput" == "true" ]; then
+    echo "$command"
+  else
+    # suppress output
+    eval "$command"
+  fi
 else # if a pc number is selected
   # if printOutput is set and true
   command="ssh -X -Y -o StrictHostKeyChecking=no -L 3300:localhost:3300 -J $proxy $user@pc$connection.h2t.iar.kit.edu 2>/dev/null"
