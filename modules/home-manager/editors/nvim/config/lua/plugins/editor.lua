@@ -1,6 +1,6 @@
 return {
   {
-    "echasnovski/mini.bufremove",
+    "nvim-mini/mini.bufremove",
 
     keys = {
       { "<leader>bd", false },
@@ -102,7 +102,7 @@ return {
     },
   },
   {
-    "echasnovski/mini.files",
+    "nvim-mini/mini.files",
     opts = {
       -- Module mappings created only inside explorer.
       -- Use `''` (empty string) to not create one.

@@ -125,6 +125,7 @@ in
               dotnet-sdk
               netcoredbg
 
+              tree-sitter
               git
               lazygit
               ripgrep

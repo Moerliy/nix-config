@@ -8,16 +8,15 @@
   pkgs,
   ...
 }:
-with lib; {
+with lib;
+{
   options.rofi = {
     enable = mkOption {
       type = types.bool;
       default = false;
-      description =
-        mdDoc
-        ''
-          Enable rofi a window switcher, application launcher and dmenu replacement.
-        '';
+      description = mdDoc ''
+        Enable rofi a window switcher, application launcher and dmenu replacement.
+      '';
     };
   };
 
@@ -26,7 +25,7 @@ with lib; {
       programs = {
         rofi = {
           enable = true;
-          package = pkgs.rofi-wayland;
+          package = pkgs.rofi;
           cycle = true;
           terminal = "\${pkgs.${vars.terminal}}/bin/${vars.terminal}";
           font = "JetBrainsMono Nerd Font";

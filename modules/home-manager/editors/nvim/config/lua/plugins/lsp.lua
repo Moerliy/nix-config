@@ -1,32 +1,21 @@
 return {
-  { "mason-org/mason.nvim", version = "1.11.0" },
-  { "mason-org/mason-lspconfig.nvim", version = "1.32.0" },
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts_extend = {},
     opts = {
       ensure_installed = {
-        "debugpy",
+        -- "debugpy",
         "js-debug-adapter",
         "codelldb",
-        -- "stylua",
-        -- "selene",
-        -- "luacheck",
-        -- "shellcheck",
-        -- "shfmt",
-        -- "typescript-language-server",
-        -- "css-lsp",
-        -- "vue-language-server",
-        -- "grammarly-languageserver",
-        -- "kotlin-language-server",
-        -- "kotlin-debug-adapter",
-        -- "ktlint",
-        -- "nil",
-        -- "nixpkgs-fmt",
+        exclude = {
+          "tree-sitter-lsp",
+          "shfmt",
+          "shellcheck",
+          "prettier",
+        },
       },
       registries = {
         "github:mason-org/mason-registry",
-        -- "file:~/dev/mason-registry",
       },
     },
   },
@@ -150,6 +139,9 @@ return {
           mason = false,
         },
         dartls = {
+          mason = false,
+        },
+        stylua = {
           mason = false,
         },
       },

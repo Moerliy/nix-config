@@ -66,8 +66,10 @@ return {
       local colors = require("catppuccin.palettes").get_palette("mocha")
       require("package-info").setup({
         package_manager = "npm",
-        colors = {
-          outdated = colors.peach,
+        highlights = {
+          outdated = {
+            fg = colors.peach,
+          },
         },
         hide_up_to_date = true,
       })

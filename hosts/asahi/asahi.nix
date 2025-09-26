@@ -8,14 +8,14 @@
   host,
   lib,
   ...
-}: {
-  imports =
-    [
-      ./hardware-configuration.nix
-      apple-silicon.nixosModules.apple-silicon-support
-      ../../scripts/default.nix
-    ]
-    ++ (import ../../modules);
+}:
+{
+  imports = [
+    ./hardware-configuration.nix
+    apple-silicon.nixosModules.apple-silicon-support
+    ../../scripts/default.nix
+  ]
+  ++ (import ../../modules);
 
   # Login Manager
   gdm.enable = true;
@@ -59,7 +59,8 @@
     '';
   };
 
-  nixpkgs.config.allowUnfreePredicate = pkg:
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
     builtins.elem (lib.getName pkg) [
       "steam-run"
       "steam-unwrapped"
@@ -68,8 +69,6 @@
   # Asahi settings
   hardware = {
     asahi = {
-      useExperimentalGPUDriver = true;
-      experimentalGPUInstallMode = "replace";
       setupAsahiSound = true;
     };
     bluetooth = {
@@ -111,13 +110,13 @@
     enable = true;
     bindings = [
       {
-        keys = [225];
-        events = ["key"];
+        keys = [ 225 ];
+        events = [ "key" ];
         command = "${pkgs.light}/bin/light -A 10";
       }
       {
-        keys = [224];
-        events = ["key"];
+        keys = [ 224 ];
+        events = [ "key" ];
         command = "${pkgs.light}/bin/light -U 10";
       }
     ];
@@ -162,10 +161,9 @@
         ;
     };
     users.${vars.user} = {
-      imports =
-        [
-        ]
-        ++ (import ../../modules/home-manager);
+      imports = [
+      ]
+      ++ (import ../../modules/home-manager);
 
       # Editors
       neovim.enable = true;
