@@ -11,6 +11,6 @@
 #
 [
   ./kitty.nix
-  ./rofi.nix
   ./wlogout/default.nix
+  ./rofi/default.nix
 ]

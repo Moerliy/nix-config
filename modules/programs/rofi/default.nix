@@ -8,6 +8,15 @@
   pkgs,
   ...
 }:
+let
+  configFilesToLink = {
+    "rofi/catppuccin-mocha.rasi" = ./catppuccin-mocha.rasi;
+    "rofi/catppuccin-default.rasi" = ./catppuccin-default.rasi;
+  };
+  # Function to help map attrs for symlinking home.file, xdg.configFile
+  # e.g. from { ".hgrc" = ./hgrc; } to { ".hgrc".source = ./hgrc; }
+  toSource = configDirName: dotfilesPath: { source = dotfilesPath; };
+in
 with lib;
 {
   options.rofi = {
@@ -27,9 +36,9 @@ with lib;
           enable = true;
           package = pkgs.rofi;
           cycle = true;
-          terminal = "\${pkgs.${vars.terminal}}/bin/${vars.terminal}";
+          terminal = "${pkgs.${vars.terminal}}/bin/${vars.terminal}";
           font = "JetBrainsMono Nerd Font";
-          theme = "${pkgs.catppuccin}/rofi/catppuccin-macchiato.rasi";
+          theme = "~/.config/rofi/catppuccin-default.rasi";
           extraConfig = {
             modi = "run,drun,window";
             icon-theme = "Oranchelo";
@@ -46,6 +55,7 @@ with lib;
           };
         };
       };
+      xdg.configFile = pkgs.lib.attrsets.mapAttrs toSource configFilesToLink;
     };
   };
 }
