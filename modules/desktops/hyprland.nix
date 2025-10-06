@@ -38,7 +38,7 @@ let
     # else "${pkgs.webcord-vencord}/bin/webcord";
     else
       "${pkgs.vesktop}/bin/vesktop";
-  enableAnimatedWallpaper = if host.hostName == "asahi" then false else true;
+  enableAnimatedWallpaper = if host.hostName == "asahi" then false else false;
   hyprlockBin =
     if enableAnimatedWallpaper then
       "${animatedWallpaperPkg}/bin/hyprlock"
@@ -266,7 +266,7 @@ with host;
                 [ ]
               else
                 [
-                  "${toString buildInMonitor},$HOME/.config/wallpaper.png"
+                  (if host.hostName == "asahi" then "${toString buildInMonitor},$HOME/.config/wallpaper.png" else "")
                   "${toString mainMonitor},$HOME/.config/wallpaper.png"
                 ]
             );

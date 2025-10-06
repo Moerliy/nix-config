@@ -10,7 +10,8 @@
   pkgs,
   ...
 }:
-with lib; {
+with lib;
+{
   options.sane-defaults = {
     enable = mkOption {
       type = types.bool;
@@ -94,6 +95,134 @@ with lib; {
           pfzf = "${pkgs.ripgrep}/bin/rg --heading --line-number --column . | ${pkgs.fzf}/bin/fzf --layout=reverse";
           pfzff = "${pkgs.ripgrep}/bin/rg --heading --line-number --column --files . | ${pkgs.fzf}/bin/fzf --layout=reverse";
         };
+      };
+      xdg = {
+        mime.enable = true;
+        mimeApps = {
+          enable = true;
+          defaultApplications = {
+            "image/jpeg" = [
+              "com.github.weclaw1.ImageRoll.desktop"
+              "feh.desktop"
+            ];
+            "image/jpg" = [
+              "com.github.weclaw1.ImageRoll.desktop"
+              "feh.desktop"
+            ];
+            "image/png" = [
+              "com.github.weclaw1.ImageRoll.desktop"
+              "feh.desktop"
+            ];
+            "application/pdf" = [
+              "firefox.desktop"
+              "google-chrome.desktop"
+            ];
+            "application/zip" = "org.gnome.FileRoller.desktop";
+            "application/x-tar" = "org.gnome.FileRoller.desktop";
+            "application/x-bzip2" = "org.gnome.FileRoller.desktop";
+            "application/x-gzip" = "org.gnome.FileRoller.desktop";
+            "x-scheme-handler/http" = [
+              "firefox.desktop"
+              "google-chrome.desktop"
+            ];
+            "x-scheme-handler/https" = [
+              "firefox.desktop"
+              "google-chrome.desktop"
+            ];
+            "x-scheme-handler/about" = [
+              "firefox.desktop"
+              "google-chrome.desktop"
+            ];
+            "x-scheme-handler/discord" = "vesktop.desktop";
+            "x-scheme-handler/unknown" = [
+              "firefox.desktop"
+              "google-chrome.desktop"
+            ];
+            "x-scheme-handler/mailto" = [ "gmail.desktop" ];
+            "audio/mp3" = "mpv.desktop";
+            "audio/x-matroska" = "mpv.desktop";
+            "video/webm" = "mpv.desktop";
+            "video/mp4" = "mpv.desktop";
+            "video/x-matroska" = "mpv.desktop";
+            "inode/directory" = "pcmanfm.desktop";
+
+            # programming languages
+            "text/plain" = "nvim.desktop";
+            # Web / JS / TS
+            "application/javascript" = "nvim.desktop"; # .js
+            "application/ecmascript" = "nvim.desktop"; # .es/.mjs
+            "application/typescript" = "nvim.desktop"; # .ts
+            "text/javascript" = "nvim.desktop"; # fallback
+            "text/typescript" = "nvim.desktop";
+            "text/html" = "nvim.desktop"; # .html
+            "text/css" = "nvim.desktop"; # .css
+            "text/x-scss" = "nvim.desktop"; # .scss
+            "text/x-less" = "nvim.desktop"; # .less
+            "text/x-vue" = "nvim.desktop"; # .vue
+
+            # Python / Ruby / PHP / Perl / Lua / Shell
+            "text/x-python" = "nvim.desktop"; # .py
+            "text/x-ruby" = "nvim.desktop"; # .rb
+            "application/x-php" = "nvim.desktop"; # .php
+            "text/x-perl" = "nvim.desktop"; # .pl
+            "text/x-lua" = "nvim.desktop"; # .lua
+            "text/x-shellscript" = "nvim.desktop"; # .sh, .bash
+
+            # C / C++ / Objective-C / Rust / Go / Java / Kotlin
+            "text/x-c" = "nvim.desktop"; # .c
+            "text/x-c++src" = "nvim.desktop"; # .cpp, .cc, .cxx
+            "text/x-objectivec" = "nvim.desktop"; # .m
+            "text/x-rust" = "nvim.desktop"; # .rs
+            "text/x-go" = "nvim.desktop"; # .go
+            "text/x-java-source" = "nvim.desktop"; # .java
+            "text/x-kotlin" = "nvim.desktop"; # .kt, .kts
+
+            # C# / F# / VB
+            "text/x-csharp" = "nvim.desktop"; # .cs
+            "text/x-fsharp" = "nvim.desktop"; # .fs
+            "text/x-vb" = "nvim.desktop"; # .vb
+
+            # Functional / scripting languages
+            "text/x-haskell" = "nvim.desktop"; # .hs
+            "text/x-elisp" = "nvim.desktop"; # .el
+            "text/x-lisp" = "nvim.desktop"; # .lisp
+            "text/x-clojure" = "nvim.desktop"; # .clj
+            "text/x-scheme" = "nvim.desktop"; # .scm, .ss
+            "text/x-r" = "nvim.desktop"; # .r
+            "text/x-julia" = "nvim.desktop"; # .jl
+
+            # SQL / Data / Config
+            "text/x-sql" = "nvim.desktop"; # .sql
+            "text/csv" = "nvim.desktop"; # .csv
+            "text/yaml" = "nvim.desktop"; # .yaml, .yml
+            "application/json" = "nvim.desktop"; # .json
+            "application/ld+json" = "nvim.desktop"; # .jsonld
+            "text/xml" = "nvim.desktop"; # .xml
+            "application/x-toml" = "nvim.desktop"; # .toml
+            "text/ini" = "nvim.desktop"; # .ini
+
+            # Markdown / LaTeX / Documentation
+            "text/markdown" = "firefox.desktop"; # .md
+            "text/x-markdown" = "nvim.desktop"; # fallback
+            "application/x-tex" = "nvim.desktop"; # .tex
+            "application/vnd.latex-x" = "nvim.desktop"; # some tex MIME
+
+            # Others / Misc
+            "text/x-dockerfile" = "nvim.desktop"; # Dockerfile
+            "text/x-makefile" = "nvim.desktop"; # Makefile
+            "text/x-cmake" = "nvim.desktop"; # CMakeLists.txt
+          };
+        };
+        # desktopEntries.image-roll = {
+        #   name = "image-roll";
+        #   exec = "${stable.image-roll}/bin/image-roll %F";
+        #   mimeType = [ "image/*" ];
+        # };
+        # desktopEntries.gmail = {
+        #   name = "Gmail";
+        #   exec = ''xdg-open "https://mail.google.com/mail/?view=cm&fs=1&to=%u"'';
+        #   mimeType = [ "x-scheme-handler/mailto" ];
+        # };
       };
     };
   };

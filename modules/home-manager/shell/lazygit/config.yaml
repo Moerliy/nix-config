@@ -1,4 +1,5 @@
 gui:
+  editor: nvim
   authorColors: {}
   branchColors: {}
   scrollHeight: 2
