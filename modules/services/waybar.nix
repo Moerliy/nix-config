@@ -154,7 +154,7 @@ with lib;
                     ""
                   ];
                 };
-                on-click = "sleep 0.1 && ${pkgs.pavucontrol}/bin/pavucontrol";
+                on-click = "sleep 0.1 && $HOME/.config/rofi/bin/volume";
               };
               "custom/exit" = {
                 tooltip = false;

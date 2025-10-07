@@ -505,8 +505,14 @@ with host;
             ];
             windowrule = [
             ];
+            layerrule = [
+              "noanim,^(rofi)$"
+            ];
             windowrulev2 = [
               "float, class:(Rofi),title:(Rofi)"
+              "float,title:Picture-in-Picture"
+              "float,class:(org.pulseaudio.pavucontrol),title:(Volume Control)"
+              "size 1000 800,class:(org.pulseaudio.pavucontrol),title:(Volume Control)"
               "float,title:nmtui-session"
               "size 800 600,title:nmtui-session"
               "workspace 1,title:nmtui-session"
@@ -538,7 +544,7 @@ with host;
           };
           extraConfig = ''
             bindmd = $mainMod, mouse:273, Resize Window, resizewindow
-            # bindmd = $mainMod, mouse:274, Move Window, movewindow
+            bindmd = , mouse:274, Move Window, movewindow
             bindmd = $mainMod, mouse:272, Move Window, movewindow
 
             bindd = $mainMod, Space, +submaps, submap, supmaper
