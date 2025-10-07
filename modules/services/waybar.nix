@@ -159,7 +159,7 @@ with lib;
               "custom/exit" = {
                 tooltip = false;
                 format = "";
-                on-click = "sleep 0.1 && ${pkgs.wlogout}/bin/wlogout";
+                on-click = "sleep 0.1 && $HOME/.config/rofi/bin/powermenu";
               };
               "custom/startmenu" = {
                 tooltip = false;

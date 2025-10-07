@@ -8,6 +8,17 @@
 # Import Current Theme
 theme="$HOME/.config/rofi/volume-ctl.rasi"
 
+# get mouse position
+pos=$(hyprctl cursorpos)
+x=$(echo "$pos" | cut -d',' -f1 | tr -d ' ')
+y=$(echo "$pos" | cut -d',' -f2 | tr -d ' ')
+
+# Adjust offsets so rofi isn't exactly on top of the cursor
+xoffset=$((x - 80))
+yoffset=$((y + 0))
+
+themeflag="window {x-offset: $xoffset; y-offset: $yoffset;}"
+
 # Volume Info
 mixer="$(amixer info Master | grep 'Mixer name' | cut -d':' -f2 | tr -d \',' ')"
 speaker="$(amixer get Master | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]')"
@@ -70,7 +81,7 @@ fi
 
 # Rofi CMD
 rofi_cmd() {
-  rofi -theme-str "window {width: $win_width;}" \
+  rofi -theme-str "window {width: $win_width; x-offset: $xoffset; y-offset: $yoffset;}" \
     -theme-str "listview {columns: $list_col; lines: $list_row;}" \
     -theme-str 'textbox-prompt-colon {str: "";}' \
     -dmenu \

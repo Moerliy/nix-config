@@ -13,6 +13,7 @@ let
     "rofi/catppuccin-mocha.rasi" = ./catppuccin-mocha.rasi;
     "rofi/launcher.rasi" = ./launcher.rasi;
     "rofi/volume-ctl.rasi" = ./volume-ctl.rasi;
+    "rofi/powermenu.rasi" = ./powermenu.rasi;
     "rofi/bin" = ./bin;
   };
   # Function to help map attrs for symlinking home.file, xdg.configFile
