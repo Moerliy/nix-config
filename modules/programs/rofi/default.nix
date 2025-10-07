@@ -11,7 +11,7 @@
 let
   configFilesToLink = {
     "rofi/catppuccin-mocha.rasi" = ./catppuccin-mocha.rasi;
-    "rofi/catppuccin-default.rasi" = ./launcher.rasi;
+    "rofi/launcher.rasi" = ./launcher.rasi;
     "rofi/volume-ctl.rasi" = ./volume-ctl.rasi;
     "rofi/bin" = ./bin;
   };
