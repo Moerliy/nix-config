@@ -108,7 +108,6 @@ with host;
           xwayland # X session
           kitty
           eww
-          wlogout
         ]
         ++ (
           if enableAnimatedWallpaper then

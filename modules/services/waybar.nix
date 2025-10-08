@@ -44,7 +44,6 @@ with lib;
     home-manager.users.${vars.user} = {
       home.packages = with pkgs; [
         pavucontrol
-        wlogout
       ];
       programs = {
         waybar = {

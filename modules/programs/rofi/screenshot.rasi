@@ -108,7 +108,7 @@ textbox {
 listview {
     enabled:                     true;
     columns:                     1;
-    lines:                       8;
+    lines:                       9;
     cycle:                       true;
     scrollbar:                   false;
     layout:                      vertical;

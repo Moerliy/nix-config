@@ -4,19 +4,20 @@ Nix related tasks
 
 #### Bugs
 
-- [ ] Hyprlock crashing on lock
+- [x] Hyprlock crashing on lock
   - [x] Crash
+  - [ ] Crash because of sleep/hybernate?
   - [x] No background (only when set so because of an animated wallpaper)
-- [ ] hyprlock lag after unlock
-  - [ ] wlogouts fault
-  - [ ] maybe use new omarchy like menu to kill deps
+- [x] hyprlock lag after unlock
+  - [x] wlogouts fault
+  - [x] maybe use new omarchy like menu to kill deps
+  - [x] rofi menu to kill deps
 - [x] disable sleep per default
 - [x] Nix rebuild warnings
 - [x] No theme for Rofi
   - [x] can't get catppuccin color to work
-  - [ ] maybe use new omarchy like menu to kill deps
   - [ ] make the popups work with second screen
-- [ ] Check over what is a popup and floating in hyprland
+- [x] Check over what is a popup and floating in hyprland
 - [x] Check what is set for auto open (what will a .txt open with when i double click it or use `open file`)
 - [ ] Animated wallpaper not showing on locking
   - [ ] Not building right (template issues again maybe :)
@@ -28,7 +29,8 @@ Nix related tasks
 
 #### New Features
 
-- [ ] Look for Omarchy style menu
+- [x] Look for Omarchy style menu
+  - [x] Rofi it is
 - [ ] Update README for dots to better install
 
 ### NeoVim

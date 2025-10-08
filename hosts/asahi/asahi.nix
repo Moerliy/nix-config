@@ -28,7 +28,7 @@
   qt-theme.enable = true;
   mako.enable = true;
   eww.enable = true;
-  wlogout.enable = true;
+  wlogout.enable = false;
   waybar.enable = true;
 
   # programs
