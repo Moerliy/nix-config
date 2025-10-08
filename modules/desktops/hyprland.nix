@@ -463,7 +463,7 @@ with host;
             "$mainMod" = "${toString mainMod}";
             bindd = [
               "$mainMod, return, Open Terminal, exec, ${pkgs.${vars.terminal}}/bin/${vars.terminal}"
-              "$mainMod, escape, Exit Manager, exec, $HOME/.config/rofi/bin/powermenu"
+              "$mainMod, escape, Exit Manager, exec, $HOME/.config/rofi/bin/powermenu-large"
               "$mainMod, B, Open Browser, exec, ${pkgs.firefox}/bin/firefox"
               "$mainMod, Q, Close Window, killactive"
               "$mainMod, C, Open Controll Center, exec, ${pkgs.rofi}/bin/rofi -show drun"
