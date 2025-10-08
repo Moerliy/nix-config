@@ -1,0 +1,180 @@
+#!/usr/bin/env bash
+
+## Author  : Aditya Shakya (adi1090x)
+## Github  : @adi1090x
+#
+## Applets : Screenshot
+
+# if --save flag is passed
+SAVE=false
+for arg in "$@"; do
+  case $arg in
+  --save=*)
+    SAVE="${arg#*=}"
+    shift
+    ;;
+  esac
+done
+
+# Import Current Theme
+theme="$HOME/.config/rofi/screenshot.rasi"
+
+# Theme Elements
+prompt=$([ "$SAVE" = true ] && echo "Save to ~/Downloads" || echo "Copy to clipboard")
+mesg="DIR: $HOME/Downloads"
+
+list_col='1'
+list_row='7'
+win_width='400px'
+
+# Options
+layout=$(cat ${theme} | grep 'USE_ICON' | cut -d'=' -f2)
+if [[ "$layout" == 'NO' ]]; then
+  option_1="󰍹  Capture Desktop"
+  option_2="  Capture Area"
+  option_3="  Capture Window"
+  option_4="  Capture in 5s"
+  option_5="  Capture in 10s"
+  option_6="  Record Area"
+  option_7="  Toggle Save/Copy"
+else
+  option_1="󰍹 "
+  option_2=" "
+  option_3=" "
+  option_4=" "
+  option_5=" "
+  option_6=" "
+  option_7=" "
+fi
+
+urgent="-u 6"
+
+# Rofi CMD
+rofi_cmd() {
+  rofi -theme-str "window {width: $win_width;}" \
+    -theme-str "listview {columns: $list_col; lines: $list_row;}" \
+    -theme-str 'textbox-prompt-colon {str: " ";}' \
+    -dmenu \
+    -p "$prompt" \
+    -mesg "$mesg" \
+    -markup-rows \
+    ${urgent} \
+    -theme ${theme}
+}
+
+# Pass variables to rofi dmenu
+run_rofi() {
+  echo -e "$option_1\n$option_2\n$option_3\n$option_4\n$option_5\n$option_6\n$option_7" | rofi_cmd
+}
+
+dir="$HOME/Downloads"
+VID="$dir/$(date +%Y-%m-%d_%H-%m-%s).mp4"
+
+if [[ ! -d "$dir" ]]; then
+  mkdir -p "$dir"
+fi
+
+if [ "$SAVE" = true ]; then
+  export DEFAULT_TARGET_DIR=$dir
+  TARGET=save
+else
+  TARGET=copy
+fi
+
+# countdown
+countdown() {
+  for sec in $(seq $1 -1 1); do
+    notify-send -t 1000 "Taking shot in : $sec"
+    sleep 1
+  done
+}
+
+wf-recorder_check() {
+  if pgrep -x "wf-recorder" >/dev/null; then
+    pkill -INT -x wf-recorder
+    RECORDING_PATH=$(cat /tmp/recording.txt)
+    notify-send "Stopping all instances of wf-recorder" "$RECORDING_PATH"
+    wl-copy <"$RECORDING_PATH"
+    exit 0
+  fi
+}
+
+# take shots
+shotnow() {
+  grimblast --notify -n $TARGET screen
+}
+
+shot5() {
+  countdown '5'
+  grimblast --notify -n $TARGET output
+}
+
+shot10() {
+  countdown '10'
+  grimblast --notify -n $TARGET output
+}
+
+shotwin() {
+  grimblast --notify -n $TARGET active
+}
+
+shotarea() {
+  grimblast --notify -n $TARGET area
+}
+
+recordarea() {
+  wf-recorder_check
+  if [ "$SAVE" = true ]; then
+    echo "$VID" >/tmp/recording.txt
+    wf-recorder -a -g "$(slurp)" -f "$VID" &>/dev/null
+  else
+    VID=/tmp/$(date +%Y-%m-%d_%H-%m-%s).mp4
+    echo "$VID" >/tmp/recording.txt
+    wf-recorder -a -g "$(slurp)" -f "$VID" &>/dev/null
+  fi
+}
+
+# Execute Command
+run_cmd() {
+  if [[ "$1" == '--opt1' ]]; then
+    shotnow
+  elif [[ "$1" == '--opt2' ]]; then
+    shotarea
+  elif [[ "$1" == '--opt3' ]]; then
+    shotwin
+  elif [[ "$1" == '--opt4' ]]; then
+    shot5
+  elif [[ "$1" == '--opt5' ]]; then
+    shot10
+  elif [[ "$1" == '--opt6' ]]; then
+    recordarea
+  elif [[ "$1" == '--opt7' ]]; then
+    $HOME/.config/rofi/bin/screenshot --save=$([ "$SAVE" = true ] && echo false || echo true)
+  fi
+}
+
+# Actions
+chosen="$(run_rofi)"
+case ${chosen} in
+$option_1)
+  run_cmd --opt1
+  ;;
+$option_2)
+  run_cmd --opt2
+  ;;
+$option_3)
+  run_cmd --opt3
+  ;;
+$option_4)
+  run_cmd --opt4
+  ;;
+$option_5)
+  run_cmd --opt5
+  ;;
+$option_6)
+  run_cmd --opt6
+  ;;
+$option_7)
+  run_cmd --opt6
+  ;;
+esac

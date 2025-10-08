@@ -15,6 +15,7 @@ Nix related tasks
 - [x] No theme for Rofi
   - [x] can't get catppuccin color to work
   - [ ] maybe use new omarchy like menu to kill deps
+  - [ ] make the popups work with second screen
 - [ ] Check over what is a popup and floating in hyprland
 - [x] Check what is set for auto open (what will a .txt open with when i double click it or use `open file`)
 - [ ] Animated wallpaper not showing on locking

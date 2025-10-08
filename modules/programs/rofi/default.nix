@@ -14,6 +14,7 @@ let
     "rofi/launcher.rasi" = ./launcher.rasi;
     "rofi/volume-ctl.rasi" = ./volume-ctl.rasi;
     "rofi/powermenu.rasi" = ./powermenu.rasi;
+    "rofi/screenshot.rasi" = ./screenshot.rasi;
     "rofi/bin" = ./bin;
   };
   # Function to help map attrs for symlinking home.file, xdg.configFile

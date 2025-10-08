@@ -463,7 +463,7 @@ with host;
             "$mainMod" = "${toString mainMod}";
             bindd = [
               "$mainMod, return, Open Terminal, exec, ${pkgs.${vars.terminal}}/bin/${vars.terminal}"
-              "$mainMod, escape, Exit Manager, exec, ${pkgs.wlogout}/bin/wlogout"
+              "$mainMod, escape, Exit Manager, exec, $HOME/.config/rofi/bin/powermenu"
               "$mainMod, B, Open Browser, exec, ${pkgs.firefox}/bin/firefox"
               "$mainMod, Q, Close Window, killactive"
               "$mainMod, C, Open Controll Center, exec, ${pkgs.rofi}/bin/rofi -show drun"
@@ -571,7 +571,7 @@ with host;
             bind = , Q, submap, reset
             bindd = , T, Open Terminal, exec, ${pkgs.${vars.terminal}}/bin/${vars.terminal}
             bind = , T, submap, reset
-            bindd = , F, Open Files, exec, ${pkgs-stable.pcmanfm}/bin/pcmanfm
+            bindd = , F, Open Files, exec, ${pkgs.pcmanfm}/bin/pcmanfm
             bind = , F, submap, reset
             bindd = , B, Open Browser, exec, [workspace 2] ${pkgs.firefox}/bin/firefox
             bind = , B, submap, reset
@@ -686,16 +686,10 @@ with host;
 
             submap = grimblast
             bind = , escape, submap, reset
-            bindd = , O, Screenshot ?, exec, ${pkgs.grimblast}/bin/grimblast --notify -n copy output
-            bind = , O, submap, reset
-            bindd = , S, Screenshot Screen Clipboard, exec, ${pkgs.grimblast}/bin/grimblast --notify -n copy screen
-            bind = , S, submap, reset
-            bindd = , W, Screenshot Window Clipboard, exec, ${pkgs.grimblast}/bin/grimblast --notify -n copy active
-            bind = , W, submap, reset
+            bindd = , G, Screenshot Menu, exec, $HOME/.config/rofi/bin/screenshot --save=false
+            bind = , G, submap, reset
             bindd = , A, Screenshot Area Clipboard, exec, ${pkgs.grimblast}/bin/grimblast --notify -n copy area
             bind = , A, submap, reset
-            bindd = , R, Scree Recorde, exec, $HOME/.local/bin/screenRecorder
-            bind = , R, submap, reset
             submap = reset
 
             submap = toggle
