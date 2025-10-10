@@ -3,10 +3,19 @@
 ## Author  : Aditya Shakya (adi1090x)
 ## Github  : @adi1090x
 #
-## Applets : MPD (music)
+
+LARGE_MODE=false
+# if --large flag is passed set large mode
+if [[ "$1" == '--large' ]]; then
+  LARGE_MODE=true
+fi
 
 # Import Current Theme
-theme="$HOME/.config/rofi/volume-ctl.rasi"
+if [ "$LARGE_MODE" = true ]; then
+  theme="$HOME/.config/rofi/screenshot.rasi"
+else
+  theme="$HOME/.config/rofi/volume-ctl.rasi"
+fi
 
 # get mouse position
 pos=$(hyprctl cursorpos)
@@ -35,15 +44,15 @@ win_width='180px'
 layout=$(cat ${theme} | grep 'USE_ICON' | cut -d'=' -f2)
 if [[ "$layout" == 'NO' ]]; then
   if [[ ${status} == *"[playing]"* ]]; then
-    option_1=" Pause"
+    option_1="  Pause"
   else
-    option_1=" Play"
+    option_1="  Play"
   fi
-  option_2=" Stop"
-  option_3=" Previous"
-  option_4=" Next"
-  option_5=" Repeat"
-  option_6=" Random"
+  option_2="  Stop"
+  option_3="  Previous"
+  option_4="  Next"
+  option_5="  Repeat"
+  option_6="  Random"
   option_7="  Close"
 else
   if [[ ${status} == *"[playing]"* ]]; then
@@ -69,7 +78,7 @@ elif [[ $(playerctl loop --no-messages) == "None" ]]; then
   urgent="-u 4"
 else
   urgent="-u 4"
-  option_5=" No Loop"
+  option_5="  No Loop"
 fi
 # Random
 if [[ $(playerctl shuffle --no-messages) == "On" ]]; then
@@ -78,22 +87,35 @@ elif [[ $(playerctl shuffle --no-messages) == "Off" ]]; then
   [ -n "$urgent" ] && urgent+=",5" || urgent="-u 5"
 else
   [ -n "$urgent" ] && urgent+=",5" || urgent="-u 5"
-  option_6=" No Shuffle"
+  option_6="  No Shuffle"
 fi
 
 [ -n "$urgent" ] && urgent+=",6" || urgent="-u 6"
 
 # Rofi CMD
 rofi_cmd() {
-  rofi -theme-str "listview {columns: $list_col; lines: $list_row;}" \
-    -theme-str "window {width: $win_width; x-offset: $xoffset; y-offset: $yoffset;}" \
-    -theme-str 'textbox-prompt-colon {str: " ";}' \
-    -dmenu \
-    -p "$prompt" \
-    -mesg "$mesg" \
-    ${active} ${urgent} \
-    -markup-rows \
-    -theme ${theme}
+  if [ "$LARGE_MODE" = true ]; then
+    win_width='300px'
+    rofi -theme-str "window {width: $win_width;}" \
+      -theme-str "listview {columns: $list_col; lines: $list_row;}" \
+      -theme-str 'textbox-prompt-colon {str: " ";}' \
+      -dmenu \
+      -p "$prompt" \
+      -mesg "$mesg" \
+      ${active} ${urgent} \
+      -markup-rows \
+      -theme ${theme}
+  else
+    rofi -theme-str "listview {columns: $list_col; lines: $list_row;}" \
+      -theme-str "window {width: $win_width; x-offset: $xoffset; y-offset: $yoffset;}" \
+      -theme-str 'textbox-prompt-colon {str: " ";}' \
+      -dmenu \
+      -p "$prompt" \
+      -mesg "$mesg" \
+      ${active} ${urgent} \
+      -markup-rows \
+      -theme ${theme}
+  fi
 }
 
 # Pass variables to rofi dmenu

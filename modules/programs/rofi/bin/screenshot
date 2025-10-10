@@ -36,7 +36,7 @@ if [[ "$layout" == 'NO' ]]; then
   option_4="  Capture in 5s"
   option_5="  Capture in 10s"
   option_6="  Record Area"
-  option_7="󰨌 Record Area Low Quality"
+  option_7="󰨌  Record Area Low Quality"
   option_8="  Toggle Save/Copy"
 else
   option_1="󰍹 "

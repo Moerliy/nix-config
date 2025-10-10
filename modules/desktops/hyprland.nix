@@ -554,7 +554,7 @@ with host;
             bindd = , B, +backlight, submap, backlight
             bindd = , V, +volume, submap, volume
             bindd = , R, +resize, submap, resize
-            bindd = , M, +move, submap, move
+            bindd = , M, +move/music, submap, move
             bindd = , F, +focus, submap, focus
             bindd = , G, +screenshot, submap, grimblast
             bindd = , S, Special Workspace, togglespecialworkspace, special
@@ -630,6 +630,8 @@ with host;
 
             submap = move
             bind = , escape, submap, reset
+            binded = , M, Music Menu, exec, $HOME/.config/rofi/bin/musicmenu --large
+            binde = , M, submap, reset
             bindd = , F, +focus, submap, focus
             bindd = , H, Move Left, movewindow, l
             bindd = , L, Move Right, movewindow, r
