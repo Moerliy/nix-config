@@ -108,6 +108,7 @@ with host;
           xwayland # X session
           kitty
           eww
+          clipse
         ]
         ++ (
           if enableAnimatedWallpaper then
@@ -511,6 +512,8 @@ with host;
               "float, class:(Rofi),title:(Rofi)"
               "float,title:Picture-in-Picture"
               "float,class:(org.pulseaudio.pavucontrol),title:(Volume Control)"
+              "float,title:(Clipse)"
+              "size 622 652,title:(Clipse)"
               "size 1000 800,class:(org.pulseaudio.pavucontrol),title:(Volume Control)"
               "float,title:nmtui-session"
               "size 800 600,title:nmtui-session"
@@ -521,7 +524,8 @@ with host;
             exec-once = [
               "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
               "ln -s $XDG_RUNTIME_DIR/hypr /tmp/hypr"
-              "$HOME/.config/hypr/script/sync-clipboard.sh &"
+              "$HOME/.local/bin/clipboard-sync &"
+              "${pkgs.clipse}/bin/clipse -listen"
               # "${pkgs.eww}/bin/eww daemon"
               "${pkgs.waybar}/bin/waybar"
               "${pkgs.eww}/bin/eww --config $HOME/.config/eww-which-key daemon" # which-key seperated from default eww
@@ -551,6 +555,7 @@ with host;
             bindd = , escape, Reset submap, submap, reset
             bindd = , O, +open, submap, open
             bindd = , L, +layout, submap, masterlayout
+            bindd = , C, +clipboard, submap, clipboard
             bindd = , B, +backlight, submap, backlight
             bindd = , V, +volume, submap, volume
             bindd = , R, +resize, submap, resize
@@ -703,12 +708,20 @@ with host;
             bind = , P, submap, reset
             submap = reset
 
+
+            submap = clipboard
+            bind = , escape, submap, reset
+            bindd = , C, Clipse, exec, ${pkgs.${vars.terminal}}/bin/${vars.terminal} --title 'Clipse' -e 'clipse';
+            bind = , C, submap, reset
+            submap = reset
+
             plugin {
               hyprhook {
                 onSubmap = $HOME/.local/bin/which-key
                 pin = $HOME/.config/hypr/script/pin-border-color.sh
-                # onWorkspace = $HOME/test.sh
-                # focusedMon = $HOME/test.sh
+                # mouseButton = $HOME/.local/bin/drag-window-to-workspace
+                # changeFloatingMode = $HOME/test.sh
+                # windowUpdateRules = $HOME/test.sh
               }
               hyprwinwrap {
                 class = hyprland-super-wallpaper-template
@@ -740,28 +753,6 @@ with host;
         };
 
         xdg.configFile = {
-          "hypr/script/sync-clipboard.sh" = {
-            # wrong path
-            text = ''
-              #!/usr/bin/env bash
-              # Kill any running instances of wl-paste
-              killall wl-paste 2>/dev/null
-
-              # Start wl-paste in watch mode to monitor clipboard changes on wayland
-              wl-paste -w 'xclip' 2>/dev/null &
-
-              last=""
-              while true; do
-                current=$(xclip -o 2>/dev/null)
-                if [ "$current" != "$last" ]; then
-                  echo -n "$current" | wl-copy
-                  last="$current"
-                fi
-                sleep 0.2
-              done
-            '';
-            executable = true;
-          };
           "hypr/script/clamshell.sh" = {
             # wrong path
             text = ''

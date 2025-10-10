@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+# Kill any stale instances
+killall wl-paste xclip 2>/dev/null
+
+# Temporary marker files (optional but useful for clarity)
+TMP_DIR="${XDG_RUNTIME_DIR:-/tmp}/clip-sync"
+mkdir -p "$TMP_DIR"
+WL_MARK="$TMP_DIR/from-wayland"
+X_MARK="$TMP_DIR/from-x11"
+
+# Store last seen clipboard contents
+last_x=""
+last_w=""
+
+while true; do
+  # Get current text clipboards (ignore errors or non-text types)
+  current_x=$(xclip -o -t text/plain 2>/dev/null || echo "")
+  current_w=$(wl-paste --type text/plain 2>/dev/null || echo "")
+
+  # Wayland → X11
+  if [ "$current_w" != "$last_w" ] && [ "$current_w" != "$current_x" ] && [ -n "$current_w" ]; then
+    printf "%s" "$current_w" | xclip
+    last_w="$current_w"
+    last_x="$current_w"
+    touch "$WL_MARK"
+  fi
+
+  # X11 → Wayland
+  if [ "$current_x" != "$last_x" ] && [ "$current_x" != "$current_w" ] && [ -n "$current_x" ]; then
+    printf "%s" "$current_x" | wl-copy
+    last_x="$current_x"
+    last_w="$current_x"
+    touch "$X_MARK"
+  fi
+
+  sleep 0.2
+done

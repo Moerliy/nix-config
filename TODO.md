@@ -25,7 +25,9 @@ Nix related tasks
   - [x] Dissable for now
 - [x] Asahi audio crispy sometimes
   - [ ] Driver issue I think
-- [ ] Copy paste not working as usual
+- [x] Copy paste not working as usual
+  - [x] Fixed ... surely
+  - [ ] Newline inconsistencies under wayland
 - [ ] vencord config with nix
 
 #### New Features
