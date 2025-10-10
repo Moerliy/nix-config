@@ -95,19 +95,22 @@ with lib;
                 on-scroll-down = "${pkgs.hyprland}/bin/hyprctl dispatch workspace e-1";
               };
               "mpris" = {
-                format = "{status_icon} {dynamic}";
+                format = "{player_icon} Nothing playing";
+                format-playing = "{status_icon} {dynamic}";
                 format-paused = "{status_icon} <i>{dynamic}</i>";
+                format-stopped = "{status_icon} Nothing playing";
                 max-length = 30;
-                # on-click = "${pkgs.${vars.terminal}}/bin/${vars.terminal} --title 'ncmpcpp' -e 'ncmpcpp'";
+                on-click = "$HOME/.config/rofi/bin/musicmenu";
+                on-scroll-up = "playerctl next";
+                on-scroll-down = "playerctl previous";
                 player-icons = {
-                  default = "";
+                  default = "";
                   mpv = "🎵";
                 };
                 status-icons = {
                   playing = "";
                   paused = "";
                   stopped = "";
-                  # no-player = "󰖁";
                 };
               };
               "clock" = {
@@ -171,18 +174,18 @@ with lib;
                     ""
                   ];
                 };
-                on-click = "sleep 0.1 && $HOME/.config/rofi/bin/volume";
+                on-click = "$HOME/.config/rofi/bin/volume";
               };
               "custom/exit" = {
                 tooltip = false;
                 format = "";
-                on-click = "sleep 0.1 && $HOME/.config/rofi/bin/powermenu";
+                on-click = "$HOME/.config/rofi/bin/powermenu";
               };
               "custom/startmenu" = {
                 tooltip = false;
                 format = " ";
                 # exec = "rofi -show drun";
-                on-click = "sleep 0.1 && ${pkgs.rofi}/bin/rofi -show drun";
+                on-click = "${pkgs.rofi}/bin/rofi -show drun";
               };
               "custom/hyprbindings" = {
                 tooltip = false;

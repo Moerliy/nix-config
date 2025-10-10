@@ -1,0 +1,145 @@
+#!/usr/bin/env bash
+
+## Author  : Aditya Shakya (adi1090x)
+## Github  : @adi1090x
+#
+## Applets : MPD (music)
+
+# Import Current Theme
+theme="$HOME/.config/rofi/volume-ctl.rasi"
+
+# get mouse position
+pos=$(hyprctl cursorpos)
+x=$(echo "$pos" | cut -d',' -f1 | tr -d ' ')
+y=$(echo "$pos" | cut -d',' -f2 | tr -d ' ')
+
+# Adjust offsets so rofi isn't exactly on top of the cursor
+xoffset=$((x - 80))
+yoffset=$((y + 0))
+
+# Theme Elements
+status="$(playerctl status 2>/dev/null)"
+if [[ -z "$status" ]]; then
+  prompt='Offline'
+  mesg="Playerctl is Offline"
+else
+  prompt="$(playerctl metadata artist)"
+  mesg="$(playerctl metadata title) :: $(playerctl status)"
+fi
+
+list_col='1'
+list_row='7'
+win_width='180px'
+
+# Options
+layout=$(cat ${theme} | grep 'USE_ICON' | cut -d'=' -f2)
+if [[ "$layout" == 'NO' ]]; then
+  if [[ ${status} == *"[playing]"* ]]; then
+    option_1=" Pause"
+  else
+    option_1=" Play"
+  fi
+  option_2=" Stop"
+  option_3=" Previous"
+  option_4=" Next"
+  option_5=" Repeat"
+  option_6=" Random"
+  option_7="  Close"
+else
+  if [[ ${status} == *"[playing]"* ]]; then
+    option_1=" "
+  else
+    option_1=" "
+  fi
+  option_2=" "
+  option_3=" "
+  option_4=" "
+  option_5=" "
+  option_6=" "
+  option_7=" "
+fi
+
+# Toggle Actions
+active=''
+urgent=''
+# Repeat
+if [[ $(playerctl loop --no-messages) == "Track" ]]; then
+  active="-a 4"
+elif [[ $(playerctl loop --no-messages) == "None" ]]; then
+  urgent="-u 4"
+else
+  urgent="-u 4"
+  option_5=" No Loop"
+fi
+# Random
+if [[ $(playerctl shuffle --no-messages) == "On" ]]; then
+  [ -n "$active" ] && active+=",5" || active="-a 5"
+elif [[ $(playerctl shuffle --no-messages) == "Off" ]]; then
+  [ -n "$urgent" ] && urgent+=",5" || urgent="-u 5"
+else
+  [ -n "$urgent" ] && urgent+=",5" || urgent="-u 5"
+  option_6=" No Shuffle"
+fi
+
+[ -n "$urgent" ] && urgent+=",6" || urgent="-u 6"
+
+# Rofi CMD
+rofi_cmd() {
+  rofi -theme-str "listview {columns: $list_col; lines: $list_row;}" \
+    -theme-str "window {width: $win_width; x-offset: $xoffset; y-offset: $yoffset;}" \
+    -theme-str 'textbox-prompt-colon {str: " ";}' \
+    -dmenu \
+    -p "$prompt" \
+    -mesg "$mesg" \
+    ${active} ${urgent} \
+    -markup-rows \
+    -theme ${theme}
+}
+
+# Pass variables to rofi dmenu
+run_rofi() {
+  echo -e "$option_1\n$option_2\n$option_3\n$option_4\n$option_5\n$option_6\n$option_7" | rofi_cmd
+}
+
+# Execute Command
+run_cmd() {
+  if [[ "$1" == '--opt1' ]]; then
+    playerctl play-pause && notify-send -u low -t 1000 " $(playerctl metadata title)"
+  elif [[ "$1" == '--opt2' ]]; then
+    playerctl stop
+  elif [[ "$1" == '--opt3' ]]; then
+    playerctl previous && notify-send -u low -t 1000 " $(playerctl metadata title)"
+  elif [[ "$1" == '--opt4' ]]; then
+    playerctl next && notify-send -u low -t 1000 " $(playerctl metadata title)"
+  elif [[ "$1" == '--opt5' ]]; then
+    playerctl loop && notify-send -u low -t 1000 " Loop Toggled"
+  elif [[ "$1" == '--opt6' ]]; then
+    playerctl shuffle && notify-send -u low -t 1000 " Shuffle Toggled"
+  fi
+}
+
+# Actions
+chosen="$(run_rofi)"
+case ${chosen} in
+$option_1)
+  run_cmd --opt1
+  ;;
+$option_2)
+  run_cmd --opt2
+  ;;
+$option_3)
+  run_cmd --opt3
+  ;;
+$option_4)
+  run_cmd --opt4
+  ;;
+$option_5)
+  run_cmd --opt5
+  ;;
+$option_6)
+  run_cmd --opt6
+  ;;
+$option_7)
+  killall rofi
+  ;;
+esac
