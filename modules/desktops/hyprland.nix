@@ -697,11 +697,16 @@ with host;
             bind = , F, submap, reset
             bindd = , B, Fullscreen, fullscreen
             bind = , B, submap, reset
+            bindd = , P, Pin, exec, hyprctl dispatch pin
+            bind = , P, submap, reset
             submap = reset
 
             plugin {
               hyprhook {
                 onSubmap = $HOME/.local/bin/which-key
+                pin = $HOME/.config/hypr/script/pin-border-color.sh
+                # onWorkspace = $HOME/test.sh
+                # focusedMon = $HOME/test.sh
               }
               hyprwinwrap {
                 class = hyprland-super-wallpaper-template
@@ -758,7 +763,7 @@ with host;
           "hypr/script/clamshell.sh" = {
             # wrong path
             text = ''
-              #!/bin/sh
+              #!/usr/bin/env bash
 
               if grep open /proc/acpi/button/lid/${lid}/state; then
                 ${hyprlandPkg}/bin/hyprctl keyword monitor "${toString mainMonitor}, 1920x1080, 0x0, 1"
@@ -770,6 +775,21 @@ with host;
                   ${pkgs.systemd}/bin/systemctl suspend
                 fi
               fi
+            '';
+            executable = true;
+          };
+          "hypr/script/pin-border-color.sh" = {
+            text = ''
+              #!/usr/bin/env bash
+
+              ADDRESS=$(jq -r '.address' <<<"$1")
+
+              if jq -e '.pinned == true' <<<"$1" >/dev/null; then
+                hyprctl dispatch setprop address:$ADDRESS inactivebordercolor 0xff89b4fa
+              else
+                hyprctl dispatch setprop address:$ADDRESS inactivebordercolor 0xff6c7086
+              fi
+
             '';
             executable = true;
           };

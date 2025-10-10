@@ -45,6 +45,7 @@ with lib;
       home.packages = with pkgs; [
         pavucontrol
       ];
+      services.playerctld.enable = true;
       programs = {
         waybar = {
           enable = true;
@@ -64,6 +65,7 @@ with lib;
                 "power-profiles-daemon"
               ];
               modules-right = [
+                "mpris"
                 "custom/hyprbindings"
                 "custom/exit"
                 "idle_inhibitor"
@@ -91,6 +93,22 @@ with lib;
                 };
                 on-scroll-up = "${pkgs.hyprland}/bin/hyprctl dispatch workspace e+1";
                 on-scroll-down = "${pkgs.hyprland}/bin/hyprctl dispatch workspace e-1";
+              };
+              "mpris" = {
+                format = "{status_icon} {dynamic}";
+                format-paused = "{status_icon} <i>{dynamic}</i>";
+                max-length = 30;
+                # on-click = "${pkgs.${vars.terminal}}/bin/${vars.terminal} --title 'ncmpcpp' -e 'ncmpcpp'";
+                player-icons = {
+                  default = "";
+                  mpv = "🎵";
+                };
+                status-icons = {
+                  playing = "";
+                  paused = "";
+                  stopped = "";
+                  # no-player = "󰖁";
+                };
               };
               "clock" = {
                 format = if clock24h == true then '' {:%H:%M}'' else '' {:%I:%M %p}'';
@@ -534,6 +552,25 @@ with lib;
                    }
                    #custom-hyprbindings {
                  	color: ${base0E};
+              ${
+                if simplebar == true then
+                  ''
+                    background: ${base00};
+                    margin: 6px 4px;
+                    padding: 0px 10px;
+                    border-radius: 15px;
+                  ''
+                else
+                  ''
+                    background: ${base01};
+                    margin: 4px;
+                    padding: 2px 10px;
+                    border-radius: 10px;
+                  ''
+              }
+                   }
+                   #mpris {
+                 	color: ${base07};
               ${
                 if simplebar == true then
                   ''

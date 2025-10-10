@@ -111,98 +111,100 @@
     };
   };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    nixpkgs-unstable,
-    nixos-hardware,
-    home-manager,
-    home-manager-unstable,
-    darwin,
-    apple-silicon,
-    animated-wallpaper,
-    hyprland,
-    hyprland-nativ-plugins,
-    hyprhook,
-    hyprlock,
-    hypridle,
-    minegrub,
-    nixgl,
-    minegrubx86,
-    lanzaboote,
-    bat-catppuccin,
-    delta-catppuccin,
-    tokionight-nvim,
-    ...
-  }:
-  # Function telling flake which inputs to use
-  let
-    # Variables Used In Flake
-    vars = {
-      user = "moritzgleissner";
-      location = "$HOME/.setup";
-      terminal = "kitty";
-      editor = "nvim";
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      nixos-hardware,
+      home-manager,
+      home-manager-unstable,
+      darwin,
+      apple-silicon,
+      animated-wallpaper,
+      hyprland,
+      hyprland-nativ-plugins,
+      hyprhook,
+      hyprlock,
+      hypridle,
+      minegrub,
+      nixgl,
+      minegrubx86,
+      lanzaboote,
+      bat-catppuccin,
+      delta-catppuccin,
+      tokionight-nvim,
+      ...
+    }:
+    # Function telling flake which inputs to use
+    let
+      # Variables Used In Flake
+      vars = {
+        user = "moritzgleissner";
+        location = "$HOME/.setup";
+        terminal = "kitty";
+        editor = "nvim";
+      };
+    in
+    {
+      # nixosConfigurations = (
+      #   import ./hosts {
+      #     inherit (nixpkgs) lib;
+      #     inherit inputs nixpkgs nixpkgs-unstable nixos-hardware home-manager nur hyprland hyprlock hypridle hyprspace plasma-manager vars; # Inherit inputs
+      #   }
+      # );
+
+      darwinConfigurations = (
+        import ./darwin {
+          inherit (nixpkgs) lib;
+          inherit
+            inputs
+            nixpkgs
+            nixpkgs-unstable
+            home-manager-unstable
+            darwin
+            vars
+            ;
+        }
+      );
+
+      nixosConfigurations = (
+        import ./hosts {
+          inherit (nixpkgs) lib;
+          inherit
+            inputs
+            nixpkgs
+            hyprland
+            hyprhook
+            hypridle
+            hyprland-nativ-plugins
+            hyprlock
+            nixpkgs-unstable
+            home-manager
+            home-manager-unstable
+            apple-silicon
+            vars
+            animated-wallpaper
+            minegrub
+            minegrubx86
+            lanzaboote
+            ;
+        }
+      );
+
+      homeConfigurations = (
+        import ./nix {
+          inherit (nixpkgs) lib;
+          inherit
+            inputs
+            nixpkgs
+            nixpkgs-unstable
+            home-manager
+            home-manager-unstable
+            nixgl
+            vars
+            ;
+        }
+      );
     };
-  in {
-    # nixosConfigurations = (
-    #   import ./hosts {
-    #     inherit (nixpkgs) lib;
-    #     inherit inputs nixpkgs nixpkgs-unstable nixos-hardware home-manager nur hyprland hyprlock hypridle hyprspace plasma-manager vars; # Inherit inputs
-    #   }
-    # );
-
-    darwinConfigurations = (
-      import ./darwin {
-        inherit (nixpkgs) lib;
-        inherit
-          inputs
-          nixpkgs
-          nixpkgs-unstable
-          home-manager-unstable
-          darwin
-          vars
-          ;
-      }
-    );
-
-    nixosConfigurations = (
-      import ./hosts {
-        inherit (nixpkgs) lib;
-        inherit
-          inputs
-          nixpkgs
-          hyprland
-          hyprhook
-          hypridle
-          hyprland-nativ-plugins
-          hyprlock
-          nixpkgs-unstable
-          home-manager
-          home-manager-unstable
-          apple-silicon
-          vars
-          animated-wallpaper
-          minegrub
-          minegrubx86
-          lanzaboote
-          ;
-      }
-    );
-
-    homeConfigurations = (
-      import ./nix {
-        inherit (nixpkgs) lib;
-        inherit
-          inputs
-          nixpkgs
-          nixpkgs-unstable
-          home-manager
-          home-manager-unstable
-          nixgl
-          vars
-          ;
-      }
-    );
-  };
 }
