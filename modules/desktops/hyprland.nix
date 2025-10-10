@@ -12,6 +12,7 @@
   hyprland-nativ-plugins,
   hypridle,
   hyprlock,
+  hyprsunset,
   animated-wallpaper,
   system,
   vars,
@@ -24,6 +25,7 @@ let
     # legacyRenderer = true;
   };
   hyprlockPkg = hyprlock.packages.${pkgs.system}.hyprlock;
+  hyprsunsetPkg = hyprsunset.packages.${pkgs.system}.hyprsunset;
   hypridlePkg = hypridle.packages.${pkgs.system}.hypridle;
   hyprhookPkg = hyprhook.packages.${pkgs.system}.hyprhook;
   hyprwinwrapPkg = hyprland-nativ-plugins.packages.${pkgs.system}.hyprwinwrap;
@@ -247,6 +249,24 @@ with host;
               {
                 timeout = 1800;
                 on-timeout = "${lockScript.outPath} suspend";
+              }
+            ];
+          };
+        };
+
+        services.hyprsunset = {
+          enable = true;
+          package = hyprsunsetPkg;
+          settings = {
+            max-gamma = 150;
+            profile = [
+              {
+                time = "6:30";
+                identity = true;
+              }
+              {
+                time = "19:00";
+                temperature = 5000;
               }
             ];
           };
@@ -603,6 +623,8 @@ with host;
             bindd = , J, Decrease Screen Brightness, exec, ${customScripts}/brightness --dec
             bindd = , H, Decrease Keyboard Brightness, exec, ${customScripts}/kbd-brightness --dec
             bindd = , L, Increase Keyboard Brightness, exec, ${customScripts}/kbd-brightness --inc
+            bindd = , N, Night Mode, exec, ${customScripts}/brightness --toggle-night-mode
+            bind = , N, submap, reset
             bindd = , up, Increase Screen Brightness, exec, ${customScripts}/brightness --inc
             bindd = , down, Decrease Screen Brightness, exec, ${customScripts}/brightness --dec
             bindd = , left, Decrease Keyboard Brightness, exec, ${customScripts}/kbd-brightness --dec
@@ -706,6 +728,8 @@ with host;
             bind = , B, submap, reset
             bindd = , P, Pin, exec, hyprctl dispatch pin
             bind = , P, submap, reset
+            bindd = , N, Toggle Night Mode, exec, ${customScripts}/brightness --toggle-night-mode
+            bind = , N, submap, reset
             submap = reset
 
 

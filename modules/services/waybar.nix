@@ -70,6 +70,7 @@ with lib;
                 "custom/exit"
                 "idle_inhibitor"
                 "network"
+                "backlight"
                 "pulseaudio"
                 "battery"
                 "clock"
@@ -93,6 +94,11 @@ with lib;
                 };
                 on-scroll-up = "${pkgs.hyprland}/bin/hyprctl dispatch workspace e+1";
                 on-scroll-down = "${pkgs.hyprland}/bin/hyprctl dispatch workspace e-1";
+              };
+              "backlight" = {
+                format = "󰃟 {brightness}%";
+                # on-click = "${pkgs.${vars.terminal}}/bin/${vars.terminal} --title 'brightnessctl' -e 'brightnessctl'";
+                tooltip = false;
               };
               "mpris" = {
                 format = "{player_icon} Nothing playing";

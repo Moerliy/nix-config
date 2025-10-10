@@ -70,6 +70,13 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    # Hyprlock
+    hyprsunset = {
+      url = "github:hyprwm/hyprsunset";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      # inputs.hyprland.follows = "hyprland";
+    };
+
     # Hypridle
     hypridle = {
       url = "github:hyprwm/hypridle";
@@ -126,6 +133,7 @@
       hyprland-nativ-plugins,
       hyprhook,
       hyprlock,
+      hyprsunset,
       hypridle,
       minegrub,
       nixgl,
@@ -179,6 +187,7 @@
             hypridle
             hyprland-nativ-plugins
             hyprlock
+            hyprsunset
             nixpkgs-unstable
             home-manager
             home-manager-unstable

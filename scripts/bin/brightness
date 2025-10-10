@@ -3,10 +3,12 @@
 ## Script To Manage Brightness For Archcraft (in Wayland).
 
 iDIR="$HOME/.config/mako/icons"
+NIGHT_TEMPERATUR=5000
+NORMAL_TEMPERATUR=6000
 
 # Get brightness
 get_backlight() {
-  LIGHT=$(printf "%.0f\n" $(light -G))
+  LIGHT=$(hyprctl hyprsunset gamma | cut -d '.' -f 1)
   echo "${LIGHT}%"
 }
 
@@ -34,12 +36,34 @@ notify_user() {
 
 # Increase brightness
 inc_backlight() {
-  light -A 5 && get_icon && notify_user
+  # if already at 100%, do nothing and notify
+  if [[ "$(get_backlight)" == "100%" ]]; then
+    get_icon && notify_user
+    exit 0
+  fi
+  hyprctl hyprsunset gamma +5 && get_icon && notify_user
 }
 
 # Decrease brightness
 dec_backlight() {
-  light -U 5 && get_icon && notify_user
+  if [[ "$(get_backlight)" == "0%" ]]; then
+    get_icon && notify_user
+    exit 0
+  fi
+  hyprctl hyprsunset gamma -5 && get_icon && notify_user
+}
+
+toggle_night_mode() {
+  CURRENT_TEMP=$(hyprctl hyprsunset temperature)
+  # if not eq normarl temperature, set to normal
+  if [[ "$CURRENT_TEMP" -ne "$NORMAL_TEMPERATUR" ]]; then
+    hyprctl hyprsunset temperature "$NORMAL_TEMPERATUR"
+    notify-send -h string:x-canonical-private-synchronous:sys-notify -u low -i "$iDIR/brightness-100.png" "Night Mode : Off"
+    exit 0
+  fi
+  hyprctl hyprsunset temperature "$NIGHT_TEMPERATUR"
+  notify-send -h string:x-canonical-private-synchronous:sys-notify -u low -i "$iDIR/brightness-40.png" "Night Mode : On"
+  exit 0
 }
 
 # Execute accordingly
@@ -49,6 +73,8 @@ elif [[ "$1" == "--inc" ]]; then
   inc_backlight
 elif [[ "$1" == "--dec" ]]; then
   dec_backlight
+elif [[ "$1" == "--toggle-night-mode" ]]; then
+  toggle_night_mode
 else
   get_backlight
 fi
