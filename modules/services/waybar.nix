@@ -110,7 +110,7 @@ with lib;
                 on-scroll-up = "$HOME/.local/bin/brightness --inc";
                 on-scroll-down = "$HOME/.local/bin/brightness --dec";
                 on-click = "$HOME/.local/bin/brightness --toggle-night-mode";
-                smooth-scrolling-threshold = 2.0;
+                smooth-scrolling-threshold = 1.0;
               };
               "mpris" = {
                 format = "{player_icon} Nothing playing";
