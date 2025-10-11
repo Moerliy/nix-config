@@ -18,10 +18,10 @@ uptime="$(
   printf "%d minutes\n", m;}' /proc/uptime
 )"
 
-UPTIME_MAX_LENGHT=30
+UPTIME_MAX_LENGHT=25
 # cut mesg if longer then $UPTIME_MAX_LENGHT
-if [ ${#mesg} -gt $UPTIME_MAX_LENGHT ]; then
-  mesg="${mesg:0:UPTIME_MAX_LENGHT}..."
+if [ ${#uptime} -gt $UPTIME_MAX_LENGHT ]; then
+  uptime="${uptime:0:UPTIME_MAX_LENGHT}..."
 fi
 
 # Options
