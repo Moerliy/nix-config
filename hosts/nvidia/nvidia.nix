@@ -73,10 +73,24 @@
       "nvidia-x11"
       "nvidia-settings"
       "nvidia-persistenced"
+      "steam"
       "steam-run"
+      "steam-original"
       "steam-unwrapped"
+      "osu-lazer-bin"
     ];
   services.xserver.videoDrivers = [ "nvidia" ];
+
+  programs.steam = {
+    enable = true;
+    package = pkgs.steam.override {
+      # withPrimus = true;
+      extraPkgs = pkgs: [ ];
+    };
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
 
   hardware = {
     graphics = {
@@ -215,6 +229,7 @@
           # webcord-vencord
           vesktop
           distrobox
+          osu-lazer-bin
         ];
       };
     };

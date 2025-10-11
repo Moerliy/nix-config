@@ -9,16 +9,15 @@
   pkgs-stable,
   ...
 }:
-with lib; {
+with lib;
+{
   options.gtk-theme = {
     enable = mkOption {
       type = types.bool;
       default = false;
-      description =
-        mdDoc
-        ''
-          Enable the gtk theme.
-        '';
+      description = mdDoc ''
+        Enable the gtk theme.
+      '';
     };
   };
 
@@ -28,9 +27,8 @@ with lib; {
         enable = true;
         theme = {
           name = "Kanagawa-B";
-          package =
-            pkgs.kanagawa-gtk-theme.override {
-            };
+          package = pkgs.kanagawa-gtk-theme.override {
+          };
         };
         iconTheme = {
           name = "Papirus-Dark";

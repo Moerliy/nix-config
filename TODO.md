@@ -17,6 +17,9 @@ Nix related tasks
   - [ ] Newline inconsistencies under wayland
 - [ ] vencord config with nix
 - [ ] search all keybinds
+- [ ] Steam to big cursor (xWayland as usual)
+- [ ] disable middle mouse key for osu
+  - [x] script not working
 
 #### New Features
 

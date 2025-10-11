@@ -530,6 +530,9 @@ with host;
             ];
             windowrulev2 = [
               "float, class:(Rofi),title:(Rofi)"
+              "float, class:(steam),title:(Friends List)"
+              "float, class:(steam),title:(Steam settings)"
+              "fullscreen, class:(osu!),title:(osu!)"
               "float,title:Picture-in-Picture"
               "float,class:(org.pulseaudio.pavucontrol),title:(Volume Control)"
               "float,title:(Clipse)"
@@ -745,6 +748,8 @@ with host;
               hyprhook {
                 onSubmap = $HOME/.local/bin/which-key
                 pin = $HOME/.config/hypr/script/pin-border-color.sh
+                # activeWindow = $HOME/.config/hypr/script/disable-keybind.sh
+                # activeWindow = $HOME/test.sh
                 # mouseButton = $HOME/.local/bin/drag-window-to-workspace
                 # changeFloatingMode = $HOME/test.sh
                 # windowUpdateRules = $HOME/test.sh
@@ -808,7 +813,30 @@ with host;
               else
                 hyprctl dispatch setprop address:$ADDRESS inactivebordercolor 0xff6c7086
               fi
+            '';
+            executable = true;
+          };
+          "hypr/script/disable-keybind.sh" = {
+            text = ''
+              #!/usr/bin/env bash
 
+              WINDOW_TITLE=$(jq -r '.title' <<<"$1")
+              WINDOW_CLASS=$(jq -r '.class' <<<"$1")
+
+              echo "Window Title: $WINDOW_TITLE"
+              echo "Window Class: $WINDOW_CLASS"
+
+              # bindmd = , mouse:274, Move Window, movewindow
+              # check if osu! is running
+              if [[ "$WINDOW_TITLE" == "osu!" && "$WINDOW_CLASS" == "osu!" ]]; then
+                echo "unbind"
+                hyprctl keyword unbind , mouse:274
+              else
+                if [[ $(hyprctl binds -j | jq 'map(select(.modmask == 0 and .submap == "" and .key == "mouse:274")) | any') == "false" ]]; then
+                  echo "rebind"
+                  hyprctl keyword bindmd , mouse:274, Move Window, movewindow
+                fi
+              fi
             '';
             executable = true;
           };
