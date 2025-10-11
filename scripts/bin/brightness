@@ -9,12 +9,12 @@ NORMAL_TEMPERATUR=6000
 # Get brightness
 get_backlight() {
   LIGHT=$(hyprctl hyprsunset gamma | cut -d '.' -f 1)
-  echo "${LIGHT}%"
+  echo "${LIGHT}"
 }
 
 # Get icons
 get_icon() {
-  backlight="$(get_backlight)"
+  backlight="$(get_backlight)%"
   current="${backlight%%%}"
   if [[ ("$current" -ge "0") && ("$current" -le "20") ]]; then
     icon="$iDIR/brightness-20.png"
@@ -31,26 +31,30 @@ get_icon() {
 
 # Notify
 notify_user() {
-  notify-send -h string:x-canonical-private-synchronous:sys-notify -u low -i "$icon" "Brightness : $(get_backlight)"
+  notify-send -h string:x-canonical-private-synchronous:sys-notify -u low -i "$icon" "Brightness : $(get_backlight)%"
 }
 
 # Increase brightness
 inc_backlight() {
-  # if already at 100%, do nothing and notify
-  if [[ "$(get_backlight)" == "100%" ]]; then
-    get_icon && notify_user
-    exit 0
+  # Calculate new backlight value
+  current=$(get_backlight)
+  new_value=$((current + 5))
+  if [[ $new_value -gt 100 ]]; then
+    new_value=100
   fi
-  hyprctl hyprsunset gamma +5 && get_icon && notify_user
+
+  # Apply new backlight value
+  hyprctl hyprsunset gamma $new_value && get_icon && notify_user
 }
 
 # Decrease brightness
 dec_backlight() {
-  if [[ "$(get_backlight)" == "0%" ]]; then
-    get_icon && notify_user
-    exit 0
+  current=$(get_backlight)
+  new_value=$((current - 5))
+  if [[ $new_value -lt 0 ]]; then
+    new_value=0
   fi
-  hyprctl hyprsunset gamma -5 && get_icon && notify_user
+  hyprctl hyprsunset gamma $new_value && get_icon && notify_user
 }
 
 toggle_night_mode() {

@@ -70,7 +70,7 @@ with lib;
                 "custom/exit"
                 "idle_inhibitor"
                 "network"
-                "backlight"
+                "custom/backlight"
                 "pulseaudio"
                 "battery"
                 "clock"
@@ -95,10 +95,21 @@ with lib;
                 on-scroll-up = "${pkgs.hyprland}/bin/hyprctl dispatch workspace e+1";
                 on-scroll-down = "${pkgs.hyprland}/bin/hyprctl dispatch workspace e-1";
               };
-              "backlight" = {
-                format = "󰃟 {brightness}%";
-                # on-click = "${pkgs.${vars.terminal}}/bin/${vars.terminal} --title 'brightnessctl' -e 'brightnessctl'";
-                tooltip = false;
+              "custom/backlight" = {
+                exec = "sleep 0.1 && gamma=$(hyprctl hyprsunset gamma | cut -d '.' -f 1) && temperature=$(hyprctl hyprsunset temperature) && jq --unbuffered --compact-output -Rn --arg text \"$gamma\" --arg alt \"$temperature\" '{text: $text, alt: $alt}'";
+                exec-on-event = true;
+                return-type = "json";
+                # interval = "once";
+                interval = 1;
+                signal = 8;
+                format = "{icon} {text}%";
+                format-icons = {
+                  default = "󰃜";
+                  "6000" = "󰃝";
+                };
+                on-scroll-up = "$HOME/.local/bin/brightness --inc";
+                on-scroll-down = "$HOME/.local/bin/brightness --dec";
+                on-click = "$HOME/.local/bin/brightness --toggle-night-mode";
               };
               "mpris" = {
                 format = "{player_icon} Nothing playing";
@@ -579,6 +590,25 @@ with lib;
               }
                    }
                    #mpris {
+                 	color: ${base07};
+              ${
+                if simplebar == true then
+                  ''
+                    background: ${base00};
+                    margin: 6px 4px;
+                    padding: 0px 10px;
+                    border-radius: 15px;
+                  ''
+                else
+                  ''
+                    background: ${base01};
+                    margin: 4px;
+                    padding: 2px 10px;
+                    border-radius: 10px;
+                  ''
+              }
+                   }
+                   #custom-backlight {
                  	color: ${base07};
               ${
                 if simplebar == true then
