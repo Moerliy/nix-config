@@ -21,7 +21,7 @@ theme="$HOME/.config/rofi/screenshot.rasi"
 
 # Theme Elements
 prompt=$([ "$SAVE" = true ] && echo "Save to ~/Downloads" || echo "Copy to clipboard")
-mesg="DIR: $HOME/Downloads"
+mesg=$([ "$SAVE" = true ] && echo "DIR: $HOME/Downloads" || echo "DIR: /tmp")
 
 list_col='1'
 list_row='8'

@@ -688,6 +688,8 @@ with host;
             bindd = , Q, Close Window, killactive
             bind = , escape, submap, reset
             bindd = , M, +move, submap, move
+            bindd = , F, Focus Index Menu, exec, ${pkgs.rofi}/bin/rofi -show window
+            bind = , F, submap, reset
             bindd = , left, Focus Left, movefocus, l
             bindd = , right, Focus Right, movefocus, r
             bindd = , up, Focus Up, movefocus, u
