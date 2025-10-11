@@ -14,6 +14,10 @@ x=$(echo "$pos" | cut -d',' -f1 | tr -d ' ')
 y=$(echo "$pos" | cut -d',' -f2 | tr -d ' ')
 
 # Adjust offsets so rofi isn't exactly on top of the cursor
+RIGHT_MONITOR_OFFSET=2560
+if [ "$x" -lt 0 ]; then
+  x=$((x + RIGHT_MONITOR_OFFSET))
+fi
 xoffset=$((x - 80))
 yoffset=$((y + 0))
 

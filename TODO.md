@@ -7,8 +7,7 @@ Nix related tasks
 - Hyprlock
   - [ ] Crash because of sleep/hybernate?
 - Rofi
-  - [ ] make the popups work with second screen
-  - [ ] needs wrap around for longer strings in (powermenu)uptime, (musicmenu)title
+  - [x] make the popups work with second screen
 - [ ] Animated wallpaper not showing on locking
   - [ ] Not building right (template issues again maybe :)
   - [x] Dissable for now
