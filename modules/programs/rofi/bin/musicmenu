@@ -31,22 +31,25 @@ status="$(playerctl status 2>/dev/null)"
 if [[ -z "$status" ]]; then
   prompt='Offline'
   mesg="Playerctl is Offline"
+elif [[ "$status" == "No player found" ]]; then
+  prompt='Offline'
+  mesg="Playerctl is Offline"
 else
   prompt="$(playerctl metadata artist)"
   mesg="'$(playerctl metadata title)"
-fi
 
-MESSAGE_MAX_LENGTH=10
-# cut mesg if longer then $MESSAGE_MAX_LENGTH
-if [ ${#mesg} -gt $MESSAGE_MAX_LENGTH ]; then
-  mesg="${mesg:0:MESSAGE_MAX_LENGTH}..."
-fi
+  MESSAGE_MAX_LENGTH=10
+  # cut mesg if longer then $MESSAGE_MAX_LENGTH
+  if [ ${#mesg} -gt $MESSAGE_MAX_LENGTH ]; then
+    mesg="${mesg:0:MESSAGE_MAX_LENGTH}..."
+  fi
 
-mesg+="' :: $(playerctl status)"
+  mesg+="' :: $(playerctl status)"
 
-PROMPT_MAX_LENGHT=17
-if [ ${#prompt} -gt $PROMPT_MAX_LENGHT ]; then
-  prompt="${prompt:0:PROMPT_MAX_LENGHT}..."
+  PROMPT_MAX_LENGHT=17
+  if [ ${#prompt} -gt $PROMPT_MAX_LENGHT ]; then
+    prompt="${prompt:0:PROMPT_MAX_LENGHT}..."
+  fi
 fi
 
 list_col='1'
