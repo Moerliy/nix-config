@@ -110,6 +110,7 @@ with lib;
                 on-scroll-up = "$HOME/.local/bin/brightness --inc";
                 on-scroll-down = "$HOME/.local/bin/brightness --dec";
                 on-click = "$HOME/.local/bin/brightness --toggle-night-mode";
+                smooth-scrolling-threshold = 2.0;
               };
               "mpris" = {
                 format = "{player_icon} Nothing playing";
@@ -120,6 +121,7 @@ with lib;
                 on-click = "$HOME/.config/rofi/bin/musicmenu";
                 on-scroll-up = "playerctl next";
                 on-scroll-down = "playerctl previous";
+                smooth-scrolling-threshold = 3.0;
                 player-icons = {
                   default = "";
                   mpv = "🎵";
@@ -192,6 +194,7 @@ with lib;
                   ];
                 };
                 on-click = "$HOME/.config/rofi/bin/volume";
+                smooth-scrolling-threshold = 2.0;
               };
               "custom/exit" = {
                 tooltip = false;
