@@ -121,7 +121,7 @@ with lib;
                 on-click = "$HOME/.config/rofi/bin/musicmenu";
                 on-scroll-up = "playerctl next";
                 on-scroll-down = "playerctl previous";
-                smooth-scrolling-threshold = 3.0;
+                smooth-scrolling-threshold = 1.0;
                 player-icons = {
                   default = "";
                   mpv = "🎵";
@@ -194,7 +194,7 @@ with lib;
                   ];
                 };
                 on-click = "$HOME/.config/rofi/bin/volume";
-                smooth-scrolling-threshold = 2.0;
+                smooth-scrolling-threshold = 1.0;
               };
               "custom/exit" = {
                 tooltip = false;
