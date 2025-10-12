@@ -18,6 +18,7 @@ configuration {
 	display-ssh:                " SSH";
 	drun-display-format:        "{name}";
 	window-format:              "{w} · {c} · {t}";
+  kb-accept-entry: "[49],Return";
 }
 
 /*****----- Global Properties -----*****/

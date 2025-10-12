@@ -484,6 +484,7 @@ with host;
             bindd = [
               "$mainMod, return, Open Terminal, exec, ${pkgs.${vars.terminal}}/bin/${vars.terminal}"
               "$mainMod, escape, Exit Manager, exec, $HOME/.config/rofi/bin/powermenu-large"
+              "$mainMod, tab, Exit Manager, exec, ${pkgs.rofi}/bin/rofi -show window"
               "$mainMod, B, Open Browser, exec, ${pkgs.firefox}/bin/firefox"
               "$mainMod, Q, Close Window, killactive"
               "$mainMod, C, Open Controll Center, exec, ${pkgs.rofi}/bin/rofi -show drun"
