@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Scanner
+Comment=Scanner Application
+# Icon=/home/moritzgleissner/Downloads/1000-Yard-Moritz.jpg
+# firefox with url to localhost:8100
+Exec=firefox --no-remote --new-window http://localhost:8100
+Terminal=false
+StartupWMClass=Scanner

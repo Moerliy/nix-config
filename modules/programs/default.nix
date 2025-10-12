@@ -13,4 +13,5 @@
   ./kitty.nix
   ./wlogout/default.nix
   ./rofi/default.nix
+  ./desktop-entries/default.nix
 ]

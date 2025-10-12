@@ -536,6 +536,8 @@ with host;
               "float,title:Picture-in-Picture"
               "float,class:(org.pulseaudio.pavucontrol),title:(Volume Control)"
               "float,title:(Clipse)"
+              "float,title:(scanserv-js — Mozilla Firefox),class:(firefox)"
+              "size 1000 800,title:(scanserv-js — Mozilla Firefox),class:(firefox)"
               "size 622 652,title:(Clipse)"
               "size 1000 800,class:(org.pulseaudio.pavucontrol),title:(Volume Control)"
               "float,title:nmtui-session"

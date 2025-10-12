@@ -29,6 +29,7 @@
   eww.enable = true;
   wlogout.enable = false;
   waybar.enable = true;
+  desktop-entries.enable = true;
 
   # programs
   kitty.enable = true; # Terminal emulator
@@ -73,6 +74,7 @@
       "nvidia-x11"
       "nvidia-settings"
       "nvidia-persistenced"
+      "scansnap-firmware"
       "steam"
       "steam-run"
       "steam-original"
@@ -105,6 +107,23 @@
     };
     bluetooth = {
       enable = true;
+    };
+    sane = {
+      enable = true;
+      drivers.scanSnap = {
+        enable = true;
+        package = pkgs.sane-drivers.epjitsu;
+      };
+    };
+  };
+
+  services.scanservjs = {
+    enable = true;
+    settings = {
+      port = 8100;
+      scanimage = "${pkgs.sane-backends}/bin/scanimage";
+      convert = "${pkgs.imagemagick}/bin/convert";
+      tesseract = "${pkgs.tesseract}/bin/tesseract";
     };
   };
 

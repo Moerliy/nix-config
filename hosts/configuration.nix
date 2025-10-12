@@ -53,6 +53,13 @@ with host;
     sudo.wheelNeedsPassword = false;
   };
 
+  services.udev.extraRules = ''
+    # Fujitsu ScanSnap S1300i
+    ATTRS{idVendor}=="04c5", ATTRS{idProduct}=="128d", MODE="0664", GROUP="scanner"
+  '';
+
+  programs.localsend.enable = true;
+
   networking = {
     wg-quick.interfaces = {
       GOutpost = {
