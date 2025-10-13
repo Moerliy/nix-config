@@ -11,6 +11,7 @@
 let
   homeFilesToLink = {
     ".local/share/applications/scanner.desktop" = ./scanner.desktop;
+    ".local/share/icons/desktop-entries" = ./icons;
   };
   # Function to help map attrs for symlinking home.file, xdg.configFile
   # e.g. from { ".hgrc" = ./hgrc; } to { ".hgrc".source = ./hgrc; }

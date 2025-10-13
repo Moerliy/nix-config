@@ -15,13 +15,13 @@ Nix related tasks
   - Driver issue I think
 - Copy paste
   - [ ] Newline inconsistencies under wayland
-- [ ] vencord config with nix
 - [ ] search all keybinds
 - [ ] Steam to big cursor (xWayland as usual)
 - [ ] disable middle mouse key for osu
   - [x] script not working
   - maybe disable key hyprland wide
 - [ ] Rofi launcher icons
+- [ ] fix catppuccin themes with new catppuccin module
 
 #### New Features
 
