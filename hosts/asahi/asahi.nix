@@ -34,6 +34,7 @@
 
   # programs
   kitty.enable = true; # Terminal emulator
+  vesktop.enable = true; # Discord client
 
   # Shell related
   sane-defaults.enable = true;
