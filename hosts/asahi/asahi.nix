@@ -1,5 +1,6 @@
 {
   apple-silicon,
+  catppuccin,
   pkgs,
   vars,
   inputs,
@@ -162,6 +163,7 @@
     };
     users.${vars.user} = {
       imports = [
+        catppuccin.homeModules.catppuccin
       ]
       ++ (import ../../modules/home-manager);
 

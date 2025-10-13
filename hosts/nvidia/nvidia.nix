@@ -5,6 +5,7 @@
   lib,
   host,
   inputs,
+  catppuccin,
   system,
   pkgs-stable,
   ...
@@ -33,6 +34,7 @@
 
   # programs
   kitty.enable = true; # Terminal emulator
+  vesktop.enable = true; # Discord client
 
   # Shell related
   sane-defaults.enable = true;
@@ -228,6 +230,7 @@
     };
     users.${vars.user} = {
       imports = [
+        catppuccin.homeModules.catppuccin
       ]
       ++ (import ../../modules/home-manager);
 

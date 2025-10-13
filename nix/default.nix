@@ -14,9 +14,11 @@
   home-manager,
   home-manager-unstable,
   vars,
+  catppuccin,
   nixgl,
   ...
-}: let
+}:
+let
   system = "x86_64-linux";
   pkgs = import nixpkgs-unstable {
     inherit system;
@@ -30,17 +32,25 @@
   # home-manager-stable = home-manager;
   lib = nixpkgs-unstable.lib;
   vars.user = "ughlu_gleissner";
-in {
+in
+{
   hht = home-manager.lib.homeManagerConfiguration {
     inherit pkgs;
     extraSpecialArgs = {
-      inherit inputs vars system pkgs-stable nixgl;
+      inherit
+        inputs
+        vars
+        system
+        pkgs-stable
+        nixgl
+        ;
       host = {
         hostName = "hht";
       };
     };
     modules = [
       ./hht.nix
+      catppuccin.homeModules.catppuccin
       {
       }
     ];

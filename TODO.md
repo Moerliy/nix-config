@@ -20,6 +20,8 @@ Nix related tasks
 - [ ] Steam to big cursor (xWayland as usual)
 - [ ] disable middle mouse key for osu
   - [x] script not working
+  - maybe disable key hyprland wide
+- [ ] Rofi launcher icons
 
 #### New Features
 

@@ -12,6 +12,7 @@
   nixpkgs-unstable,
   apple-silicon,
   home-manager,
+  catppuccin,
   home-manager-unstable,
   hyprland,
   hyprland-nativ-plugins,
@@ -52,6 +53,7 @@ in
         apple-silicon
         hyprland
         hyprland-nativ-plugins
+        catppuccin
         hyprhook
         hypridle
         hyprlock
@@ -71,6 +73,7 @@ in
       ./asahi/asahi.nix
       ./configuration.nix
       minegrub.nixosModules.default
+      catppuccin.nixosModules.catppuccin
 
       home-manager.nixosModules.home-manager
       {
@@ -86,6 +89,7 @@ in
         inputs
         vars
         system
+        catppuccin
         hyprland
         hyprland-nativ-plugins
         hyprhook
@@ -108,6 +112,7 @@ in
       ./configuration.nix
       # minegrubx86.nixosModules.default
       lanzaboote.nixosModules.lanzaboote
+      catppuccin.nixosModules.catppuccin
 
       home-manager.nixosModules.home-manager
       {

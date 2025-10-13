@@ -544,6 +544,8 @@ with host;
               "float,title:nmtui-session"
               "size 800 600,title:nmtui-session"
               "workspace 1,title:nmtui-session"
+              "workspace 3,class:steam"
+              "workspace 4,class:^(steam_app)(.*)"
               "workspace 8,class:vesktop"
               # "opacity 0.9, class:firefox"
             ];
@@ -607,6 +609,15 @@ with host;
             bind = , B, submap, reset
             bindd = , D, Open Discord, exec, [workspace 8]${discordBin}
             bind = , D, submap, reset
+            ${
+              if hostName != "asahi" then
+                ''
+                  bindd = , S, Open Steam, exec, [workspace 3]${pkgs.steam}/bin/steam
+                  bind = , S, submap, reset
+                ''
+              else
+                ''''
+            }
             bindd = , C, Open Controll Center, exec, ${pkgs.rofi}/bin/rofi -show drun
             bind = , C, submap, reset
             # bind = , M, exec, $music $electron_flags

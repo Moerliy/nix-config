@@ -44,6 +44,8 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    catppuccin.url = "github:catppuccin/nix";
+
     # Official Hyprland Flake
     hyprland = {
       type = "git";
@@ -129,6 +131,7 @@
       darwin,
       apple-silicon,
       animated-wallpaper,
+      catppuccin,
       hyprland,
       hyprland-nativ-plugins,
       hyprhook,
@@ -182,6 +185,7 @@
           inherit
             inputs
             nixpkgs
+            catppuccin
             hyprland
             hyprhook
             hypridle
@@ -210,6 +214,7 @@
             nixpkgs-unstable
             home-manager
             home-manager-unstable
+            catppuccin
             nixgl
             vars
             ;
