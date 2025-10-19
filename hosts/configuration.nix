@@ -167,6 +167,7 @@ with host;
         sbctl # Secure Boot Key Manager
         wireguard-tools # Wireguard VPN
         wakeonlan
+        parallel
 
         python311Packages.numpy
         prismlauncher

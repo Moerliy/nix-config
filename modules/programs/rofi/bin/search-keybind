@@ -1,0 +1,193 @@
+#!/usr/bin/env bash
+
+# get keybinds with hyprctl
+#
+# filter out submap triggers
+# make submap dependency chain
+# make list for rofi with:
+# - bind description
+# - bind main key and full submap chain if in submap
+# - use keybinds dispatcher and arg to make it clickable
+#
+# mark keybind with submap in different color
+
+theme="$HOME/.config/rofi/search-keybind.rasi"
+
+# submap dependency chain
+# {
+#   "locked": false,
+#   "mouse": false,
+#   "release": false,
+#   "repeat": false,
+#   "longPress": false,
+#   "non_consuming": false,
+#   "has_description": false,
+#   "modmask": 0,
+#   "submap": "clipboard",
+#   "key": "C",
+#   "keycode": 0,
+#   "catch_all": false,
+#   "description": "",
+#   "dispatcher": "submap",
+#   "arg": "reset"
+# }
+SUBMAP_BINDS=$(hyprctl binds -j | jq -c '.[] | select(.dispatcher == "submap")')
+# clean out unnecessary fields
+SUBMAP_BINDS_CLEAN=$(echo "$SUBMAP_BINDS" | jq -sc 'map(del(.locked, .mouse, .release, .repeat, .longPress, .non_consuming, .has_description, .keycode, .catch_all, .description, .dispatcher)) | unique_by(.submap, .key, .arg, .modmask)')
+
+# Helper: convert modmask to prefix
+resolve_modmask() {
+  local mask="${1:-0}" # default to 0
+  local key="$2"
+  local result=""
+
+  # If not an integer, bail early
+  [[ "$mask" =~ ^[0-9]+$ ]] || mask=0
+
+  ((mask & 0)) && result+=""
+  ((mask & 1)) && result+="shift "
+  ((mask & 2)) && result+="lock "
+  ((mask & 4)) && result+="ctrl "
+  ((mask & 8)) && result+="mod1 "
+  ((mask & 16)) && result+="mod2 "
+  ((mask & 32)) && result+="mod3 "
+  ((mask & 64)) && result+="mod "
+  ((mask & 128)) && result+="mod5 "
+
+  echo "$result$key"
+}
+
+get_submap_parents() {
+  local target="$1"
+  local binds="$SUBMAP_BINDS_CLEAN"
+
+  # BFS queue: each element is "submap_name|key_sequence"
+  local queue=("__ROOT__|")
+  declare -A visited # keeps track of visited submaps
+
+  while [ ${#queue[@]} -gt 0 ]; do
+    local entry="${queue[0]}"
+    queue=("${queue[@]:1}") # dequeue
+    local current_submap="${entry%%|*}"
+    local keychain="${entry#*|}"
+
+    # If we reach the target, return the keychain
+    if [ "$current_submap" != "__ROOT__" ] && [ "$current_submap" == "$target" ]; then
+      # Remove trailing space
+      echo "${keychain%" "}"
+      return
+    fi
+
+    # Skip if already visited
+    if [ "${visited[$current_submap]}" == "1" ]; then
+      continue
+    fi
+    visited[$current_submap]=1
+
+    # Find all binds that originate from current_submap
+    local children
+    IFS=$'\n' read -r -d '' -a children < <(
+      echo "$binds" | jq -r --arg cs "$current_submap" '
+                .[] | select(.submap == (if $cs == "__ROOT__" then "" else $cs end)) | "\(.arg)\t\(.key)\t\(.modmask)"' &&
+        printf '\0'
+    )
+
+    # Enqueue each child with updated key sequence
+    for child in "${children[@]}"; do
+      [[ -z "$child" ]] && continue
+      local arg="${child%%$'\t'*}"
+      local key_mod_mask="${child#*$'\t'}" # currently key only, need modmask
+      # Split key_mod_mask into key and modmask if you passed it from jq
+      local key="${key_mod_mask%%$'\t'*}"
+      local modmask="${key_mod_mask#*$'\t'}"
+
+      # Resolve modmask
+      local fullkey
+      fullkey=$(resolve_modmask "$modmask" "$key")
+
+      queue+=("$arg|$keychain$fullkey ")
+    done
+  done
+
+  # If we reach here, target is unreachable
+  echo ""
+}
+
+rofi -e "Loading keybinds..." & # short popup
+
+declare -A SUBMAP_PATHS
+
+# Precompute parent paths for all submaps in parallel-friendly way
+all_submaps=$(echo "$SUBMAP_BINDS_CLEAN" | jq -r '.[].arg' | sort -u)
+for submap in $all_submaps; do
+  SUBMAP_PATHS["$submap"]="$(get_submap_parents "$submap")"
+done
+
+KEYBINDINGS=$(hyprctl binds -j | jq -c '.[] | select(.dispatcher != "submap" and .has_description == true)')
+
+KEYBINDINGS_CLEAN=$(echo "$KEYBINDINGS" | jq -sc 'map(del(.locked, .mouse, .release, .repeat, .longPress, .non_consuming, .keycode, .catch_all, .has_description)) | unique_by(.modmask, .key, .submap, .description, .dispatcher, .arg)')
+
+# Arrays for rofi display and hyprctl commands
+ROFI_ITEMS=()
+HYPR_COMMANDS=()
+
+# Extract all bindings into tab-separated fields
+while IFS='|' read -r submap key modmask desc dispatcher arg; do
+  # Default modmask to 0 if empty or null
+  modmask="${modmask:-0}"
+
+  modified_key=$(resolve_modmask "$modmask" "$key")
+
+  # Build full key chain
+  if [ -n "$submap" ]; then
+    parent_keys="${SUBMAP_PATHS[$submap]}"
+    full_keys="$parent_keys $modified_key"
+  else
+    full_keys="$modified_key"
+  fi
+
+  ROFI_ITEMS+=("$full_keys -> $desc")
+  HYPR_COMMANDS+=("hyprctl dispatcher $dispatcher $arg")
+
+done < <(
+  echo "$KEYBINDINGS_CLEAN" | jq -r '
+    .[] |
+    [
+      (.submap // ""),     # ensure empty string not null
+      (.key // ""),        # ensure key always a string
+      (.modmask // 0),     # ensure modmask numeric
+      (.description // ""),
+      (.dispatcher // ""),
+      (.arg // "")
+    ] | join("|")
+  '
+)
+
+killall rofi
+
+# Example: pick first item
+CHOICE=$(
+  printf '%s\n' "${ROFI_ITEMS[@]}" | rofi -theme-str "window {width: 700px;}" \
+    -theme-str "listview {columns: 1; lines: 15;}" \
+    -dmenu \
+    -p "myPromt" \
+    -mesg "MyMessage" \
+    -matching "fuzzy" \
+    -markup-rows \
+    -theme "${theme}"
+)
+
+if [ -n "$CHOICE" ]; then
+  INDEX=-1
+  for i in "${!ROFI_ITEMS[@]}"; do
+    if [[ "${ROFI_ITEMS[$i]}" == "$CHOICE" ]]; then
+      INDEX=$i
+      break
+    fi
+  done
+
+  if [ $INDEX -ne -1 ]; then
+    # eval "${HYPR_COMMANDS[$INDEX]}"
+    echo "${HYPR_COMMANDS[$INDEX]}"
+  fi
+fi
