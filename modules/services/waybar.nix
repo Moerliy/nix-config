@@ -210,7 +210,7 @@ with lib;
               "custom/hyprbindings" = {
                 tooltip = false;
                 format = " Bindings";
-                on-click = "sleep 0.1 && $HOME/.local/bin/which-key -b";
+                on-click = "$HOME/.config/rofi/bin/search-keybind";
               };
               "idle_inhibitor" = {
                 start-activated = true;

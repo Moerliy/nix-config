@@ -48,9 +48,9 @@ done
 openWidget() {
   binds=$(hyprctl binds -j | jq -c '[ .[] | select(.submap | . == "'"$1"'") ]')
   deleted=$(echo "$binds" | jq -c '[ .[] | select(.arg | contains("reset") | not ) ]')
-  columns=$(echo "$deleted" | jq 'length / 4' | jq -c 'round')
+  columns=$(echo "$deleted" | jq 'length / 3 | ceil')
   if [[ $2 != "" ]]; then
-    columns=$(echo "$deleted" | jq 'length / '"$2"'' | jq -c 'round')
+    columns=$(echo "$deleted" | jq 'length / '"$2"' | ceil')
   fi
   if [[ columns -lt 4 ]]; then
     columns=4
@@ -73,7 +73,7 @@ openWidget() {
 if [[ $toggleBase == true ]]; then
   isActive=$(eww --config "$CONFIG_DIR" active-windows | grep "which-key")
   if [[ $isActive == "" ]]; then
-    openWidget "" 3
+    openWidget "" 2
   else
     eww --config "$CONFIG_DIR" close which-key
   fi

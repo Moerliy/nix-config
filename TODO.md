@@ -21,6 +21,7 @@ Nix related tasks
   - maybe disable key hyprland wide
 - [ ] fix catppuccin themes with new catppuccin module
 - [ ] search all keybinds
+- [ ] fix hypr which key help on asahi
 
 #### New Features
 

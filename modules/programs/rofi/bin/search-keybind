@@ -11,26 +11,11 @@
 #
 # mark keybind with submap in different color
 
+KEY_COLOR="#89b4fa"
+DESC_COLOR="#fab387"
+
 theme="$HOME/.config/rofi/search-keybind.rasi"
 
-# submap dependency chain
-# {
-#   "locked": false,
-#   "mouse": false,
-#   "release": false,
-#   "repeat": false,
-#   "longPress": false,
-#   "non_consuming": false,
-#   "has_description": false,
-#   "modmask": 0,
-#   "submap": "clipboard",
-#   "key": "C",
-#   "keycode": 0,
-#   "catch_all": false,
-#   "description": "",
-#   "dispatcher": "submap",
-#   "arg": "reset"
-# }
 SUBMAP_BINDS=$(hyprctl binds -j | jq -c '.[] | select(.dispatcher == "submap")')
 # clean out unnecessary fields
 SUBMAP_BINDS_CLEAN=$(echo "$SUBMAP_BINDS" | jq -sc 'map(del(.locked, .mouse, .release, .repeat, .longPress, .non_consuming, .has_description, .keycode, .catch_all, .description, .dispatcher)) | unique_by(.submap, .key, .arg, .modmask)')
@@ -45,14 +30,14 @@ resolve_modmask() {
   [[ "$mask" =~ ^[0-9]+$ ]] || mask=0
 
   ((mask & 0)) && result+=""
-  ((mask & 1)) && result+="shift "
-  ((mask & 2)) && result+="lock "
-  ((mask & 4)) && result+="ctrl "
-  ((mask & 8)) && result+="mod1 "
-  ((mask & 16)) && result+="mod2 "
-  ((mask & 32)) && result+="mod3 "
-  ((mask & 64)) && result+="mod "
-  ((mask & 128)) && result+="mod5 "
+  ((mask & 1)) && result+="shift+"
+  ((mask & 2)) && result+="lock+"
+  ((mask & 4)) && result+="ctrl+"
+  ((mask & 8)) && result+="mod1+"
+  ((mask & 16)) && result+="mod2+"
+  ((mask & 32)) && result+="mod3+"
+  ((mask & 64)) && result+="mod+"
+  ((mask & 128)) && result+="mod5+"
 
   echo "$result$key"
 }
@@ -146,7 +131,8 @@ while IFS='|' read -r submap key modmask desc dispatcher arg; do
     full_keys="$modified_key"
   fi
 
-  ROFI_ITEMS+=("$full_keys -> $desc")
+  # ROFI_ITEMS+=("$full_keys -> $desc")
+  ROFI_ITEMS+=("<span color='$KEY_COLOR'>$full_keys</span> -> <span color='$DESC_COLOR'>$desc</span>")
   HYPR_COMMANDS+=("hyprctl dispatcher $dispatcher $arg")
 
 done < <(
@@ -171,9 +157,11 @@ CHOICE=$(
     -theme-str "listview {columns: 1; lines: 15;}" \
     -dmenu \
     -p "myPromt" \
-    -mesg "MyMessage" \
+    -mesg "Set Keybinds" \
     -matching "fuzzy" \
+    -sorting-method "fzf" \
     -markup-rows \
+    -i \
     -theme "${theme}"
 )
 
@@ -187,7 +175,6 @@ if [ -n "$CHOICE" ]; then
   done
 
   if [ $INDEX -ne -1 ]; then
-    # eval "${HYPR_COMMANDS[$INDEX]}"
-    echo "${HYPR_COMMANDS[$INDEX]}"
+    eval "${HYPR_COMMANDS[$INDEX]}"
   fi
 fi

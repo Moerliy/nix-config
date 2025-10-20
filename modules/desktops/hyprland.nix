@@ -590,6 +590,7 @@ with host;
             bindd = , M, +move/music, submap, move
             bindd = , F, +focus, submap, focus
             bindd = , G, +screenshot, submap, grimblast
+            bindd = , K, +keybinds, submap, keybinds
             bindd = , S, Special Workspace, togglespecialworkspace, special
             bindd = , S, Reset submap, submap, reset
             bindd = , T, +toggle, submap, toggle
@@ -632,6 +633,12 @@ with host;
             bind = , I, submap, reset
             bindd = , D, Not Working, layoutmsg, removemaster
             bind = , D, submap, reset
+            submap = reset
+
+            submap = keybinds
+            bind = , escape, submap, reset
+            bindd = , S, Search Keybinds, exec, $HOME/.config/rofi/bin/search-keybind
+            bind = , S, submap, reset
             submap = reset
 
             submap = backlight
