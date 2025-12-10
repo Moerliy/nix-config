@@ -9,7 +9,8 @@
   home-manager,
   ...
 }:
-with lib; {
+with lib;
+{
   options.zsh = {
     enable = mkOption {
       type = types.bool;
@@ -42,6 +43,9 @@ with lib; {
             STARSHIP_CONFIG=~/.config/starship-zsh.toml
             eval "$(${pkgs.starship}/bin/starship init zsh)"
             autoload -U promptinit; promptinit
+            unset DISPLAY
+            export DISPLAY=:0
+
 
             # use ubuntu tmux
             alias tmux="/usr/bin/tmux"
