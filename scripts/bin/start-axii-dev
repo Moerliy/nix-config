@@ -2,6 +2,7 @@
 
 axiiWorkspace="flux"
 attachSession=false
+distroboxName="hht18"
 
 while getopts "w:a" opt; do
   case $opt in
@@ -33,11 +34,11 @@ window=0
 # tmux new-window -t $session:$window -n "run/armarx" $HOME/nix-free-env
 tmux rename-window -t $session:$window "run/armarx"
 window=1
-tmux new-window -t $session:$window -n "run/rest" "distrobox enter hht"
+tmux new-window -t $session:$window -n "run/rest" "distrobox enter $distroboxName"
 window=2
-tmux new-window -t $session:$window -n "comp/robotAPI" "distrobox enter hht"
+tmux new-window -t $session:$window -n "comp/robotAPI" "distrobox enter $distroboxName"
 window=3
-tmux new-window -t $session:$window -n "dev/ssh" "distrobox enter hht"
+tmux new-window -t $session:$window -n "dev/ssh" "distrobox enter $distroboxName"
 
 # fish start is slow, give it some time
 # sleep 0.5 >/dev/null

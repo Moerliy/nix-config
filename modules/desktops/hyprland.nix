@@ -426,6 +426,7 @@ with host;
               if hostName == "asahi" then
                 [
                   "3, horizontal, workspace"
+                  "3, vertical, special, special"
                 ]
               else
                 [ ];
