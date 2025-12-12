@@ -144,7 +144,7 @@
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
-    forwardX11 = true;
+    settings.forwardX11 = true;
   };
 
   boot = {

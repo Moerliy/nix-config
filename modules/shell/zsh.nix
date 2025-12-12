@@ -44,7 +44,7 @@ with lib;
             eval "$(${pkgs.starship}/bin/starship init zsh)"
             autoload -U promptinit; promptinit
             unset DISPLAY
-            export DISPLAY=:0
+            export DISPLAY=localhost:10.0
 
 
             # use ubuntu tmux
