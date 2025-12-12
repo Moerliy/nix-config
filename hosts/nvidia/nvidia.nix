@@ -142,7 +142,10 @@
   services.libinput.enable = true;
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    forwardX11 = true;
+  };
 
   boot = {
     loader = {

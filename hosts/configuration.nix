@@ -183,6 +183,7 @@ with host;
         pulseaudio # Audio Server/Control
         qpwgraph # Pipewire Graph Manager
         vlc # Media Player
+        xorg.xauth # X Authority
 
         # Apps
         appimage-run # Runs AppImages on NixOS
