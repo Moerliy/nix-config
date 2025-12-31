@@ -45,10 +45,10 @@ gui:
       - "#f9e2af"
 
 git:
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never
-    useConfig: false
+  pagers:
+    - pager: delta --dark --paging=never
+      colorArg: always
+      useConfig: false
   commit:
     signOff: false
   merging:

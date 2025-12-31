@@ -525,30 +525,24 @@ with host;
               ", XF86MonBrightnessDown, Decrease Screen Brightness, exec, ${customScripts}/brightness --dec"
               ", XF86MonBrightnessUP, Increase Screen Brightness, exec, ${customScripts}/brightness --inc"
             ];
-            windowrule = [
-            ];
             layerrule = [
-              "noanim,^(rofi)$"
+              "no_anim true,match:class ^(rofi)$"
             ];
-            windowrulev2 = [
-              "float, class:(Rofi),title:(Rofi)"
-              "float, class:(steam),title:(Friends List)"
-              "float, class:(steam),title:(Steam settings)"
-              "fullscreen, class:(osu!),title:(osu!)"
-              "float,title:Picture-in-Picture"
-              "float,class:(org.pulseaudio.pavucontrol),title:(Volume Control)"
-              "float,title:(Clipse)"
-              # "float,title:(scanserv-js)(.*),class:(firefox)"
-              # "size 1000 800,title:(scanserv-js)(.*),class:(firefox)"
-              "size 622 652,title:(Clipse)"
-              "size 1000 800,class:(org.pulseaudio.pavucontrol),title:(Volume Control)"
-              "float,title:nmtui-session"
-              "size 800 600,title:nmtui-session"
-              "workspace 1,title:nmtui-session"
-              "workspace 3,class:steam"
-              "workspace 4,class:^(steam_app)(.*)"
-              "workspace 8,class:vesktop"
-              # "opacity 0.9, class:firefox"
+            windowrule = [
+              "float true, match:class (Rofi), match:title (Rofi)"
+              "float true, match:class (steam), match:title (Friends List)"
+              "float true, match:class (steam), match:title (Steam settings)"
+              "fullscreen true, match:class (osu!), match:title (osu!)"
+              "float true, match:title Picture-in-Picture"
+              # "float,match:title (scanserv-js)(.*),match:class (firefox)"
+              # "size 1000 800,match:title (scanserv-js)(.*),match:class (firefox)"
+              "float true, size 622 652, center true, match:title (Clipse)"
+              "float true, size 1000 800, center true,  match:class (org.pulseaudio.pavucontrol), match:title (Volume Control)"
+              "workspace 1, float true, size 800 600, center true, match:title nmtui-session"
+              "workspace 3, match:class steam"
+              "workspace 4, match:class ^(steam_app)(.*)"
+              "workspace 8, match:class vesktop"
+              # "opacity 0.9, match:class firefox"
             ];
             exec-once = [
               "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
@@ -845,7 +839,7 @@ with host;
               WINDOW_TITLE=$(jq -r '.title' <<<"$1")
               WINDOW_CLASS=$(jq -r '.class' <<<"$1")
 
-              echo "Window Title: $WINDOW_TITLE"
+              echo "Window Match: $WINDOW_TITLE"
               echo "Window Class: $WINDOW_CLASS"
 
               # bindmd = , mouse:274, Move Window, movewindow

@@ -20,6 +20,7 @@ Nix related tasks
   - [x] script not working
   - maybe disable key hyprland wide
 - [ ] fix catppuccin themes with new catppuccin module
+- [ ] google login popup not floating
 
 #### New Features
 

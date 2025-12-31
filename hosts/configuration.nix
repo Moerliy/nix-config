@@ -109,7 +109,7 @@ with host;
       #corefonts # Microsoft
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       nerd-fonts.fira-code
       nerd-fonts.jetbrains-mono
     ];
@@ -147,7 +147,7 @@ with host;
         smartmontools # Disk Health
         tldr # Helper
         usbutils # Manage USB
-        glxinfo
+        mesa-demos # new glxinfo
         wget # Retriever
         xdg-utils # Environment integration
         cmake # cmake
