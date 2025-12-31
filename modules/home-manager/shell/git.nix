@@ -9,16 +9,15 @@
   inputs,
   ...
 }:
-with lib; {
+with lib;
+{
   options.git = {
     enable = mkOption {
       type = types.bool;
       default = false;
-      description =
-        mdDoc
-        ''
-          Enable the Git package.
-        '';
+      description = mdDoc ''
+        Enable the Git package.
+      '';
     };
   };
 
@@ -26,32 +25,11 @@ with lib; {
     programs = {
       git = {
         enable = true;
-        userName = "Moritz Gleissner";
-        userEmail = "moritz@gleissner.de";
-        includes = [
-          {
-            path =
-              inputs.delta-catppuccin
-              + "/catppuccin.gitconfig";
-          }
-          {
-            path =
-              inputs.tokionight-nvim
-              + "/extras/delta/tokyonight_night.gitconfig";
-          }
-        ];
-        delta = {
-          enable = true;
-          options = {
-            navigate = true;
-            light = false;
-            side-by-side = false;
-            line-numbers = true;
-            syntax-theme = "catppuccin-mocha";
-            # syntax-theme = "tokyonight_night";
+        settings = {
+          user = {
+            name = "Moritz Gleissner";
+            email = "moritz@gleissner.de";
           };
-        };
-        extraConfig = {
           pull = {
             rebase = true;
           };
@@ -74,6 +52,26 @@ with lib; {
           init = {
             defaultbranch = "main";
           };
+        };
+        includes = [
+          {
+            path = inputs.delta-catppuccin + "/catppuccin.gitconfig";
+          }
+          {
+            path = inputs.tokionight-nvim + "/extras/delta/tokyonight_night.gitconfig";
+          }
+        ];
+      };
+      delta = {
+        enable = true;
+        enableGitIntegration = true;
+        options = {
+          navigate = true;
+          light = false;
+          side-by-side = false;
+          line-numbers = true;
+          syntax-theme = "catppuccin-mocha";
+          # syntax-theme = "tokyonight_night";
         };
       };
     };

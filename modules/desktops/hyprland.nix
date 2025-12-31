@@ -21,16 +21,16 @@
 }:
 let
   mainMod = "SUPER";
-  hyprlandPkg = hyprland.packages.${pkgs.system}.hyprland.override {
+  hyprlandPkg = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland.override {
     # legacyRenderer = true;
   };
-  hyprlockPkg = hyprlock.packages.${pkgs.system}.hyprlock;
-  hyprsunsetPkg = hyprsunset.packages.${pkgs.system}.hyprsunset;
-  hypridlePkg = hypridle.packages.${pkgs.system}.hypridle;
-  hyprhookPkg = hyprhook.packages.${pkgs.system}.hyprhook;
-  hyprwinwrapPkg = hyprland-nativ-plugins.packages.${pkgs.system}.hyprwinwrap;
-  animatedWallpaperPkg = animated-wallpaper.packages.${pkgs.system}.default;
-  hyprlockWrapped = animated-wallpaper.packages.${pkgs.system}.hyprlockWrapper;
+  hyprlockPkg = hyprlock.packages.${pkgs.stdenv.hostPlatform.system}.hyprlock;
+  hyprsunsetPkg = hyprsunset.packages.${pkgs.stdenv.hostPlatform.system}.hyprsunset;
+  hypridlePkg = hypridle.packages.${pkgs.stdenv.hostPlatform.system}.hypridle;
+  hyprhookPkg = hyprhook.packages.${pkgs.stdenv.hostPlatform.system}.hyprhook;
+  hyprwinwrapPkg = hyprland-nativ-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprwinwrap;
+  animatedWallpaperPkg = animated-wallpaper.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  hyprlockWrapped = animated-wallpaper.packages.${pkgs.stdenv.hostPlatform.system}.hyprlockWrapper;
   discordBin =
     if
       host.hostName == "asahi"
