@@ -36,6 +36,7 @@ NeoVim related tasks
 - [ ] Look into VUE and Deno
 - [ ] Some config for LSP is not NIX conform (node I think)
 - [ ] lazygit open in vim
+- [ ] space p not opening project keybinds
 
 #### New Features
 
