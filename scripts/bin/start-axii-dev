@@ -2,7 +2,7 @@
 
 axiiWorkspace="flux"
 attachSession=false
-distroboxName="hht18"
+distroboxName="hht"
 
 while getopts "w:a" opt; do
   case $opt in

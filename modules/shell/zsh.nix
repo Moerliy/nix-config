@@ -45,6 +45,7 @@ with lib;
             autoload -U promptinit; promptinit
             unset DISPLAY
             export DISPLAY=localhost:10.0
+            # export DISPLAY=:0
 
 
             # use ubuntu tmux

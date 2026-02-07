@@ -6,7 +6,8 @@
   lib,
   ...
 }:
-with lib; {
+with lib;
+{
   options.gdm = {
     enable = mkOption {
       type = types.bool;
@@ -27,6 +28,7 @@ with lib; {
       displayManager.gdm = {
         enable = true;
         wayland = true;
+        autoSuspend = false;
       };
     };
   };
