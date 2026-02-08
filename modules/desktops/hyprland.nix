@@ -279,15 +279,29 @@ with host;
             splash = false;
             preload = "$HOME/.config/wallpaper.png";
             wallpaper = [
-              "${toString secondMonitor},$HOME/.config/wallpaper.png"
+              {
+                monitor = toString secondMonitor;
+                path = "$HOME/.config/wallpaper.png";
+              }
             ]
             ++ (
               if enableAnimatedWallpaper then
                 [ ]
               else
                 [
-                  (if host.hostName == "asahi" then "${toString buildInMonitor},$HOME/.config/wallpaper.png" else "")
-                  "${toString mainMonitor},$HOME/.config/wallpaper.png"
+                  {
+                    monitor = toString mainMonitor;
+                    path = "$HOME/.config/wallpaper.png";
+                  }
+                  (
+                    if host.hostName == "asahi" then
+                      {
+                        monitor = toString buildInMonitor;
+                        path = "$HOME/.config/wallpaper.png";
+                      }
+                    else
+                      { }
+                  )
                 ]
             );
           };
@@ -612,7 +626,7 @@ with host;
                   bind = , S, submap, reset
                 ''
               else
-                ''''
+                ""
             }
             bindd = , C, Open Controll Center, exec, ${pkgs.rofi}/bin/rofi -show drun
             bind = , C, submap, reset
