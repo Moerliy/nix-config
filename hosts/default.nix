@@ -39,7 +39,7 @@ let
   };
   home-manager = home-manager-unstable;
   # home-manager-stable = home-manager;
-  lib = nixpkgs-unstable.lib;
+  inherit (nixpkgs-unstable) lib;
 in
 {
   # Asahi Apple Silicon

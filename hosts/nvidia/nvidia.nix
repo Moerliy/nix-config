@@ -83,7 +83,36 @@
       "steam-unwrapped"
       "osu-lazer-bin"
     ];
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services = {
+    xserver.videoDrivers = [ "nvidia" ];
+    scanservjs = {
+      enable = true;
+      settings = {
+        port = 8100;
+        scanimage = "${pkgs.sane-backends}/bin/scanimage";
+        convert = "${pkgs.imagemagick}/bin/convert";
+        tesseract = "${pkgs.tesseract}/bin/tesseract";
+      };
+    };
+    # Enable CUPS to print documents.
+    printing.enable = true;
+
+    # Enable touchpad support (enabled default in most desktopManager).
+    libinput.enable = true;
+
+    # Enable the OpenSSH daemon.
+    openssh = {
+      enable = true;
+      forwardX11 = true;
+    };
+    pulseaudio.enable = false;
+    pipewire = {
+      enable = true;
+      audio.enable = true;
+      alsa.enable = true;
+      pulse.enable = true;
+    };
+  };
 
   programs.steam = {
     enable = true;
@@ -117,16 +146,7 @@
         package = pkgs.sane-drivers.epjitsu;
       };
     };
-  };
 
-  services.scanservjs = {
-    enable = true;
-    settings = {
-      port = 8100;
-      scanimage = "${pkgs.sane-backends}/bin/scanimage";
-      convert = "${pkgs.imagemagick}/bin/convert";
-      tesseract = "${pkgs.tesseract}/bin/tesseract";
-    };
   };
 
   # backlight control
@@ -134,18 +154,6 @@
 
   # Network settings
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
-
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    forwardX11 = true;
-  };
 
   boot = {
     loader = {
@@ -207,16 +215,6 @@
       enable = true;
       dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;
-    };
-  };
-
-  services = {
-    pulseaudio.enable = false;
-    pipewire = {
-      enable = true;
-      audio.enable = true;
-      alsa.enable = true;
-      pulse.enable = true;
     };
   };
 

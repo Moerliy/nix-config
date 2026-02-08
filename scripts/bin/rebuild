@@ -19,7 +19,7 @@ if [ -z "$config_files" ]; then
 fi
 
 nvim "$config_files"
-# alejandra . &>/dev/null # format all nix files
+statix fix . &>/dev/null # format all nix files
 git diff -U0
 echo "Nix Rebuilding... 🚀"
 if [ "$hostname" = "macbook" ]; then

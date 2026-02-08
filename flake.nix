@@ -165,8 +165,7 @@
       #   }
       # );
 
-      darwinConfigurations = (
-        import ./darwin {
+      darwinConfigurations = import ./darwin {
           inherit (nixpkgs) lib;
           inherit
             inputs
@@ -176,11 +175,9 @@
             darwin
             vars
             ;
-        }
-      );
+        };
 
-      nixosConfigurations = (
-        import ./hosts {
+      nixosConfigurations = import ./hosts {
           inherit (nixpkgs) lib;
           inherit
             inputs
@@ -202,11 +199,9 @@
             minegrubx86
             lanzaboote
             ;
-        }
-      );
+        };
 
-      homeConfigurations = (
-        import ./nix {
+      homeConfigurations = import ./nix {
           inherit (nixpkgs) lib;
           inherit
             inputs
@@ -218,7 +213,6 @@
             nixgl
             vars
             ;
-        }
-      );
+        };
     };
 }

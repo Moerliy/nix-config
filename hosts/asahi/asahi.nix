@@ -108,33 +108,34 @@
 
   # backlight control
   programs.light.enable = true;
-  services.actkbd = {
-    enable = true;
-    bindings = [
-      {
-        keys = [ 225 ];
-        events = [ "key" ];
-        command = "${pkgs.light}/bin/light -A 10";
-      }
-      {
-        keys = [ 224 ];
-        events = [ "key" ];
-        command = "${pkgs.light}/bin/light -U 10";
-      }
-    ];
+  services = {
+    actkbd = {
+      enable = true;
+      bindings = [
+        {
+          keys = [ 225 ];
+          events = [ "key" ];
+          command = "${pkgs.light}/bin/light -A 10";
+        }
+        {
+          keys = [ 224 ];
+          events = [ "key" ];
+          command = "${pkgs.light}/bin/light -U 10";
+        }
+      ];
+    };
+    # Enable CUPS to print documents.
+    printing.enable = true;
+
+    # Enable touchpad support (enabled default in most desktopManager).
+    libinput.enable = true;
+
+    # Enable the OpenSSH daemon.
+    openssh.enable = true;
   };
 
   # Network settings
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

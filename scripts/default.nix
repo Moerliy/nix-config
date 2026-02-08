@@ -37,7 +37,7 @@ with lib;
           with pkgs;
           [
             fzf
-            alejandra
+            statix
             libnotify
             jq
           ]

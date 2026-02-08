@@ -149,9 +149,7 @@
     extraSpecialArgs = {inherit inputs vars system pkgs-stable pkgs host;};
     users.${vars.user} = {
       imports =
-        [
-        ]
-        ++ (import ../modules/home-manager);
+        import ../modules/home-manager;
 
       # editors
       neovim.enable = true;

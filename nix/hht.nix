@@ -15,9 +15,7 @@
   ...
 }: {
   imports =
-    [
-    ]
-    ++ (import ../modules/home-manager);
+    import ../modules/home-manager;
 
   # editors
   neovim.enable = true;

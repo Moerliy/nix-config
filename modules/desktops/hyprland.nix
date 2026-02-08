@@ -62,7 +62,7 @@ with host;
     };
   };
 
-  config = mkIf (config.hyprland.enable) {
+  config = mkIf config.hyprland.enable {
     wlwm.enable = true; # mainly good to know
 
     environment = {
@@ -231,79 +231,81 @@ with host;
           };
         };
 
-        services.hypridle = {
-          enable = true;
-          package = hypridlePkg;
-          settings = {
-            general = {
-              before_sleep_cmd = "${pkgs.systemd}/bin/loginctl lock-session";
-              after_sleep_cmd = "${hyprlandPkg}/bin/hyprctl dispatch dpms on";
-              ignore_dbus_inhibit = true;
-              lock_cmd = "pidof ${hyprlockPkg}/bin/hyprlock || ${hyprlockBin}";
+        services = {
+          hypridle = {
+            enable = true;
+            package = hypridlePkg;
+            settings = {
+              general = {
+                before_sleep_cmd = "${pkgs.systemd}/bin/loginctl lock-session";
+                after_sleep_cmd = "${hyprlandPkg}/bin/hyprctl dispatch dpms on";
+                ignore_dbus_inhibit = true;
+                lock_cmd = "pidof ${hyprlockPkg}/bin/hyprlock || ${hyprlockBin}";
+              };
+              listener = [
+                {
+                  timeout = 300;
+                  on-timeout = "${lockScript.outPath} lock";
+                }
+                {
+                  timeout = 1800;
+                  on-timeout = "${lockScript.outPath} suspend";
+                }
+              ];
             };
-            listener = [
-              {
-                timeout = 300;
-                on-timeout = "${lockScript.outPath} lock";
-              }
-              {
-                timeout = 1800;
-                on-timeout = "${lockScript.outPath} suspend";
-              }
-            ];
           };
-        };
 
-        services.hyprsunset = {
-          enable = true;
-          package = hyprsunsetPkg;
-          settings = {
-            max-gamma = 150;
-            profile = [
-              {
-                time = "6:30";
-                identity = true;
-              }
-              {
-                time = "19:00";
-                temperature = 5000;
-              }
-            ];
+          hyprsunset = {
+            enable = true;
+            package = hyprsunsetPkg;
+            settings = {
+              max-gamma = 150;
+              profile = [
+                {
+                  time = "6:30";
+                  identity = true;
+                }
+                {
+                  time = "19:00";
+                  temperature = 5000;
+                }
+              ];
+            };
           };
-        };
 
-        services.hyprpaper = {
-          enable = true;
-          settings = {
-            ipc = true;
-            splash = false;
-            preload = "$HOME/.config/wallpaper.png";
-            wallpaper = [
-              {
-                monitor = toString secondMonitor;
-                path = "$HOME/.config/wallpaper.png";
-              }
-            ]
-            ++ (
-              if enableAnimatedWallpaper then
-                [ ]
-              else
-                [
-                  {
-                    monitor = toString mainMonitor;
-                    path = "$HOME/.config/wallpaper.png";
-                  }
-                  (
-                    if host.hostName == "asahi" then
-                      {
-                        monitor = toString buildInMonitor;
-                        path = "$HOME/.config/wallpaper.png";
-                      }
-                    else
-                      { }
-                  )
-                ]
-            );
+          hyprpaper = {
+            enable = true;
+            settings = {
+              ipc = true;
+              splash = false;
+              preload = "$HOME/.config/wallpaper.png";
+              wallpaper = [
+                {
+                  monitor = toString secondMonitor;
+                  path = "$HOME/.config/wallpaper.png";
+                }
+              ]
+              ++ (
+                if enableAnimatedWallpaper then
+                  [ ]
+                else
+                  [
+                    {
+                      monitor = toString mainMonitor;
+                      path = "$HOME/.config/wallpaper.png";
+                    }
+                    (
+                      if host.hostName == "asahi" then
+                        {
+                          monitor = toString buildInMonitor;
+                          path = "$HOME/.config/wallpaper.png";
+                        }
+                      else
+                        { }
+                    )
+                  ]
+              );
+            };
           };
         };
 

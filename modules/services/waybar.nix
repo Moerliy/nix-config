@@ -78,7 +78,7 @@ with lib;
               ];
 
               "hyprland/workspaces" = {
-                format = if bar-number == true then "{name}" else "{icon}";
+                format = if bar-number then "{name}" else "{icon}";
                 format-icons = {
                   "1" = "一";
                   "2" = "二";
@@ -133,7 +133,7 @@ with lib;
                 };
               };
               "clock" = {
-                format = if clock24h == true then " {:%H:%M}" else " {:%I:%M %p}";
+                format = if clock24h then " {:%H:%M}" else " {:%I:%M %p}";
                 #format = " {:%H:%M}";
                 tooltip = true;
                 tooltip-format = "<big>{:%A, %d.%B %Y }</big><tt><small>{calendar}</small></tt>";
@@ -257,7 +257,7 @@ with lib;
                    }
                    window#waybar {
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     background-color: rgba(26,27,38,0);
                     border-bottom: 1px solid rgba(26,27,38,0);
@@ -275,7 +275,7 @@ with lib;
                    }
                    #workspaces {
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     color: ${base00};
                            background: transparent;
@@ -298,7 +298,7 @@ with lib;
                    }
                    #workspaces button {
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     color: ${base03};
                            background: ${base00};
@@ -325,7 +325,7 @@ with lib;
                    }
                    #workspaces button.active {
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     color: ${base00};
                            background: linear-gradient(118deg, ${base0D} 5%, ${base0F} 5%, ${base0F} 20%, ${base0D} 20%, ${base0D} 40%, ${base0F} 40%, ${base0F} 60%, ${base0D} 60%, ${base0D} 80%, ${base0F} 80%, ${base0F} 95%, ${base0D} 95%);
@@ -356,7 +356,7 @@ with lib;
                    }
                    #workspaces button:hover {
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     color: ${base05};
                     border: 0px;
@@ -404,7 +404,7 @@ with lib;
                    }
                    #window {
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     color: ${base03};
                     background: ${base00};
@@ -425,7 +425,7 @@ with lib;
                    #memory {
                 	color: ${base0F};
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     background: ${base00};
                     margin: 6px 4px;
@@ -444,7 +444,7 @@ with lib;
                    #clock {
                  	color: ${base0B};
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     background: ${base00};
                     margin: 6px 4px;
@@ -463,7 +463,7 @@ with lib;
                    #cpu {
                  	color: ${base07};
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     background: ${base00};
                     margin: 6px 4px;
@@ -482,7 +482,7 @@ with lib;
                    #disk {
                  	color: ${base0F};
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     background: ${base00};
                     margin: 6px 4px;
@@ -501,7 +501,7 @@ with lib;
                    #battery {
                  	color: ${base08};
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     background: ${base00};
                     margin: 6px 4px;
@@ -520,7 +520,7 @@ with lib;
                    #battery.critical {
                      color: ${base01};
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     background: ${base09};
                     margin: 6px 4px;
@@ -539,7 +539,7 @@ with lib;
                    #battery.warning {
                      color: ${base01};
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     background: ${base08};
                     margin: 6px 4px;
@@ -558,7 +558,7 @@ with lib;
                    #network {
                  	color: ${base09};
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     background: ${base00};
                     margin: 6px 4px;
@@ -577,7 +577,7 @@ with lib;
                    #custom-hyprbindings {
                  	color: ${base0E};
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     background: ${base00};
                     margin: 6px 4px;
@@ -596,7 +596,7 @@ with lib;
                    #mpris {
                  	color: ${base07};
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     background: ${base00};
                     margin: 6px 4px;
@@ -615,7 +615,7 @@ with lib;
                    #custom-backlight {
                  	color: ${base07};
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     background: ${base00};
                     margin: 6px 4px;
@@ -634,7 +634,7 @@ with lib;
                    #tray {
                  	color: ${base05};
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     background: ${base00};
                     margin: 6px 4px;
@@ -653,7 +653,7 @@ with lib;
                    #pulseaudio {
                  	color: ${base03};
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     background: ${base00};
                     margin: 6px 4px;
@@ -672,7 +672,7 @@ with lib;
                    #custom-startmenu {
                  	color: ${base03};
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     background: ${base00};
                     margin: 6px 4px;
@@ -691,7 +691,7 @@ with lib;
                    #idle_inhibitor {
                  	color: ${base09};
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     background: ${base00};
                     margin: 6px 0px;
@@ -710,7 +710,7 @@ with lib;
                    #custom-exit {
                  	color: ${base0E};
               ${
-                if simplebar == true then
+                if simplebar then
                   ''
                     background: ${base00};
                     margin: 6px 0px 6px 4px;
