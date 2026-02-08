@@ -195,6 +195,7 @@ with host;
         orca-slicer # 3D Printer Slicer
         pcmanfm # File Browser
         image-roll # Image Viewer
+        protonvpn-gui # vpn service
 
         # File Management
         file-roller # Archive Manager

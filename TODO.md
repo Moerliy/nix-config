@@ -19,7 +19,6 @@ Nix related tasks
 - [ ] disable middle mouse key for osu
   - [x] script not working
   - maybe disable key hyprland wide
-- [ ] fix catppuccin themes with new catppuccin module
 - [ ] google login popup not floating
 
 #### New Features
@@ -35,9 +34,6 @@ NeoVim related tasks
 - [ ] Trouble with LSP in VUE
 - [ ] Look into VUE and Deno
 - [ ] Some config for LSP is not NIX conform (node I think)
-- [ ] lazygit open in vim
-- [ ] space p not opening project keybinds
-- [ ] ai keybinds
 
 #### New Features
 

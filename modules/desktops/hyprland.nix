@@ -552,6 +552,7 @@ with host;
               # "size 1000 800,match:title (scanserv-js)(.*),match:class (firefox)"
               "float true, size 622 652, center true, match:title (Clipse)"
               "float true, size 1000 800, center true,  match:class (org.pulseaudio.pavucontrol), match:title (Volume Control)"
+              "float true, size 800 600, center true, match:class proton.vpn.app.gtk"
               "workspace 1, float true, size 800 600, center true, match:title nmtui-session"
               "workspace 3, match:class steam"
               "workspace 4, match:class ^(steam_app)(.*)"

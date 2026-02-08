@@ -133,7 +133,7 @@ with lib;
                 };
               };
               "clock" = {
-                format = if clock24h == true then '' {:%H:%M}'' else '' {:%I:%M %p}'';
+                format = if clock24h == true then " {:%H:%M}" else " {:%I:%M %p}";
                 #format = " {:%H:%M}";
                 tooltip = true;
                 tooltip-format = "<big>{:%A, %d.%B %Y }</big><tt><small>{calendar}</small></tt>";
@@ -168,6 +168,7 @@ with lib;
                 format-wifi = "{icon} {signalStrength}%";
                 format-disconnected = "󰤮";
                 on-click = "${pkgs.${vars.terminal}}/bin/${vars.terminal} --title 'nmtui-session' -e 'nmtui'";
+                on-click-right = "${pkgs.protonvpn-gui}/bin/protonvpn-app";
                 tooltip = false;
               };
               "tray" = {

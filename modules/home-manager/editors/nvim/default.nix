@@ -157,6 +157,7 @@ with host;
           luajitPackages.luarocks
           nil
           nixd
+          statix
           go
           gnupg
         ]
