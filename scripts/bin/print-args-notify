@@ -2,4 +2,4 @@
 
 # test notification
 
-notify-send "$1"
+notify-send "args: $1"

@@ -781,6 +781,7 @@ with host;
               hyprhook {
                 onSubmap = $HOME/.local/bin/which-key
                 pin = $HOME/.config/hypr/script/pin-border-color.sh
+                # onWorkspace = $HOME/.local/bin/test-notify
                 # activeWindow = $HOME/.config/hypr/script/disable-keybind.sh
                 # activeWindow = $HOME/test.sh
                 # mouseButton = $HOME/.local/bin/drag-window-to-workspace

@@ -436,11 +436,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1767179272,
-        "narHash": "sha256-wwh3KFZXuaaLbKnyaAhJjj/++3mJl4xVW/hT6qWX+OA=",
+        "lastModified": 1770624733,
+        "narHash": "sha256-ThJ+qKUV9TmdWvoYBPaIqKF1Xatyd+MtMPX8xZ6YQZQ=",
         "owner": "Hyprhook",
         "repo": "Hyprhook",
-        "rev": "6fed63a10947222fbef8cc0b8bf2c30e52aa0a7c",
+        "rev": "256169dfa7b0398850969221bacbb291687f1c4c",
         "type": "github"
       },
       "original": {

@@ -166,53 +166,53 @@
       # );
 
       darwinConfigurations = import ./darwin {
-          inherit (nixpkgs) lib;
-          inherit
-            inputs
-            nixpkgs
-            nixpkgs-unstable
-            home-manager-unstable
-            darwin
-            vars
-            ;
-        };
+        inherit (nixpkgs) lib;
+        inherit
+          inputs
+          nixpkgs
+          nixpkgs-unstable
+          home-manager-unstable
+          darwin
+          vars
+          ;
+      };
 
       nixosConfigurations = import ./hosts {
-          inherit (nixpkgs) lib;
-          inherit
-            inputs
-            nixpkgs
-            catppuccin
-            hyprland
-            hyprhook
-            hypridle
-            hyprland-nativ-plugins
-            hyprlock
-            hyprsunset
-            nixpkgs-unstable
-            home-manager
-            home-manager-unstable
-            apple-silicon
-            vars
-            animated-wallpaper
-            minegrub
-            minegrubx86
-            lanzaboote
-            ;
-        };
+        inherit (nixpkgs) lib;
+        inherit
+          inputs
+          nixpkgs
+          catppuccin
+          hyprland
+          hyprhook
+          hypridle
+          hyprland-nativ-plugins
+          hyprlock
+          hyprsunset
+          nixpkgs-unstable
+          home-manager
+          home-manager-unstable
+          apple-silicon
+          vars
+          animated-wallpaper
+          minegrub
+          minegrubx86
+          lanzaboote
+          ;
+      };
 
       homeConfigurations = import ./nix {
-          inherit (nixpkgs) lib;
-          inherit
-            inputs
-            nixpkgs
-            nixpkgs-unstable
-            home-manager
-            home-manager-unstable
-            catppuccin
-            nixgl
-            vars
-            ;
-        };
+        inherit (nixpkgs) lib;
+        inherit
+          inputs
+          nixpkgs
+          nixpkgs-unstable
+          home-manager
+          home-manager-unstable
+          catppuccin
+          nixgl
+          vars
+          ;
+      };
     };
 }
