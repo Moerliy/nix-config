@@ -3,3 +3,4 @@
 # test notification
 
 notify-send "args: $1"
+wl-copy "$1"

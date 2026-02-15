@@ -412,7 +412,7 @@ with host;
             };
             input = {
               kb_layout = "de,us";
-              sensitivity = 0.25;
+              sensitivity = 0;
               accel_profile = "flat";
               follow_mouse = 1;
               numlock_by_default = true;
@@ -781,8 +781,9 @@ with host;
               hyprhook {
                 onSubmap = $HOME/.local/bin/which-key
                 pin = $HOME/.config/hypr/script/pin-border-color.sh
+                activeWindow = $HOME/.config/hypr/script/disable-keybind.sh
+                fullscreen = $HOME/.config/hypr/script/disable-keybind.sh
                 # onWorkspace = $HOME/.local/bin/test-notify
-                # activeWindow = $HOME/.config/hypr/script/disable-keybind.sh
                 # activeWindow = $HOME/test.sh
                 # mouseButton = $HOME/.local/bin/drag-window-to-workspace
                 # changeFloatingMode = $HOME/test.sh
@@ -854,20 +855,12 @@ with host;
             text = ''
               #!/usr/bin/env bash
 
-              WINDOW_TITLE=$(jq -r '.title' <<<"$1")
-              WINDOW_CLASS=$(jq -r '.class' <<<"$1")
+              WINDOW_FULLSCREEN=$(jq -r '.fullscreen' <<<"$1")
 
-              echo "Window Match: $WINDOW_TITLE"
-              echo "Window Class: $WINDOW_CLASS"
-
-              # bindmd = , mouse:274, Move Window, movewindow
-              # check if osu! is running
-              if [[ "$WINDOW_TITLE" == "osu!" && "$WINDOW_CLASS" == "osu!" ]]; then
-                echo "unbind"
+              if [[ "$WINDOW_FULLSCREEN" == "2" ]]; then
                 hyprctl keyword unbind , mouse:274
               else
                 if [[ $(hyprctl binds -j | jq 'map(select(.modmask == 0 and .submap == "" and .key == "mouse:274")) | any') == "false" ]]; then
-                  echo "rebind"
                   hyprctl keyword bindmd , mouse:274, Move Window, movewindow
                 fi
               fi

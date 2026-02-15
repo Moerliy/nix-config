@@ -20,6 +20,7 @@ Nix related tasks
   - [x] script not working
   - maybe disable key hyprland wide
 - [ ] google login popup not floating
+- [ ] steam floating windows and centering
 
 #### New Features
 
