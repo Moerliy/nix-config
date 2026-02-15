@@ -61,7 +61,7 @@
 
     hyprhook = {
       url = "github:Hyprhook/Hyprhook";
-      # url = "github:Moerliy/Hyprhook";
+      # url = "github:Hyprhook/Hyprhook/activeWindow-race-con";
       # Hyprspace uses latest Hyprland. We declare this to keep them in sync.
       inputs.hyprland.follows = "hyprland";
     };
@@ -82,6 +82,11 @@
     # Hypridle
     hypridle = {
       url = "github:hyprwm/hypridle";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    grim-hyprland = {
+      url = "github:eriedaberrie/grim-hyprland";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
@@ -141,6 +146,7 @@
       minegrub,
       nixgl,
       minegrubx86,
+      grim-hyprland,
       lanzaboote,
       bat-catppuccin,
       delta-catppuccin,
@@ -194,6 +200,7 @@
           home-manager-unstable
           apple-silicon
           vars
+          grim-hyprland
           animated-wallpaper
           minegrub
           minegrubx86

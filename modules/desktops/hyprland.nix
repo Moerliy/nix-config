@@ -111,6 +111,10 @@ with host;
           kitty
           eww
           clipse
+          chafa
+          jq
+          fzf
+          grim
         ]
         ++ (
           if enableAnimatedWallpaper then
@@ -371,6 +375,7 @@ with host;
                   "3, monitor:${toString mainMonitor}"
                   "4, monitor:${toString mainMonitor}"
                   "8, monitor:${toString secondMonitor}"
+                  "special:alttab, gapsout:0, gapsin:0, bordersize:0"
                   # "special:hyprlock, f[0]"
                   # "special:special, f[-1]"
                 ]
@@ -381,6 +386,7 @@ with host;
                   "3, monitor:${toString mainMonitor}"
                   "4, monitor:${toString mainMonitor}"
                   "8, monitor:${toString secondMonitor},default:true"
+                  "special:alttab, gapsout:0, gapsin:0, bordersize:0"
                   # "special:hyprlock, f[0]"
                   # "special:special, f[-1]"
                 ]
@@ -494,6 +500,7 @@ with host;
             };
             debug = {
               damage_tracking = 2;
+              disable_logs = false;
               # overlay = true;
               # damage_blink = true;
             };
@@ -501,7 +508,10 @@ with host;
             bindd = [
               "$mainMod, return, Open Terminal, exec, ${pkgs.${vars.terminal}}/bin/${vars.terminal}"
               "$mainMod, escape, Exit Manager, exec, $HOME/.config/rofi/bin/powermenu-large"
-              "$mainMod, tab, Switch Window, exec, ${pkgs.rofi}/bin/rofi -show window"
+
+              "$mainMod, tab, Alt Tab, exec, $HOME/.config/hypr/script/alttab/enable.sh 'down'"
+              "$mainMod SHIFT, tab, Alt Tab Shift, exec, $HOME/.config/hypr/scripts/alttab/enable.sh 'up'"
+
               "$mainMod, B, Open Browser, exec, ${pkgs.firefox}/bin/firefox"
               "$mainMod, Q, Close Window, killactive"
               "$mainMod, C, Open Controll Center, exec, ${pkgs.rofi}/bin/rofi -show drun"
@@ -560,6 +570,9 @@ with host;
               "workspace 4, match:class ^(steam_app)(.*)"
               "workspace 8, match:class vesktop"
               # "opacity 0.9, match:class firefox"
+              "match:class alttab, no_anim false"
+              "match:class alttab, stay_focused true"
+              "match:class alttab, workspace special:alttab"
             ];
             exec-once = [
               "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
@@ -589,6 +602,18 @@ with host;
             bindmd = $mainMod, mouse:273, Resize Window, resizewindow
             bindmd = , mouse:274, Move Window, movewindow
             bindmd = $mainMod, mouse:272, Move Window, movewindow
+
+            submap=alttab
+            bind = $mainMod, tab, sendshortcut, , tab, class:alttab
+            bind = $mainMod SHIFT, tab, sendshortcut, shift, tab, class:alttab
+
+            bindrt = $mainMod, SUPER_L, exec, $XDG_CONFIG_HOME/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , return,class:alttab
+            bindrt = $mainMod SHIFT, SUPER_L, exec, $XDG_CONFIG_HOME/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , return,class:alttab
+            bind = $mainMod, Return, exec, $XDG_CONFIG_HOME/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , return, class:alttab
+            bind = $mainMod SHIFT, Return, exec, $XDG_CONFIG_HOME/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , return, class:alttab
+            bind = $mainMod, escape, exec, $XDG_CONFIG_HOME/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , escape,class:alttab
+            bind = $mainMod SHIFT, escape, exec, $XDG_CONFIG_HOME/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , escape,class:alttab
+            submap = reset
 
             bindd = $mainMod, Space, +submaps, submap, supmaper
             submap = supmaper
@@ -864,6 +889,64 @@ with host;
                   hyprctl keyword bindmd , mouse:274, Move Window, movewindow
                 fi
               fi
+            '';
+            executable = true;
+          };
+          "hypr/script/alttab/alttab.sh" = {
+            text = ''
+              #!/usr/bin/env bash
+              hyprctl -q dispatch submap alttab
+              start=$1
+              address=$(hyprctl -j clients | jq -r 'sort_by(.focusHistoryID) | .[] | select(.workspace.id >= 0) | "\(.address)\t\(.title)"' |
+                      fzf --color prompt:green,pointer:green,current-bg:-1,current-fg:green,gutter:-1,border:bright-black,current-hl:red,hl:red \
+                    --cycle \
+                    --sync \
+                    --bind tab:down,shift-tab:up,start:$start,double-click:ignore \
+                    --wrap \
+                    --delimiter=$'\t' \
+                    --with-nth=2 \
+                    --preview "$HOME/.config/hypr/script/alttab/preview.sh {}" \
+                    --preview-window=down:80% \
+                    --layout=reverse |
+                      awk -F"\t" '{print $1}')
+
+              if [ -n "$address" ] ; then
+                echo "$address" > $XDG_RUNTIME_DIR/hypr/alttab/address
+              fi
+
+              hyprctl -q dispatch submap reset
+            '';
+            executable = true;
+          };
+          "hypr/script/alttab/preview.sh" = {
+            text = ''
+              #!/usr/bin/env bash
+              line="$1"
+
+              IFS=$'\t' read -r addr _ <<< "$line"
+              dim=''${FZF_PREVIEW_COLUMNS}x''${FZF_PREVIEW_LINES}
+
+              grim -t png -l 0 -w "$addr" $XDG_RUNTIME_DIR/hypr/alttab/preview.png
+              chafa --animate false --dither=none -s "$dim" "$XDG_RUNTIME_DIR/hypr/alttab/preview.png"
+            '';
+            executable = true;
+          };
+          "hypr/script/alttab/disable.sh" = {
+            text = ''
+              #!/usr/bin/env bash
+              hyprctl -q keyword animations:enabled true
+
+              hyprctl -q --batch "keyword unbind SUPER, TAB ; keyword unbind SUPER SHIFT, TAB ; keyword bind SUPER, TAB, exec, $HOME/.config/hypr/script/alttab/enable.sh 'down' ; keyword bind SUPER SHIFT, TAB, exec, $HOME/.config/hypr/script/alttab/enable.sh 'up'"
+            '';
+            executable = true;
+          };
+          "hypr/script/alttab/enable.sh" = {
+            text = ''
+              #!/usr/bin/env bash
+              mkdir -p $XDG_RUNTIME_DIR/hypr/alttab
+              hyprctl -q --batch "keyword animations:enabled false; keyword unbind SUPER, TAB ; keyword unbind SUPER SHIFT, TAB"
+              kitty --class alttab $HOME/.config/hypr/script/alttab/alttab.sh $1
+              hyprctl --batch -q "dispatch focuswindow address:$(cat $XDG_RUNTIME_DIR/hypr/alttab/address) ; dispatch alterzorder top"
             '';
             executable = true;
           };

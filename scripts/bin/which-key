@@ -84,6 +84,8 @@ submap=$(echo "$1" | jq -c '.submap' | sed 's/"//g')
 
 if [[ $submap == "" ]]; then
   eww --config "$CONFIG_DIR" close which-key
+elif [[ $submap == "alttab" ]]; then
+  return
 else
   openWidget "$submap"
 fi

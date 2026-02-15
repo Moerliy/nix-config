@@ -231,7 +231,7 @@
     },
     "flake-utils_2": {
       "inputs": {
-        "systems": "systems_6"
+        "systems": "systems_7"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -288,6 +288,27 @@
       "original": {
         "owner": "hercules-ci",
         "repo": "gitignore.nix",
+        "type": "github"
+      }
+    },
+    "grim-hyprland": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ],
+        "systems": "systems_2"
+      },
+      "locked": {
+        "lastModified": 1741705247,
+        "narHash": "sha256-4m2QFT8mY6CM3YSebMJhd/kJWaRxTYOS/nvAs2TaIQs=",
+        "owner": "eriedaberrie",
+        "repo": "grim-hyprland",
+        "rev": "4a3d6f5b87b01e92c404b9393b79057b85f58c60",
+        "type": "github"
+      },
+      "original": {
+        "owner": "eriedaberrie",
+        "repo": "grim-hyprland",
         "type": "github"
       }
     },
@@ -436,11 +457,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770624733,
-        "narHash": "sha256-ThJ+qKUV9TmdWvoYBPaIqKF1Xatyd+MtMPX8xZ6YQZQ=",
+        "lastModified": 1771164342,
+        "narHash": "sha256-Q3EjCyUJQKOjBHZELHsLWJjgwPV7jbylbEq8YpZYMnc=",
         "owner": "Hyprhook",
         "repo": "Hyprhook",
-        "rev": "256169dfa7b0398850969221bacbb291687f1c4c",
+        "rev": "f92c2b9a1d284a0ef94d45300cfa3186aa36775e",
         "type": "github"
       },
       "original": {
@@ -458,7 +479,7 @@
         "nixpkgs": [
           "nixpkgs-unstable"
         ],
-        "systems": "systems_2"
+        "systems": "systems_3"
       },
       "locked": {
         "lastModified": 1766230298,
@@ -489,7 +510,7 @@
           "nixpkgs-unstable"
         ],
         "pre-commit-hooks": "pre-commit-hooks",
-        "systems": "systems_3",
+        "systems": "systems_4",
         "xdph": "xdph"
       },
       "locked": {
@@ -784,7 +805,7 @@
         "nixpkgs": [
           "nixpkgs-unstable"
         ],
-        "systems": "systems_4"
+        "systems": "systems_5"
       },
       "locked": {
         "lastModified": 1766230281,
@@ -809,7 +830,7 @@
         "nixpkgs": [
           "nixpkgs-unstable"
         ],
-        "systems": "systems_5"
+        "systems": "systems_6"
       },
       "locked": {
         "lastModified": 1767653639,
@@ -1308,6 +1329,7 @@
         "catppuccin": "catppuccin",
         "darwin": "darwin",
         "delta-catppuccin": "delta-catppuccin",
+        "grim-hyprland": "grim-hyprland",
         "home-manager": "home-manager",
         "home-manager-unstable": "home-manager-unstable",
         "hyprhook": "hyprhook",
@@ -1423,6 +1445,21 @@
       }
     },
     "systems_6": {
+      "locked": {
+        "lastModified": 1689347949,
+        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "systems_7": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",

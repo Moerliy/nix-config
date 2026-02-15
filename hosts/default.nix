@@ -19,6 +19,7 @@
   hyprhook,
   hypridle,
   hyprlock,
+  grim-hyprland,
   hyprsunset,
   animated-wallpaper,
   vars,
@@ -70,6 +71,14 @@ in
       };
     };
     modules = [
+      (
+        _:
+        {
+          nixpkgs.overlays = [
+            grim-hyprland.overlays.default
+          ];
+        }
+      )
       ./asahi/asahi.nix
       ./configuration.nix
       minegrub.nixosModules.default
@@ -108,6 +117,14 @@ in
       };
     };
     modules = [
+      (
+        _:
+        {
+          nixpkgs.overlays = [
+            grim-hyprland.overlays.default
+          ];
+        }
+      )
       ./nvidia/nvidia.nix
       ./configuration.nix
       # minegrubx86.nixosModules.default
