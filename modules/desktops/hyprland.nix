@@ -556,8 +556,12 @@ with host;
             ];
             windowrule = [
               "float true, match:class (Rofi), match:title (Rofi)"
-              "float true, match:class (steam), match:title (Friends List)"
-              "float true, match:class (steam), match:title (Steam settings)"
+              "float false, match:class (steam), match:title (^[S]team)"
+              "float true, match:class (steam)"
+              "float true, center true, size 500 1000, match:class (steam), match:title (Friends List)"
+              "float true, center true, match:class (steam), match:title (Steam Settings)"
+              "float true, center true, match:class (steam), match:title (Sign in to Steam)"
+              "float true, center true, match:class (steam), match:title (Shutdown)"
               "fullscreen true, match:class (osu!), match:title (osu!)"
               "float true, match:title Picture-in-Picture"
               # "float,match:title (scanserv-js)(.*),match:class (firefox)"

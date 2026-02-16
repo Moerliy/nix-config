@@ -19,11 +19,11 @@ Nix related tasks
 - [ ] disable middle mouse key for osu
   - [x] script not working
   - maybe disable key hyprland wide
+- [ ] discord steam keybind (not possible)
 - [ ] google login popup not floating
 - [ ] steam floating windows and centering
 - [ ] look again into [nix store](https://wiki.nixos.org/wiki/Storage_optimization)
 - [ ] osu! lock to workspace
-- [ ] no animations after a while, maybe alttab script
 
 #### New Features
 
