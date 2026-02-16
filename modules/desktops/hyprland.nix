@@ -945,7 +945,7 @@ with host;
               #!/usr/bin/env bash
               hyprctl -q keyword animations:enabled true
 
-              hyprctl -q --batch "keyword unbind SUPER, TAB ; keyword unbind SUPER SHIFT, TAB ; keyword bind SUPER, TAB, exec, $HOME/.config/hypr/script/alttab/enable.sh 'down' ; keyword bind SUPER SHIFT, TAB, exec, $HOME/.config/hypr/script/alttab/enable.sh 'up'"
+              hyprctl -q --batch "keyword unbind SUPER, tab ; keyword unbind SUPER SHIFT, tab ; keyword bind SUPER, tab, exec, $HOME/.config/hypr/script/alttab/enable.sh 'down' ; keyword bind SUPER SHIFT, tab, exec, $HOME/.config/hypr/script/alttab/enable.sh 'up'"
             '';
             executable = true;
           };
@@ -953,7 +953,7 @@ with host;
             text = ''
               #!/usr/bin/env bash
               mkdir -p $XDG_RUNTIME_DIR/hypr/alttab
-              hyprctl -q --batch "keyword animations:enabled false; keyword unbind SUPER, TAB ; keyword unbind SUPER SHIFT, TAB"
+              hyprctl -q --batch "keyword animations:enabled false; keyword unbind SUPER, tab ; keyword unbind SUPER SHIFT, tab"
               kitty --class alttab $HOME/.config/hypr/script/alttab/alttab.sh $1
               hyprctl --batch -q "dispatch focuswindow address:$(cat $XDG_RUNTIME_DIR/hypr/alttab/address) ; dispatch alterzorder top"
             '';
