@@ -21,9 +21,7 @@ Nix related tasks
   - maybe disable key hyprland wide
 - [ ] discord steam keybind (not possible)
 - [ ] google login popup not floating
-- [ ] steam floating windows and centering
 - [ ] look again into [nix store](https://wiki.nixos.org/wiki/Storage_optimization)
-- [ ] osu! lock to workspace
 
 #### New Features
 

@@ -562,7 +562,7 @@ with host;
               "float true, center true, match:class (steam), match:title (Steam Settings)"
               "float true, center true, match:class (steam), match:title (Sign in to Steam)"
               "float true, center true, match:class (steam), match:title (Shutdown)"
-              "fullscreen true, match:class (osu!), match:title (osu!)"
+              "workspace 4, fullscreen true, match:class (osu!), match:title (osu!)"
               "float true, match:title Picture-in-Picture"
               # "float,match:title (scanserv-js)(.*),match:class (firefox)"
               # "size 1000 800,match:title (scanserv-js)(.*),match:class (firefox)"
