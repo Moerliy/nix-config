@@ -607,12 +607,12 @@ with host;
             bind = $mainMod, tab, sendshortcut, , tab, class:alttab
             bind = $mainMod SHIFT, tab, sendshortcut, shift, tab, class:alttab
 
-            bindrt = $mainMod, SUPER_L, exec, $XDG_CONFIG_HOME/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , return,class:alttab
-            bindrt = $mainMod SHIFT, SUPER_L, exec, $XDG_CONFIG_HOME/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , return,class:alttab
-            bind = $mainMod, Return, exec, $XDG_CONFIG_HOME/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , return, class:alttab
-            bind = $mainMod SHIFT, Return, exec, $XDG_CONFIG_HOME/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , return, class:alttab
-            bind = $mainMod, escape, exec, $XDG_CONFIG_HOME/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , escape,class:alttab
-            bind = $mainMod SHIFT, escape, exec, $XDG_CONFIG_HOME/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , escape,class:alttab
+            bindrt = $mainMod, SUPER_L, exec, $HOME/.config/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , return,class:alttab
+            bindrt = $mainMod SHIFT, SUPER_L, exec, $HOME/.config/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , return,class:alttab
+            bind = $mainMod, Return, exec, $HOME/.config/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , return, class:alttab
+            bind = $mainMod SHIFT, Return, exec, $HOME/.config/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , return, class:alttab
+            bind = $mainMod, escape, exec, $HOME/.config/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , escape,class:alttab
+            bind = $mainMod SHIFT, escape, exec, $HOME/.config/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , escape,class:alttab
             submap = reset
 
             bindd = $mainMod, Space, +submaps, submap, supmaper
@@ -844,6 +844,15 @@ with host;
         };
 
         xdg.configFile = {
+          "hypr/xdph.conf" = {
+            # wrong path
+            text = ''
+              screencopy {
+                allow_token_by_default = true
+              }
+            '';
+            executable = false;
+          };
           "hypr/script/clamshell.sh" = {
             # wrong path
             text = ''

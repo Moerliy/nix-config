@@ -21,10 +21,15 @@ Nix related tasks
   - maybe disable key hyprland wide
 - [ ] google login popup not floating
 - [ ] steam floating windows and centering
+- [ ] look again into [nix store](https://wiki.nixos.org/wiki/Storage_optimization)
+- [ ] osu! lock to workspace
+- [ ] no animations after a while, maybe alttab script
 
 #### New Features
 
 - [ ] Update README for dots to better install
+- [ ] video clipping software
+- [ ] noice supression with noisetorch
 
 ### NeoVim
 
@@ -33,8 +38,10 @@ NeoVim related tasks
 #### Bugs
 
 - [ ] Trouble with LSP in VUE
+  > Error executing vim.schedule lua callback: ...wrapped-0.11.6/share/nvim/runtime/lua/vim/lsp/client.lua:545: RPC[Error] code_name = InternalError, message = "Request initialize failed with message: Cannot read properties of undefined (reading 'tsdk')"
 - [ ] Look into VUE and Deno
 - [ ] Some config for LSP is not NIX conform (node I think)
+- [ ] distrobox armarest bunch of errors
 
 #### New Features
 

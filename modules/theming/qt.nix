@@ -8,16 +8,15 @@
   pkgs,
   ...
 }:
-with lib; {
+with lib;
+{
   options.qt-theme = {
     enable = mkOption {
       type = types.bool;
       default = false;
-      description =
-        mdDoc
-        ''
-          Enable the qt theme.
-        '';
+      description = mdDoc ''
+        Enable the qt theme.
+      '';
     };
   };
 
@@ -27,13 +26,12 @@ with lib; {
         enable = true;
         platformTheme.name = "qtct";
         style = {
-          name = "kvantum";
-          package = pkgs.catppuccin-kvantum.override {
-            variant = "mocha";
-            accent = "mauve";
-          };
+          name = "gtk2";
         };
       };
+      home.packages = with pkgs; [
+        libsForQt5.qt5ct
+      ];
     };
     environment.variables = {
       QT_QPA_PLATFORMTHEME = "gtk2";
