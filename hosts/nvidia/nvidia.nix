@@ -56,19 +56,6 @@
     interfaces.eno1.wakeOnLan.enable = true;
   };
 
-  nix = {
-    package = pkgs.nix;
-    gc = {
-      automatic = true;
-      #interval.Day = 7;
-      options = "--delete-older-than 7d";
-    };
-    extraOptions = ''
-      auto-optimise-store = true
-      experimental-features = nix-command flakes
-    '';
-  };
-
   nixpkgs.config.nvidia.acceptLicense = true;
   nixpkgs.config.allowUnfreePredicate =
     pkg:

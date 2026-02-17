@@ -20,8 +20,8 @@ Nix related tasks
   - [x] script not working
   - maybe disable key hyprland wide
 - [ ] discord steam keybind (not possible)
-- [ ] google login popup not floating
-- [ ] look again into [nix store](https://wiki.nixos.org/wiki/Storage_optimization)
+- [ ] google login popup not floating (needs window info)
+- [ ] neofetch still using neofetch
 
 #### New Features
 
@@ -40,6 +40,7 @@ NeoVim related tasks
 - [ ] Look into VUE and Deno
 - [ ] Some config for LSP is not NIX conform (node I think)
 - [ ] distrobox armarest bunch of errors
+- [ ] theme picker
 
 #### New Features
 

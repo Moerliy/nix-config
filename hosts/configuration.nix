@@ -40,6 +40,24 @@ with host;
     };
   };
 
+  nix = {
+    package = pkgs.nix;
+    settings = {
+      auto-optimise-store = true;
+    };
+    gc = {
+      # `sudo nix-collect-garbage -d` to remove GRUB generations
+      # `nix-collect-garbage -d` to remove user space generations (home manager)
+      automatic = true;
+      dates = "daily";
+      options = "--delete-older-than 7d";
+    };
+    extraOptions = ''
+      auto-optimise-store = true
+      experimental-features = nix-command flakes
+    '';
+  };
+
   # console settings
   console = {
     font = "Lat2-Terminus16";
