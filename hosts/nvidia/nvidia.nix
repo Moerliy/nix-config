@@ -35,6 +35,7 @@
   # programs
   kitty.enable = true; # Terminal emulator
   vesktop.enable = true; # Discord client
+  shadowplay.enable = true; # Shadowpay like screen recording.
 
   # Shell related
   sane-defaults.enable = true;

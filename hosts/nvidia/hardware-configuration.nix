@@ -41,6 +41,14 @@
     ];
   };
 
+  fileSystems."/mnt/hdd" = {
+    device = "/dev/disk/by-uuid/602EF5132EF4E2C8";
+    fsType = "ntfs";
+    options = [
+      "nofail"
+    ];
+  };
+
   swapDevices = [
     { device = "/dev/disk/by-uuid/32cb118f-4977-424c-ab11-76f7d4e718d0"; }
   ];

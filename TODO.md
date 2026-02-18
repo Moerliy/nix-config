@@ -6,8 +6,6 @@ Nix related tasks
 
 - Hyprlock
   - [ ] Crash because of sleep/hybernate?
-- Rofi
-  - [x] make the popups work with second screen
 - [ ] Animated wallpaper not showing on locking
   - [ ] Not building right (template issues again maybe :)
   - [x] Dissable for now
@@ -16,17 +14,14 @@ Nix related tasks
 - Copy paste
   - [ ] Newline inconsistencies under wayland
 - [ ] Steam to big cursor (xWayland as usual)
-- [ ] disable middle mouse key for osu
-  - [x] script not working
-  - maybe disable key hyprland wide
-- [ ] discord steam keybind (not possible)
+- [ ] discord stream keybind (not possible)
 - [ ] google login popup not floating (needs window info)
 - [ ] neofetch still using neofetch
+- [ ] gpu-screen-recorder-ui instead ouf -gtk when nixpkgs is merged
 
 #### New Features
 
 - [ ] Update README for dots to better install
-- [ ] video clipping software
 - [ ] noice supression with noisetorch
 
 ### NeoVim

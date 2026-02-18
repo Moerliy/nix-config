@@ -556,8 +556,9 @@ with host;
             ];
             windowrule = [
               "float true, match:class (Rofi), match:title (Rofi)"
-              "float false, match:class (steam), match:title (^[S]team)"
               "float true, match:class (steam)"
+              "float true, match:class (Steam)"
+              "float false, match:class (steam), match:title (^[S]team)"
               "float true, center true, size 500 1000, match:class (steam), match:title (Friends List)"
               "float true, center true, match:class (steam), match:title (Steam Settings)"
               "float true, center true, match:class (steam), match:title (Sign in to Steam)"

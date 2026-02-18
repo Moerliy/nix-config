@@ -77,6 +77,7 @@ with host;
   '';
 
   programs.localsend.enable = true;
+  # programs.noisetorch.enable = true;
 
   networking = {
     wg-quick.interfaces = {
@@ -112,10 +113,33 @@ with host;
     };
   };
 
-  systemd.services.nix-daemon.serviceConfig = {
-    # CPUQuota = "75%"; # Limits nix-daemon to 50% of total CPU time
-    # Nice = 19; # Lowers priority (optional)
-    # IOSchedulingClass = "idle"; # Lowers disk priority (optional)
+  systemd = {
+    services.nix-daemon.serviceConfig = {
+      # CPUQuota = "75%"; # Limits nix-daemon to 50% of total CPU time
+      # Nice = 19; # Lowers priority (optional)
+      # IOSchedulingClass = "idle"; # Lowers disk priority (optional)
+    };
+    user.services.noisetorch = {
+      enable = true;
+      wantedBy = [ "default.target" ];
+      description = "NoiseTorch";
+      unitConfig = {
+        After = [
+          "pipewire.service"
+          "pipewire-pulse.service"
+        ];
+        StartLimitIntervalSec = 35;
+        StartLimitBurst = 9;
+      };
+      serviceConfig = {
+        Type = "simple";
+        RemainAfterExit = "yes";
+        ExecStart = "${pkgs.noisetorch}/bin/noisetorch -i";
+        ExecStop = "${pkgs.noisetorch}/bin/noisetorch -u";
+        Restart = "on-failure";
+        RestartSec = 3;
+      };
+    };
   };
 
   fonts = {

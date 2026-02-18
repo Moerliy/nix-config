@@ -15,4 +15,5 @@
   ./wlogout/default.nix
   ./rofi/default.nix
   ./desktop-entries/default.nix
+  ./shadowplay.nix
 ]
