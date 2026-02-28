@@ -375,7 +375,7 @@ with host;
                   "3, monitor:${toString mainMonitor}"
                   "4, monitor:${toString mainMonitor}"
                   "8, monitor:${toString secondMonitor}"
-                  "special:alttab, gapsout:0, gapsin:0, bordersize:0"
+                  "special:alttab, persistent:false, gapsout:0, gapsin:0, bordersize:0"
                   # "special:hyprlock, f[0]"
                   # "special:special, f[-1]"
                 ]
@@ -386,7 +386,7 @@ with host;
                   "3, monitor:${toString mainMonitor}"
                   "4, monitor:${toString mainMonitor}"
                   "8, monitor:${toString secondMonitor},default:true"
-                  "special:alttab, gapsout:0, gapsin:0, bordersize:0"
+                  "special:alttab, persistent:false, gapsout:0, gapsin:0, bordersize:0"
                   # "special:hyprlock, f[0]"
                   # "special:special, f[-1]"
                 ]
@@ -463,6 +463,10 @@ with host;
               }
               {
                 name = "royuan-akko-keyboard";
+                kb_layout = "us";
+              }
+              {
+                name = "royuan-akko-keyboard-1";
                 kb_layout = "us";
               }
             ];
@@ -564,6 +568,7 @@ with host;
               "float true, center true, match:class (steam), match:title (Sign in to Steam)"
               "float true, center true, match:class (steam), match:title (Shutdown)"
               "workspace 4, fullscreen true, match:class (osu!), match:title (osu!)"
+              "workspace 4, fullscreen true, match:class (cs2)"
               "float true, match:title Picture-in-Picture"
               # "float,match:title (scanserv-js)(.*),match:class (firefox)"
               # "size 1000 800,match:title (scanserv-js)(.*),match:class (firefox)"
@@ -577,6 +582,7 @@ with host;
               # "opacity 0.9, match:class firefox"
               "match:class alttab, no_anim false"
               "match:class alttab, stay_focused true"
+              "match:class alttab, focus_on_activate true"
               "match:class alttab, workspace special:alttab"
             ];
             exec-once = [
@@ -910,6 +916,7 @@ with host;
             text = ''
               #!/usr/bin/env bash
               hyprctl -q dispatch submap alttab
+              hyprctl dispatcher focuswindow class:alttab
               start=$1
               address=$(hyprctl -j clients | jq -r 'sort_by(.focusHistoryID) | .[] | select(.workspace.id >= 0) | "\(.address)\t\(.title)"' |
                       fzf --color prompt:green,pointer:green,current-bg:-1,current-fg:green,gutter:-1,border:bright-black,current-hl:red,hl:red \

@@ -144,6 +144,9 @@ return {
         stylua = {
           mason = false,
         },
+        bacon_ls = {
+          mason = false,
+        },
       },
     },
   },

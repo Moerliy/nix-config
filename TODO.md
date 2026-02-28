@@ -22,7 +22,6 @@ Nix related tasks
 #### New Features
 
 - [ ] Update README for dots to better install
-- [ ] noice supression with noisetorch
 
 ### NeoVim
 

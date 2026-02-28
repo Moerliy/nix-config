@@ -111,6 +111,10 @@
       url = "github:Lxtharia/minegrub-world-sel-theme";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    bacon-ls = {
+      url = "github:crisidev/bacon-ls";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     bat-catppuccin = {
       url = "github:catppuccin/bat";
       flake = false;
@@ -151,6 +155,7 @@
       bat-catppuccin,
       delta-catppuccin,
       tokionight-nvim,
+      bacon-ls,
       ...
     }:
     # Function telling flake which inputs to use
@@ -205,6 +210,7 @@
           minegrub
           minegrubx86
           lanzaboote
+          bacon-ls
           ;
       };
 
@@ -217,6 +223,7 @@
           home-manager
           home-manager-unstable
           catppuccin
+          bacon-ls
           nixgl
           vars
           ;

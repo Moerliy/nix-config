@@ -22,6 +22,7 @@
   grim-hyprland,
   hyprsunset,
   animated-wallpaper,
+  bacon-ls,
   vars,
   minegrub,
   minegrubx86,
@@ -29,7 +30,7 @@
   ...
 }:
 let
-  system = "aarch64-linux";
+  system = if builtins.currentSystem == "aarch64-linux" then "aarch64-linux" else "x86_64-linux";
   pkgs = import nixpkgs-unstable {
     inherit system;
     config.allowUnfree = true;
@@ -71,14 +72,12 @@ in
       };
     };
     modules = [
-      (
-        _:
-        {
-          nixpkgs.overlays = [
-            grim-hyprland.overlays.default
-          ];
-        }
-      )
+      (_: {
+        nixpkgs.overlays = [
+          grim-hyprland.overlays.default
+          bacon-ls.overlay.${system}
+        ];
+      })
       ./asahi/asahi.nix
       ./configuration.nix
       minegrub.nixosModules.default
@@ -117,14 +116,12 @@ in
       };
     };
     modules = [
-      (
-        _:
-        {
-          nixpkgs.overlays = [
-            grim-hyprland.overlays.default
-          ];
-        }
-      )
+      (_: {
+        nixpkgs.overlays = [
+          grim-hyprland.overlays.default
+          bacon-ls.overlay.${system}
+        ];
+      })
       ./nvidia/nvidia.nix
       ./configuration.nix
       # minegrubx86.nixosModules.default

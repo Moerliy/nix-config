@@ -55,7 +55,7 @@ with lib;
                 FixYoutubetEmbeds.enabled = true;
                 FriendsSince.enabled = true;
                 GameActivityToggle.enabled = true;
-                GifPaste.enabled = true;
+                GifPaste.enabled = false;
                 ImageFilename.enabled = true;
                 IrcColors.enabled = true;
                 MentionAvatars.enabled = true;

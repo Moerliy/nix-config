@@ -147,13 +147,14 @@ with host;
           #rustup
           cargo
           rustc
-          # nix-shell -p pkg-config sqlite openssl libiconv
+          bacon
+          bacon-ls
+          rustfmt
           libiconv
           pkg-config
           sqlite
           openssl
 
-          clang-tools
           luajitPackages.luarocks
           nil
           nixd

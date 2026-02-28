@@ -15,6 +15,7 @@
   home-manager-unstable,
   vars,
   catppuccin,
+  bacon-ls,
   nixgl,
   ...
 }:
@@ -49,6 +50,11 @@ in
       };
     };
     modules = [
+      (_: {
+        nixpkgs.overlays = [
+          bacon-ls.overlay.${system}
+        ];
+      })
       ./hht.nix
       catppuccin.homeModules.catppuccin
       {
