@@ -139,12 +139,12 @@ with host;
       enableGnomeKeyring = true;
     };
 
-    systemd.sleep.extraConfig = ''
-      AllowSuspend=yes
-      AllowHibernation=no
-      AllowSuspendThenHibernate=no
-      AllowHybridSleep=yes
-    ''; # Clamshell Mode (closed laptop use)
+    # systemd.sleep.settings.Sleep = ''
+    #   AllowSuspend=yes
+    #   AllowHibernation=no
+    #   AllowSuspendThenHibernate=no
+    #   AllowHybridSleep=yes
+    # ''; # Clamshell Mode (closed laptop use)
 
     nix.settings = {
       substituters = [ "https://hyprland.cachix.org" ];

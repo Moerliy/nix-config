@@ -8,7 +8,8 @@
   vars,
   ...
 }:
-with lib; {
+with lib;
+{
   imports = [
     ../theming/starship/default.nix
   ];
@@ -40,7 +41,7 @@ with lib; {
     };
     home-manager.users.${vars.user} = {
       home.packages = with pkgs; [
-        neofetch
+        # neofetch
         starship
         lf
         fzf
@@ -72,7 +73,7 @@ with lib; {
           ];
           interactiveShellInit = ''
             set fish_greeting # Disable greeting
-            neofetch
+            # neofetch
           '';
           shellInit = ''
             # set PATH so it includes user's private ~/.local/bin if it exists

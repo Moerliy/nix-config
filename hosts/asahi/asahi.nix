@@ -55,6 +55,15 @@
       "steam-unwrapped"
     ];
 
+  nix.settings = {
+    extra-substituters = [
+      "https://nixos-apple-silicon.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20="
+    ];
+  };
+
   # Asahi settings
   hardware = {
     asahi = {
@@ -94,7 +103,6 @@
   };
 
   # backlight control
-  programs.light.enable = true;
   services = {
     actkbd = {
       enable = true;
@@ -102,12 +110,12 @@
         {
           keys = [ 225 ];
           events = [ "key" ];
-          command = "${pkgs.light}/bin/light -A 10";
+          command = "${pkgs.brightnessctl}/bin/brightnessctl set +10%";
         }
         {
           keys = [ 224 ];
           events = [ "key" ];
-          command = "${pkgs.light}/bin/light -U 10";
+          command = "${pkgs.brightnessctl}/bin/brightnessctl set 10%-";
         }
       ];
     };
@@ -162,7 +170,7 @@
 
       git.enable = true;
       lazygit.enable = true;
-      neofetch.enable = true;
+      neofetch.enable = false;
 
       bat.enable = true;
 

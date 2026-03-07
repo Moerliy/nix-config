@@ -27,7 +27,7 @@ with lib;
     };
     home-manager.users.${vars.user} = {
       home.packages = with pkgs; [
-        neofetch
+        # neofetch
         starship
         lf
         fzf

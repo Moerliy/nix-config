@@ -137,9 +137,6 @@
 
   };
 
-  # backlight control
-  programs.light.enable = true;
-
   # Network settings
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
@@ -229,7 +226,7 @@
 
       git.enable = true;
       lazygit.enable = true;
-      neofetch.enable = true;
+      neofetch.enable = false;
       bat.enable = true;
 
       home = {
