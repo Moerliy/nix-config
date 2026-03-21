@@ -35,8 +35,10 @@ with lib;
           package = pkgs.papirus-icon-theme;
         };
         cursorTheme = {
-          name = "catppuccin-mocha-dark-cursors";
-          package = pkgs-stable.catppuccin-cursors.mochaDark;
+          # name = "catppuccin-mocha-dark-cursors";
+          # package = pkgs-stable.catppuccin-cursors.mochaDark;
+          name = "Bibata-Modern-Classic";
+          package = pkgs.bibata-cursors;
         };
         font = {
           name = "JetBrainsMono Nerd Font";
@@ -44,8 +46,10 @@ with lib;
       };
       home.pointerCursor = {
         gtk.enable = true;
-        package = pkgs-stable.catppuccin-cursors.mochaDark;
-        name = "catppuccin-mocha-dark-cursors";
+        # package = pkgs-stable.catppuccin-cursors.mochaDark;
+        # name = "catppuccin-mocha-dark-cursors";
+        name = "Bibata-Modern-Classic";
+        package = pkgs.bibata-cursors;
         size = 18;
       };
     };

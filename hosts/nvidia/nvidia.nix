@@ -70,6 +70,7 @@
       "steam-original"
       "steam-unwrapped"
       "osu-lazer-bin"
+      "teamspeak6-client"
     ];
   services = {
     xserver.videoDrivers = [ "nvidia" ];

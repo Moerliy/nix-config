@@ -20,7 +20,7 @@ let
   # e.g. from { ".hgrc" = ./hgrc; } to { ".hgrc".source = ./hgrc; }
   toSource = configDirName: dotfilesPath: { source = dotfilesPath; };
 
-  customNodePkg = import ../../../../node/default.nix { };
+  # customNodePkg = import ../../../../node/default.nix { };
 in
 with lib;
 with host;
@@ -82,8 +82,8 @@ with host;
           shellcheck
           shfmt
           nodePackages.typescript-language-server
-          customNodePkg."@vue/language-server"
-          customNodePkg."@vtsls/language-server"
+          # customNodePkg."@vue/language-server"
+          # customNodePkg."@vtsls/language-server"
           # nodePackages_latest.grammarly-languageserver
           kotlin-language-server
           ktlint
@@ -148,7 +148,7 @@ with host;
           cargo
           rustc
           bacon
-          bacon-ls
+          # bacon-ls
           rustfmt
           libiconv
           pkg-config

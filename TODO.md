@@ -18,6 +18,8 @@ Nix related tasks
 - [ ] google login popup not floating (needs window info)
 - [ ] neofetch still using neofetch
 - [ ] gpu-screen-recorder-ui instead ouf -gtk when nixpkgs is merged
+- [ ] change login manager
+- [ ] node2nix broken
 
 #### New Features
 
@@ -35,6 +37,8 @@ NeoVim related tasks
 - [ ] Some config for LSP is not NIX conform (node I think)
 - [ ] distrobox armarest bunch of errors
 - [ ] theme picker
+- [ ] lualine: There are some issues with your config. Run :LualineNotices for details
+- [ ] no "@vue/language-server" "@vtsls/language-server" because broken node2nix
 
 #### New Features
 

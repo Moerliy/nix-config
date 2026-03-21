@@ -72,7 +72,8 @@ with host;
         XDG_CURRENT_DESKTOP = "Hyprland";
         XDG_SESSION_TYPE = "wayland";
         XDG_SESSION_DESKTOP = "Hyprland";
-        # HYPRCURSOR_THEME = "hyprcursor_Dracula";
+        HYPRCURSOR_THEME = "Bibata-Modern-Ice-Hyprcursor";
+        HYPRCURSOR_SIZE = "24";
       };
       sessionVariables =
         if hostName == "nvidia" then
@@ -569,6 +570,7 @@ with host;
               "float true, center true, match:class (steam), match:title (Shutdown)"
               "workspace 4, fullscreen true, match:class (osu!), match:title (osu!)"
               "workspace 4, fullscreen true, match:class (cs2)"
+              "workspace 4, fullscreen true, match:class (factorio)"
               "float true, match:title Picture-in-Picture"
               # "float,match:title (scanserv-js)(.*),match:class (firefox)"
               # "size 1000 800,match:title (scanserv-js)(.*),match:class (firefox)"

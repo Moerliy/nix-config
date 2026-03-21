@@ -53,6 +53,7 @@
     builtins.elem (lib.getName pkg) [
       "steam-run"
       "steam-unwrapped"
+      "teamspeak6-client"
     ];
 
   nix.settings = {
