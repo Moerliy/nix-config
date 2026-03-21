@@ -514,8 +514,8 @@ with host;
               "$mainMod, return, Open Terminal, exec, ${pkgs.${vars.terminal}}/bin/${vars.terminal}"
               "$mainMod, escape, Exit Manager, exec, $HOME/.config/rofi/bin/powermenu-large"
 
-              "$mainMod, tab, Alt Tab, exec, $HOME/.config/hypr/script/alttab/enable.sh 'down'"
-              "$mainMod SHIFT, tab, Alt Tab Shift, exec, $HOME/.config/hypr/scripts/alttab/enable.sh 'up'"
+              "ALT, tab, Alt Tab, exec, $HOME/.config/hypr/script/alttab/enable.sh 'down'"
+              "ALT SHIFT, tab, Alt Tab Shift, exec, $HOME/.config/hypr/scripts/alttab/enable.sh 'up'"
 
               "$mainMod, B, Open Browser, exec, ${pkgs.firefox}/bin/firefox"
               "$mainMod, Q, Close Window, killactive"
@@ -617,15 +617,15 @@ with host;
             bindmd = $mainMod, mouse:272, Move Window, movewindow
 
             submap=alttab
-            bind = $mainMod, tab, sendshortcut, , tab, class:alttab
-            bind = $mainMod SHIFT, tab, sendshortcut, shift, tab, class:alttab
+            bind = ALT, TAB, sendshortcut, , tab, class:alttab
+            bind = ALT SHIFT, TAB, sendshortcut, shift, tab, class:alttab
 
-            bindrt = $mainMod, SUPER_L, exec, $HOME/.config/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , return,class:alttab
-            bindrt = $mainMod SHIFT, SUPER_L, exec, $HOME/.config/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , return,class:alttab
-            bind = $mainMod, Return, exec, $HOME/.config/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , return, class:alttab
-            bind = $mainMod SHIFT, Return, exec, $HOME/.config/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , return, class:alttab
-            bind = $mainMod, escape, exec, $HOME/.config/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , escape,class:alttab
-            bind = $mainMod SHIFT, escape, exec, $HOME/.config/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , escape,class:alttab
+            bindrt = ALT, ALT_L, exec, $HOME/.config/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , return,class:alttab
+            bindrt = ALT SHIFT, ALT_L, exec, $HOME/.config/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , return,class:alttab
+            bind = ALT, Return, exec, $HOME/.config/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , return, class:alttab
+            bind = ALT SHIFT, Return, exec, $HOME/.config/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , return, class:alttab
+            bind = ALT, escape, exec, $HOME/.config/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , escape,class:alttab
+            bind = ALT SHIFT, escape, exec, $HOME/.config/hypr/script/alttab/disable.sh ; hyprctl -q dispatch sendshortcut , escape,class:alttab
             submap = reset
 
             bindd = $mainMod, Space, +submaps, submap, supmaper
@@ -959,7 +959,7 @@ with host;
               #!/usr/bin/env bash
               hyprctl -q keyword animations:enabled true
 
-              hyprctl -q --batch "keyword unbind SUPER, tab ; keyword unbind SUPER SHIFT, tab ; keyword bind SUPER, tab, exec, $HOME/.config/hypr/script/alttab/enable.sh 'down' ; keyword bind SUPER SHIFT, tab, exec, $HOME/.config/hypr/script/alttab/enable.sh 'up'"
+              hyprctl -q --batch "keyword unbind ALT, tab ; keyword unbind ALT SHIFT, tab ; keyword bind ALT, tab, exec, $HOME/.config/hypr/script/alttab/enable.sh 'down' ; keyword bind ALT SHIFT, tab, exec, $HOME/.config/hypr/script/alttab/enable.sh 'up'"
             '';
             executable = true;
           };
@@ -967,7 +967,7 @@ with host;
             text = ''
               #!/usr/bin/env bash
               mkdir -p $XDG_RUNTIME_DIR/hypr/alttab
-              hyprctl -q --batch "keyword animations:enabled false; keyword unbind SUPER, tab ; keyword unbind SUPER SHIFT, tab"
+              hyprctl -q --batch "keyword animations:enabled false; keyword unbind ALT, tab ; keyword unbind ALT SHIFT, tab"
               kitty --class alttab $HOME/.config/hypr/script/alttab/alttab.sh $1
               hyprctl --batch -q "dispatch focuswindow address:$(cat $XDG_RUNTIME_DIR/hypr/alttab/address) ; dispatch alterzorder top"
             '';
