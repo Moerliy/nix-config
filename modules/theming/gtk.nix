@@ -50,7 +50,7 @@ with lib;
         # name = "catppuccin-mocha-dark-cursors";
         name = "Bibata-Modern-Classic";
         package = pkgs.bibata-cursors;
-        size = 18;
+        size = 24;
       };
     };
   };

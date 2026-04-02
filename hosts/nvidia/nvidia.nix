@@ -18,7 +18,8 @@
   ++ (import ../../modules);
 
   # Login Manager
-  gdm.enable = true;
+  gdm.enable = false;
+  ly.enable = true;
 
   # Desktop
   hyprland.enable = true;
