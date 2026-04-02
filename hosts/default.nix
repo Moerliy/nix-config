@@ -76,6 +76,7 @@ in
         nixpkgs.overlays = [
           grim-hyprland.overlays.default
           bacon-ls.overlay.${system}
+          (import ../packages)
         ];
       })
       ./asahi/asahi.nix
@@ -120,6 +121,7 @@ in
         nixpkgs.overlays = [
           grim-hyprland.overlays.default
           bacon-ls.overlay.${system}
+          (import ../packages)
         ];
       })
       ./nvidia/nvidia.nix
