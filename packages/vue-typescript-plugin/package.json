@@ -1,0 +1,8 @@
+{
+  "name": "vue-typescript-plugin-wrapper",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@vue/typescript-plugin": "3.2.6"
+  }
+}

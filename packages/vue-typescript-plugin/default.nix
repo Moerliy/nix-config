@@ -1,64 +1,24 @@
 {
-  stdenv,
   lib,
-  fetchFromGitHub,
-  nodejs_22,
-  pnpm_8,
-  fetchPnpmDeps,
-  pnpmConfigHook,
+  buildNpmPackage,
   nix-update-script,
 }:
-let
-  pnpm' = pnpm_8.override { nodejs = nodejs_22; };
-in
-stdenv.mkDerivation (finalAttrs: {
+buildNpmPackage {
   pname = "vue-typescript-plugin";
   version = "3.2.6";
 
-  src = fetchFromGitHub {
-    owner = "vuejs";
-    repo = "language-tools";
-    tag = "v${finalAttrs.version}";
-    # Run `nix build` once; replace with the hash from the error message.
-    hash = lib.fakeHash;
-  };
+  src = ./.;
 
-  nativeBuildInputs = [
-    nodejs_22
-    pnpmConfigHook
-    pnpm'
-  ];
+  # Run `nix build` once; replace with the hash from the error message.
+  npmDepsHash = lib.fakeHash;
 
-  buildInputs = [ nodejs_22 ];
-
-  pnpmWorkspaces = [ "@vue/typescript-plugin" ];
-
-  pnpmDeps = fetchPnpmDeps {
-    inherit (finalAttrs)
-      pnpmWorkspaces
-      pname
-      src
-      version
-      ;
-    pnpm = pnpm';
-    fetcherVersion = 1;
-    # Run `nix build` once; replace with the hash from the error message.
-    hash = lib.fakeHash;
-  };
-
-  buildPhase = ''
-    runHook preBuild
-
-    pnpm --filter "@vue/typescript-plugin..." build
-
-    runHook postBuild
-  '';
+  dontBuild = true;
 
   installPhase = ''
     runHook preInstall
 
     mkdir -p $out/lib/vue-typescript-plugin
-    cp -r packages/typescript-plugin/{dist,package.json} $out/lib/vue-typescript-plugin/
+    cp -r node_modules/@vue/typescript-plugin/. $out/lib/vue-typescript-plugin/
     cp -r node_modules $out/lib/vue-typescript-plugin/
 
     runHook postInstall
@@ -75,4 +35,4 @@ stdenv.mkDerivation (finalAttrs: {
     maintainers = [ ];
     platforms = lib.platforms.all;
   };
-})
+}
