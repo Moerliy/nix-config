@@ -83,7 +83,10 @@ with host;
           shfmt
           typescript-language-server
           vue-language-server
+          vue-typescript-plugin
           vtsls
+          # customNodePkg."@vue/language-server"
+          # customNodePkg."@vtsls/language-server"
           # nodePackages_latest.grammarly-languageserver
           kotlin-language-server
           ktlint

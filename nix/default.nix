@@ -53,6 +53,7 @@ in
       (_: {
         nixpkgs.overlays = [
           bacon-ls.overlay.${system}
+          (import ../packages)
         ];
       })
       ./hht.nix
