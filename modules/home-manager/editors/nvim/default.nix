@@ -81,9 +81,9 @@ with host;
           stylua
           shellcheck
           shfmt
-          nodePackages.typescript-language-server
-          # customNodePkg."@vue/language-server"
-          # customNodePkg."@vtsls/language-server"
+          typescript-language-server
+          vue-language-server
+          vtsls
           # nodePackages_latest.grammarly-languageserver
           kotlin-language-server
           ktlint
@@ -109,8 +109,8 @@ with host;
           markdownlint-cli2
           docker-compose-language-service
           vscode-langservers-extracted
-          nodePackages.bash-language-server
-          nodePackages.prettier
+          bash-language-server
+          prettier
           neocmakelsp
           cmake-format
           black

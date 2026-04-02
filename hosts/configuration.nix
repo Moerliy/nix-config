@@ -181,7 +181,7 @@ with host;
         neovim-unwrapped # Text Editor
         nodejs # Javascript Runtime
         deno # Javascript/Typescript Runtime
-        nodePackages.pnpm # Package Manager
+        pnpm # Package Manager
         python3 # python runtime
         nix-tree # Browse Nix Store
         pciutils # Manage PCI
