@@ -9,8 +9,7 @@ buildNpmPackage {
 
   src = ./.;
 
-  # Run `nix build` once; replace with the hash from the error message.
-  npmDepsHash = lib.fakeHash;
+  npmDepsHash = "sha256-3/EUy2bslGjbqeBifGKz7LazgESfn6bCpp/j5p39KxU=";
 
   dontBuild = true;
 
