@@ -13,7 +13,7 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "vue-typescript-plugin";
-  version = "2.2.4";
+  version = "3.2.6";
 
   src = fetchFromGitHub {
     owner = "vuejs";
