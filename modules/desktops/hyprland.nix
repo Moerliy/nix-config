@@ -74,6 +74,7 @@ with host;
         XDG_SESSION_DESKTOP = "Hyprland";
         HYPRCURSOR_THEME = "Bibata-Modern-Ice-Hyprcursor";
         HYPRCURSOR_SIZE = "24";
+        DESKTOP_SESSION = "hyprland";
       };
       sessionVariables =
         if hostName == "nvidia" then

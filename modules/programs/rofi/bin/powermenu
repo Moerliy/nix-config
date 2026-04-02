@@ -95,6 +95,8 @@ run_cmd() {
         qdbus org.kde.ksmserver /KSMServer logout 0 0 0
       elif [[ "$DESKTOP_SESSION" == 'hyprland' ]]; then
         loginctl terminate-user "$USER"
+      else
+        loginctl terminate-user "$USER"
       fi
     fi
   else
