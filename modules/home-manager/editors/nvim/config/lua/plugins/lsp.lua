@@ -26,7 +26,7 @@ return {
       LazyVim.extend(opts.servers.vtsls, "settings.vtsls.tsserver.globalPlugins", {
         {
           name = "@vue/typescript-plugin",
-          location = "/etc/profiles/per-user/moritzgleissner/lib/node_modules/@vue/language-server",
+          location = "/etc/profiles/per-user/moritzgleissner/lib/vue-typescript-plugin/node_modules",
           languages = { "vue" },
           configNamespace = "typescript",
           enableForWorkspaceTypeScriptVersions = true,
@@ -121,7 +121,7 @@ return {
             plugins = {
               {
                 name = "@vue/typescript-plugin",
-                location = "/etc/profiles/per-user/moritzgleissner/lib/node_modules/@vue/language-server",
+                location = "/etc/profiles/per-user/moritzgleissner/lib/vue-typescript-plugin/node_modules",
                 languages = { "vue" },
                 configNamespace = "typescript",
                 enableForWorkspaceTypeScriptVersions = true,

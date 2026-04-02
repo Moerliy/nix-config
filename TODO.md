@@ -19,7 +19,6 @@ Nix related tasks
 - [ ] neofetch still using neofetch
 - [ ] gpu-screen-recorder-ui instead ouf -gtk when nixpkgs is merged
 - [ ] change login manager
-- [ ] node2nix broken
 
 #### New Features
 
@@ -31,14 +30,10 @@ NeoVim related tasks
 
 #### Bugs
 
-- [ ] Trouble with LSP in VUE
-  > Error executing vim.schedule lua callback: ...wrapped-0.11.6/share/nvim/runtime/lua/vim/lsp/client.lua:545: RPC[Error] code_name = InternalError, message = "Request initialize failed with message: Cannot read properties of undefined (reading 'tsdk')"
-- [ ] Look into VUE and Deno
 - [ ] Some config for LSP is not NIX conform (node I think)
 - [ ] distrobox armarest bunch of errors
 - [ ] theme picker
 - [ ] lualine: There are some issues with your config. Run :LualineNotices for details
-- [ ] no "@vue/language-server" "@vtsls/language-server" because broken node2nix
 
 #### New Features
 
