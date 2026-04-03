@@ -53,7 +53,6 @@
     builtins.elem (lib.getName pkg) [
       "steam-run"
       "steam-unwrapped"
-      "teamspeak6-client"
     ];
 
   nix.settings = {
@@ -127,7 +126,10 @@
     libinput.enable = true;
 
     # Enable the OpenSSH daemon.
-    openssh.enable = true;
+    openssh = {
+      enable = true;
+      forwardX11 = true;
+    };
   };
 
   # Network settings
