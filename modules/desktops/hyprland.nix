@@ -23,6 +23,7 @@ let
   mainMod = "SUPER";
   hyprlandPkg = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland.override {
     # legacyRenderer = true;
+    # debug = true;
   };
   hyprlockPkg = hyprlock.packages.${pkgs.stdenv.hostPlatform.system}.hyprlock;
   hyprsunsetPkg = hyprsunset.packages.${pkgs.stdenv.hostPlatform.system}.hyprsunset;
@@ -98,7 +99,7 @@ with host;
           {
             QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
 
-            WLR_DRM_DEVICES = "/dev/dri/card0";
+            WLR_DRM_DEVICES = "/dev/dri/card2";
             GDK_BACKEND = "wayland";
             MOZ_ENABLE_WAYLAND = "1";
             NIXOS_OZONE_WL = "1";

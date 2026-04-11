@@ -48,12 +48,8 @@
 
     # Official Hyprland Flake
     hyprland = {
-      # type = "git";
-      # url = "https://github.com/hyprwm/Hyprland/386376400119dd46a767c9f8c8791fd22c7b6e61";
-      # submodules = true;
-      # url = "github:hyprwm/Hyprland";
-      url = "github:hyprwm/Hyprland/43fcf1b0359e41d6b5eea6b76f009d117027deb7";
-      inputs.aquamarine.url = "github:hyprwm/aquamarine/e92655932deb5e4f6d9ca932c8b486340deafa53";
+      url = "github:hyprwm/Hyprland";
+      # inputs.aquamarine.url = "github:Moerliy/aquamarine/bc8a7145b667a635965a1a7751b3b7fb93541471";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
@@ -64,8 +60,6 @@
 
     hyprhook = {
       url = "github:Hyprhook/Hyprhook";
-      # url = "github:Hyprhook/Hyprhook/activeWindow-race-con";
-      # Hyprspace uses latest Hyprland. We declare this to keep them in sync.
       inputs.hyprland.follows = "hyprland";
     };
 
