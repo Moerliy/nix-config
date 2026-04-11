@@ -216,10 +216,7 @@
         ;
     };
     users.${vars.user} = {
-      imports = [
-        inputs.catppuccin.homeModules.catppuccin
-      ]
-      ++ (import ../../modules/home-manager);
+      imports = import ../../modules/home-manager;
 
       # Editors
       neovim.enable = true;

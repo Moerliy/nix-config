@@ -54,6 +54,7 @@ let
       delta-catppuccin
       tokionight-nvim
       bat-catppuccin
+      hyprland
       ;
   };
 
@@ -63,6 +64,8 @@ let
   mkHyprOverlay =
     system:
     (final: prev: {
+      inherit (hyprland.packages.${system}) hyprland;
+      inherit (hyprland.packages.${system}) xdg-desktop-portal-hyprland;
       inherit (hyprhook.packages.${system}) hyprhook;
       inherit (hypridle.packages.${system}) hypridle;
       inherit (hyprlock.packages.${system}) hyprlock;
@@ -81,9 +84,6 @@ let
   };
 
   nvidia-flake-inputs = {
-    inherit
-      # catppuccin
-      ;
   };
 in
 {
@@ -101,9 +101,7 @@ in
           system
           pkgs-stable
           ;
-        inputs = {
-          inherit asahi-flake-inputs shared-flake-inputs;
-        };
+        inputs = asahi-flake-inputs shared-flake-inputs;
         host = {
           hostName = "asahi";
           buildInMonitor = "eDP-1";
@@ -116,8 +114,9 @@ in
         (_: {
           nixpkgs.overlays = [
             hyprland.overlays.default # hyprland provides its own nixpkgs overlay
-            (mkHyprOverlay system) # manual overlay for flakes without their own overlay
             grim-hyprland.overlays.default
+            (mkHyprOverlay system) # manual overlay for flakes without their own overlay
+
             bacon-ls.overlay.${system}
             (import ../packages)
 
@@ -140,9 +139,16 @@ in
 
         home-manager-unstable.nixosModules.home-manager
         {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.sharedModules = [ hyprland.homeManagerModules.default ];
+          home-manager = {
+            users.${vars.user} = {
+              imports = [
+                inputs.catppuccin.homeModules.catppuccin
+              ];
+            };
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            sharedModules = [ hyprland.homeManagerModules.default ];
+          };
         }
       ];
     };
@@ -161,9 +167,7 @@ in
           system
           pkgs-stable
           ;
-        inputs = {
-          inherit nvidia-flake-inputs shared-flake-inputs;
-        };
+        inputs = nvidia-flake-inputs // shared-flake-inputs;
         host = {
           hostName = "nvidia";
           mainMonitor = "DP-3";
@@ -174,7 +178,7 @@ in
       modules = [
         (_: {
           nixpkgs.overlays = [
-            hyprland.overlays.default # hyprland provides its own nixpkgs overlay
+            # hyprland.overlays.default # hyprland provides its own nixpkgs overlay
             (mkHyprOverlay system) # manual overlay for flakes without their own overlay
             grim-hyprland.overlays.default
             bacon-ls.overlay.${system}
@@ -189,9 +193,16 @@ in
 
         home-manager-unstable.nixosModules.home-manager
         {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.sharedModules = [ hyprland.homeManagerModules.default ];
+          home-manager = {
+            users.${vars.user} = {
+              imports = [
+                inputs.catppuccin.homeModules.catppuccin
+              ];
+            };
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            #sharedModules = [ hyprland.homeManagerModules.default ];
+          };
         }
       ];
     };

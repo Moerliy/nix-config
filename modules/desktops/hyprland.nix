@@ -7,6 +7,7 @@
   lib,
   pkgs,
   pkgs-stable,
+  inputs,
   system,
   vars,
   host,
@@ -18,13 +19,6 @@ let
     # legacyRenderer = true;
     # debug = true;
   };
-  hyprlockPkg = pkgs.hyprlock;
-  hyprsunsetPkg = pkgs.hyprsunset;
-  hypridlePkg = pkgs.hypridle;
-  hyprhookPkg = pkgs.hyprhook;
-  hyprwinwrapPkg = pkgs.hyprwinwrap;
-  animatedWallpaperPkg = pkgs.animatedWallpaper;
-  hyprlockWrapped = pkgs.hyprlockWrapped;
   discordBin =
     if
       host.hostName == "asahi"
@@ -37,9 +31,9 @@ let
   enableAnimatedWallpaper = if host.hostName == "asahi" then false else false;
   hyprlockBin =
     if enableAnimatedWallpaper then
-      "${animatedWallpaperPkg}/bin/hyprlock"
+      "${pkgs.animatedWallpaper}/bin/hyprlock"
     else
-      "${hyprlockPkg}/bin/hyprlock";
+      "${pkgs.hyprlock}/bin/hyprlock";
 in
 with lib;
 with host;
@@ -117,7 +111,7 @@ with host;
             [
               steam-run
               hyprlockWrapped
-              animatedWallpaperPkg
+              animatedWallpaper
             ]
           else
             [ ]
@@ -168,7 +162,7 @@ with host;
 
         programs.hyprlock = {
           enable = true;
-          package = hyprlockPkg;
+          package = pkgs.hyprlock;
           settings = {
             general = {
               # hide_cursor = true;
@@ -232,13 +226,13 @@ with host;
         services = {
           hypridle = {
             enable = true;
-            package = hypridlePkg;
+            package = pkgs.hypridle;
             settings = {
               general = {
                 before_sleep_cmd = "${pkgs.systemd}/bin/loginctl lock-session";
                 after_sleep_cmd = "${hyprlandPkg}/bin/hyprctl dispatch dpms on";
                 ignore_dbus_inhibit = true;
-                lock_cmd = "pidof ${hyprlockPkg}/bin/hyprlock || ${hyprlockBin}";
+                lock_cmd = "pidof ${pkgs.hyprlock}/bin/hyprlock || ${hyprlockBin}";
               };
               listener = [
                 {
@@ -255,7 +249,7 @@ with host;
 
           hyprsunset = {
             enable = true;
-            package = hyprsunsetPkg;
+            package = pkgs.hyprsunset;
             settings = {
               max-gamma = 150;
               profile = [
@@ -310,11 +304,12 @@ with host;
         wayland.windowManager.hyprland = {
           enable = true;
           package = hyprlandPkg; # .override {debug = true;};
+          portalPackage = pkgs.xdg-desktop-portal-hyprland;
           xwayland.enable = true;
           plugins = [
-            hyprhookPkg
+            pkgs.hyprhook
           ]
-          ++ (if enableAnimatedWallpaper then [ hyprwinwrapPkg ] else [ ]);
+          ++ (if enableAnimatedWallpaper then [ pkgs.hyprwinwrap ] else [ ]);
           settings = {
             general = {
               border_size = 2;
@@ -595,7 +590,7 @@ with host;
             ]
             ++ (
               if enableAnimatedWallpaper then
-                [ "${pkgs.steam-run}/bin/steam-run ${animatedWallpaperPkg}/bin/animated-wallpaper &" ]
+                [ "${pkgs.steam-run}/bin/steam-run ${pkgs.animatedWallpaper}/bin/animated-wallpaper &" ]
               else
                 [ ]
             );
