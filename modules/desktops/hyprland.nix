@@ -7,13 +7,6 @@
   lib,
   pkgs,
   pkgs-stable,
-  hyprland,
-  hyprhook,
-  hyprland-nativ-plugins,
-  hypridle,
-  hyprlock,
-  hyprsunset,
-  animated-wallpaper,
   system,
   vars,
   host,
@@ -21,17 +14,17 @@
 }:
 let
   mainMod = "SUPER";
-  hyprlandPkg = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland.override {
+  hyprlandPkg = pkgs.hyprland.override {
     # legacyRenderer = true;
     # debug = true;
   };
-  hyprlockPkg = hyprlock.packages.${pkgs.stdenv.hostPlatform.system}.hyprlock;
-  hyprsunsetPkg = hyprsunset.packages.${pkgs.stdenv.hostPlatform.system}.hyprsunset;
-  hypridlePkg = hypridle.packages.${pkgs.stdenv.hostPlatform.system}.hypridle;
-  hyprhookPkg = hyprhook.packages.${pkgs.stdenv.hostPlatform.system}.hyprhook;
-  hyprwinwrapPkg = hyprland-nativ-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprwinwrap;
-  animatedWallpaperPkg = animated-wallpaper.packages.${pkgs.stdenv.hostPlatform.system}.default;
-  hyprlockWrapped = animated-wallpaper.packages.${pkgs.stdenv.hostPlatform.system}.hyprlockWrapper;
+  hyprlockPkg = pkgs.hyprlock;
+  hyprsunsetPkg = pkgs.hyprsunset;
+  hypridlePkg = pkgs.hypridle;
+  hyprhookPkg = pkgs.hyprhook;
+  hyprwinwrapPkg = pkgs.hyprwinwrap;
+  animatedWallpaperPkg = pkgs.animatedWallpaper;
+  hyprlockWrapped = pkgs.hyprlockWrapped;
   discordBin =
     if
       host.hostName == "asahi"
@@ -171,9 +164,7 @@ with host;
         customScripts = "$HOME/.local/bin";
       in
       {
-        imports = [
-          hyprland.homeManagerModules.default
-        ];
+        # hyprland.homeManagerModules.default is applied via home-manager.sharedModules in hosts/default.nix
 
         programs.hyprlock = {
           enable = true;

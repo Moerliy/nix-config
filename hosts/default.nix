@@ -50,20 +50,27 @@ let
 
   shared-flake-inputs = {
     inherit
-      hyprland
-      hyprland-nativ-plugins
-      hyprhook
-      hypridle
-      hyprlock
-      hyprsunset
-      animated-wallpaper
-
       catppuccin
       delta-catppuccin
       tokionight-nvim
       bat-catppuccin
       ;
   };
+
+  # Overlay that injects hypr-ecosystem packages not covered by their own
+  # flake overlay.  Named without hyphens so they can be accessed as plain
+  # pkgs attributes (e.g. pkgs.hyprhook).
+  mkHyprOverlay =
+    system:
+    (final: prev: {
+      inherit (hyprhook.packages.${system}) hyprhook;
+      inherit (hypridle.packages.${system}) hypridle;
+      inherit (hyprlock.packages.${system}) hyprlock;
+      inherit (hyprsunset.packages.${system}) hyprsunset;
+      inherit (hyprland-nativ-plugins.packages.${system}) hyprwinwrap;
+      animatedWallpaper = animated-wallpaper.packages.${system}.default;
+      hyprlockWrapped = animated-wallpaper.packages.${system}.hyprlockWrapper;
+    });
 
   # Per-host filtered flake inputs — only the inputs each host actually needs.
   # Passed as `inputs` in specialArgs so host modules use inputs.<name>.
@@ -108,7 +115,8 @@ in
       modules = [
         (_: {
           nixpkgs.overlays = [
-            # hyprland.overlays.default
+            hyprland.overlays.default # hyprland provides its own nixpkgs overlay
+            (mkHyprOverlay system) # manual overlay for flakes without their own overlay
             grim-hyprland.overlays.default
             bacon-ls.overlay.${system}
             (import ../packages)
@@ -134,6 +142,7 @@ in
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.sharedModules = [ hyprland.homeManagerModules.default ];
         }
       ];
     };
@@ -165,6 +174,8 @@ in
       modules = [
         (_: {
           nixpkgs.overlays = [
+            hyprland.overlays.default # hyprland provides its own nixpkgs overlay
+            (mkHyprOverlay system) # manual overlay for flakes without their own overlay
             grim-hyprland.overlays.default
             bacon-ls.overlay.${system}
             (import ../packages)
@@ -180,6 +191,7 @@ in
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.sharedModules = [ hyprland.homeManagerModules.default ];
         }
       ];
     };

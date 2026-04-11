@@ -4,7 +4,6 @@
   lib,
   vars,
   host,
-  animated-wallpaper,
   ...
 }: let
   # if ./config/secrets exists, add it to the configFilesToLink
@@ -21,7 +20,7 @@
   toSource = configDirName: dotfilesPath: {source = dotfilesPath;};
   hvr = "4";
   mgn = "10";
-  animatedWallpaperPkg = animated-wallpaper.packages.${pkgs.system}.default;
+  animatedWallpaperPkg = pkgs.animatedWallpaper;
   enableAnimatedWallpaper =
     if host.hostName == "asahi"
     then false
