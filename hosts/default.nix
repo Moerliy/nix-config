@@ -38,19 +38,26 @@ let
   # nixpkgs-unstable is the default pkgs used by the NixOS module system (via lib.nixosSystem).
   # nixpkgs (stable) is available as pkgs-stable in every host's specialArgs and
   # home-manager.extraSpecialArgs for selectively pinning packages that break on unstable.
-  mkPkgs = nixpkgsInput: system: import nixpkgsInput {
-    inherit system;
-    config.allowUnfree = true;
-  };
+  mkPkgs =
+    nixpkgsInput: system:
+    import nixpkgsInput {
+      inherit system;
+      config.allowUnfree = true;
+    };
 
   # lib comes from nixpkgs-unstable; it is architecture-agnostic so one copy suffices.
   inherit (nixpkgs-unstable) lib;
 
-  # Per-host filtered flake inputs — only the inputs each host actually needs.
-  # Passed as `inputs` in specialArgs so host modules use inputs.<name>.
-  asahi-flake-inputs = {
+  shared-flake-inputs = {
     inherit
-      apple-silicon
+      hyprland
+      hyprland-nativ-plugins
+      hyprhook
+      hypridle
+      hyprlock
+      hyprsunset
+      animated-wallpaper
+
       catppuccin
       delta-catppuccin
       tokionight-nvim
@@ -58,12 +65,17 @@ let
       ;
   };
 
+  # Per-host filtered flake inputs — only the inputs each host actually needs.
+  # Passed as `inputs` in specialArgs so host modules use inputs.<name>.
+  asahi-flake-inputs = {
+    inherit
+      apple-silicon
+      ;
+  };
+
   nvidia-flake-inputs = {
     inherit
-      catppuccin
-      delta-catppuccin
-      tokionight-nvim
-      bat-catppuccin
+      # catppuccin
       ;
   };
 in
@@ -82,7 +94,9 @@ in
           system
           pkgs-stable
           ;
-        inputs = asahi-flake-inputs;
+        inputs = {
+          inherit asahi-flake-inputs shared-flake-inputs;
+        };
         host = {
           hostName = "asahi";
           buildInMonitor = "eDP-1";
@@ -138,7 +152,9 @@ in
           system
           pkgs-stable
           ;
-        inputs = nvidia-flake-inputs;
+        inputs = {
+          inherit nvidia-flake-inputs shared-flake-inputs;
+        };
         host = {
           hostName = "nvidia";
           mainMonitor = "DP-3";
