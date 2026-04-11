@@ -73,7 +73,6 @@
     hyprsunset = {
       url = "github:hyprwm/hyprsunset";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
-      # inputs.hyprland.follows = "hyprland";
     };
 
     # Hypridle

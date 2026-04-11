@@ -54,7 +54,6 @@ let
       delta-catppuccin
       tokionight-nvim
       bat-catppuccin
-      hyprland
       ;
   };
 
@@ -101,7 +100,7 @@ in
           system
           pkgs-stable
           ;
-        inputs = asahi-flake-inputs shared-flake-inputs;
+        inputs = asahi-flake-inputs // shared-flake-inputs;
         host = {
           hostName = "asahi";
           buildInMonitor = "eDP-1";
@@ -201,7 +200,7 @@ in
             };
             useGlobalPkgs = true;
             useUserPackages = true;
-            #sharedModules = [ hyprland.homeManagerModules.default ];
+            sharedModules = [ hyprland.homeManagerModules.default ];
           };
         }
       ];

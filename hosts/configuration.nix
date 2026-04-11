@@ -36,7 +36,7 @@ with host;
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
-      LC_MONETRY = "de_DE.UTF-8";
+      LC_MONETARY = "de_DE.UTF-8";
     };
   };
 
@@ -53,7 +53,6 @@ with host;
       options = "--delete-older-than 7d";
     };
     extraOptions = ''
-      auto-optimise-store = true
       experimental-features = nix-command flakes
     '';
   };
