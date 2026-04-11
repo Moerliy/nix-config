@@ -168,7 +168,7 @@ with lib;
                 format-wifi = "{icon} {signalStrength}%";
                 format-disconnected = "󰤮";
                 on-click = "${pkgs.${vars.terminal}}/bin/${vars.terminal} --title 'nmtui-session' -e 'nmtui'";
-                on-click-right = "${pkgs.protonvpn-gui}/bin/protonvpn-app";
+                on-click-right = "${pkgs.proton-vpn}/bin/protonvpn-app";
                 tooltip = false;
               };
               "tray" = {

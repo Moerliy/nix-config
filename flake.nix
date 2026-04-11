@@ -11,16 +11,16 @@
   description = "Nix, NixOS and Nix Darwin System Flake Configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11"; # Nix Packages (Default)
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable Nix Packages
     nixos-hardware.url = "github:nixos/nixos-hardware/master"; # Hardware Specific Configurations
 
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11"; # Nix Packages (Default)
     # User Environment Manager
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable Nix Packages
     # Unstable User Environment Manager
     home-manager-unstable = {
       url = "github:nix-community/home-manager";
@@ -73,7 +73,6 @@
     hyprsunset = {
       url = "github:hyprwm/hyprsunset";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
-      # inputs.hyprland.follows = "hyprland";
     };
 
     # Hypridle
@@ -186,29 +185,7 @@
       };
 
       nixosConfigurations = import ./hosts {
-        inherit (nixpkgs) lib;
-        inherit
-          inputs
-          nixpkgs
-          catppuccin
-          hyprland
-          hyprhook
-          hypridle
-          hyprland-nativ-plugins
-          hyprlock
-          hyprsunset
-          nixpkgs-unstable
-          home-manager
-          home-manager-unstable
-          apple-silicon
-          vars
-          grim-hyprland
-          animated-wallpaper
-          minegrub
-          minegrubx86
-          lanzaboote
-          bacon-ls
-          ;
+        inherit inputs vars;
       };
 
       homeConfigurations = import ./nix {

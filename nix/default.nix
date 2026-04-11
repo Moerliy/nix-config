@@ -32,7 +32,9 @@ let
   home-manager = home-manager-unstable;
   # home-manager-stable = home-manager;
   inherit (nixpkgs-unstable) lib;
-  vars.user = "ughlu_gleissner";
+  vars = vars // {
+    user = "ughlu_gleissner";
+  };
 in
 {
   hht = home-manager.lib.homeManagerConfiguration {

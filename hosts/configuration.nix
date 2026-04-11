@@ -36,7 +36,7 @@ with host;
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
-      LC_MONETRY = "de_DE.UTF-8";
+      LC_MONETARY = "de_DE.UTF-8";
     };
   };
 
@@ -53,7 +53,6 @@ with host;
       options = "--delete-older-than 7d";
     };
     extraOptions = ''
-      auto-optimise-store = true
       experimental-features = nix-command flakes
     '';
   };
@@ -227,7 +226,7 @@ with host;
         pulseaudio # Audio Server/Control
         qpwgraph # Pipewire Graph Manager
         vlc # Media Player
-        xorg.xauth # X Authority
+        xauth # X Authority
 
         # Apps
         appimage-run # Runs AppImages on NixOS
@@ -239,7 +238,7 @@ with host;
         orca-slicer # 3D Printer Slicer
         pcmanfm # File Browser
         image-roll # Image Viewer
-        protonvpn-gui # vpn service
+        proton-vpn # vpn service
 
         # File Management
         file-roller # Archive Manager

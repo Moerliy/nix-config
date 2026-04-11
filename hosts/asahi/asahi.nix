@@ -1,9 +1,7 @@
 {
-  apple-silicon,
-  catppuccin,
+  inputs,
   pkgs,
   vars,
-  inputs,
   system,
   pkgs-stable,
   host,
@@ -13,7 +11,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    apple-silicon.nixosModules.apple-silicon-support
+    inputs.apple-silicon.nixosModules.apple-silicon-support
     ../../scripts/default.nix
   ]
   ++ (import ../../modules);
@@ -128,7 +126,7 @@
     # Enable the OpenSSH daemon.
     openssh = {
       enable = true;
-      forwardX11 = true;
+      settings.X11Forwarding = true;
     };
   };
 
@@ -162,11 +160,6 @@
         ;
     };
     users.${vars.user} = {
-      imports = [
-        catppuccin.homeModules.catppuccin
-      ]
-      ++ (import ../../modules/home-manager);
-
       # Editors
       neovim.enable = true;
       tmux.enable = true;
@@ -176,6 +169,9 @@
       neofetch.enable = false;
 
       bat.enable = true;
+
+      # You are currently using the legacy default (`config.gtk.theme`) because `home.stateVersion` is less than "26.05".
+      gtk.gtk4.theme = null;
 
       home = {
         stateVersion = "25.05";
