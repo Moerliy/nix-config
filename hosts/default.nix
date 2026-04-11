@@ -8,28 +8,29 @@
 #
 {
   inputs,
-  nixpkgs,
-  nixpkgs-unstable,
-  apple-silicon,
-  home-manager,
-  catppuccin,
-  home-manager-unstable,
-  hyprland,
-  hyprland-nativ-plugins,
-  hyprhook,
-  hypridle,
-  hyprlock,
-  grim-hyprland,
-  hyprsunset,
-  animated-wallpaper,
-  bacon-ls,
   vars,
-  minegrub,
-  minegrubx86,
-  lanzaboote,
-  ...
 }:
 let
+  inherit (inputs)
+    nixpkgs
+    nixpkgs-unstable
+    apple-silicon
+    catppuccin
+    home-manager-unstable
+    hyprland
+    hyprland-nativ-plugins
+    hyprhook
+    hypridle
+    hyprlock
+    grim-hyprland
+    hyprsunset
+    animated-wallpaper
+    bacon-ls
+    minegrub
+    minegrubx86
+    lanzaboote
+    ;
+
   # Helper to instantiate a pkgs set for a given nixpkgs input and system.
   # nixpkgs-unstable is the default pkgs used by the NixOS module system (via lib.nixosSystem).
   # nixpkgs (stable) is available as pkgs-stable in every host's specialArgs and

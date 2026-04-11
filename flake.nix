@@ -186,29 +186,7 @@
       };
 
       nixosConfigurations = import ./hosts {
-        inherit (nixpkgs) lib;
-        inherit
-          inputs
-          nixpkgs
-          catppuccin
-          hyprland
-          hyprhook
-          hypridle
-          hyprland-nativ-plugins
-          hyprlock
-          hyprsunset
-          nixpkgs-unstable
-          home-manager
-          home-manager-unstable
-          apple-silicon
-          vars
-          grim-hyprland
-          animated-wallpaper
-          minegrub
-          minegrubx86
-          lanzaboote
-          bacon-ls
-          ;
+        inherit inputs vars;
       };
 
       homeConfigurations = import ./nix {
