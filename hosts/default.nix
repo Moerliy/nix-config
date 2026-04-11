@@ -29,6 +29,9 @@ let
     minegrub
     minegrubx86
     lanzaboote
+    delta-catppuccin
+    tokionight-nvim
+    bat-catppuccin
     ;
 
   # Helper to instantiate a pkgs set for a given nixpkgs input and system.
@@ -42,6 +45,27 @@ let
 
   # lib comes from nixpkgs-unstable; it is architecture-agnostic so one copy suffices.
   inherit (nixpkgs-unstable) lib;
+
+  # Per-host filtered flake inputs — only the inputs each host actually needs.
+  # Passed as `inputs` in specialArgs so host modules use inputs.<name>.
+  asahi-flake-inputs = {
+    inherit
+      apple-silicon
+      catppuccin
+      delta-catppuccin
+      tokionight-nvim
+      bat-catppuccin
+      ;
+  };
+
+  nvidia-flake-inputs = {
+    inherit
+      catppuccin
+      delta-catppuccin
+      tokionight-nvim
+      bat-catppuccin
+      ;
+  };
 in
 {
   # Asahi Apple Silicon — aarch64-linux
@@ -54,20 +78,11 @@ in
       inherit system;
       specialArgs = {
         inherit
-          inputs
           vars
           system
-          apple-silicon
-          hyprland
-          hyprland-nativ-plugins
-          catppuccin
-          hyprhook
-          hypridle
-          hyprlock
-          hyprsunset
-          animated-wallpaper
           pkgs-stable
           ;
+        inputs = asahi-flake-inputs;
         host = {
           hostName = "asahi";
           buildInMonitor = "eDP-1";
@@ -119,19 +134,11 @@ in
       inherit system;
       specialArgs = {
         inherit
-          inputs
           vars
           system
-          catppuccin
-          hyprland
-          hyprland-nativ-plugins
-          hyprhook
-          hypridle
-          hyprlock
-          hyprsunset
-          animated-wallpaper
           pkgs-stable
           ;
+        inputs = nvidia-flake-inputs;
         host = {
           hostName = "nvidia";
           mainMonitor = "DP-3";

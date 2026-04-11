@@ -1,9 +1,7 @@
 {
-  apple-silicon,
-  catppuccin,
+  inputs,
   pkgs,
   vars,
-  inputs,
   system,
   pkgs-stable,
   host,
@@ -13,7 +11,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    apple-silicon.nixosModules.apple-silicon-support
+    inputs.apple-silicon.nixosModules.apple-silicon-support
     ../../scripts/default.nix
   ]
   ++ (import ../../modules);
@@ -163,7 +161,7 @@
     };
     users.${vars.user} = {
       imports = [
-        catppuccin.homeModules.catppuccin
+        inputs.catppuccin.homeModules.catppuccin
       ]
       ++ (import ../../modules/home-manager);
 

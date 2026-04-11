@@ -5,7 +5,6 @@
   lib,
   host,
   inputs,
-  catppuccin,
   system,
   pkgs-stable,
   ...
@@ -218,7 +217,7 @@
     };
     users.${vars.user} = {
       imports = [
-        catppuccin.homeModules.catppuccin
+        inputs.catppuccin.homeModules.catppuccin
       ]
       ++ (import ../../modules/home-manager);
 
