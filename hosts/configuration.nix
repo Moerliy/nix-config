@@ -173,6 +173,8 @@ with host;
         terminal # Terminal Emulator
         btop # Resource Manager
         coreutils # GNU Utilities
+        gdb # GNU Debugger
+        # glibc.debug # glib debug build
         git # Version Control
         killall # Process Killer
         lshw # Hardware Config
@@ -238,7 +240,6 @@ with host;
         pcmanfm # File Browser
         image-roll # Image Viewer
         protonvpn-gui # vpn service
-        teamspeak6-client
 
         # File Management
         file-roller # Archive Manager

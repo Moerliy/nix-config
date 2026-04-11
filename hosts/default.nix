@@ -74,9 +74,21 @@ in
     modules = [
       (_: {
         nixpkgs.overlays = [
+          # hyprland.overlays.default
           grim-hyprland.overlays.default
           bacon-ls.overlay.${system}
           (import ../packages)
+
+          # (final: prev: {
+          #   hyprgraphics = prev.hyprgraphics.overrideAttrs (old: {
+          #     separateDebugInfo = true;
+          #     dontStrip = true;
+          #     NIX_CFLAGS_COMPILE = (old.NIX_CFLAGS_COMPILE or "") + " -O0 -g";
+          #     CMAKE_BUILD_TYPE = "Debug";
+          #   });
+          #
+          #   hyprland = prev.hyprland.override { debug = true; };
+          # })
         ];
       })
       ./asahi/asahi.nix

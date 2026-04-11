@@ -48,9 +48,12 @@
 
     # Official Hyprland Flake
     hyprland = {
-      type = "git";
-      url = "https://github.com/hyprwm/Hyprland";
-      submodules = true;
+      # type = "git";
+      # url = "https://github.com/hyprwm/Hyprland/386376400119dd46a767c9f8c8791fd22c7b6e61";
+      # submodules = true;
+      # url = "github:hyprwm/Hyprland";
+      url = "github:hyprwm/Hyprland/43fcf1b0359e41d6b5eea6b76f009d117027deb7";
+      inputs.aquamarine.url = "github:hyprwm/aquamarine/e92655932deb5e4f6d9ca932c8b486340deafa53";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
