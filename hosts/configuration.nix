@@ -227,7 +227,7 @@ with host;
         pulseaudio # Audio Server/Control
         qpwgraph # Pipewire Graph Manager
         vlc # Media Player
-        xorg.xauth # X Authority
+        xauth # X Authority
 
         # Apps
         appimage-run # Runs AppImages on NixOS
@@ -239,7 +239,7 @@ with host;
         orca-slicer # 3D Printer Slicer
         pcmanfm # File Browser
         image-roll # Image Viewer
-        protonvpn-gui # vpn service
+        proton-vpn # vpn service
 
         # File Management
         file-roller # Archive Manager

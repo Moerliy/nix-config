@@ -92,7 +92,7 @@
     # Enable the OpenSSH daemon.
     openssh = {
       enable = true;
-      forwardX11 = true;
+      settings.X11Forwarding = true;
     };
     pulseaudio.enable = false;
     pipewire = {
@@ -216,8 +216,6 @@
         ;
     };
     users.${vars.user} = {
-      imports = import ../../modules/home-manager;
-
       # Editors
       neovim.enable = true;
       tmux.enable = true;
@@ -226,6 +224,9 @@
       lazygit.enable = true;
       neofetch.enable = false;
       bat.enable = true;
+
+      # You are currently using the legacy default (`config.gtk.theme`) because `home.stateVersion` is less than "26.05".
+      gtk.gtk4.theme = null;
 
       home = {
         stateVersion = "25.05";

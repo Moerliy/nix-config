@@ -141,7 +141,7 @@ in
         {
           home-manager = {
             users.${vars.user} = {
-              imports = [
+              imports = import ../modules/home-manager ++ [
                 inputs.catppuccin.homeModules.catppuccin
               ];
             };
@@ -195,7 +195,7 @@ in
         {
           home-manager = {
             users.${vars.user} = {
-              imports = [
+              imports = import ../modules/home-manager ++ [
                 inputs.catppuccin.homeModules.catppuccin
               ];
             };

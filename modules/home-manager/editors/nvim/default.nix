@@ -39,6 +39,7 @@ with host;
     programs = {
       neovim = {
         enable = true;
+        withRuby = false;
         package = pkgs.neovim-unwrapped;
         withNodeJs = true;
         viAlias = true;
