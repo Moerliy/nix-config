@@ -11,17 +11,13 @@
   description = "Nix, NixOS and Nix Darwin System Flake Configuration";
 
   inputs = {
+    # STABLE CHANNEL: when upgrading, update BOTH nixpkgs.url and home-manager.url to the new release (e.g. nixos-25.05 / release-25.05).
+    # home-manager stable must always match the nixpkgs stable channel — they are tightly coupled.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11"; # Nix Packages (Default)
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable Nix Packages
     nixos-hardware.url = "github:nixos/nixos-hardware/master"; # Hardware Specific Configurations
 
-    # User Environment Manager
-    home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Unstable User Environment Manager
+    # Unstable User Environment Manager (tracks nixpkgs-unstable; update with `nix flake update`)
     home-manager-unstable = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -132,7 +128,6 @@
       nixpkgs,
       nixpkgs-unstable,
       nixos-hardware,
-      home-manager,
       home-manager-unstable,
       darwin,
       apple-silicon,
@@ -198,7 +193,6 @@
           hyprlock
           hyprsunset
           nixpkgs-unstable
-          home-manager
           home-manager-unstable
           apple-silicon
           vars
@@ -217,7 +211,6 @@
           inputs
           nixpkgs
           nixpkgs-unstable
-          home-manager
           home-manager-unstable
           catppuccin
           bacon-ls

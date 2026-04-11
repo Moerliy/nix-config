@@ -11,7 +11,6 @@
   inputs,
   nixpkgs,
   nixpkgs-unstable,
-  home-manager,
   home-manager-unstable,
   vars,
   catppuccin,
@@ -29,8 +28,7 @@ let
     inherit system;
     config.allowUnfree = true;
   };
-  home-manager = home-manager-unstable;
-  # home-manager-stable = home-manager;
+  home-manager = home-manager-unstable; # all standalone home configurations use the unstable home-manager
   inherit (nixpkgs-unstable) lib;
   vars.user = "ughlu_gleissner";
 in

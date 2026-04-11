@@ -11,7 +11,6 @@
   nixpkgs,
   nixpkgs-unstable,
   apple-silicon,
-  home-manager,
   catppuccin,
   home-manager-unstable,
   hyprland,
@@ -39,8 +38,7 @@ let
     inherit system;
     config.allowUnfree = true;
   };
-  home-manager = home-manager-unstable;
-  # home-manager-stable = home-manager;
+  home-manager = home-manager-unstable; # all NixOS hosts use the unstable home-manager
   inherit (nixpkgs-unstable) lib;
 in
 {
