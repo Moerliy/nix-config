@@ -32,8 +32,6 @@ NeoVim related tasks
 
 - [ ] Some config for LSP is not NIX conform (node I think)
 - [ ] distrobox armarest bunch of errors
-- [ ] theme picker
-- [ ] lualine: There are some issues with your config. Run :LualineNotices for details
 
 #### New Features
 
