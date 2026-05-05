@@ -172,17 +172,24 @@ hl.workspace_rule({
 	monitor = monitor.main,
 })
 hl.workspace_rule({
+	workspace = "4",
+	monitor = monitor.main,
+	default = true,
+})
+hl.workspace_rule({
 	workspace = "8",
 	monitor = monitor.second, -- TODO: check if default on two screens = true
 	default = true,
 })
 hl.workspace_rule({
 	workspace = "special:alttab",
+	monitor = monitor.main,
 	persistent = false,
 	gaps_out = 0,
 	gaps_in = 0,
 	border_size = 0,
 })
+hl.curve("simple", { type = "bezier", points = { { 0.16, 1 }, { 0.3, 1 } } })
 hl.curve("tehtarik", { type = "bezier", points = { { 0.68, -0.55 }, { 0.265, 1.55 } } })
 hl.curve("overshot", { type = "bezier", points = { { 0.05, 0.9 }, { 0.1, 1.05 } } })
 hl.curve("smoothOut", { type = "bezier", points = { { 0.36, 0 }, { 0.66, -0.56 } } })
@@ -207,13 +214,13 @@ hl.animation({
 	leaf = "fade",
 	enabled = true,
 	speed = 10,
-	bezier = "fade",
+	bezier = "simple",
 })
 hl.animation({
 	leaf = "workspaces",
 	enabled = true,
 	speed = 6,
-	bezier = "fade",
+	bezier = "simple",
 	style = "slide",
 })
 hl.animation({
@@ -456,8 +463,8 @@ hl.bind(main_mod .. " + Space", hl.dsp.submap("supmaper"), { description = "+sub
 hl.define_submap("supmaper", function()
 	hl.bind("escape", hl.dsp.submap("reset"), { description = "Reset submap" })
 	hl.bind("S", function()
-		hl.dsp.workspace.toggle_special("special")
-		hl.dsp.submap("reset")
+		hl.dispatch(hl.dsp.workspace.toggle_special("special"))
+		hl.dispatch(hl.dsp.submap("reset"))
 	end, { description = "Special Workspace" })
 	hl.bind("SHIFT + S", function()
 		hl.dispatch(hl.dsp.window.move({ workspace = "special:special" }))
