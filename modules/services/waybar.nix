@@ -92,8 +92,8 @@ with lib;
                   "10" = "十";
                   # active = " ";
                 };
-                on-scroll-up = "${pkgs.hyprland}/bin/hyprctl dispatch workspace e+1";
-                on-scroll-down = "${pkgs.hyprland}/bin/hyprctl dispatch workspace e-1";
+                on-scroll-up = "${pkgs.hyprland}/bin/hyprctl 'dispatch hl.dsp.focus({ workspace = \"e+1\" })'";
+                on-scroll-down = "${pkgs.hyprland}/bin/hyprctl \'dispatch hl.dsp.focus({ workspace = \"e-1\" })'";
               };
               "custom/backlight" = {
                 exec = "sleep 0.1 && gamma=$(hyprctl hyprsunset gamma | cut -d '.' -f 1) && temperature=$(hyprctl hyprsunset temperature) && jq --unbuffered --compact-output -Rn --arg text \"$gamma\" --arg alt \"$temperature\" '{text: $text, alt: $alt}'";

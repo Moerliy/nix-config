@@ -80,7 +80,8 @@ if [[ $toggleBase == true ]]; then
   exit
 fi
 
-submap=$(echo "$1" | jq -c '.submap' | sed 's/"//g')
+# submap=$(echo "$1" | jq -c '.submap' | sed 's/"//g')
+submap="$1"
 
 if [[ $submap == "" ]]; then
   eww --config "$CONFIG_DIR" close which-key

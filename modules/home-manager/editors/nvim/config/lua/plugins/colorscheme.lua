@@ -8,6 +8,8 @@ return {
         custom_highlights = function(colors)
           return {
             PackageInfoOutdatedVersion = { fg = colors.peach },
+            -- WinSeparator = { fg = colors.peach },
+            -- VertSplit = { fg = colors.peach },
           }
         end,
         transparent_background = true,
@@ -39,6 +41,10 @@ return {
         aerial = true,
         alpha = true,
         cmp = true,
+        colorful_winsep = {
+          enabled = false,
+          color = "red",
+        },
         blink_cmp = true,
         dashboard = true,
         flash = true,

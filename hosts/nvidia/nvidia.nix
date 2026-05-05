@@ -64,6 +64,7 @@
       "nvidia-x11"
       "nvidia-settings"
       "nvidia-persistenced"
+      "nvidia-kernel-modules"
       "scansnap-firmware"
       "steam"
       "steam-run"

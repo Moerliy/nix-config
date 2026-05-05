@@ -10,6 +10,6 @@
 #           └─ ...
 #
 [
-  ./hyprland.nix
+  ./hyprland/default.nix
   ./options.nix
 ]

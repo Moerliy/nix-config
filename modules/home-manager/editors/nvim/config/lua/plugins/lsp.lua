@@ -40,6 +40,15 @@ return {
       servers = {
         lua_ls = {
           mason = false,
+          Lua = {
+            workspace = {
+              library = os.getenv("HYPRLAND_LUA_STUBS") and { os.getenv("HYPRLAND_LUA_STUBS") } or {},
+              checkThirdParty = false,
+            },
+            diagnostics = {
+              globals = { "hl" },
+            },
+          },
         },
         luau_lsp = {
           mason = false,

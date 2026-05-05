@@ -1,0 +1,14 @@
+{
+  "workspace": {
+    "library": ["${env:HYPRLAND_LUA_STUBS}"]
+  },
+  "diagnostics": {
+    "globals": ["hl"]
+  },
+  "format": {
+    "defaultConfig": {
+      "indent_style": "space",
+      "indent_size": "2"
+    }
+  }
+}

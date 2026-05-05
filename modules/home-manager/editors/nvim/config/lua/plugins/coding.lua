@@ -8,6 +8,11 @@ return {
         preset = "enter",
         ["<C-y>"] = { "select_and_accept" },
         ["<C-c>"] = { "show", "show_documentation", "hide_documentation" },
+        ["<C-p>"] = {
+          function(cmp)
+            return cmp.show({ providers = { "copilot" } })
+          end,
+        },
       },
       completion = {
         menu = {
@@ -52,8 +57,9 @@ return {
             name = "copilot",
             module = "blink-cmp-copilot",
             kind = "Copilot",
-            score_offset = 300,
+            score_offset = -1,
             async = true,
+            should_show_items = true,
           },
         },
       },

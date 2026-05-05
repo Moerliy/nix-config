@@ -84,6 +84,11 @@ return {
     },
   },
   {
+    "nvim-zh/colorful-winsep.nvim",
+    config = true,
+    event = { "WinLeave" },
+  },
+  {
     "b0o/incline.nvim",
     dependencies = { "catppuccin/nvim", name = "catppuccin" },
     event = "BufReadPre",
