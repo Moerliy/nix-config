@@ -30,7 +30,7 @@
                   (label
                     :text { entry.modmask == 0 ? "${entry.key}" : 
                             entry.modmask == 1 ? "<shift> ${entry.key}" : 
-                            entry.modmask == 64 ? "<shift> ${entry.key}" :
+                            entry.modmask == 64 ? "<ctl> ${entry.key}" :
                             entry.modmask == 65 ? "<shift> <mod> ${entry.key}" :
                             "mod not resolved ${entry.key}" }
                     :xalign 1

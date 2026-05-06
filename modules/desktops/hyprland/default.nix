@@ -245,7 +245,12 @@ with host;
           xwayland.enable = true;
         };
         xdg.configFile = {
-          # use .config/hyprland.lua file
+          "hypr/core" = {
+            source = ./config/core;
+          };
+          "hypr/modules" = {
+            source = ./config/modules;
+          };
           "hypr/hyprland.lua" = {
             text =
               builtins.replaceStrings

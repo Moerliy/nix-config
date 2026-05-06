@@ -707,3 +707,12 @@ hl.define_submap("alttab", function()
 		hl.dispatch(hl.dsp.send_key_state({ mods = "", key = "escape", state = "down", window = "class:alttab" }))
 	end)
 end)
+
+local loader = require("core.loader")
+
+loader.load_modules({
+	-- system
+	"modules.test",
+})
+
+loader.setup()

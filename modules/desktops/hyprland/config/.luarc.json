@@ -1,6 +1,7 @@
 {
   "workspace": {
-    "library": ["${env:HYPRLAND_LUA_STUBS}"]
+    "library": ["${env:HYPRLAND_LUA_STUBS}"],
+    "checkThirdParty": false
   },
   "diagnostics": {
     "globals": ["hl"]
