@@ -5,20 +5,21 @@
   zstd,
 }:
 let
-  version = "v1.0.0";
+  version = "1.0.0";
+  tag = "v${version}";
 
   amber = fetchurl {
-    url = "https://github.com/rtgiskard/bibata_cursor/releases/download/${version}/Bibata-Modern-Amber.hypr.tar.zst";
+    url = "https://github.com/rtgiskard/bibata_cursor/releases/download/${tag}/Bibata-Modern-Amber.hypr.tar.zst";
     hash = "sha256-KLJobO8kXI/LG9uVOuCDUPbDWnWN2Yp0Hp8yPN1GpxM=";
   };
 
   classic = fetchurl {
-    url = "https://github.com/rtgiskard/bibata_cursor/releases/download/${version}/Bibata-Modern-Classic.hypr.tar.zst";
+    url = "https://github.com/rtgiskard/bibata_cursor/releases/download/${tag}/Bibata-Modern-Classic.hypr.tar.zst";
     hash = "sha256-t/T9LZ1DGvqyad924xwrZuDJnoi8+Jvu6X0dE0hFsPE=";
   };
 
   ice = fetchurl {
-    url = "https://github.com/rtgiskard/bibata_cursor/releases/download/${version}/Bibata-Modern-Ice.hypr.tar.zst";
+    url = "https://github.com/rtgiskard/bibata_cursor/releases/download/${tag}/Bibata-Modern-Ice.hypr.tar.zst";
     hash = "sha256-oTjUc8kdN7vVQ+7SEVLlyZCMXzCfGEwbmuP/NWbKMOQ=";
   };
 in
