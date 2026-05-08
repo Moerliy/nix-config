@@ -120,14 +120,14 @@ with host;
         home = {
           file = {
             ".local/share/icons/Bibata-Modern-Amber-Hyprcursor" = {
-              source = "${pkgs.bibata-hyprcursor-modern}/share/icons/Bibata-Modern-Amber-Hyprcursor";
+              source = "${pkgs.bibata-hyprcursor-modern}/share/icons/Bibata-Modern-Amber-Hyprcursor/Bibata-Modern-Amber";
             };
             ".local/share/icons/Bibata-Modern-Classic-Hyprcursor" = {
-              source = "${pkgs.bibata-hyprcursor-modern}/share/icons/Bibata-Modern-Classic-Hyprcursor";
+              source = "${pkgs.bibata-hyprcursor-modern}/share/icons/Bibata-Modern-Classic-Hyprcursor/Bibata-Modern-Classic";
             };
-            # ".local/share/icons/Bibata-Modern-Ice-Hyprcursor" = {
-            #   source = "${pkgs.bibata-hyprcursor-modern}/share/icons/Bibata-Modern-Ice-Hyprcursor";
-            # };
+            ".local/share/icons/Bibata-Modern-Ice-Hyprcursor" = {
+              source = "${pkgs.bibata-hyprcursor-modern}/share/icons/Bibata-Modern-Ice-Hyprcursor/Bibata-Modern-Ice";
+            };
           };
         };
         programs.hyprlock = {
