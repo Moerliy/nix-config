@@ -245,13 +245,16 @@ with host;
           xwayland.enable = true;
         };
         xdg.configFile = {
-          "hypr/core" = {
-            source = ./config/core;
+          "hypr/hyprland.lua" = {
+            source = ./config/hyprland.lua;
           };
           "hypr/modules" = {
             source = ./config/modules;
           };
-          "hypr/hyprland.lua" = {
+          "hypr/core" = {
+            source = ./config/core;
+          };
+          "hypr/globals.lua" = {
             text =
               builtins.replaceStrings
                 [ "MONITOR_MAIN" "MONITOR_SECOND" "MONITOR_BUILDIN" "HOST" "TERMINAL" ]
@@ -262,7 +265,7 @@ with host;
                   "${toString hostName}"
                   "${toString vars.terminal}"
                 ]
-                (builtins.readFile ./config/hyprland.lua);
+                (builtins.readFile ./config/globals.lua);
           };
           "hypr/xdph.conf" = {
             # wrong path

@@ -28,19 +28,25 @@ function M.setup()
 	local dynamics = {}
 
 	for _, mod in ipairs(M.modules) do
-		if mod.rules then
-			for _, rule in ipairs(M.rules) do
-				if rule.window then
-					hl.window_rule(rule.window)
-				end
-				if rule.workspace then
-					hl.workspace_rule(rule.workspace)
-				end
-				if rule.layer then
-					hl.layer_rule(rule.layer)
-				end
+		if not mod.rules then
+			goto no_rules
+		end
+		if mod.rules.window then
+			for _, rule in ipairs(mod.rules.window) do
+				hl.window_rule(rule)
 			end
 		end
+		if mod.rules.workspace then
+			for _, rule in ipairs(mod.rules.workspace) do
+				hl.workspace_rule(rule)
+			end
+		end
+		if mod.rules.layer then
+			for _, rule in ipairs(mod.rules.layer) do
+				hl.layer_rule(rule)
+			end
+		end
+		::no_rules::
 
 		if mod.startup then
 			table.insert(startups, mod.startup)
