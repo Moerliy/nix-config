@@ -129,6 +129,9 @@ with host;
             ".local/share/icons/Bibata-Modern-Ice-Hyprcursor" = {
               source = "${pkgs.bibata-hyprcursor-modern}/share/icons/Bibata-Modern-Ice-Hyprcursor/Bibata-Modern-Ice";
             };
+            # ".local/share/icons/Bibata-Modern-Ice" = {
+            #   source = "${pkgs.bibata-cursors}/share/icons/Bibata-Modern-Ice";
+            # };
           };
         };
         programs.hyprlock = {
