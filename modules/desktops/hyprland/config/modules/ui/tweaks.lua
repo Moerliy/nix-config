@@ -89,18 +89,67 @@ return {
 	dynamics = function()
 		local mouse_drag_bind =
 			hl.bind("mouse:274", hl.dsp.window.drag(), { mouse = true, description = "Move Window" })
+
+		---@param theme string
+		local function change_cursor_theme(theme)
+			hl.dispatch(hl.dsp.exec_cmd("dconf write /org/gnome/desktop/interface/cursor-theme \"'" .. theme .. "'\""))
+			hl.dispatch(hl.dsp.exec_cmd("hyprctl setcursor " .. theme .. "-Hyprcursor 24"))
+		end
+
+		local not_default_theme = false
+
 		hl.on("window.fullscreen", function(w)
 			if w.fullscreen == 2 then
 				mouse_drag_bind:set_enabled(false)
+				if w.class == "factorio" then
+					change_cursor_theme("Bibata-Modern-Ice")
+					hl.config({
+						cursor = {
+							inactive_timeout = 0,
+							hide_on_key_press = false,
+						},
+					})
+					not_default_theme = true
+				end
 			else
 				mouse_drag_bind:set_enabled(true)
+				if not_default_theme then
+					change_cursor_theme("Bibata-Modern-Classic")
+					hl.config({
+						cursor = {
+							inactive_timeout = 3,
+							hide_on_key_press = true,
+						},
+					})
+					not_default_theme = false
+				end
 			end
 		end)
 		hl.on("window.active", function(w)
 			if w.fullscreen == 2 then
 				mouse_drag_bind:set_enabled(false)
+				if w.class == "factorio" then
+					change_cursor_theme("Bibata-Modern-Ice")
+					hl.config({
+						cursor = {
+							inactive_timeout = 0,
+							hide_on_key_press = false,
+						},
+					})
+					not_default_theme = true
+				end
 			else
 				mouse_drag_bind:set_enabled(true)
+				if not_default_theme then
+					change_cursor_theme("Bibata-Modern-Classic")
+					hl.config({
+						cursor = {
+							inactive_timeout = 3,
+							hide_on_key_press = true,
+						},
+					})
+					not_default_theme = false
+				end
 			end
 		end)
 	end,

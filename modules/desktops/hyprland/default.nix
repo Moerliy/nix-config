@@ -64,6 +64,7 @@ with host;
           };
       systemPackages = with pkgs; [
         bibata-hyprcursor-modern
+        bibata-cursors
         grimblast # Screenshot
         hyprpaper # Wallpaper
         wl-clipboard # Clipboard
