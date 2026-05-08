@@ -43,7 +43,7 @@ with host;
         XDG_SESSION_DESKTOP = "Hyprland";
         DESKTOP_SESSION = "hyprland";
 
-        HYPRCURSOR_THEME = "Bibata-Modern-Ice-Hyprcursor";
+        HYPRCURSOR_THEME = "Bibata-Original-Ice-Hyprcursor";
         HYPRCURSOR_SIZE = "24";
         HYPRLAND_LUA_STUBS = "${pkgs.hyprland}/share/hypr/stubs";
       };
@@ -63,6 +63,7 @@ with host;
             WLR_DRM_DEVICES = "/dev/dri/card2";
           };
       systemPackages = with pkgs; [
+        bibata-hyprcursor-original
         grimblast # Screenshot
         hyprpaper # Wallpaper
         wl-clipboard # Clipboard
