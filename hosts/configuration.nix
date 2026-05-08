@@ -211,6 +211,7 @@ with host;
         wireguard-tools # Wireguard VPN
         wakeonlan
         parallel
+        glib
 
         python311Packages.numpy
         prismlauncher

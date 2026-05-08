@@ -37,13 +37,13 @@ with host;
 
     environment = {
       variables = {
-        # WLR_NO_HARDWARE_CURSORS="1"; # Needed for VM
+        # WLR_NO_HARDWARE_CURSORS = "1"; # Needed for VM
         XDG_CURRENT_DESKTOP = "Hyprland";
         XDG_SESSION_TYPE = "wayland";
         XDG_SESSION_DESKTOP = "Hyprland";
         DESKTOP_SESSION = "hyprland";
 
-        HYPRCURSOR_THEME = "Bibata-Original-Ice-Hyprcursor";
+        HYPRCURSOR_THEME = "Bibata-Modern-Classic-Hyprcursor";
         HYPRCURSOR_SIZE = "24";
         HYPRLAND_LUA_STUBS = "${pkgs.hyprland}/share/hypr/stubs";
       };
@@ -63,7 +63,7 @@ with host;
             WLR_DRM_DEVICES = "/dev/dri/card2";
           };
       systemPackages = with pkgs; [
-        bibata-hyprcursor-original
+        bibata-hyprcursor-modern
         grimblast # Screenshot
         hyprpaper # Wallpaper
         wl-clipboard # Clipboard
@@ -117,6 +117,19 @@ with host;
         '';
       in
       {
+        home = {
+          file = {
+            ".local/share/icons/Bibata-Modern-Amber-Hyprcursor" = {
+              source = "${pkgs.bibata-hyprcursor-modern}/share/icons/Bibata-Modern-Amber-Hyprcursor";
+            };
+            ".local/share/icons/Bibata-Modern-Classic-Hyprcursor" = {
+              source = "${pkgs.bibata-hyprcursor-modern}/share/icons/Bibata-Modern-Classic-Hyprcursor";
+            };
+            # ".local/share/icons/Bibata-Modern-Ice-Hyprcursor" = {
+            #   source = "${pkgs.bibata-hyprcursor-modern}/share/icons/Bibata-Modern-Ice-Hyprcursor";
+            # };
+          };
+        };
         programs.hyprlock = {
           enable = true;
           package = pkgs.hyprlock;

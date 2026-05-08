@@ -76,7 +76,7 @@ return {
 			kb_layout = "us",
 		})
 	end,
-	ruls = {
+	rules = {
 		workspace = {
 			{
 				workspace = "1",
@@ -90,7 +90,6 @@ return {
 			{
 				workspace = "4",
 				monitor = require("globals").monitor.main,
-				default = true,
 			},
 			{
 				workspace = "8",
