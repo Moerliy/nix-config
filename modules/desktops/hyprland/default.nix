@@ -43,7 +43,7 @@ with host;
         XDG_SESSION_DESKTOP = "Hyprland";
         DESKTOP_SESSION = "hyprland";
 
-        HYPRCURSOR_THEME = "Bibata-Modern-Classic-Hyprcursor";
+        HYPRCURSOR_THEME = "Bibata-Modern-Ice-Hyprcursor";
         HYPRCURSOR_SIZE = "24";
         HYPRLAND_LUA_STUBS = "${pkgs.hyprland}/share/hypr/stubs";
       };

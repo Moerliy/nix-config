@@ -37,7 +37,7 @@ with lib;
         cursorTheme = {
           # name = "catppuccin-mocha-dark-cursors";
           # package = pkgs-stable.catppuccin-cursors.mochaDark;
-          name = "Bibata-Modern-Classic";
+          name = "Bibata-Modern-Ice";
           package = pkgs.bibata-cursors;
         };
         font = {
@@ -48,7 +48,7 @@ with lib;
         gtk.enable = true;
         # package = pkgs-stable.catppuccin-cursors.mochaDark;
         # name = "catppuccin-mocha-dark-cursors";
-        name = "Bibata-Modern-Classic";
+        name = "Bibata-Modern-Ice";
         package = pkgs.bibata-cursors;
         size = 24;
       };

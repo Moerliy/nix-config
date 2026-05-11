@@ -19,6 +19,7 @@ Nix related tasks
 - [ ] neofetch still using neofetch
 - [ ] gpu-screen-recorder-ui instead ouf -gtk when nixpkgs is merged
 - [ ] change login manager
+- [ ] fix noicetorch
 
 #### New Features
 

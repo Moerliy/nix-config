@@ -92,8 +92,8 @@ return {
 
 		---@param theme string
 		local function change_cursor_theme(theme)
-			hl.dispatch(hl.dsp.exec_cmd("dconf write /org/gnome/desktop/interface/cursor-theme \"'" .. theme .. "'\""))
-			hl.dispatch(hl.dsp.exec_cmd("hyprctl setcursor " .. theme .. "-Hyprcursor 24"))
+			-- hl.dispatch(hl.dsp.exec_cmd("dconf write /org/gnome/desktop/interface/cursor-theme \"'" .. theme .. "'\""))
+			-- hl.dispatch(hl.dsp.exec_cmd("hyprctl setcursor " .. theme .. "-Hyprcursor 24"))
 		end
 
 		local not_default_theme = false
