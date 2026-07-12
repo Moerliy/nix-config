@@ -64,6 +64,10 @@ return {
 			kb_layout = "us",
 		})
 		hl.device({
+			name = "zmk-project-urchin-keyboard",
+			kb_layout = "us",
+		})
+		hl.device({
 			name = "-------akko-2.4g-wireless-keyboard",
 			kb_layout = "us",
 		})

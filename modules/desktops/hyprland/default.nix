@@ -259,6 +259,7 @@ with host;
           enable = true;
           package = hyprlandPkg;
           portalPackage = pkgs.xdg-desktop-portal-hyprland;
+          configType = "lua";
           sourceFirst = false;
           xwayland.enable = true;
         };
