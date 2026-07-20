@@ -213,7 +213,7 @@ with host;
         parallel
         glib
 
-        python311Packages.numpy
+        python312Packages.numpy
         prismlauncher
 
         # Video/Audio
@@ -235,7 +235,7 @@ with host;
         remmina # XRDP & VNC Client
         anki # Flashcards
         catppuccin-kvantum # Theme Manager
-        freecad-wayland # CAD
+        # freecad-wayland # CAD
         orca-slicer # 3D Printer Slicer
         pcmanfm # File Browser
         image-roll # Image Viewer

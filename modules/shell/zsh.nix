@@ -56,14 +56,15 @@ with lib;
             }
 
             function dnix() {
-              export PATH="$(echo $PATH | tr ':' '\n' | grep -v '/etc/profiles/per-user' | paste -sd: -)"
+              # export PATH="$(echo $PATH | tr ':' '\n' | grep -v '/etc/profiles/per-user' | paste -sd: -)"
+              export PATH="$(echo "$PATH" | tr ':' '\n' | grep -vE '^/nix/|^/run/(current-system|wrappers)/|^/home/[^/]+/\.nix-profile|^/home/[^/]+/\.local/state/nix/profile|^/etc/profiles/per-user/' | paste -sd: -)"
             }
 
             # Install Axii.
             if [ -f "$HOME/dev/axii/scripts/install_axii.sh" ]; then
                 source "$HOME/dev/axii/scripts/install_axii.sh"
             fi
-            eval "$(register-python-argcomplete armarx)"
+            eval "$(register-python-argcomplete3 armarx)"
           '';
         };
       };

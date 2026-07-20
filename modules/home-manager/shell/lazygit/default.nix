@@ -198,7 +198,7 @@ with lib;
       };
     };
     home.packages = with pkgs; [
-      commitizen
+      #commitizen
       # gptcommit
     ];
   };
