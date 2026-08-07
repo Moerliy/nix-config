@@ -109,6 +109,35 @@ with host;
           }
         ];
       };
+      GBase = {
+        autostart = false;
+        address = [
+          "192.168.178.201/24"
+          "fd26:833a:d78::201/64"
+        ];
+        dns = [
+          "192.168.178.1"
+          "fd26:833a:d78::ec5:74ff:fee4:469f"
+          # "fritz.box"
+        ];
+        privateKeyFile = "/home/moritzgleissner/wireguard-keys/private";
+
+        peers = [
+          {
+            publicKey = "KwSwdwfOU8r17viUd2m8eZ4bLxTwu0lYM3fqaZ5hoWA=";
+
+            allowedIPs = [
+              "192.168.178.0/24"
+              "0.0.0.0/0"
+              "fd26:833a:d78::/64"
+              "::/0"
+            ];
+            presharedKeyFile = "/home/moritzgleissner/wireguard-keys/preshared";
+            endpoint = "9ojcvmhmorprrnk2.myfritz.net:50332";
+            persistentKeepalive = 25;
+          }
+        ];
+      };
     };
   };
 

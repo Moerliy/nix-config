@@ -158,6 +158,7 @@ with host;
           openssl
 
           luajitPackages.luarocks
+          lua51Packages.lua
           nil
           nixd
           statix
