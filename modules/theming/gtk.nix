@@ -26,8 +26,8 @@ with lib;
       gtk = {
         enable = true;
         theme = {
-          name = "Kanagawa-B";
-          package = pkgs.kanagawa-gtk-theme.override {
+          name = "Catppuccin-GTK-Dark";
+          package = pkgs.magnetic-catppuccin-gtk.override {
           };
         };
         iconTheme = {

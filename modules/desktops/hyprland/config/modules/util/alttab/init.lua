@@ -18,7 +18,7 @@ return {
 				workspace = "special:alttab",
 				monitor = require("globals").monitor.main,
 				persistent = false,
-				gaps_out = 0,
+				gaps_out = 200,
 				gaps_in = 0,
 				border_size = 0,
 			},

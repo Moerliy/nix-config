@@ -83,6 +83,10 @@ return {
 	rules = {
 		workspace = {
 			{
+				workspace = "special:special",
+				gaps_out = 100,
+			},
+			{
 				workspace = "1",
 				monitor = require("globals").monitor.main,
 				default = true,

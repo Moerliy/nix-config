@@ -70,10 +70,23 @@ with host;
     sudo.wheelNeedsPassword = false;
   };
 
-  services.udev.extraRules = ''
-    # Fujitsu ScanSnap S1300i
-    ATTRS{idVendor}=="04c5", ATTRS{idProduct}=="128d", MODE="0664", GROUP="scanner"
-  '';
+  services = {
+    earlyoom = {
+      enable = true;
+      enableNotifications = true;
+      freeSwapThreshold = 2;
+      freeMemThreshold = 2;
+      extraArgs = [
+        "-g"
+        #"--avoid '^(X|plasma.*|konsole|kwin)$'"
+        # "--prefer '^(electron|libreoffice|gimp)$'"
+      ];
+    };
+    udev.extraRules = ''
+      # Fujitsu ScanSnap S1300i
+      ATTRS{idVendor}=="04c5", ATTRS{idProduct}=="128d", MODE="0664", GROUP="scanner"
+    '';
+  };
 
   programs.localsend.enable = true;
   # programs.noisetorch.enable = true;

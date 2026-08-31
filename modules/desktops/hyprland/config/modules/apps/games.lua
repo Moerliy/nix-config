@@ -22,6 +22,13 @@ return {
 			},
 			{
 				match = {
+					initial_title = "[Ss](team)",
+				},
+				workspace = "3",
+				float = true,
+			},
+			{
+				match = {
 					class = "(steam)",
 					title = "(^[S]team)",
 				},
