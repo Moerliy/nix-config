@@ -58,8 +58,8 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    hyprhook = {
-      url = "github:Hyprhook/Hyprhook";
+    hyprlui = {
+      url = "github:Hyprhook/HyprLUI";
       inputs.hyprland.follows = "hyprland";
     };
 
@@ -139,7 +139,7 @@
       catppuccin,
       hyprland,
       hyprland-nativ-plugins,
-      hyprhook,
+      hyprlui,
       hyprlock,
       hyprsunset,
       hypridle,

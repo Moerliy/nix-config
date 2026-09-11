@@ -72,6 +72,7 @@
       "steam-unwrapped"
       "osu-lazer-bin"
       "teamspeak6-client"
+      "claude-code"
     ];
   services = {
     xserver.videoDrivers = [ "nvidia" ];
@@ -239,6 +240,7 @@
           vesktop
           distrobox
           osu-lazer-bin
+          claude-code
         ];
       };
     };

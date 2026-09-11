@@ -8,6 +8,7 @@ local M = {
 	main_mod = "SUPER",
 	scriptDir = "$HOME/.local/bin",
 	terminal = "TERMINAL",
+	hyprlui_dir = "HYPRLUI_DIR",
 }
 
 return M

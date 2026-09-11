@@ -19,7 +19,7 @@ let
     home-manager-unstable
     hyprland
     hyprland-nativ-plugins
-    hyprhook
+    hyprlui
     hypridle
     hyprlock
     grim-hyprland
@@ -65,7 +65,7 @@ let
     (final: prev: {
       inherit (hyprland.packages.${system}) hyprland;
       inherit (hyprland.packages.${system}) xdg-desktop-portal-hyprland;
-      inherit (hyprhook.packages.${system}) hyprhook;
+      hyprlui = hyprlui.packages.${system}.HyprLUI;
       inherit (hypridle.packages.${system}) hypridle;
       inherit (hyprlock.packages.${system}) hyprlock;
       inherit (hyprsunset.packages.${system}) hyprsunset;

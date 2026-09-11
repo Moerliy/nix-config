@@ -42,7 +42,18 @@ return {
           mason = false,
           Lua = {
             workspace = {
-              library = os.getenv("HYPRLAND_LUA_STUBS") and { os.getenv("HYPRLAND_LUA_STUBS") } or {},
+              library = (function()
+                local libs = {}
+                local hyprlui = os.getenv("HYPRLUI_LUA_STUBS")
+                local hypr = os.getenv("HYPRLAND_LUA_STUBS")
+                if hyprlui then
+                  table.insert(libs, hyprlui)
+                end
+                if hypr then
+                  table.insert(libs, hypr)
+                end
+                return libs
+              end)(),
               checkThirdParty = false,
             },
             diagnostics = {

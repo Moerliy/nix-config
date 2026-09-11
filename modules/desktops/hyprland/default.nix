@@ -7,6 +7,7 @@
   lib,
   pkgs,
   pkgs-stable,
+  system,
   vars,
   host,
   ...
@@ -46,6 +47,7 @@ with host;
         HYPRCURSOR_THEME = "Bibata-Modern-Ice-Hyprcursor";
         HYPRCURSOR_SIZE = "24";
         HYPRLAND_LUA_STUBS = "${pkgs.hyprland}/share/hypr/stubs";
+        HYPRLUI_LUA_STUBS = "${pkgs.hyprlui}/share/hypr/stubs";
       };
       sessionVariables =
         if hostName == "nvidia" then
@@ -260,13 +262,22 @@ with host;
           package = hyprlandPkg;
           portalPackage = pkgs.xdg-desktop-portal-hyprland;
           configType = "lua";
-          sourceFirst = false;
+          # sourceFirst = false;
           xwayland.enable = true;
+          plugins = [
+            pkgs.hyprlui
+          ];
+          # Config is fully hand-written below via xdg.configFile (hypr/hyprland.lua
+          # + modules/core/globals.lua), not through this module's settings/
+          # extraLuaFiles/submaps generators - extraConfig is never consumed for
+          # configType = "lua", so this only exists to stop the module's own
+          # "plugins listed but no settings/extraConfig/..." sanity warning.
+          # extraConfig = "# config provided via xdg.configFile, see ./config";
+          extraLuaFiles = {
+            "main.lua" = ./config/hyprland.lua;
+          };
         };
         xdg.configFile = {
-          "hypr/hyprland.lua" = {
-            source = ./config/hyprland.lua;
-          };
           "hypr/modules" = {
             source = ./config/modules;
           };
@@ -276,13 +287,14 @@ with host;
           "hypr/globals.lua" = {
             text =
               builtins.replaceStrings
-                [ "MONITOR_MAIN" "MONITOR_SECOND" "MONITOR_BUILDIN" "HOST" "TERMINAL" ]
+                [ "MONITOR_MAIN" "MONITOR_SECOND" "MONITOR_BUILDIN" "HOST" "TERMINAL" "HYPRLUI_DIR" ]
                 [
                   "${toString mainMonitor}"
                   (if secondMonitor != null then "${toString secondMonitor}" else "")
                   (if hostName == "asahi" && buildInMonitor != null then "${toString buildInMonitor}" else "")
                   "${toString hostName}"
                   "${toString vars.terminal}"
+                  "${toString pkgs.hyprlui}/share/hypr/hyprlui"
                 ]
                 (builtins.readFile ./config/globals.lua);
           };
