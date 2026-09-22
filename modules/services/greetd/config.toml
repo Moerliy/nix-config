@@ -1,0 +1,60 @@
+[default_session]
+command = "tuigreet --time --cmd 'start-hyprland' --config ~/.config/tuigreet/config.toml"
+user = "greeter"
+
+[display]
+show_time = true
+greeting = "Welcome to the system!"
+align_greeting = "center"
+issue = false
+
+[layout]
+width = 60
+window_padding = 2
+container_padding = 1
+prompt_padding = 1
+
+[layout.widgets]
+time_position = "top"      # "top", "bottom", "default", "hidden"
+status_position = "bottom" # "top", "bottom", "default", "hidden"
+
+[remember]
+username = true
+session = false
+user_session = true
+
+[user_menu]
+enabled = true
+min_uid = 1000
+max_uid = 60000
+
+[secret]
+mode = "characters" # "hidden" or "characters"
+characters = "*"
+
+# `[display] asterisks = true|false` remains supported for compatibility but is
+# deprecated. Migrate it to `secret.mode`; `secret.mode` wins if both are set.
+
+[keybindings]
+command = 2    # F2
+sessions = 3   # F3
+background = 4 # F4
+power = 12     # F12
+
+[[outputs]]
+connector = "DP-3"
+primary = true
+
+[[outputs]]
+connector = "DP-2"
+enabled = false
+
+# [theme]
+# border = "magenta"
+# text = "cyan"
+# prompt = "green"
+# time = "red"
+# action = "blue"
+# button = "yellow"
+# container = "black"
+# input = "red"

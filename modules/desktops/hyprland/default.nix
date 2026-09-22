@@ -260,6 +260,7 @@ with host;
         wayland.windowManager.hyprland = {
           enable = true;
           package = hyprlandPkg;
+          # withUWSM = true;
           portalPackage = pkgs.xdg-desktop-portal-hyprland;
           configType = "lua";
           # sourceFirst = false;

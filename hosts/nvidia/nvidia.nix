@@ -18,7 +18,8 @@
 
   # Login Manager
   gdm.enable = false;
-  ly.enable = true;
+  ly.enable = false;
+  greetd.enable = true;
 
   # Desktop
   hyprland.enable = true;
@@ -55,6 +56,13 @@
     hostName = "Nvidia";
     # wake on lan for lan-connectoin
     interfaces.eno1.wakeOnLan.enable = true;
+  };
+
+  # console settings
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "us";
+    useXkbConfig = false;
   };
 
   nixpkgs.config.nvidia.acceptLicense = true;

@@ -57,13 +57,6 @@ with host;
     '';
   };
 
-  # console settings
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "de-latin1";
-    useXkbConfig = false;
-  };
-
   security = {
     rtkit.enable = true;
     polkit.enable = true;

@@ -4,4 +4,5 @@
   ./eww/default.nix
   ./waybar.nix
   ./ly.nix
+  ./greetd/default.nix
 ]

@@ -46,6 +46,13 @@
     hostName = "MacBook";
   };
 
+  # console settings
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "de-latin1";
+    useXkbConfig = false;
+  };
+
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
