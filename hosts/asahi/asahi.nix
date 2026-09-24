@@ -58,6 +58,7 @@
     builtins.elem (lib.getName pkg) [
       "steam-run"
       "steam-unwrapped"
+      "copilot-language-server"
     ];
 
   nix.settings = {

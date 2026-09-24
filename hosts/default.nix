@@ -83,6 +83,7 @@ let
   };
 
   nvidia-flake-inputs = {
+    inherit hyprlui;
   };
 in
 {
@@ -200,7 +201,10 @@ in
             };
             useGlobalPkgs = true;
             useUserPackages = true;
-            sharedModules = [ hyprland.homeManagerModules.default ];
+            sharedModules = [
+              hyprland.homeManagerModules.default
+              hyprlui.homeManagerModules.default
+            ];
           };
         }
       ];

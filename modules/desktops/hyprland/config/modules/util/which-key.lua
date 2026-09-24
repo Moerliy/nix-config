@@ -18,8 +18,8 @@ return {
 		local globals = require("globals")
 		local which_key = require(globals.hyprlui_dir .. "/demos/which-key.lua")
 		which_key.setup({
-			xOffset = 3,
 			yOffset = 3,
+			monitorPadding = 3,
 			buildPopup = function(columns)
 				return hl.plugin.hyprlui.Component("WhichKeyPopup", {
 					columns = columns,

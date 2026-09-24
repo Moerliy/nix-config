@@ -291,6 +291,7 @@ loader.load_modules({
 	"modules.ui.layout",
 	"modules.ui.tweaks",
 	"modules.ui.cursor",
+	"modules.ui.notification",
 
 	-- util
 	"modules.util.alttab",

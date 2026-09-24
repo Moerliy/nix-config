@@ -81,8 +81,11 @@ with host;
     '';
   };
 
-  programs.localsend.enable = true;
-  # programs.noisetorch.enable = true;
+  programs = {
+    localsend.enable = true;
+    # noisetorch.enable = true;
+    nix-ld.enable = true; # only needed for copilot.nvim because it needs own lsp
+  };
 
   networking = {
     wg-quick.interfaces = {

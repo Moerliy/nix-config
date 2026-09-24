@@ -27,7 +27,8 @@
   rofi.enable = true;
   gtk-theme.enable = true;
   qt-theme.enable = true;
-  mako.enable = true;
+  mako.enable = false;
+  hyprlui-notification-daemon.enable = true;
   eww.enable = true;
   wlogout.enable = false;
   waybar.enable = true;
@@ -81,6 +82,7 @@
       "osu-lazer-bin"
       "teamspeak6-client"
       "claude-code"
+      "copilot-language-server"
     ];
   services = {
     xserver.videoDrivers = [ "nvidia" ];

@@ -817,11 +817,11 @@
         "systems": "systems_7"
       },
       "locked": {
-        "lastModified": 1789138952,
-        "narHash": "sha256-MwlXWFR80AMq2Pmqg99ilcfzawM5fxh0bolRXI2Kkxo=",
+        "lastModified": 1790269671,
+        "narHash": "sha256-YmBSlyHRW0M6vYCqtfPtSmLAvrDjXNhO71xXP1ftofo=",
         "owner": "Hyprhook",
         "repo": "HyprLUI",
-        "rev": "86e5c1c5c2bd52a714941072d965d0abc3867d38",
+        "rev": "b3ad2e519e70f907ede6c5e7be23f409808565a1",
         "type": "github"
       },
       "original": {

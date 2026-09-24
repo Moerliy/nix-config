@@ -1,6 +1,7 @@
 [
   ./gdm.nix
   ./mako/default.nix
+  ./hyprlui-notification-daemon/default.nix
   ./eww/default.nix
   ./waybar.nix
   ./ly.nix
