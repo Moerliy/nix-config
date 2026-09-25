@@ -60,6 +60,7 @@
 
     hyprlui = {
       url = "github:Hyprhook/HyprLUI";
+      # url = "git+file:///home/moritzgleissner/dev/HyprLUI";
       inputs.hyprland.follows = "hyprland";
     };
 
